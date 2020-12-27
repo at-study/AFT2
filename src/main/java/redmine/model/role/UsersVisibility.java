@@ -8,6 +8,10 @@ public enum UsersVisibility {
 
     public final String description;
 
+    UsersVisibility(String description){
+        this.description=description;
+    }
+
     public static UsersVisibility of(String description) {
         return Stream.of(values())
                 .filter(it -> it.description.equals(description))
