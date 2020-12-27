@@ -6,7 +6,7 @@ public class MyFirstTest extends AbstractTest {
      * TestNg первые тесты -лекция 1 (BeforeSuite,BeforeClass,BeforeMethod)
      */
 
-    @Test(testName = "Первый тест", description = "Имя первого теста")
+    @Test(testName = "Первый тест", description = "Имя первого теста",alwaysRun = true)
     public void myFirstTest() {
         System.out.println("1");
     }

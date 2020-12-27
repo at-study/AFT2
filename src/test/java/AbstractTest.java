@@ -6,7 +6,11 @@ public class AbstractTest {
     public void prepareFixture() {
         System.out.println("BeforeClass- предусловие перед классом");
     }
-    @BeforeMethod
+
+    /**
+     * по умолчанию олвейс ран фолсе,в тру надо переводить
+     */
+    @BeforeMethod(alwaysRun = true)
     public void prepareFixtureForMethod() {
         System.out.println("BeforeMethod- предусловие перед методом");
     }
@@ -18,7 +22,7 @@ public class AbstractTest {
     public void prepareFixtureAfter() {
         System.out.println("AfterClass- постусловие после классом");
     }
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void prepareFixtureForMethodAfter() {
         System.out.println("AfterMethod- постусловие после методом");
     }
