@@ -14,6 +14,7 @@ public class MySecondTest extends AbstractTest {
      * groups1
      * priority-низкие вначале
      * expectedException
+     * expected ExceptionMessageRegExp default ".*"
      */
     @Test(testName = "Мой четвёртый  тест",groups = {"group1"},priority = 20,expectedExceptions = {IllegalStateException.class})
     public void myFourthTest() {
