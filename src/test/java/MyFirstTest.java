@@ -13,7 +13,7 @@ public class MyFirstTest extends AbstractTest {
      * dependsOnMethod если первый падает второй не запускается
      * обязательно выполнение предыдущего
      */
-    @Test(testName = "Второй тест", description = "Имя второго теста",dependsOnMethods = {"myFirstTest"})
+    @Test(testName = "Второй тест", description = "Имя второго теста",dependsOnMethods = {"myFirstTest"},dependsOnGroups = {"group1"})
     public void mySecondTest() {
         System.out.println("2");
     }
