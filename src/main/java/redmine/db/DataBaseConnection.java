@@ -21,6 +21,10 @@ public class DataBaseConnection {
         connect();
     }
 
+    public Connection getConnection(){
+    return connection;
+    }
+
     private void initVariables() {
         dbHost = getStringProperty("dbHost");
         dbPort = getIntegerProperty("dbPort");
