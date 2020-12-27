@@ -1,12 +1,10 @@
 package redmine.db;
-
 import lombok.SneakyThrows;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
 import static redmine.Property.getIntegerProperty;
 import static redmine.Property.getStringProperty;
 
@@ -39,7 +37,7 @@ public class DataBaseConnection {
     }
 
     /**
-     * Выполняет SQL-запрос и возвращает резулльтат
+     * Выполняет SQL-запрос и возвращает результат
      * @param query -SQL-запрос
      * @return данные-результат запроса
      */
