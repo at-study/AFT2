@@ -1,3 +1,5 @@
+package testNG;
+
 import org.testng.annotations.*;
 
 public class AbstractTest {

@@ -1,3 +1,5 @@
+package testNG;
+
 import org.testng.annotations.Test;
 
 public class MySecondTest extends AbstractTest {
