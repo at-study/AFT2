@@ -1,5 +1,13 @@
 package redmine.model.role;
 
+import lombok.*;
+
+import java.util.HashSet;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode
 public class Role {
     private Integer id;
     private String name="Auto" + StringGenerator.randomEnglishLowerString(8);

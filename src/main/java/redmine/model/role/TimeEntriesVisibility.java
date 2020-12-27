@@ -5,17 +5,17 @@ import lombok.AllArgsConstructor;
 import java.util.stream.Stream;
 
 @AllArgsConstructor
-public enum UsersVisibility {
-    ALL("Все активные пользователи"),
-    MEMBERS_OF_VISIBLE_PROJECTS("Участники видимых проектов");
+public enum TimeEntriesVisibility {
+    ALL("Все трудозатраты"),
+    OWN("Только собственные трудозатраты");
 
     public final String description;
 
-    public static UsersVisibility of(String description) {
+    public static TimeEntriesVisibility of(String description) {
         return Stream.of(values())
                 .filter(it -> it.description.equals(description))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Не найден UsersVisibility по описанию " + description));
+                .orElseThrow(() -> new IllegalArgumentException("Не найден TimeEntriesVisibility с описанием  " + description));
     }
 
     @Override
@@ -23,3 +23,4 @@ public enum UsersVisibility {
         return name().toLowerCase();
     }
 }
+
