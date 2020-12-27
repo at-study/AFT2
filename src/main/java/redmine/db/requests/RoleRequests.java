@@ -23,14 +23,13 @@ public class RoleRequests {
             role.setBuiltin((Integer)map.get("builtin"));
             role.setName((String) map.get("name"));
             role.setAssignable((Boolean) map.get("assignable"));
-            role.setIssuesVisibility(IssuesVisibility.valueOf(((String)map.get("issues_visibility")).toUpperCase()));
-            role.setPermissions(RolePermissions.of((String )map.get("permission")));
+            role.setIssuesVisibility(IssuesVisibility.valueOf(((String) map.get("issues_visibility")).toUpperCase()));
+            role.setPermissions(RolePermissions.of((String) map.get("permission")));
             role.setTimeEntriesVisibility(TimeEntriesVisibility.valueOf(((String)  map.get("time_entries_visibility")).toUpperCase()));
             role.setAllRolesManaged((Boolean) map.get("all_roles_managed"));
             role.setSettings((String) map.get("settings"));
             return role;
-        })
-                .collect(Collectors.toList());
+        }).collect(Collectors.toList());
     }
 
     public static Role getRole(Role objectRole){

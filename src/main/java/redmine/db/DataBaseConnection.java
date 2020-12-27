@@ -21,10 +21,6 @@ public class DataBaseConnection {
         connect();
     }
 
-    public Connection getConnection(){
-    return connection;
-    }
-
     private void initVariables() {
         dbHost = getStringProperty("dbHost");
         dbPort = getIntegerProperty("dbPort");
@@ -39,7 +35,6 @@ public class DataBaseConnection {
         String url = String.format("jdbc:postgresql://%s:%d/%s?user=%s&password=%s", dbHost, dbPort, dbName, dbUser, dbPass);
         connection = DriverManager.getConnection(url);
     }
-
     /**
      * Выполняет SQL-запрос и возвращает результат
      * @param query -SQL-запрос
