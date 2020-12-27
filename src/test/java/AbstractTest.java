@@ -8,7 +8,7 @@ public class AbstractTest {
     }
 
     /**
-     * по умолчанию олвейс ран фолсе,в тру надо переводить
+     * по умолчанию олвейс ран фолсе,в тру надо переводить.даже если тест падает всё равно продолжается выполнение
      */
     @BeforeMethod(alwaysRun = true)
     public void prepareFixtureForMethod() {
