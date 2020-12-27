@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DataBaseTest {
-    @Test
+    @Test(testName = "Тест соеденения-выполнение запроса")
     public  void executePlainQueryTest(){
        String query="select * from users u inner join tokens t on u.id=t.user_id inner join email_addresses e on u.id=e.user_id";
        List<Map<String,Object>> result= Manager.dbConnection.executeQuery(query);
@@ -31,9 +31,9 @@ public class DataBaseTest {
         role.setName("Пользователь1");
         Role dataBaseRole=RoleRequests.getRole(role);
         Assert.assertEquals(dataBaseRole.getId().intValue(),11);
-        role.setId(11);
+        role.setId(15);
         Role dataBaseRole2=RoleRequests.getRole(role);
-        Assert.assertEquals(dataBaseRole2.getName(),"Пользователь1");
+        Assert.assertEquals(dataBaseRole2.getName(),"Новая автотестовая роль");
     }
 
     @Test
