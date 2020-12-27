@@ -1,6 +1,4 @@
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 public class AbstractTest {
 
@@ -15,5 +13,17 @@ public class AbstractTest {
     @BeforeSuite
     public void prepareFixtureForSuite() {
         System.out.println("BeforeSuite- предусловие перед сьютой");
+    }
+    @AfterClass
+    public void prepareFixtureAfter() {
+        System.out.println("AfterClass- постусловие после классом");
+    }
+    @AfterMethod
+    public void prepareFixtureForMethodAfter() {
+        System.out.println("AfterMethod- постусловие после методом");
+    }
+    @AfterSuite
+    public void prepareFixtureForSuiteAfter() {
+        System.out.println("AfterSuite- постусловие после сьютой");
     }
 }
