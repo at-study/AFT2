@@ -1,6 +1,7 @@
 package redmine.model.role;
 
 import lombok.*;
+import redmine.model.Generatable;
 
 import java.util.HashSet;
 
@@ -8,7 +9,7 @@ import java.util.HashSet;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Role {
+public class Role implements Generatable<Role> {
     private Integer id;
     private String name="Auto" + StringGenerator.randomEnglishLowerString(8);
     private Integer position=1;
