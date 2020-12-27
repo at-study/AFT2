@@ -1,6 +1,4 @@
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 public class MyFirstTest extends AbstractTest {
     /**
      * TestNg первые тесты -лекция 1 (BeforeSuite,BeforeClass,BeforeMethod)
@@ -13,7 +11,7 @@ public class MyFirstTest extends AbstractTest {
      * dependsOnMethod если первый падает второй не запускается
      * обязательно выполнение предыдущего
      */
-    @Test(testName = "Второй тест", description = "Имя второго теста",dependsOnMethods = {"myFirstTest"},dependsOnGroups = {"group1"})
+    @Test(testName = "Второй тест", description = "Имя второго теста",dependsOnMethods = {"myFirstTest"})
     public void mySecondTest() {
         System.out.println("2");
     }
