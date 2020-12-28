@@ -47,10 +47,18 @@ public class RedmineApiTests {
                 " }\n" +
                 "}", login, firstName, lastName, mail);
         ApiClient apiClient=new RestApiClient(user);
-        Request request=new RestRequest("roles.json", HttpMethods.POST,null,null,body);
+        Request request=new RestRequest("users.json", HttpMethods.POST,null,null,body);
         Response response= apiClient.executeRequest(request);
         Assert.assertEquals(response.getStatusCode(),201);
-        UserDto createUser=response.getBody(UserDto.class);
+        UserDto createdUser=response.getBody(UserDto.class);
+        Assert.assertEquals(createdUser.getUser().getLogin(), login);
+        Assert.assertEquals(createdUser.getUser().getFirstname(), firstName);
+        Assert.assertEquals(createdUser.getUser().getLastname(), lastName);
+        Assert.assertNull(createdUser.getUser().getPassword());
+        Assert.assertEquals(createdUser.getUser().getMail(), mail);
+        Assert.assertNull(createdUser.getUser().getLast_login_on());
+        Assert.assertEquals(createdUser.getUser().getStatus().intValue(), 1);
+        Assert.assertFalse(createdUser.getUser().getAdmin());
     }
 
 }
