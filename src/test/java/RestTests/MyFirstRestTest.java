@@ -7,6 +7,7 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import redmine.model.Dto.UserDto;
+import redmine.utils.gson.GsonHelper;
 
 import static io.restassured.RestAssured.given;
 import static redmine.utils.StringGenerators.*;
@@ -27,8 +28,8 @@ public class MyFirstRestTest {
     public void createUserTest() {
         String apiKey = "f02b2da01a468c4116be898911481d1b928c15f9";
         String login = randomEnglishLowerString(8);
-        String firstname = randomEnglishLowerString(12);
-        String lastname = randomEnglishLowerString(12);
+        String firstName = randomEnglishLowerString(12);
+        String lastName = randomEnglishLowerString(12);
         String mail = randomEmail();
         String body = String.format("{\n" +
                 " \"user\":{\n" +
@@ -36,28 +37,22 @@ public class MyFirstRestTest {
                 " \"firstname\":\"%s\",\n" +
                 " \"lastname\":\"%s\",\n" +
                 " \"mail\":\"%s\",\n" +
-                " \"password\":\"1qaz@WSX\",\n" +
+                " \"password\":\"1qaz@WSX\" \n" +
                 " }\n" +
-                "}", login, firstname, lastname, mail);
+                "}", login, firstName, lastName, mail);
 
         Response response = given().baseUri("http://edu-at.dfu.i-teco.ru/")
                 .contentType(ContentType.JSON)
                 .header("X-Redmine-API-Key", apiKey)
                 .body(body)
-                .request(Method.POST, "roles.json");
+                .request(Method.POST, "users.json");
 
         Assert.assertEquals(response.getStatusCode(), 201);
-        /**
-         * парсинг ответа ,вначале создаетсямодель потом распальцовка
-         */
         String responseBody=response.getBody().asString();
-        UserDto createdUser=new Gson().fromJson(responseBody,UserDto.class);
-        /**
-         * сравнение логинов,имени фамилии пароля итд
-         */
+        UserDto createdUser=GsonHelper.getGson().fromJson(responseBody,UserDto.class);
         Assert.assertEquals(createdUser.getUser().getLogin(),login);
-        Assert.assertEquals(createdUser.getUser().getFirstName(),firstname);
-        Assert.assertEquals(createdUser.getUser().getLastName(),lastname);
+        Assert.assertEquals(createdUser.getUser().getFirstname(),firstName);
+        Assert.assertEquals(createdUser.getUser().getLastname(),lastName);
         Assert.assertNull(createdUser.getUser().getPassword());
         Assert.assertEquals(createdUser.getUser().getMail(),mail);
         Assert.assertNull(createdUser.getUser().getLast_login_on());
