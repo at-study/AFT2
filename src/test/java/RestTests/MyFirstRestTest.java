@@ -1,10 +1,13 @@
 package RestTests;
 
+import com.google.gson.Gson;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import redmine.model.Dto.UserDto;
+
 import static io.restassured.RestAssured.given;
 import static redmine.utils.StringGenerators.*;
 
@@ -44,6 +47,21 @@ public class MyFirstRestTest {
                 .request(Method.POST, "roles.json");
 
         Assert.assertEquals(response.getStatusCode(), 201);
+        /**
+         * парсинг ответа ,вначале создаетсямодель потом распальцовка
+         */
         String responseBody=response.getBody().asString();
+        UserDto createdUser=new Gson().fromJson(responseBody,UserDto.class);
+        /**
+         * сравнение логинов,имени фамилии пароля итд
+         */
+        Assert.assertEquals(createdUser.getUser().getLogin(),login);
+        Assert.assertEquals(createdUser.getUser().getFirstName(),firstname);
+        Assert.assertEquals(createdUser.getUser().getLastName(),lastname);
+        Assert.assertNull(createdUser.getUser().getPassword());
+        Assert.assertEquals(createdUser.getUser().getMail(),mail);
+        Assert.assertNull(createdUser.getUser().getLast_login_on());
+        Assert.assertEquals(createdUser.getUser().getStatus().intValue(),1);
+        Assert.assertFalse(createdUser.getUser().getAdmin());
     }
 }

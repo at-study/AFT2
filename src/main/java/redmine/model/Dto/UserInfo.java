@@ -14,4 +14,5 @@ public class UserInfo {
     private LocalDateTime last_login_on;
     private String api_key;
     private Integer status;
+    private String password;
 }
