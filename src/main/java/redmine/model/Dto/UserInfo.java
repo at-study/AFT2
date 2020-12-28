@@ -1,5 +1,7 @@
 package redmine.model.Dto;
+
 import lombok.Data;
+
 import java.time.LocalDateTime;
 
 @Data

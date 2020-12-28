@@ -4,9 +4,13 @@ import java.util.Map;
 
 public interface Request {
     String getUri();
+
     HttpMethods getMethod();
-    Map<String,String> getParameters();
-    Map<String,String> getHeaders();
+
+    Map<String, String> getParameters();
+
+    Map<String, String> getHeaders();
+
     Object getBody();
 
 }

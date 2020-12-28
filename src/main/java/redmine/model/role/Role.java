@@ -4,6 +4,7 @@ import lombok.*;
 import redmine.db.requests.RoleRequests;
 import redmine.model.Generatable;
 import redmine.utils.StringGenerators;
+
 import java.util.HashSet;
 
 @Getter
@@ -12,15 +13,15 @@ import java.util.HashSet;
 @EqualsAndHashCode
 public class Role implements Generatable<Role> {
     private Integer id;
-    private String name="Auto" + StringGenerators.randomEnglishLowerString(8);
-    private Integer position=1;
-    private Boolean assignable=true;
-    private Integer builtin=0;
-    private RolePermissions permissions=new RolePermissions(new HashSet<>());
-    private IssuesVisibility issuesVisibility=IssuesVisibility.DEFAULT;
-    private UsersVisibility usersVisibility=UsersVisibility.ALL;
-    private TimeEntriesVisibility timeEntriesVisibility=TimeEntriesVisibility.ALL;
-    private Boolean allRolesManaged=true;
+    private String name = "Auto" + StringGenerators.randomEnglishLowerString(8);
+    private Integer position = 1;
+    private Boolean assignable = true;
+    private Integer builtin = 0;
+    private RolePermissions permissions = new RolePermissions(new HashSet<>());
+    private IssuesVisibility issuesVisibility = IssuesVisibility.DEFAULT;
+    private UsersVisibility usersVisibility = UsersVisibility.ALL;
+    private TimeEntriesVisibility timeEntriesVisibility = TimeEntriesVisibility.ALL;
+    private Boolean allRolesManaged = true;
     private String settings = """
             --- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
             permissions_all_trackers: !ruby/hash:ActiveSupport::HashWithIndifferentAccess

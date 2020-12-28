@@ -1,6 +1,6 @@
 package redmine.model;
 
-public interface Generatable <T>{
+public interface Generatable<T> {
     T read();
 
     T update();

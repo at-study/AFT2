@@ -3,6 +3,7 @@ package redmine.model.role;
 import lombok.AllArgsConstructor;
 
 import java.util.stream.Stream;
+
 @AllArgsConstructor
 public enum RolePermission {
     ADD_PROJECT("Создание проекта"),
