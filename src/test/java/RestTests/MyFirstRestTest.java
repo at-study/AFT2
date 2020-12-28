@@ -40,7 +40,9 @@ public class MyFirstRestTest {
                 " \"password\":\"1qaz@WSX\" \n" +
                 " }\n" +
                 "}", login, firstName, lastName, mail);
-
+        /**
+         * авторизация через апиключ
+         */
         Response response = given().baseUri("http://edu-at.dfu.i-teco.ru/")
                 .contentType(ContentType.JSON)
                 .header("X-Redmine-API-Key", apiKey)
