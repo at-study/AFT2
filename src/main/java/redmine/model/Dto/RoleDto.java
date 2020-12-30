@@ -5,6 +5,6 @@ import redmine.model.role.Role;
 
 @Data
 public class RoleDto {
-    private Role role;
+    private RoleInfo role;
 
 }

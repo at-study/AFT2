@@ -19,20 +19,21 @@ public class RedmineApiTests {
     User user;
 
     @BeforeMethod
-    public void prepareFixtures(){
-        user=new User().generate();
+    public void prepareFixtures() {
+        user = new User().generate();
     }
+
     @Test(testName = "Тест получения  роли ")
-    public void testRoleGet(){
-        ApiClient apiClient=new RestApiClient(user);
-        Request request=new RestRequest("roles.json", HttpMethods.GET,null,null,null);
-        Response response= apiClient.executeRequest(request);
-        Assert.assertEquals(response.getStatusCode(),200);
+    public void testRoleGet() {
+        ApiClient apiClient = new RestApiClient(user);
+        Request request = new RestRequest("roles.json", HttpMethods.GET, null, null, null);
+        Response response = apiClient.executeRequest(request);
+        Assert.assertEquals(response.getStatusCode(), 200);
         Assert.assertTrue(response.getHeaders().containsKey("Content-Type"));
     }
 
     @Test(testName = "Тест на создание пользователя ")
-    public void testUserCreation(){
+    public void testUserCreation() {
         String login = randomEnglishLowerString(8);
         String firstName = randomEnglishLowerString(12);
         String lastName = randomEnglishLowerString(12);
@@ -46,11 +47,11 @@ public class RedmineApiTests {
                 " \"password\":\"1qaz@WSX\" \n" +
                 " }\n" +
                 "}", login, firstName, lastName, mail);
-        ApiClient apiClient=new RestApiClient(user);
-        Request request=new RestRequest("users.json", HttpMethods.POST,null,null,body);
-        Response response= apiClient.executeRequest(request);
-        Assert.assertEquals(response.getStatusCode(),201);
-        UserDto createdUser=response.getBody(UserDto.class);
+        ApiClient apiClient = new RestApiClient(user);
+        Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
+        Response response = apiClient.executeRequest(request);
+        Assert.assertEquals(response.getStatusCode(), 201);
+        UserDto createdUser = response.getBody(UserDto.class);
         Assert.assertEquals(createdUser.getUser().getLogin(), login);
         Assert.assertEquals(createdUser.getUser().getFirstname(), firstName);
         Assert.assertEquals(createdUser.getUser().getLastname(), lastName);

@@ -12,7 +12,7 @@ import java.util.HashSet;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
-@Accessors(chain=true)
+@Accessors(chain = true)
 public class Role implements Generatable<Role> {
     private Integer id;
     private String name = "Auto" + StringGenerators.randomEnglishLowerString(8);

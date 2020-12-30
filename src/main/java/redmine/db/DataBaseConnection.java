@@ -88,7 +88,7 @@ public class DataBaseConnection {
         List<Map<String, Object>> result = new ArrayList<>();
         for (int i = 1; i <= count; i++) {
             String columnName = resultSet.getMetaData().getColumnName(i);
-            System.out.println(columnName);
+            columnNames.add(columnName);
         }
         while (resultSet.next()) {
             Map<String, Object> columnData = new TreeMap<>();

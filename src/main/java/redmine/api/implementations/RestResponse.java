@@ -29,6 +29,6 @@ public class RestResponse implements Response {
 
     @Override
     public <T> T getBody(Class<T> clazz) {
-        return GsonHelper.getGson().fromJson(body.toString(),clazz);
+        return GsonHelper.getGson().fromJson(body.toString(), clazz);
     }
 }

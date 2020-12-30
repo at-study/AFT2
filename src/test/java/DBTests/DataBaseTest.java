@@ -41,7 +41,7 @@ public class DataBaseTest {
     @Test
     public void updateRoleTest() {
         Role role = new Role();
-        role.setName("Evgenytt");
+        role.setName("Новая автотестовая роль");
         RoleRequests.updateRole(role);
     }
 

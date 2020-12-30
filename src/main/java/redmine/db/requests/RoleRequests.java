@@ -24,7 +24,7 @@ public class RoleRequests {
                     role.setName((String) map.get("name"));
                     role.setAssignable((Boolean) map.get("assignable"));
                     role.setIssuesVisibility(IssuesVisibility.valueOf(((String) map.get("issues_visibility")).toUpperCase()));
-                    role.setPermissions(RolePermissions.of((String) map.get("permission")));
+                    role.setPermissions(RolePermissions.of((String) map.get("permissions")));
                     role.setTimeEntriesVisibility(TimeEntriesVisibility.valueOf(((String) map.get("time_entries_visibility")).toUpperCase()));
                     role.setAllRolesManaged((Boolean) map.get("all_roles_managed"));
                     role.setSettings((String) map.get("settings"));
@@ -65,9 +65,9 @@ public class RoleRequests {
                 where name=? RETURNING id;
                 """;
         List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
-                role.getName(), role.getPosition(), role.getAssignable(), role.getBuiltin(), role.getPermissions().toString(),
+                role.getPosition(), role.getAssignable(), role.getBuiltin(), role.getPermissions().toString(),
                 role.getIssuesVisibility().toString(), role.getUsersVisibility().toString(), role.getTimeEntriesVisibility().toString(),
-                role.getAllRolesManaged(), role.getSettings());
+                role.getAllRolesManaged(), role.getSettings(), role.getName());
         role.setId((Integer) result.get(0).get("id"));
         return role;
     }
