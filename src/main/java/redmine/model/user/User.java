@@ -18,14 +18,14 @@ public class User implements Generatable<User> {
     private Boolean admin;
     private Status status;
     //TODO last_login_on
-    private Language language;
+    private Language language=Language.RU;
     //TODO updated_on
     //TODO created_on
     private Type type;
     private MailNotification mail_notification;
     private Boolean inherit_members;
     private String salt;
-    //TODO Boolean must_change_passwd
+    private Boolean must_change_passwd;
     //TODO passwd_changed_on;
 
     @Override
