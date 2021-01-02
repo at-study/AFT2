@@ -29,7 +29,9 @@ public class RoleTests {
         String uri = String.format("roles/%d.json", role.getId());
         Request request = new RestRequest(uri, HttpMethods.GET, null, null, null);
         Response response = apiClient.executeRequest(request);
+
         Assert.assertEquals(response.getStatusCode(), 200);
+
         RoleDto roleDto = response.getBody(RoleDto.class);
         Assert.assertEquals(roleDto.getRole().getId(), role.getId());
         Assert.assertEquals(roleDto.getRole().getName(), role.getName());
