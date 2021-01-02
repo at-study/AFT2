@@ -4,6 +4,7 @@ import lombok.*;
 @AllArgsConstructor
 
 public enum Status {
+    ANONYMOUS(0),
     ACTIVE(1),
     REGISTERED(2),
     LOCKED(3);
