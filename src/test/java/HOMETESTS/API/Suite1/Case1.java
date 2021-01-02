@@ -22,7 +22,7 @@ public class Case1 {
     public void prepareFixtures() {
         user = new User().generate();
     }
-    @Test(testName = "Тест на создание пользователя ",priority =1,
+    @Test(testName = "Тест на создание пользователя ",priority =5,
             description = "Отправить запрос POST на создание пользователя (данные пользователя должны быть сгенерированы корректно, пользователь должен иметь status = 2)")
     public void testUserCreation() {
         String login = randomEnglishLowerString(8);
@@ -43,9 +43,6 @@ public class Case1 {
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
-        /**
-         * 1.Статус ответа 201
-         */
         Assert.assertEquals(response.getStatusCode(), 201);
         /**
          * 2.тело ответа содержит данные пользователя в том числе его ид
@@ -63,6 +60,7 @@ public class Case1 {
         /**
          * 3. В базе данных есть информация о созданном пользователе, status = 2
          */
+
     }
 
 }

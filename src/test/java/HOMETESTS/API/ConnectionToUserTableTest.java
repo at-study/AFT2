@@ -10,7 +10,7 @@ public class ConnectionToUserTableTest {
 
     String apiKey = "f02b2da01a468c4116be898911481d1b928c15f9";
 
-    @Test(testName = "Проверка соеденения с User-статус 200")
+    @Test(testName = "Проверка соеденения с User-статус 200",priority=3)
     public void restRequestTest() {
         given().baseUri("http://edu-at.dfu.i-teco.ru/")
                 .contentType(ContentType.JSON)
