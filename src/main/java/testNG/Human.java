@@ -6,9 +6,9 @@ public class Human {
     private int age;
     private String name;
 
-    public Human(int age,String name){
-        this.age=age;
-        this.name=name;
+    public Human(int age, String name) {
+        this.age = age;
+        this.name = name;
     }
 
     public int getAge() {
@@ -16,7 +16,7 @@ public class Human {
     }
 
     public void setAge(int age) {
-        if(age<0) {
+        if (age < 0) {
             throw new IllegalArgumentException("Возраст не может быть отрицательным");
         }
         this.age = age;
