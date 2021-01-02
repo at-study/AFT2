@@ -15,7 +15,7 @@ import java.util.HashSet;
 @Accessors(chain = true)
 public class Role implements Generatable<Role> {
     private Integer id;
-    private String name = "Auto" + StringGenerators.randomEnglishLowerString(8);
+    private String name = "EvgRole" + StringGenerators.randomEnglishLowerString(8);
     private Integer position = 1;
     private Boolean assignable = true;
     private Integer builtin = 0;

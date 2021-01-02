@@ -1,11 +1,5 @@
 package redmine.db.requests;
 
-import redmine.api.implementations.RestApiClient;
-import redmine.api.implementations.RestRequest;
-import redmine.api.interfaces.ApiClient;
-import redmine.api.interfaces.HttpMethods;
-import redmine.api.interfaces.Request;
-import redmine.api.interfaces.Response;
 import redmine.managers.Manager;
 import redmine.model.user.Language;
 import redmine.model.user.Status;
@@ -13,8 +7,6 @@ import redmine.model.user.User;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import static redmine.utils.StringGenerators.randomEmail;
-import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 public class UserRequests {
 
@@ -41,24 +33,15 @@ public class UserRequests {
     }
 
     public static User createUser(User user) {
-        //TODO Запрос к бд
-        //TODO установка id значением сгенерированным в БД
-        String login = randomEnglishLowerString(8);
-        String firstName = randomEnglishLowerString(12);
-        String lastName = randomEnglishLowerString(12);
-        String mail = randomEmail();
-        String body = String.format("{\n" +
-                " \"user\":{\n" +
-                " \"login\":\"%s\",\n" +
-                " \"firstname\":\"%s\",\n" +
-                " \"lastname\":\"%s\",\n" +
-                " \"mail\":\"%s\",\n" +
-                " \"password\":\"%s\" \n" +
-                " }\n" +
-                "}", login, firstName, lastName, mail, user.getApiKey());
-        ApiClient apiClient = new RestApiClient(user);
-        Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
-        Response response = apiClient.executeRequest(request);
+        String query = """
+                insert into public.users
+                (id,login,hashed_password,firstname,lastname,admin,status,last_login_on,language,updated_on,created_on,
+                type,mail_notification,inherit_members,salt,must_change_passwd,passwd_changed_on;)values(DEFAULT,?,?,?,?,?,?,?,?,?,?) RETURNING id;
+                """;
+        List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
+                user.getLogin(), user.getHashed_password(),user.getFirstname(),user.getLastname(),user.getAdmin(),user.getStatus(),
+        user.getLast_login_on(),user.getLanguage());
+        user.setId((Integer) result.get(0).get("id"));
         return user;
 
     }

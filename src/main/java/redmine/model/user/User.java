@@ -17,7 +17,7 @@ import static org.apache.commons.codec.digest.DigestUtils.sha1Hex;
 public class User implements Generatable<User> {
     private Integer id;
     private String login;
-    private String hashed_password=getApiKey();
+    private String hashed_password;
     private String firstname;
     private String lastname;
     private Boolean admin;
