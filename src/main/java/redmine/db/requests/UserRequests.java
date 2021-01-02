@@ -10,19 +10,18 @@ import redmine.managers.Manager;
 import redmine.model.user.Language;
 import redmine.model.user.Status;
 import redmine.model.user.User;
-
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
+
+
 
 public class UserRequests {
 
     /**
      * Получение всех пользователей без части данных
-     *
      * @return sql ответ с данными
      */
     public static List<User> getAllUsers() {
@@ -56,12 +55,13 @@ public class UserRequests {
                 " \"firstname\":\"%s\",\n" +
                 " \"lastname\":\"%s\",\n" +
                 " \"mail\":\"%s\",\n" +
-                " \"password\":\"%s\" \n" +
+                " \"password\":\"1qaz@WSX\" \n" +
                 " }\n" +
-                "}", login, firstName, lastName, mail, user.getApiKey());
+                "}", login, firstName, lastName, mail);
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
+
         return user;
 
     }

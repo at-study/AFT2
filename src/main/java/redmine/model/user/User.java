@@ -17,13 +17,13 @@ import static org.apache.commons.codec.digest.DigestUtils.sha1Hex;
 public class User implements Generatable<User> {
     private Integer id;
     private String login;
-    private String hashed_password = getApiKey();
+    private String hashed_password=getApiKey();
     private String firstname;
     private String lastname;
     private Boolean admin;
     private Status status;
     private LocalDateTime last_login_on;
-    private Language language = Language.RU;
+    private Language language=Language.RU;
     private LocalDateTime updated_on;
     private LocalDateTime created_on;
     private Type type;
@@ -53,9 +53,9 @@ public class User implements Generatable<User> {
      * "f02b2da01a468c4116be898911481d1b928c15f9";
      */
     public String getApiKey() {
-        String salt = StringGenerators.randomString(32, "0123456789abcdef");
-        String password = StringGenerators.randomEnglishLowerString(10);
-        return sha1Hex(salt + sha1Hex(password));
+       String salt= StringGenerators.randomString(32,"0123456789abcdef");
+       String password=StringGenerators.randomEnglishLowerString(10);
+        return sha1Hex(salt+sha1Hex(password));
     }
 
 }
