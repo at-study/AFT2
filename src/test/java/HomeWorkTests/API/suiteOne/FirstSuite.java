@@ -1,4 +1,4 @@
-package HomeWorkTests.API.test1;
+package HomeWorkTests.API.suiteOne;
 
 /**
  * user name=evgenyttadmin

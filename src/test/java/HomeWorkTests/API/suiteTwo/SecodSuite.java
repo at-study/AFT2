@@ -1,4 +1,4 @@
-package HomeWorkTests.API.test2;
+package HomeWorkTests.API.suiteTwo;
 
 /**
  * user -evgenyttuser ;api=5aed704a56f9c2711d4cf2035a2d28a698b0cca1

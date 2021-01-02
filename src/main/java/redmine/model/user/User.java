@@ -4,6 +4,9 @@ import lombok.*;
 import redmine.db.requests.UserRequests;
 import redmine.model.Generatable;
 import redmine.utils.StringGenerators;
+
+import java.time.LocalDateTime;
+
 import static org.apache.commons.codec.digest.DigestUtils.sha1Hex;
 
 @Getter
@@ -14,21 +17,21 @@ import static org.apache.commons.codec.digest.DigestUtils.sha1Hex;
 public class User implements Generatable<User> {
     private Integer id;
     private String login;
-    private String hashed_password;
+    private String hashed_password=getApiKey();
     private String firstname;
     private String lastname;
     private Boolean admin;
     private Status status;
-    //TODO last_login_on
+    private LocalDateTime last_login_on;
     private Language language=Language.RU;
-    //TODO updated_on
-    //TODO created_on
+    private LocalDateTime updated_on;
+    private LocalDateTime created_on;
     private Type type;
     private MailNotification mail_notification;
     private Boolean inherit_members;
     private String salt;
     private Boolean must_change_passwd;
-    //TODO passwd_changed_on;
+    private LocalDateTime passwd_changed_on;
 
     @Override
     public User read() {
