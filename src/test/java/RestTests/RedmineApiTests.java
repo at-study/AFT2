@@ -38,16 +38,15 @@ public class RedmineApiTests {
         String firstName = randomEnglishLowerString(12);
         String lastName = randomEnglishLowerString(12);
         String mail = randomEmail();
-        String body = String.format("""
-                {
-                 "user":{
-                 "login":"%s",
-                 "firstname":"%s",
-                 "lastname":"%s",
-                 "mail":"%s",
-                 "password":"1qaz@WSX"\s
-                 }
-                }""", login, firstName, lastName, mail);
+        String body = String.format("{\n" +
+                " \"user\":{\n" +
+                " \"login\":\"%s\",\n" +
+                " \"firstname\":\"%s\",\n" +
+                " \"lastname\":\"%s\",\n" +
+                " \"mail\":\"%s\",\n" +
+                " \"password\":\"1qaz@WSX\" \n" +
+                " }\n" +
+                "}", login, firstName, lastName, mail);
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);

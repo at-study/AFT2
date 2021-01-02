@@ -17,7 +17,7 @@ public class Human {
 
     public void setAge(int age) {
         if(age<0) {
-            throw new IllegalArgumentException("Возраст не может быть отрицательным");
+            throw new IllegalStateException("Возраст не может быть отрицательным");
         }
         this.age = age;
     }

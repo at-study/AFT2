@@ -1,16 +1,15 @@
 package redmine.model.user;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+
 import java.util.stream.Stream;
 
-@Getter
 @AllArgsConstructor
 public enum Type {
-    USER("Пользователь"),
-    GROUPNONMEMBER("Не участвующие пользователи"),
-    GROUPANONYMOUS("Анонимные пользователи"),
-    ANONYMOUSUSER("Аноним");
+    USER(""),
+    GROUPNONMEMBER(""),
+    GROUPANONYMOUS(""),
+    ANONYMOUSUSER("");
 
     public final String description;
 

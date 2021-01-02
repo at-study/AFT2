@@ -3,8 +3,6 @@ package redmine.model.user;
 import lombok.*;
 import redmine.db.requests.UserRequests;
 import redmine.model.Generatable;
-import redmine.utils.StringGenerators;
-import static org.apache.commons.codec.digest.DigestUtils.sha1Hex;
 
 @Getter
 @Setter
@@ -20,14 +18,14 @@ public class User implements Generatable<User> {
     private Boolean admin;
     private Status status;
     //TODO last_login_on
-    private Language language=Language.RU;
+    private Language language;
     //TODO updated_on
     //TODO created_on
     private Type type;
     private MailNotification mail_notification;
     private Boolean inherit_members;
     private String salt;
-    private Boolean must_change_passwd;
+    //TODO Boolean must_change_passwd
     //TODO passwd_changed_on;
 
     @Override
@@ -46,13 +44,11 @@ public class User implements Generatable<User> {
     }
 
     /**
-     * custom user for restapi client generateRandomString(40,"0..f")
-     * "f02b2da01a468c4116be898911481d1b928c15f9";
+     * custom user for restapi client generateRandomString(40,"0..f");
      */
     public String getApiKey() {
-       String salt= StringGenerators.randomString(32,"0123456789abcdef");
-       String password=StringGenerators.randomEnglishLowerString(10);
-        return sha1Hex(salt+sha1Hex(password));
+        //TODO  Изменить на генерацию ключа API
+        return "f02b2da01a468c4116be898911481d1b928c15f9";
     }
 
 }
