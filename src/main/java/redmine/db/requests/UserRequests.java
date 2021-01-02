@@ -10,9 +10,11 @@ import redmine.managers.Manager;
 import redmine.model.user.Language;
 import redmine.model.user.Status;
 import redmine.model.user.User;
+
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
@@ -20,6 +22,7 @@ public class UserRequests {
 
     /**
      * Получение всех пользователей без части данных
+     *
      * @return sql ответ с данными
      */
     public static List<User> getAllUsers() {

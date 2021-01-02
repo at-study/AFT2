@@ -1,5 +1,7 @@
 package redmine.model.user;
+
 import lombok.*;
+
 @Getter
 @AllArgsConstructor
 

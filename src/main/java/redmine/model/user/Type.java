@@ -2,6 +2,7 @@ package redmine.model.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
 import java.util.stream.Stream;
 
 @Getter
