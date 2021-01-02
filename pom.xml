@@ -11,8 +11,6 @@
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
-        <testng.version>7.1.0</testng.version>
-        <lombok.version>1.18.16</lombok.version>
     </properties>
 
     <dependencies>
@@ -20,12 +18,14 @@
             <dependency>
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
+                <version>7.1.0</version>
                 <scope>test</scope>
             </dependency>
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
             <scope>provided</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
@@ -52,5 +52,6 @@
             <artifactId>commons-codec</artifactId>
             <version>1.15</version>
         </dependency>
+
     </dependencies>
 </project>
