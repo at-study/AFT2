@@ -25,7 +25,7 @@ public class TestCase1 {
         user = new User().generate();
     }
 
-    @Test(testName = "Кейс 1-Тест на создание пользователя ", priority = 5,
+    @Test(testName = "Шаг 1-Тест на создание пользователя ", priority = 5,
             description = "Отправить запрос POST на создание пользователя (данные пользователя должны быть сгенерированы корректно, пользователь должен иметь status = 2)")
     public void testUserCreation() {
         String login = randomEnglishLowerString(8);
@@ -47,9 +47,6 @@ public class TestCase1 {
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
         Assert.assertEquals(response.getStatusCode(), 201);
-        /**
-         * 2.тело ответа содержит данные пользователя в том числе его ид
-         */
         UserDto createdUser = response.getBody(UserDto.class);
         Assert.assertNotNull(createdUser.getUser().getId());
         Assert.assertEquals(createdUser.getUser().getLogin(), login);
@@ -60,12 +57,9 @@ public class TestCase1 {
         Assert.assertNull(createdUser.getUser().getLast_login_on());
         Assert.assertEquals(createdUser.getUser().getStatus().intValue(), 2);
         Assert.assertFalse(createdUser.getUser().getAdmin());
-        /**
-         * 3. В базе данных есть информация о созданном пользователе, status = 2
-         */
     }
 
-    @Test(testName = "Кейс-2 Тест на создание пользователя повторно ", priority = 7,
+    @Test(testName = "Шаг-2 Тест на создание пользователя повторно ", priority = 7,
             description = "Отправить запрос POST на создание пользователя повторно с тем же телом запроса")
     public void repeatedUserCreationTest() {
         String login = randomEnglishLowerString(8);
@@ -86,15 +80,9 @@ public class TestCase1 {
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
-        /**
-         * Повторный запрос и получение 422 ошибки
-         */
-        Response response2 = apiClient.executeRequest(request);
-        Assert.assertEquals(response2.getStatusCode(), 422);
-        /**
-         * Тело ответа содержит "errors", содержащий строки: "Email has already been taken", "Login has already been taken"
-         */
-        UserCreationError errors = GsonHelper.getGson().fromJson(response2.getBody().toString(), UserCreationError.class);
+        Response sameUserCreationRequest = apiClient.executeRequest(request);
+        Assert.assertEquals(sameUserCreationRequest.getStatusCode(), 422);
+        UserCreationError errors = GsonHelper.getGson().fromJson(sameUserCreationRequest.getBody().toString(), UserCreationError.class);
         Assert.assertEquals(errors.getErrors().size(), 2);
         Assert.assertEquals(errors.getErrors().get(0), "Email уже существует");
         Assert.assertEquals(errors.getErrors().get(1), "Пользователь уже существует");
