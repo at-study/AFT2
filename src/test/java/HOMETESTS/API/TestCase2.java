@@ -13,7 +13,7 @@ import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 public class TestCase2 {
-    @Test(testName = "Отправить запрос POST на создание пользователя НЕ АДМИНИСТРАТОРОМ-403 ")
+    @Test(testName = "Шаг 1-Отправить запрос POST на создание пользователя НЕ АДМИНИСТРАТОРОМ-403 ")
     public void userCreationByNonAdmin(){
         String apiKey = "5aed704a56f9c2711d4cf2035a2d28a698b0cca1";
         String login = randomEnglishLowerString(8);

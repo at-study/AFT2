@@ -25,7 +25,7 @@ public class TestCase1 {
         user = new User().generate();
     }
 
-    @Test(testName = "Шаг 1-Тест на создание пользователя ", priority = 5,
+    @Test(testName = "Шаг 1(без подпункта 3)-Тест на создание пользователя ", priority = 5,
             description = "Отправить запрос POST на создание пользователя (данные пользователя должны быть сгенерированы корректно, пользователь должен иметь status = 2)")
     public void testUserCreation() {
         String login = randomEnglishLowerString(8);
