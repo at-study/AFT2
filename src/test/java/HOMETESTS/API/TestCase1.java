@@ -1,5 +1,7 @@
 package HOMETESTS.API;
 
+import io.restassured.http.ContentType;
+import io.restassured.http.Method;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -14,6 +16,9 @@ import redmine.model.Dto.UserDto;
 import redmine.model.user.User;
 import redmine.utils.gson.GsonHelper;
 
+import java.util.Random;
+
+import static io.restassured.RestAssured.given;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
@@ -66,6 +71,8 @@ public class TestCase1 {
         String firstName = randomEnglishLowerString(12);
         String lastName = randomEnglishLowerString(12);
         String mail = randomEmail();
+        String incorrectMail="dd.dd.petersburg";
+        String password = String.valueOf(new Random().nextInt(500000) + 100000);
         Integer status = 2;
         String body = String.format("{\n" +
                 " \"user\":{\n" +
@@ -86,6 +93,38 @@ public class TestCase1 {
         Assert.assertEquals(errors.getErrors().size(), 2);
         Assert.assertEquals(errors.getErrors().get(0), "Email уже существует");
         Assert.assertEquals(errors.getErrors().get(1), "Пользователь уже существует");
+    }
+
+    @Test(testName = "Шаг-3 Тест на создание пользователя повторно с почти тем же запросом ", priority = 9,
+            description = "Отправить запрос POST на создание пользователя повторно с тем же телом запроса")
+    public void repeatedUserCreationTestWithSpecialErrors() {
+        String apiKey = "f02b2da01a468c4116be898911481d1b928c15f9";
+        String login = randomEnglishLowerString(8);
+        String firstName = randomEnglishLowerString(12);
+        String lastName = randomEnglishLowerString(12);
+        String mail = randomEmail();
+        String password = String.valueOf(new Random().nextInt(500000) + 100000);
+        String body = String.format("{\n" +
+                " \"user\":{\n" +
+                " \"login\":\"%s\",\n" +
+                " \"firstname\":\"%s\",\n" +
+                " \"lastname\":\"%s\",\n" +
+                " \"mail\":\"%s\",\n" +
+                " \"password\":\"%s\" \n" +
+                " }\n" +
+                "}", login, firstName, lastName, mail, password);
+
+        Response response = (Response) given().baseUri("http://edu-at.dfu.i-teco.ru/")
+                .contentType(ContentType.JSON)
+                .header("X-Redmine-API-Key", apiKey)
+                .body(body)
+                .request(Method.POST, "users.json");
+
+        UserCreationError errors = GsonHelper.getGson().fromJson(response.getBody().toString(), UserCreationError.class);
+        Assert.assertEquals(errors.getErrors().size(), 3);
+        Assert.assertEquals(errors.getErrors().get(0), "Пароль недостаточной длины (не может быть меньше 8 символа)");
+        Assert.assertEquals(errors.getErrors().get(1), "Пароль недостаточной длины (не может быть меньше 8 символа)");
+        Assert.assertEquals(errors.getErrors().get(3), "Пароль недостаточной длины (не может быть меньше 8 символа)");
     }
 
 }
