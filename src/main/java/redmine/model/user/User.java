@@ -28,7 +28,7 @@ public class User implements Generatable<User> {
     private MailNotification mail_notification=MailNotification.ALL;
     private Boolean inherit_members;
     private String salt;
-    //TODO Boolean must_change_passwd
+    private Boolean must_change_passwd=false;
     //TODO passwd_changed_on;
 
     @Override
