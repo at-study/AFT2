@@ -1,7 +1,4 @@
 package HOMETESTS.API;
-
-import io.restassured.http.ContentType;
-import io.restassured.http.Method;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -14,11 +11,9 @@ import redmine.api.interfaces.Response;
 import redmine.model.Dto.UserCreationError;
 import redmine.model.Dto.UserDto;
 import redmine.model.user.User;
+import redmine.utils.StringGenerators;
 import redmine.utils.gson.GsonHelper;
-
 import java.util.Random;
-
-import static io.restassured.RestAssured.given;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
@@ -71,7 +66,6 @@ public class TestCase1 {
         String firstName = randomEnglishLowerString(12);
         String lastName = randomEnglishLowerString(12);
         String mail = randomEmail();
-        String incorrectMail="dd.dd.petersburg";
         String password = String.valueOf(new Random().nextInt(500000) + 100000);
         Integer status = 2;
         String body = String.format("{\n" +
@@ -103,7 +97,9 @@ public class TestCase1 {
         String firstName = randomEnglishLowerString(12);
         String lastName = randomEnglishLowerString(12);
         String mail = randomEmail();
-        String password = String.valueOf(new Random().nextInt(500000) + 100000);
+        String incorrectMail = "santa.claus.petersburg";
+        String password= StringGenerators.randomEnglishString(10);
+        String incorrectPassword = String.valueOf(new Random().nextInt(500000) + 100000);
         String body = String.format("{\n" +
                 " \"user\":{\n" +
                 " \"login\":\"%s\",\n" +
@@ -113,18 +109,26 @@ public class TestCase1 {
                 " \"password\":\"%s\" \n" +
                 " }\n" +
                 "}", login, firstName, lastName, mail, password);
-
-        Response response = (Response) given().baseUri("http://edu-at.dfu.i-teco.ru/")
-                .contentType(ContentType.JSON)
-                .header("X-Redmine-API-Key", apiKey)
-                .body(body)
-                .request(Method.POST, "users.json");
-
-        UserCreationError errors = GsonHelper.getGson().fromJson(response.getBody().toString(), UserCreationError.class);
+        String incorrectBody=String.format("{\n"+
+                " \"user\":{\n" +
+                " \"login\":\"%s\",\n" +
+                " \"firstname\":\"%s\",\n" +
+                " \"lastname\":\"%s\",\n" +
+                " \"mail\":\"%s\",\n" +
+                " \"password\":\"%s\" \n" +
+                " }\n" +
+                "}",login,firstName,lastName,incorrectMail,incorrectPassword);
+        ApiClient apiClient = new RestApiClient(user);
+        Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
+        Response response = apiClient.executeRequest(request);
+        Request incorrectRequest = new RestRequest("users.json", HttpMethods.POST, null, null,incorrectBody);
+        Response sameUserCreationRequest = apiClient.executeRequest(incorrectRequest);
+        Assert.assertEquals(sameUserCreationRequest.getStatusCode(), 422);
+        UserCreationError errors = GsonHelper.getGson().fromJson(sameUserCreationRequest.getBody().toString(), UserCreationError.class);
         Assert.assertEquals(errors.getErrors().size(), 3);
-        Assert.assertEquals(errors.getErrors().get(0), "Пароль недостаточной длины (не может быть меньше 8 символа)");
-        Assert.assertEquals(errors.getErrors().get(1), "Пароль недостаточной длины (не может быть меньше 8 символа)");
-        Assert.assertEquals(errors.getErrors().get(3), "Пароль недостаточной длины (не может быть меньше 8 символа)");
+        Assert.assertEquals(errors.getErrors().get(0), "Email имеет неверное значение");
+        Assert.assertEquals(errors.getErrors().get(1), "Пользователь уже существует");
+        Assert.assertEquals(errors.getErrors().get(2), "Пароль недостаточной длины (не может быть меньше 8 символа)");
     }
 
 }
