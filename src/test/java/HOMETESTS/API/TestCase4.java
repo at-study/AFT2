@@ -1,27 +1,5 @@
 package HOMETESTS.API;
-
-import io.restassured.http.ContentType;
-import io.restassured.http.Method;
-import io.restassured.response.Response;
-import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import redmine.api.implementations.RestApiClient;
-import redmine.api.implementations.RestRequest;
-import redmine.api.interfaces.ApiClient;
-import redmine.api.interfaces.HttpMethods;
-import redmine.api.interfaces.Request;
-import redmine.db.requests.RoleRequests;
-import redmine.db.requests.UserRequests;
-import redmine.model.role.Role;
-import redmine.model.user.User;
-
-import java.util.Random;
-
-import static io.restassured.RestAssured.given;
-import static redmine.utils.StringGenerators.randomEmail;
-import static redmine.utils.StringGenerators.randomEnglishLowerString;
-
 
 public class TestCase4 {
 
