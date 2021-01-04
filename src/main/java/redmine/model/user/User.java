@@ -21,7 +21,7 @@ public class User implements Generatable<User> {
     private Language language;
     //TODO updated_on
     //TODO created_on
-    private Type type;
+    private Type type=Type.USER;
     private MailNotification mail_notification;
     private Boolean inherit_members;
     private String salt;
