@@ -155,7 +155,7 @@ public class TestCase1 {
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
-        Assert.assertEquals(response.getStatusCode(), 204);
+        Assert.assertEquals(response.getStatusCode(), 201);
         UserDto createdUser = response.getBody(UserDto.class);
         Assert.assertNotNull(createdUser.getUser().getId());
         Assert.assertEquals(createdUser.getUser().getLogin(), login);
