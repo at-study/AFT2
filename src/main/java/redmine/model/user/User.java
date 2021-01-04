@@ -18,7 +18,7 @@ public class User implements Generatable<User> {
     private Boolean admin;
     private Status status;
     //TODO last_login_on
-    private Language language;
+    private Language language=Language.RU;
     //TODO updated_on
     //TODO created_on
     private Type type=Type.USER;
