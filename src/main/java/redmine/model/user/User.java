@@ -35,7 +35,7 @@ public class User implements Generatable<User> {
 
     @Override
     public User update() {
-        return null;
+        return UserRequests.updateUser(this);
     }
 
     @Override
