@@ -1,4 +1,5 @@
 package RestTests;
+
 import com.google.gson.Gson;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
@@ -8,7 +9,9 @@ import org.testng.annotations.Test;
 import redmine.model.Dto.UserCreationError;
 import redmine.model.Dto.UserDto;
 import redmine.utils.gson.GsonHelper;
+
 import java.util.Random;
+
 import static io.restassured.RestAssured.given;
 import static redmine.utils.StringGenerators.*;
 
