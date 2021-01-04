@@ -31,7 +31,7 @@ public class RoleWithPermissionsTest {
     }
 
     @Test(testName = "Тест получения роли  с доступами по ид ")
-    public void getRoleWithPermissionsBuIdTest() {
+    public void getRoleWithPermissionsByIdTest() {
         ApiClient apiClient = new RestApiClient(user);
         String uri = String.format("roles/%d.json", role.getId());
         Request request = new RestRequest(uri, HttpMethods.GET, null, null, null);

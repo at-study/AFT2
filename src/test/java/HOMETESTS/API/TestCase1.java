@@ -142,6 +142,7 @@ public class TestCase1 {
         String lastName = randomEnglishLowerString(12);
         String mail = randomEmail();
         Integer status = 2;
+        String password = StringGenerators.randomEnglishString(10);
         String body = String.format("{\n" +
                 " \"user\":{\n" +
                 " \"login\":\"%s\",\n" +
@@ -149,18 +150,18 @@ public class TestCase1 {
                 " \"lastname\":\"%s\",\n" +
                 " \"mail\":\"%s\",\n" +
                 " \"status\":\"%s\",\n" +
-                " \"password\":\"1qaz@WSX\" \n" +
+                " \"password\":\"%s\" \n" +
                 " }\n" +
-                "}", login, firstName, lastName, mail, status);
+                "}", login, firstName, lastName, mail, status,password);
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
         Assert.assertEquals(response.getStatusCode(), 201);
-        UserDto createdUser = response.getBody(UserDto.class);
-        Assert.assertNotNull(createdUser.getUser().getId());
-        Assert.assertEquals(createdUser.getUser().getLogin(), login);
+        String responseBody = response.getBody().toString();
+        UserDto createdUser = GsonHelper.getGson().fromJson(responseBody, UserDto.class);
+        Integer userId=createdUser.getUser().getId();
         Assert.assertEquals(createdUser.getUser().getStatus().intValue(), 2);
-        Assert.assertFalse(createdUser.getUser().getAdmin());
+        System.out.println("Created userID: "+userId);
     }
 
 }
