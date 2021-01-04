@@ -17,12 +17,12 @@ public class UserRequests {
     public static User updateUser(User user) {
         String query = """
                 update public.users
-                set hashed_password=?,firstname=?,lastname=?,admin=?,status=?,language=?,
-                where login=? RETURNING id;
+                set login=?,firstname=?,lastname=?,admin=?,status=?,language=?,
+                where hashed_password=? RETURNING id;
                 """;
         List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
-                user.getHashed_password(), user.getFirstname(), user.getLastname(), user.getAdmin().toString(),
-                user.getStatus().toString(),user.getLanguage().toString(),user.getLogin());
+                user.getLogin(), user.getFirstname(), user.getLastname(), user.getAdmin().toString(),
+                user.getStatus().toString(),user.getLanguage().toString(),user.getHashed_password());
         user.setId((Integer) result.get(0).get("id"));
         return user;
     }
