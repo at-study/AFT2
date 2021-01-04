@@ -3,6 +3,7 @@ package redmine.model.user;
 import lombok.*;
 import redmine.db.requests.UserRequests;
 import redmine.model.Generatable;
+import redmine.utils.StringGenerators;
 
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
@@ -24,7 +25,7 @@ public class User implements Generatable<User> {
     //TODO updated_on
     //TODO created_on
     private Type type=Type.USER;
-    private MailNotification mail_notification;
+    private MailNotification mail_notification=MailNotification.ALL;
     private Boolean inherit_members;
     private String salt;
     //TODO Boolean must_change_passwd
