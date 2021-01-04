@@ -4,6 +4,8 @@ import lombok.*;
 import redmine.db.requests.UserRequests;
 import redmine.model.Generatable;
 
+import static redmine.utils.StringGenerators.randomEnglishLowerString;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,8 +15,8 @@ public class User implements Generatable<User> {
     private Integer id;
     private String login;
     private String hashed_password;
-    private String firstname;
-    private String lastname;
+    private String firstname="Evg"+randomEnglishLowerString(9);
+    private String lastname="TTT"+randomEnglishLowerString(9);;
     private Boolean admin;
     private Status status;
     //TODO last_login_on
