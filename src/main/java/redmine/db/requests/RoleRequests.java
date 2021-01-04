@@ -61,7 +61,7 @@ public class RoleRequests {
     public static Role updateRole(Role role) {
         String query = """
                 update public.roles
-                set "position"=?,assignable=?,builtin=?,permissions=?,issues_visibility=?,users_visibility=?,time_entries_visibility=?,all_roles_managed=?,settings=?
+                set position=?,assignable=?,builtin=?,permissions=?,issues_visibility=?,users_visibility=?,time_entries_visibility=?,all_roles_managed=?,settings=?
                 where name=? RETURNING id;
                 """;
         List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
