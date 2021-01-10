@@ -43,12 +43,12 @@ public class TestCase3 {
                 " }\n" +
                 "}", login, firstName, lastName, mail, status);
         ApiClient apiClient = new RestApiClient(user);
-        Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
-        Response response = apiClient.executeRequest(request);
-        Assert.assertEquals(response.getStatusCode(), 201);
+        Request createRequest = new RestRequest("users.json", HttpMethods.POST, null, null, body);
+       // Response createResponse = apiClient.executeRequest(createRequest);
+      //  Assert.assertEquals(createResponse.getStatusCode(), 201);
         Response response = given().baseUri("http://edu-at.dfu.i-teco.ru/")
                 .contentType(ContentType.JSON)
-                .header("X-Redmine-API-Key", apiKey)
+                //.header("X-Redmine-API-Key", )
                 .body(body)
                 .request(Method.POST, "users.json");
         Assert.assertEquals(response.getStatusCode(), 403);
