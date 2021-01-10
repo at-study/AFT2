@@ -10,9 +10,11 @@ import redmine.api.interfaces.ApiClient;
 import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
 import redmine.api.interfaces.Response;
+import redmine.model.Dto.UserDto;
 import redmine.model.user.User;
 import java.util.Random;
 import static io.restassured.RestAssured.given;
+import static org.testng.Assert.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
@@ -46,7 +48,11 @@ public class TestCase3 {
         Request createRequest = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response createResponse = apiClient.executeRequest(createRequest);
         Assert.assertEquals(createResponse.getStatusCode(), 201);
-
+        UserDto createdInfoUser = createResponse.getBody(UserDto.class);
+        Assert.assertNotNull(createdInfoUser.getUser().getId());
+        Integer userId=createdInfoUser.getUser().getId();
+        System.out.println("Created userID: "+userId);
+        String uri = String.format("users/%d.json",userId);
     }
 
     @Test(testName = "Шаг 2-Получение пользователем инфо о другом пользователе +допинфо  ")
