@@ -12,6 +12,7 @@ import redmine.model.Dto.UserDto;
 import redmine.model.user.User;
 import redmine.utils.gson.GsonHelper;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.testng.Assert.assertEquals;
@@ -128,7 +129,10 @@ public class TestCase3 {
 
 
         String uri = String.format("users/%d.json",userIdSecondUser);
+        String token = String.valueOf(userApiKey);
         Request getRequest = new RestRequest(uri, HttpMethods.GET, null, null, null);
+        Map<String, String> headers = getRequest.getHeaders();
+        headers.put("X-Redmine_API-Key", token);
         Response getResponse = apiClient.executeRequest(getRequest);
         assertEquals(getResponse.getStatusCode(), 200);
 
