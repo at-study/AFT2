@@ -10,9 +10,7 @@ import redmine.api.implementations.RestRequest;
 import redmine.api.interfaces.ApiClient;
 import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
-import redmine.model.Dto.UserDto;
 import redmine.model.user.User;
-import redmine.utils.gson.GsonHelper;
 
 import java.util.Random;
 import static io.restassured.RestAssured.given;
@@ -29,7 +27,6 @@ public class TestCase3 {
 
     @Test(testName = "Шаг 1-Получение пользователем инфо о самом себе+допинфо ")
     public void userInfoAboutHimself() {
-        String apiKey = "f2b07eec53f92b54a8522488ca25491167419076";
         String login = randomEnglishLowerString(8);
         String firstName = randomEnglishLowerString(12);
         String lastName = randomEnglishLowerString(12);
@@ -42,24 +39,14 @@ public class TestCase3 {
                 " \"lastname\":\"%s\",\n" +
                 " \"mail\":\"%s\",\n" +
                 " \"status\":\"%s\",\n" +
-                " \"password\":\"323226068\" \n" +
+                " \"password\":\"1qaz@WSX\" \n" +
                 " }\n" +
                 "}", login, firstName, lastName, mail, status);
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
-        Assert.assertEquals(response.getStatusCode(), 200);
-
-        String responseBody = response.getBody().toString();
-        UserDto createdUser = GsonHelper.getGson().fromJson(responseBody, UserDto.class);
-        Integer userId=createdUser.getUser().getId();
-        Assert.assertEquals(createdUser.getUser().getStatus().intValue(), 2);
-        System.out.println("Created userID: "+userId);
-        String uri = String.format("users/%d.json",userId);
-        Request putRequest = new RestRequest(uri, HttpMethods.PUT, null, null, responseBody);
-        redmine.api.interfaces.Response putResponse = apiClient.executeRequest(putRequest);
-        Assert.assertEquals(putResponse.getStatusCode(), 204);
-        Response response2 = given().baseUri("http://edu-at.dfu.i-teco.ru/")
+        Assert.assertEquals(response.getStatusCode(), 201);
+        Response response = given().baseUri("http://edu-at.dfu.i-teco.ru/")
                 .contentType(ContentType.JSON)
                 .header("X-Redmine-API-Key", apiKey)
                 .body(body)

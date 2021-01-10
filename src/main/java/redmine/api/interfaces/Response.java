@@ -2,7 +2,7 @@ package redmine.api.interfaces;
 
 import java.util.Map;
 
-public interface Response extends io.restassured.response.Response {
+public interface Response {
     int getStatusCode();
 
     Map<String, String> getHeaders();
