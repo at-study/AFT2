@@ -28,7 +28,7 @@ public class TestCase1 {
         user = new User().generate();
     }
 
-    @Test(testName = "Шаг 1(без подпункта 3)-Тест на создание пользователя ", priority = 5,
+    @Test(testName = "Шаг-1(без подпункта 3)-Тест на создание пользователя ", priority = 5,
             description = "Отправить запрос POST на создание пользователя (данные пользователя должны быть сгенерированы корректно, пользователь должен иметь status = 2)")
     public void testUserCreation() {
         String login = randomEnglishLowerString(8);
@@ -134,12 +134,12 @@ public class TestCase1 {
         Assert.assertEquals(errors.getErrors().get(2), "Пароль недостаточной длины (не может быть меньше 8 символа)");
     }
 
-    @Test(testName = "Шаг 4(без проверки)-Изменение статуса у существующего ", priority = 11,
+    @Test(testName = "Шаг-4(без проверки)-Изменение статуса у существующего ", priority = 11,
             description = "Отправить запрос PUT на изменение пользователя. Использовать данные из ответа запроса, выполненного в шаге №1, но при этом изменить поле status = 1")
     public void testStatusChange() {
         String login = randomEnglishLowerString(8);
-        String firstName = randomEnglishLowerString(12);
-        String lastName = randomEnglishLowerString(12);
+        String firstName = "Evgeny"+randomEnglishLowerString(6);
+        String lastName = "TT"+randomEnglishLowerString(10);
         String mail = randomEmail();
         Integer status = 2;
         String password = StringGenerators.randomEnglishString(10);
