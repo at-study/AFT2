@@ -267,7 +267,7 @@ public class TestCase1 {
         Assert.assertEquals(deleteResponse.getStatusCode(), 204);
     }
 
-    @Test(testName = "Шаг-Отправить повторный запрос DELETE на удаление пользователя ", priority = 17,
+    @Test(testName = "Шаг 7-Отправить повторный запрос DELETE на удаление пользователя ", priority = 17,
             description = "Отправить повторный запрос DELETE на удаление пользователя")
     public void testRepeatDeleteRequest() {
         String apiKey = "f2b07eec53f92b54a8522488ca25491167419076";
@@ -305,5 +305,7 @@ public class TestCase1 {
         Request deleteRequest = new RestRequest(uri, HttpMethods.DELETE, null, null, null);
         Response deleteResponse = apiClient.executeRequest(deleteRequest);
         Assert.assertEquals(deleteResponse.getStatusCode(), 204);
+        Response deleteRepeatedResponse = apiClient.executeRequest(deleteRequest);
+        Assert.assertEquals(deleteRepeatedResponse.getStatusCode(), 404);
     }
 }
