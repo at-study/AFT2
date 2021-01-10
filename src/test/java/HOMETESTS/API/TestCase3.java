@@ -129,6 +129,24 @@ public class TestCase3 {
         System.out.println("Created userID 2: "+userIdSecondUser);
 
 
+        String uri = String.format("users/%d.json",userIdSecondUser);
+        Request getRequest = new RestRequest(uri, HttpMethods.GET, null, null, null);
+        Response getResponse = apiClient.executeRequest(getRequest);
+        assertEquals(getResponse.getStatusCode(), 200);
+
+
+        String responseBody = getResponse.getBody().toString();
+        UserDto createdGetUser = GsonHelper.getGson().fromJson(responseBody, UserDto.class);
+        Assert.assertEquals(createdGetUser.getUser().getLogin(), loginSecondUser);
+        Assert.assertEquals(createdGetUser.getUser().getFirstname(), firstNameSecondUser);
+        Assert.assertEquals(createdGetUser.getUser().getLastname(), lastNameSecondUser);
+        Assert.assertNull(createdGetUser.getUser().getPassword());
+        Assert.assertEquals(createdGetUser.getUser().getMail(), mailSecondUser);
+        Assert.assertNull(createdGetUser.getUser().getLast_login_on());
+        Assert.assertEquals(createdGetUser.getUser().getStatus().intValue(), 2);
+        Assert.assertNull(createdGetUser.getUser().getAdmin());
+        Assert.assertNull(createdGetUser.getUser().getApi_key());
+
 
     }
 }
