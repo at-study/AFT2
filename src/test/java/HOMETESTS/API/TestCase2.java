@@ -16,13 +16,14 @@ public class TestCase2 {
         String login = randomEnglishLowerString(8);
         String mail = randomEmail();
         String password = String.valueOf(new Random().nextInt(500000) + 100000);
-        String body = String.format("{\n" +
-                " \"user\":{\n" +
-                " \"login\":\"%s\",\n" +
-                " \"mail\":\"%s\",\n" +
-                " \"password\":\"%s\" \n" +
-                " }\n" +
-                "}", login, mail, password);
+        String body = String.format("""
+                {
+                 "user":{
+                 "login":"%s",
+                 "mail":"%s",
+                 "password":"%s"\s
+                 }
+                }""", login, mail, password);
         Response response = given().baseUri("http://edu-at.dfu.i-teco.ru/")
                 .contentType(ContentType.JSON)
                 .header("X-Redmine-API-Key", apiKey)

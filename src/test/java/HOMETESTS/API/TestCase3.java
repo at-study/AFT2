@@ -1,7 +1,6 @@
 package HOMETESTS.API;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
-import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -10,8 +9,8 @@ import redmine.api.implementations.RestRequest;
 import redmine.api.interfaces.ApiClient;
 import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
+import redmine.api.interfaces.Response;
 import redmine.model.user.User;
-
 import java.util.Random;
 import static io.restassured.RestAssured.given;
 import static redmine.utils.StringGenerators.randomEmail;
@@ -32,26 +31,22 @@ public class TestCase3 {
         String lastName = randomEnglishLowerString(12);
         String mail = randomEmail();
         Integer status = 2;
-        String body = String.format("{\n" +
-                " \"user\":{\n" +
-                " \"login\":\"%s\",\n" +
-                " \"firstname\":\"%s\",\n" +
-                " \"lastname\":\"%s\",\n" +
-                " \"mail\":\"%s\",\n" +
-                " \"status\":\"%s\",\n" +
-                " \"password\":\"1qaz@WSX\" \n" +
-                " }\n" +
-                "}", login, firstName, lastName, mail, status);
+        String body = String.format("""
+                {
+                 "user":{
+                 "login":"%s",
+                 "firstname":"%s",
+                 "lastname":"%s",
+                 "mail":"%s",
+                 "status":"%s",
+                 "password":"1qaz@WSX"\s
+                 }
+                }""", login, firstName, lastName, mail, status);
         ApiClient apiClient = new RestApiClient(user);
         Request createRequest = new RestRequest("users.json", HttpMethods.POST, null, null, body);
-       // Response createResponse = apiClient.executeRequest(createRequest);
-      //  Assert.assertEquals(createResponse.getStatusCode(), 201);
-        Response response = given().baseUri("http://edu-at.dfu.i-teco.ru/")
-                .contentType(ContentType.JSON)
-                //.header("X-Redmine-API-Key", )
-                .body(body)
-                .request(Method.POST, "users.json");
-        Assert.assertEquals(response.getStatusCode(), 403);
+        Response createResponse = apiClient.executeRequest(createRequest);
+        Assert.assertEquals(createResponse.getStatusCode(), 201);
+
     }
 
     @Test(testName = "Шаг 2-Получение пользователем инфо о другом пользователе +допинфо  ")
@@ -62,18 +57,14 @@ public class TestCase3 {
         String login = randomEnglishLowerString(8);
         String mail = randomEmail();
         String password = String.valueOf(new Random().nextInt(500000) + 100000);
-        String body = String.format("{\n" +
-                " \"user\":{\n" +
-                " \"login\":\"%s\",\n" +
-                " \"mail\":\"%s\",\n" +
-                " \"password\":\"%s\" \n" +
-                " }\n" +
-                "}", login, mail, password);
-        Response response = given().baseUri("http://edu-at.dfu.i-teco.ru/")
-                .contentType(ContentType.JSON)
-                .header("X-Redmine-API-Key", apiKey)
-                .body(body)
-                .request(Method.POST, "users.json");
-        Assert.assertEquals(response.getStatusCode(), 403);
+        String body = String.format("""
+                {
+                 "user":{
+                 "login":"%s",
+                 "mail":"%s",
+                 "password":"%s"\s
+                 }
+                }""", login, mail, password);
+
     }
 }
