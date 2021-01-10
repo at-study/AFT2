@@ -1,6 +1,4 @@
 package HOMETESTS.API;
-import io.restassured.http.ContentType;
-import io.restassured.http.Method;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -14,8 +12,8 @@ import redmine.model.Dto.UserDto;
 import redmine.model.user.User;
 import redmine.utils.gson.GsonHelper;
 
-import java.util.Random;
-import static io.restassured.RestAssured.given;
+import java.util.Map;
+
 import static org.testng.Assert.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
