@@ -1,6 +1,7 @@
 package redmine.db.requests;
 
 import redmine.managers.Manager;
+import redmine.model.role.Role;
 import redmine.model.user.User;
 
 import java.util.List;
@@ -46,5 +47,16 @@ public class UserRequests {
                 user.getStatus().toString(),user.getLanguage().toString(),user.getHashed_password());
         user.setId((Integer) result.get(0).get("id"));
         return user;
+    }
+
+    public static User getUser(User objectUser) {
+        return getAllUsers().stream()
+                .filter(role -> {
+                    if (objectUser.getId() == null) {
+                        return objectUser.getLogin().equals(role.getLogin());
+                    } else return (objectUser.getId().equals(role.getId()));
+                })
+                .findFirst()
+                .orElse(null);
     }
 }

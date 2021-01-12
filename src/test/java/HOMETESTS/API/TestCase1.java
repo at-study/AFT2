@@ -76,10 +76,12 @@ public class TestCase1 {
         Assert.assertNull(createdUser.getUser().getLast_login_on());
         assertEquals(createdUser.getUser().getStatus().intValue(), 2);
         Assert.assertFalse(createdUser.getUser().getAdmin());
-
         int usersCountAfter = UserRequests.getAllUsers().size();
         Assert.assertEquals(usersCountAfter, usersBeforeUserCreation + 1);
-
+        int idForCheck=createdUser.getUser().getId();
+        user.setId(idForCheck);
+        User dataBaseUser = UserRequests.getUser(user);
+        Assert.assertEquals(dataBaseUser.getStatus().toString(), "2");
 
     }
 
