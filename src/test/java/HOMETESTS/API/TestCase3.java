@@ -1,4 +1,6 @@
 package HOMETESTS.API;
+import io.restassured.http.ContentType;
+import io.restassured.http.Method;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -15,6 +17,7 @@ import redmine.utils.gson.GsonHelper;
 import java.util.HashMap;
 import java.util.Map;
 
+import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
@@ -75,80 +78,27 @@ public class TestCase3 {
 
     @Test(testName = "Шаг 2-Получение пользователем инфо о другом пользователе +допинфо  ")
     public void userInfoAboutOtherUser() {
-        String login = randomEnglishLowerString(8);
-        String firstName = randomEnglishLowerString(12);
-        String lastName = randomEnglishLowerString(12);
-        String mail = randomEmail();
-        Integer status = 2;
-        String body = String.format("""
-                {
-                 "user":{
-                 "login":"%s",
-                 "firstname":"%s",
-                 "lastname":"%s",
-                 "mail":"%s",
-                 "status":"%s",
-                 "password":"1qaz@WSX"\s
-                 }
-                }""", login, firstName, lastName, mail, status);
-        ApiClient apiClient = new RestApiClient(user);
-        Request createRequest = new RestRequest("users.json", HttpMethods.POST, null, null, body);
-        Response createResponse = apiClient.executeRequest(createRequest);
-        Assert.assertEquals(createResponse.getStatusCode(), 201);
-        UserDto createdFirstUser = createResponse.getBody(UserDto.class);
-        Assert.assertNotNull(createdFirstUser.getUser().getId());
-        Integer userId=createdFirstUser.getUser().getId();
-        String userApiKey=createdFirstUser.getUser().getApi_key();
-        System.out.println("Created userID 1: "+userId);
+        Integer userId=725;
+        String userApiKey="5aed704a56f9c2711d4cf2035a2d28a698b0cca1";
+        Integer secondUserId=726;
+        String secondUserApiKey="5f53e117604928097361205d1bba409b5c6211a4";
 
-        String loginSecondUser = randomEnglishLowerString(8);
-        String firstNameSecondUser = randomEnglishLowerString(12);
-        String lastNameSecondUser = randomEnglishLowerString(12);
-        String mailSecondUser = randomEmail();
-        Integer statusSecondUser = 2;
-        String bodySecondUser = String.format("""
-                {
-                 "user":{
-                 "login":"%s",
-                 "firstname":"%s",
-                 "lastname":"%s",
-                 "mail":"%s",
-                 "status":"%s",
-                 "password":"1qaz@WSX"\s
-                 }
-                }""", loginSecondUser, firstNameSecondUser, lastNameSecondUser, mailSecondUser, statusSecondUser);
-        ApiClient apiClientSecondUser = new RestApiClient(user);
-        Request createRequestSecondUser = new RestRequest("users.json", HttpMethods.POST, null, null, bodySecondUser);
-        Response createResponseSecondUser = apiClient.executeRequest(createRequestSecondUser);
-        Assert.assertEquals(createResponseSecondUser.getStatusCode(), 201);
-        UserDto createdSecondUser = createResponseSecondUser.getBody(UserDto.class);
-        Assert.assertNotNull(createdSecondUser.getUser().getId());
-        Integer userIdSecondUser=createdSecondUser.getUser().getId();
-        String userApiKeySecondUser=createdSecondUser.getUser().getApi_key();
-        System.out.println("Created userID 2: "+userIdSecondUser);
-
-
-        String uri = String.format("users/%d.json",userIdSecondUser);
-        String token = String.valueOf(userApiKey);
-        Request getRequest = new RestRequest(uri, HttpMethods.GET, null, null, null);
-        Map<String, String> headers = getRequest.getHeaders();
-        headers.put("X-Redmine_API-Key", token);
-        Response getResponse = apiClient.executeRequest(getRequest);
-        assertEquals(getResponse.getStatusCode(), 200);
-
-
-        String responseBody = getResponse.getBody().toString();
-        UserDto createdGetUser = GsonHelper.getGson().fromJson(responseBody, UserDto.class);
-        Assert.assertEquals(createdGetUser.getUser().getLogin(), loginSecondUser);
-        Assert.assertEquals(createdGetUser.getUser().getFirstname(), firstNameSecondUser);
-        Assert.assertEquals(createdGetUser.getUser().getLastname(), lastNameSecondUser);
-        Assert.assertNull(createdGetUser.getUser().getPassword());
-        Assert.assertEquals(createdGetUser.getUser().getMail(), mailSecondUser);
-        Assert.assertNull(createdGetUser.getUser().getLast_login_on());
-        Assert.assertEquals(createdGetUser.getUser().getStatus().intValue(), 2);
-        Assert.assertNull(createdGetUser.getUser().getAdmin());
-        Assert.assertNull(createdGetUser.getUser().getApi_key());
-
+        String uri = String.format("users/%d.json",secondUserId);
+        io.restassured.response.Response getResponse = given().baseUri("http://edu-at.dfu.i-teco.ru/")
+                .contentType(ContentType.JSON)
+                .header("X-Redmine-API-Key", userApiKey)
+                .request(Method.GET, uri);
+        Assert.assertEquals(getResponse.getStatusCode(), 200);
+        String responseBody = getResponse.getBody().asString();
+        UserDto createdUser = GsonHelper.getGson().fromJson(responseBody, UserDto.class);
+        Assert.assertEquals(createdUser.getUser().getLogin(), "evgenyttuser2");
+        Assert.assertEquals(createdUser.getUser().getFirstname(), "evgeny");
+        Assert.assertEquals(createdUser.getUser().getLastname(), "tt");
+        Assert.assertNull(createdUser.getUser().getPassword());
+        Assert.assertNotNull(createdUser.getUser().getLast_login_on());
+        Assert.assertNull(createdUser.getUser().getStatus());
+        Assert.assertNull(createdUser.getUser().getAdmin());
+        Assert.assertNull(createdUser.getUser().getApi_key());
 
     }
 }
