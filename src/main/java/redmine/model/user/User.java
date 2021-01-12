@@ -19,7 +19,7 @@ public class User implements Generatable<User> {
     private String firstname="Evg"+randomEnglishLowerString(9);
     private String lastname="TTT"+randomEnglishLowerString(9);;
     private Boolean admin;
-    private Status status;
+    private Integer status;
     //TODO last_login_on
     private Language language=Language.RU;
     //TODO updated_on

@@ -8,13 +8,19 @@ import redmine.api.interfaces.ApiClient;
 import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
 import redmine.api.interfaces.Response;
+import redmine.db.requests.RoleRequests;
+import redmine.db.requests.UserRequests;
+import redmine.managers.Manager;
 import redmine.model.Dto.UserCreationError;
 import redmine.model.Dto.UserDto;
+import redmine.model.role.Role;
 import redmine.model.user.User;
 import redmine.utils.StringGenerators;
 import redmine.utils.gson.GsonHelper;
-import java.util.Random;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import static org.testng.Assert.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
@@ -26,6 +32,14 @@ public class TestCase1 {
     public void prepareFixtures() {
         user = new User().generate();
     }
+
+    @Test(testName = "Шаг-0 ", priority = 0, description = "пользователь должен иметь status = 2)")
+    public void getAllUsers() {
+        int users = UserRequests.getAllUsers().size();
+    }
+
+
+
 
     @Test(testName = "Шаг-1(без подпункта 3)-Тест на создание пользователя ", priority = 5,
             description = "Отправить запрос POST на создание пользователя (данные пользователя должны быть сгенерированы корректно, пользователь должен иметь status = 2)")
@@ -46,10 +60,12 @@ public class TestCase1 {
                  "password":"1qaz@WSX"\s
                  }
                 }""", login, firstName, lastName, mail, status);
+        int usersBeforeUserCreation = UserRequests.getAllUsers().size();
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
         assertEquals(response.getStatusCode(), 201);
+
         UserDto createdUser = response.getBody(UserDto.class);
         Assert.assertNotNull(createdUser.getUser().getId());
         assertEquals(createdUser.getUser().getLogin(), login);
@@ -60,6 +76,11 @@ public class TestCase1 {
         Assert.assertNull(createdUser.getUser().getLast_login_on());
         assertEquals(createdUser.getUser().getStatus().intValue(), 2);
         Assert.assertFalse(createdUser.getUser().getAdmin());
+
+        int usersCountAfter = UserRequests.getAllUsers().size();
+        Assert.assertEquals(usersCountAfter, usersBeforeUserCreation + 1);
+
+
     }
 
     @Test(testName = "Шаг-2 Тест на создание пользователя повторно ", priority = 7,
