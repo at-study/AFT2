@@ -81,8 +81,6 @@ public class TestCase4 {
 
     @Test(testName = "Шаг 2-Удаление пользователя самим собою и проверка в бд ")
     public void userDeleteByHimself() {
-        String apiKeyUserOne = "f02b2da01a468c4116be898911481d1b928c15f9";
-        String apiKeyUserTwo = "5f53e117604928097361205d1bba409b5c6211a4";
         String login = randomEnglishLowerString(8);
         String firstName = randomEnglishLowerString(12);
         String lastName = randomEnglishLowerString(12);
@@ -114,14 +112,5 @@ public class TestCase4 {
         assertEquals(getResponse.getStatusCode(), 200);
         String responseBody = getResponse.getBody().toString();
         UserDto createdGetUser = GsonHelper.getGson().fromJson(responseBody, UserDto.class);
-        Assert.assertEquals(createdGetUser.getUser().getLogin(), login);
-        Assert.assertEquals(createdGetUser.getUser().getFirstname(), firstName);
-        Assert.assertEquals(createdGetUser.getUser().getLastname(), lastName);
-        Assert.assertNull(createdGetUser.getUser().getPassword());
-        Assert.assertEquals(createdGetUser.getUser().getMail(), mail);
-        Assert.assertNull(createdGetUser.getUser().getLast_login_on());
-        Assert.assertEquals(createdGetUser.getUser().getStatus().intValue(), 2);
-        Assert.assertFalse(createdGetUser.getUser().getAdmin());
-        Assert.assertEquals(createdGetUser.getUser().getApi_key(), userApiKey);
     }
 }
