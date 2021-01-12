@@ -8,9 +8,11 @@ import redmine.api.interfaces.ApiClient;
 import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
 import redmine.api.interfaces.Response;
+import redmine.db.requests.RoleRequests;
 import redmine.db.requests.UserRequests;
 import redmine.model.Dto.UserCreationError;
 import redmine.model.Dto.UserDto;
+import redmine.model.role.Role;
 import redmine.model.user.User;
 import redmine.utils.StringGenerators;
 import redmine.utils.gson.GsonHelper;
@@ -27,7 +29,7 @@ public class TestCase1 {
         user = new User().generate();
     }
 
-    @Test(testName = "Шаг-1(без подпункта 3)-Тест на создание пользователя ", priority = 5,
+    @Test(testName = "Шаг-1 Тест на создание пользователя ", priority = 5,
             description = "Отправить запрос POST на создание пользователя (данные пользователя должны быть сгенерированы корректно, пользователь должен иметь status = 2)")
     public void testUserCreation() {
         String login = randomEnglishLowerString(8);
@@ -255,6 +257,7 @@ public class TestCase1 {
                  "password":"1qaz@WSX"\s
                  }
                 }""", login, firstName, lastName, mail, status);
+
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
@@ -270,10 +273,13 @@ public class TestCase1 {
         assertEquals(createdUser.getUser().getStatus().intValue(), 1);
         Integer userId=createdUser.getUser().getId();
         System.out.println("Created userID: "+userId);
+        int usersBeforeDelete = UserRequests.getAllUsers().size();
         String uri = String.format("users/%d.json",userId);
         Request deleteRequest = new RestRequest(uri, HttpMethods.DELETE, null, null, null);
         Response deleteResponse = apiClient.executeRequest(deleteRequest);
         assertEquals(deleteResponse.getStatusCode(), 204);
+        int userCountBeforeDelete = UserRequests.getAllUsers().size();
+        Assert.assertEquals(userCountBeforeDelete, usersBeforeDelete -1);
     }
 
     @Test(testName = "Шаг 7-Отправить повторный запрос DELETE на удаление пользователя ", priority = 17,
