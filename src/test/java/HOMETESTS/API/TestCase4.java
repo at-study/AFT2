@@ -34,7 +34,7 @@ public class TestCase4 {
         Integer secondUserId=726;
         String secondUserApiKey="5f53e117604928097361205d1bba409b5c6211a4";
 
-        String uri = String.format("users/%d.json",userId);
+        String uri = String.format("users/%d.json",secondUserId);
         io.restassured.response.Response deleteResponse = given().baseUri("http://edu-at.dfu.i-teco.ru/")
                 .contentType(ContentType.JSON)
                 .header("X-Redmine-API-Key", userApiKey)
