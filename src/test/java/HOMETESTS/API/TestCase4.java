@@ -45,7 +45,7 @@ public class TestCase4 {
         Assert.assertEquals(userCountBeforeDelete, usersBeforeDelete );
     }
 
-    @Test(testName = "Шаг 2(без проверки) -Удаление пользователя самим собою и проверка в бд ")
+    @Test(testName = "Шаг 2 -Удаление пользователя самим собою и проверка в бд ")
     public void userDeleteByHimself() {
         Integer userId=725;
         String userApiKey="5aed704a56f9c2711d4cf2035a2d28a698b0cca1";

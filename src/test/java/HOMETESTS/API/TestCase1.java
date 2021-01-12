@@ -144,7 +144,7 @@ public class TestCase1 {
         assertEquals(errors.getErrors().get(2), "Пароль недостаточной длины (не может быть меньше 8 символа)");
     }
 
-    @Test(testName = "Шаг-4(без проверки)-Изменение статуса у существующего ", priority = 11,
+    @Test(testName = "Шаг-4 Изменение статуса у существующего ", priority = 11,
             description = "Отправить запрос PUT на изменение пользователя. Использовать данные из ответа запроса, выполненного в шаге №1, но при этом изменить поле status = 1")
     public void testStatusChange() {
         String login = randomEnglishLowerString(8);
@@ -238,7 +238,7 @@ public class TestCase1 {
         Assert.assertNull(createdGetUser.getUser().getLast_login_on());
         assertEquals(createdGetUser.getUser().getStatus().intValue(), 1);
     }
-    @Test(testName = "Шаг-6(Без проверки дб)Отправить запрос DELETE на удаление пользователя ", priority = 15,
+    @Test(testName = "Шаг-6 Отправить запрос DELETE на удаление пользователя ", priority = 15,
             description = "Отправить запрос DELETE на удаление пользователя")
     public void testDeleteRequest() {
         String login = randomEnglishLowerString(8);
