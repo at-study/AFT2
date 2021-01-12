@@ -51,7 +51,6 @@ public class TestCase1 {
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
         assertEquals(response.getStatusCode(), 201);
-
         UserDto createdUser = response.getBody(UserDto.class);
         Assert.assertNotNull(createdUser.getUser().getId());
         assertEquals(createdUser.getUser().getLogin(), login);
@@ -68,7 +67,6 @@ public class TestCase1 {
         user.setId(idForCheck);
         User dataBaseUser = UserRequests.getUser(user);
         Assert.assertEquals(dataBaseUser.getStatus().toString(), "2");
-
     }
 
     @Test(testName = "Шаг-2 Тест на создание пользователя повторно ", priority = 7,
