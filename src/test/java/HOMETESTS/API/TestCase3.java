@@ -1,4 +1,5 @@
 package HOMETESTS.API;
+
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import org.testng.Assert;
@@ -54,10 +55,10 @@ public class TestCase3 {
         Assert.assertEquals(createResponse.getStatusCode(), 201);
         UserDto createdInfoUser = createResponse.getBody(UserDto.class);
         Assert.assertNotNull(createdInfoUser.getUser().getId());
-        Integer userId=createdInfoUser.getUser().getId();
-        String userApiKey=createdInfoUser.getUser().getApi_key();
-        System.out.println("Created userID 1: "+userId);
-        String uri = String.format("users/%d.json",userId);
+        Integer userId = createdInfoUser.getUser().getId();
+        String userApiKey = createdInfoUser.getUser().getApi_key();
+        System.out.println("Created userID 1: " + userId);
+        String uri = String.format("users/%d.json", userId);
         Request getRequest = new RestRequest(uri, HttpMethods.GET, null, null, null);
         Response getResponse = apiClient.executeRequest(getRequest);
         assertEquals(getResponse.getStatusCode(), 200);
@@ -78,12 +79,12 @@ public class TestCase3 {
 
     @Test(testName = "Шаг 2-Получение пользователем инфо о другом пользователе +допинфо  ")
     public void userInfoAboutOtherUser() {
-        Integer userId=725;
-        String userApiKey="5aed704a56f9c2711d4cf2035a2d28a698b0cca1";
-        Integer secondUserId=726;
-        String secondUserApiKey="5f53e117604928097361205d1bba409b5c6211a4";
+        Integer userId = 725;
+        String userApiKey = "5aed704a56f9c2711d4cf2035a2d28a698b0cca1";
+        Integer secondUserId = 726;
+        String secondUserApiKey = "5f53e117604928097361205d1bba409b5c6211a4";
 
-        String uri = String.format("users/%d.json",secondUserId);
+        String uri = String.format("users/%d.json", secondUserId);
         io.restassured.response.Response getResponse = given().baseUri("http://edu-at.dfu.i-teco.ru/")
                 .contentType(ContentType.JSON)
                 .header("X-Redmine-API-Key", userApiKey)

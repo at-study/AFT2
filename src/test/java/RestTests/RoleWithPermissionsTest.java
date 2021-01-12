@@ -14,7 +14,9 @@ import redmine.model.role.Role;
 import redmine.model.role.RolePermission;
 import redmine.model.role.RolePermissions;
 import redmine.model.user.User;
+
 import java.util.stream.Collectors;
+
 import static redmine.model.role.RolePermission.*;
 
 public class RoleWithPermissionsTest {
