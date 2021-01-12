@@ -106,6 +106,7 @@ public class TestCase4 {
         Integer userId=createdInfoUser.getUser().getId();
         String userApiKey=createdInfoUser.getUser().getApi_key();
         System.out.println("Created userID 1: "+userId);
+
         String uri = String.format("users/%d.json",userId);
         Request getRequest = new RestRequest(uri, HttpMethods.GET, null, null, null);
         Response getResponse = apiClient.executeRequest(getRequest);
