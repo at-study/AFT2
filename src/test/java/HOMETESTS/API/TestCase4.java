@@ -29,57 +29,17 @@ public class TestCase4 {
 
     @Test(testName = "Шаг 1-Удаление пользователя другим пользователем и проверка в бд ")
     public void userDeleteByOtherUser() {
-        String login = randomEnglishLowerString(8);
-        String firstName = randomEnglishLowerString(12);
-        String lastName = randomEnglishLowerString(12);
-        String mail = randomEmail();
-        Integer status = 2;
-        String body = String.format("""
-                {
-                 "user":{
-                 "login":"%s",
-                 "firstname":"%s",
-                 "lastname":"%s",
-                 "mail":"%s",
-                 "status":"%s",
-                 "password":"1qaz@WSX"\s
-                 }
-                }""", login, firstName, lastName, mail, status);
-        ApiClient apiClient = new RestApiClient(user);
-        Request createRequest = new RestRequest("users.json", HttpMethods.POST, null, null, body);
-        Response createResponse = apiClient.executeRequest(createRequest);
-        Assert.assertEquals(createResponse.getStatusCode(), 201);
-        UserDto createdFirstUser = createResponse.getBody(UserDto.class);
-        Assert.assertNotNull(createdFirstUser.getUser().getId());
-        Integer userId=createdFirstUser.getUser().getId();
-        String userApiKey=createdFirstUser.getUser().getApi_key();
-        System.out.println("Created userID 1: "+userId);
+        Integer userId=725;
+        String userApiKey="5aed704a56f9c2711d4cf2035a2d28a698b0cca1";
+        Integer secondUserId=726;
+        String secondUserApiKey="5f53e117604928097361205d1bba409b5c6211a4";
 
-        String loginSecondUser = randomEnglishLowerString(8);
-        String firstNameSecondUser = randomEnglishLowerString(12);
-        String lastNameSecondUser = randomEnglishLowerString(12);
-        String mailSecondUser = randomEmail();
-        Integer statusSecondUser = 2;
-        String bodySecondUser = String.format("""
-                {
-                 "user":{
-                 "login":"%s",
-                 "firstname":"%s",
-                 "lastname":"%s",
-                 "mail":"%s",
-                 "status":"%s",
-                 "password":"1qaz@WSX"\s
-                 }
-                }""", loginSecondUser, firstNameSecondUser, lastNameSecondUser, mailSecondUser, statusSecondUser);
-        ApiClient apiClientSecondUser = new RestApiClient(user);
-        Request createRequestSecondUser = new RestRequest("users.json", HttpMethods.POST, null, null, bodySecondUser);
-        Response createResponseSecondUser = apiClient.executeRequest(createRequestSecondUser);
-        Assert.assertEquals(createResponseSecondUser.getStatusCode(), 201);
-        UserDto createdSecondUser = createResponseSecondUser.getBody(UserDto.class);
-        Assert.assertNotNull(createdSecondUser.getUser().getId());
-        Integer userIdSecondUser=createdSecondUser.getUser().getId();
-        String userApiKeySecondUser=createdSecondUser.getUser().getApi_key();
-        System.out.println("Created userID 2: "+userIdSecondUser);
+        String uri = String.format("users/%d.json",userId);
+        io.restassured.response.Response deleteResponse = given().baseUri("http://edu-at.dfu.i-teco.ru/")
+                .contentType(ContentType.JSON)
+                .header("X-Redmine-API-Key", userApiKey)
+                .request(Method.DELETE, uri);
+        Assert.assertEquals(deleteResponse.getStatusCode(), 403);
     }
 
     @Test(testName = "Шаг 2(без проверки) -Удаление пользователя самим собою и проверка в бд ")
