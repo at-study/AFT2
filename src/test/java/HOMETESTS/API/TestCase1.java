@@ -8,18 +8,12 @@ import redmine.api.interfaces.ApiClient;
 import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
 import redmine.api.interfaces.Response;
-import redmine.db.requests.RoleRequests;
 import redmine.db.requests.UserRequests;
-import redmine.managers.Manager;
 import redmine.model.Dto.UserCreationError;
 import redmine.model.Dto.UserDto;
-import redmine.model.role.Role;
 import redmine.model.user.User;
 import redmine.utils.StringGenerators;
 import redmine.utils.gson.GsonHelper;
-
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import static org.testng.Assert.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
@@ -32,14 +26,6 @@ public class TestCase1 {
     public void prepareFixtures() {
         user = new User().generate();
     }
-
-    @Test(testName = "Шаг-0 ", priority = 0, description = "пользователь должен иметь status = 2)")
-    public void getAllUsers() {
-        int users = UserRequests.getAllUsers().size();
-    }
-
-
-
 
     @Test(testName = "Шаг-1(без подпункта 3)-Тест на создание пользователя ", priority = 5,
             description = "Отправить запрос POST на создание пользователя (данные пользователя должны быть сгенерированы корректно, пользователь должен иметь status = 2)")
