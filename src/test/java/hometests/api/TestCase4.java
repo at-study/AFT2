@@ -19,7 +19,7 @@ public class TestCase4 {
         user = new User().generate();
     }
 
-    @Test(testName = "Шаг 1-Удаление пользователя другим пользователем и проверка в бд ")
+    @Test(testName = "Шаг 1-Удаление пользователя другим пользователем и проверка в бд ",priority = 5)
     public void userDeleteByOtherUser() {
         Integer userId = 725;
         String userApiKey = "5aed704a56f9c2711d4cf2035a2d28a698b0cca1";
@@ -36,7 +36,7 @@ public class TestCase4 {
         Assert.assertEquals(userCountAfterDelete, usersBeforeDelete);
     }
 
-    @Test(testName = "Шаг 2 -Удаление пользователя самим собою и проверка в бд ")
+    @Test(testName = "Шаг 2 -Удаление пользователя самим собою и проверка в бд ",priority = 10)
     public void userDeleteByHimself() {
         Integer userId = 725;
         String userApiKey = "5aed704a56f9c2711d4cf2035a2d28a698b0cca1";
