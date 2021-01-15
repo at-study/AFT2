@@ -70,8 +70,6 @@ public class TestCase3 {
         Assert.assertEquals(createdGetUser.getUser().getStatus().intValue(), 2);
         Assert.assertFalse(createdGetUser.getUser().getAdmin());
         Assert.assertEquals(createdGetUser.getUser().getApi_key(), userApiKey);
-
-
     }
 
     @Test(testName = "Шаг 2-Получение пользователем инфо о другом пользователе +допинфо  ")
@@ -80,7 +78,6 @@ public class TestCase3 {
         String userApiKey = "5aed704a56f9c2711d4cf2035a2d28a698b0cca1";
         Integer secondUserId = 726;
         String secondUserApiKey = "5f53e117604928097361205d1bba409b5c6211a4";
-
         String uri = String.format("users/%d.json", secondUserId);
         io.restassured.response.Response getResponse = given().baseUri("http://edu-at.dfu.i-teco.ru/")
                 .contentType(ContentType.JSON)
@@ -97,6 +94,5 @@ public class TestCase3 {
         Assert.assertNull(createdUser.getUser().getStatus());
         Assert.assertNull(createdUser.getUser().getAdmin());
         Assert.assertNull(createdUser.getUser().getApi_key());
-
     }
 }
