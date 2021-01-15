@@ -1,25 +1,15 @@
-package HOMETESTS.API;
+package hometests;
 
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import redmine.api.implementations.RestApiClient;
-import redmine.api.implementations.RestRequest;
-import redmine.api.interfaces.ApiClient;
-import redmine.api.interfaces.HttpMethods;
-import redmine.api.interfaces.Request;
-import redmine.api.interfaces.Response;
 import redmine.db.requests.UserRequests;
-import redmine.model.Dto.UserDto;
 import redmine.model.user.User;
-import redmine.utils.gson.GsonHelper;
 
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
-import static redmine.utils.StringGenerators.randomEmail;
-import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 public class TestCase4 {
     User user;

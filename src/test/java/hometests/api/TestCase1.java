@@ -1,4 +1,4 @@
-package HOMETESTS.API;
+package hometests;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -9,11 +9,9 @@ import redmine.api.interfaces.ApiClient;
 import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
 import redmine.api.interfaces.Response;
-import redmine.db.requests.RoleRequests;
 import redmine.db.requests.UserRequests;
 import redmine.model.Dto.UserCreationError;
 import redmine.model.Dto.UserDto;
-import redmine.model.role.Role;
 import redmine.model.user.User;
 import redmine.utils.StringGenerators;
 import redmine.utils.gson.GsonHelper;

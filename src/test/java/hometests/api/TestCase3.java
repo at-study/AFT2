@@ -1,4 +1,4 @@
-package HOMETESTS.API;
+package hometests;
 
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
@@ -14,9 +14,6 @@ import redmine.api.interfaces.Response;
 import redmine.model.Dto.UserDto;
 import redmine.model.user.User;
 import redmine.utils.gson.GsonHelper;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
