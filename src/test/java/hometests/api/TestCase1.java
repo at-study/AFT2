@@ -1,4 +1,4 @@
-package hometests;
+package hometests.api;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;

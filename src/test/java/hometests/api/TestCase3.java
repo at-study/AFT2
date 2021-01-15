@@ -1,4 +1,4 @@
-package hometests;
+package hometests.api;
 
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
