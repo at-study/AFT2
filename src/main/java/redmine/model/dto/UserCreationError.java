@@ -1,4 +1,4 @@
-package redmine.model.Dto;
+package redmine.model.dto;
 
 import lombok.Data;
 

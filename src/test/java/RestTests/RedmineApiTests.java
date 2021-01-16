@@ -9,7 +9,7 @@ import redmine.api.interfaces.ApiClient;
 import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
 import redmine.api.interfaces.Response;
-import redmine.model.Dto.UserDto;
+import redmine.model.dto.UserDto;
 import redmine.model.user.User;
 
 import static redmine.utils.StringGenerators.randomEmail;

@@ -6,10 +6,10 @@ import java.util.stream.Stream;
 
 @AllArgsConstructor
 public enum Type {
-    USER(""),
-    GROUPNONMEMBER(""),
-    GROUPANONYMOUS(""),
-    ANONYMOUSUSER("");
+    USER("Пользователь"),
+    GROUPNONMEMBER("Не участник"),
+    GROUPANONYMOUS("Анонимные пользователи"),
+    ANONYMOUSUSER("Аноним");
 
     public final String description;
 

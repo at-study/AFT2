@@ -1,7 +1,6 @@
-package redmine.model.Dto;
+package redmine.model.dto;
 
 import lombok.Data;
-import redmine.model.role.Role;
 
 @Data
 public class RoleDto {

@@ -9,7 +9,7 @@ import redmine.api.interfaces.ApiClient;
 import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
 import redmine.api.interfaces.Response;
-import redmine.model.Dto.RoleDto;
+import redmine.model.dto.RoleDto;
 import redmine.model.role.Role;
 import redmine.model.user.User;
 
