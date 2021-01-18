@@ -46,7 +46,6 @@ public class User implements Generatable<User> {
     public User create() {
         return UserRequests.createUser(this);
     }
-
     /**
      * @return Admin apiKey="f02b2da01a468c4116be898911481d1b928c15f9"
      */
