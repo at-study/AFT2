@@ -64,6 +64,7 @@ public class TestCase1 {
         Assert.assertNull(createdUser.getUser().getLast_login_on());
         assertEquals(createdUser.getUser().getStatus().intValue(), 2);
         Assert.assertFalse(createdUser.getUser().getAdmin());
+
         int usersCountAfter = UserRequests.getAllUsers().size();
         Assert.assertEquals(usersCountAfter, usersBeforeUserCreation + 1);
         int idForCheck = createdUser.getUser().getId();
@@ -96,6 +97,7 @@ public class TestCase1 {
         apiClient.executeRequest(request);
         Response sameUserCreationRequest = apiClient.executeRequest(request);
         assertEquals(sameUserCreationRequest.getStatusCode(), 422);
+
         UserCreationError errors = GsonHelper.getGson().fromJson(sameUserCreationRequest.getBody().toString(), UserCreationError.class);
         assertEquals(errors.getErrors().size(), 2);
         assertEquals(errors.getErrors().get(0), "Email уже существует");
@@ -133,6 +135,7 @@ public class TestCase1 {
                  }
                 }""", login, firstName, lastName, incorrectMail, incorrectPassword);
         ApiClient apiClient = new RestApiClient(user);
+
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         apiClient.executeRequest(request);
         Request incorrectRequest = new RestRequest("users.json", HttpMethods.POST, null, null, incorrectBody);
@@ -166,6 +169,7 @@ public class TestCase1 {
                  "password":"%s"\s
                  }
                 }""", login, firstName, lastName, mail, status, password);
+
         String statusBody = String.format("""
                 {
                  "user":{
@@ -185,6 +189,7 @@ public class TestCase1 {
         Integer userId = createdUser.getUser().getId();
         assertEquals(createdUser.getUser().getStatus().intValue(), 2);
         System.out.println("Created userID: " + userId);
+
         String uri = String.format("users/%d.json", userId);
         int userBeforeManipulation = UserRequests.getAllUsers().size();
         Request putRequest = new RestRequest(uri, HttpMethods.PUT, null, null, statusBody);
@@ -216,10 +221,12 @@ public class TestCase1 {
                  "password":"1qaz@WSX"\s
                  }
                 }""", login, firstName, lastName, mail, status);
+
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
         assertEquals(response.getStatusCode(), 201);
+
         UserDto createdUser = response.getBody(UserDto.class);
         Assert.assertNotNull(createdUser.getUser().getId());
         assertEquals(createdUser.getUser().getLogin(), login);
@@ -231,6 +238,7 @@ public class TestCase1 {
         assertEquals(createdUser.getUser().getStatus().intValue(), 1);
         Integer userId = createdUser.getUser().getId();
         System.out.println("Created userID: " + userId);
+
         String uri = String.format("users/%d.json", userId);
         Request getRequest = new RestRequest(uri, HttpMethods.GET, null, null, null);
         Response getResponse = apiClient.executeRequest(getRequest);
@@ -281,6 +289,7 @@ public class TestCase1 {
         assertEquals(createdUser.getUser().getStatus().intValue(), 1);
         Integer userId = createdUser.getUser().getId();
         System.out.println("Created userID: " + userId);
+
         int userAmountBeforeDeleteOtherUser = UserRequests.getAllUsers().size();
         String uri = String.format("users/%d.json", userId);
         Request deleteRequest = new RestRequest(uri, HttpMethods.DELETE, null, null, null);
@@ -313,6 +322,7 @@ public class TestCase1 {
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
         assertEquals(response.getStatusCode(), 201);
+
         UserDto createdUser = response.getBody(UserDto.class);
         Assert.assertNotNull(createdUser.getUser().getId());
         assertEquals(createdUser.getUser().getLogin(), login);
@@ -324,6 +334,7 @@ public class TestCase1 {
         assertEquals(createdUser.getUser().getStatus().intValue(), 1);
         Integer userId = createdUser.getUser().getId();
         System.out.println("Created userID: " + userId);
+
         String uri = String.format("users/%d.json", userId);
         Request deleteRequest = new RestRequest(uri, HttpMethods.DELETE, null, null, null);
         Response deleteResponse = apiClient.executeRequest(deleteRequest);
