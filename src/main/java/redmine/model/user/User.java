@@ -16,7 +16,7 @@ import static redmine.utils.StringGenerators.randomEnglishLowerString;
 public class User implements Generatable<User> {
     private Integer id;
     private String login;
-    private String hashedPassword;
+    private String hashedPassword=getApiKey();
     private String firstName="Evg"+randomEnglishLowerString(9);
     private String lastName="TTT"+randomEnglishLowerString(9);
     private Boolean admin;

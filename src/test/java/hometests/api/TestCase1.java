@@ -89,9 +89,9 @@ public class TestCase1 {
                  "lastname":"%s",
                  "mail":"%s",
                  "status":"%s",
-                 "password":"1qaz@WSX"\s
+                 "password":"%s"\s
                  }
-                }""", login, firstName, lastName, mail, status);
+                }""", login, firstName, lastName, mail, status, user.getHashedPassword());
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         apiClient.executeRequest(request);
