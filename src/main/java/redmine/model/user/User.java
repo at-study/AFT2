@@ -15,9 +15,9 @@ import static redmine.utils.StringGenerators.randomEnglishLowerString;
 public class User implements Generatable<User> {
     private Integer id;
     private String login;
-    private String hashed_password;
-    private String firstname="Evg"+randomEnglishLowerString(9);
-    private String lastname="TTT"+randomEnglishLowerString(9);;
+    private String hashedPassword;
+    private String firstName="Evg"+randomEnglishLowerString(9);
+    private String lastName="TTT"+randomEnglishLowerString(9);;
     private Boolean admin;
     private Integer status;
     //TODO last_login_on
@@ -25,10 +25,10 @@ public class User implements Generatable<User> {
     //TODO updated_on
     //TODO created_on
     private Type type=Type.USER;
-    private MailNotification mail_notification=MailNotification.ALL;
+    private MailNotification mailNotification=MailNotification.ALL;
     private Boolean inherit_members;
     private String salt;
-    private Boolean must_change_passwd=false;
+    private Boolean mustChangePasswd=false;
     //TODO passwd_changed_on;
 
     @Override

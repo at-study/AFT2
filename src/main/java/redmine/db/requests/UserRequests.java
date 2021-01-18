@@ -17,9 +17,9 @@ public class UserRequests {
                     User user = new User();
                     user.setId((Integer) map.get("id"));
                     user.setLogin((String) map.get("login"));
-                    user.setHashed_password((String) map.get("hashed_password"));
-                    user.setFirstname((String) map.get("firstname"));
-                    user.setLastname((String) map.get("lastname"));
+                    user.setHashedPassword((String) map.get("hashed_password"));
+                    user.setFirstName((String) map.get("firstname"));
+                    user.setLastName((String) map.get("lastname"));
                     user.setAdmin((Boolean) map.get("admin"));
                     user.setStatus(((Integer) map.get("status")));
                     return user;
@@ -40,8 +40,8 @@ public class UserRequests {
                        "set login=?,firstname=?,lastname=?,admin=?,status=?,language=?,\n" +
                        "where hashed_password=? RETURNING id;\n";
         List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
-                user.getLogin(), user.getFirstname(), user.getLastname(), user.getAdmin().toString(),
-                user.getStatus().toString(),user.getLanguage().toString(),user.getHashed_password());
+                user.getLogin(), user.getFirstName(), user.getLastName(), user.getAdmin().toString(),
+                user.getStatus().toString(),user.getLanguage().toString(),user.getHashedPassword());
         user.setId((Integer) result.get(0).get("id"));
         return user;
     }

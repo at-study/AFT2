@@ -18,5 +18,5 @@ public class Project {
     private Status status;
     private Integer ift;
     private Integer rgt;
-    private Boolean inherit_members;
+    private Boolean inheritMembers;
 }
