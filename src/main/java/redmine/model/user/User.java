@@ -5,6 +5,7 @@ import redmine.db.requests.UserRequests;
 import redmine.model.Generatable;
 import redmine.utils.StringGenerators;
 
+import static org.apache.commons.codec.digest.DigestUtils.sha1Hex;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 @Getter
@@ -45,12 +46,13 @@ public class User implements Generatable<User> {
     public User create() {
         return UserRequests.createUser(this);
     }
-
     /**
      * custom user for restapi client generateRandomString(40,"0..f");
      */
     public static String getApiKey() {
-        //TODO  Изменить на генерацию ключа API
+        String salt=StringGenerators.randomString(32,"0123456789abcdef");
+        String password=StringGenerators.randomEnglishString(10);
+        String hashedPassword=sha1Hex(salt+sha1Hex(password));
         return "f02b2da01a468c4116be898911481d1b928c15f9";
     }
 
