@@ -53,8 +53,7 @@ public class User implements Generatable<User> {
     public static String getApiKey() {
         String salt=StringGenerators.randomString(32,"0123456789abcdef");
         String password=StringGenerators.randomEnglishString(10);
-        String hashedPassword=sha1Hex(salt+sha1Hex(password));
-        return hashedPassword;
+        return sha1Hex(salt+sha1Hex(password));
     }
 
 }
