@@ -5,6 +5,7 @@ import redmine.db.requests.UserRequests;
 import redmine.model.Generatable;
 import redmine.utils.StringGenerators;
 
+import static org.apache.commons.codec.digest.DigestUtils.sha1Hex;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 @Getter
@@ -17,7 +18,7 @@ public class User implements Generatable<User> {
     private String login;
     private String hashedPassword;
     private String firstName="Evg"+randomEnglishLowerString(9);
-    private String lastName="TTT"+randomEnglishLowerString(9);;
+    private String lastName="TTT"+randomEnglishLowerString(9);
     private Boolean admin;
     private Integer status;
     //TODO last_login_on
@@ -28,7 +29,7 @@ public class User implements Generatable<User> {
     private MailNotification mailNotification=MailNotification.ALL;
     private Boolean inherit_members;
     private String salt;
-    private Boolean mustChangePasswd=false;
+    private Boolean mustChangePassword =false;
     //TODO passwd_changed_on;
 
     @Override
@@ -47,11 +48,13 @@ public class User implements Generatable<User> {
     }
 
     /**
-     * custom user for restapi client generateRandomString(40,"0..f");
+     * @return Admin apiKey="f02b2da01a468c4116be898911481d1b928c15f9"
      */
     public static String getApiKey() {
-        //TODO  Изменить на генерацию ключа API
-        return "f02b2da01a468c4116be898911481d1b928c15f9";
+        String salt=StringGenerators.randomString(32,"0123456789abcdef");
+        String password=StringGenerators.randomEnglishString(10);
+        String hashedPassword=sha1Hex(salt+sha1Hex(password));
+        return hashedPassword;
     }
 
 }
