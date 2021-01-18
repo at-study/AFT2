@@ -19,7 +19,7 @@ public class User implements Generatable<User> {
     private String hashedPassword=getApiKey();
     private String firstName="Evg"+randomEnglishLowerString(9);
     private String lastName="TTT"+randomEnglishLowerString(9);
-    private Boolean admin;
+    private Boolean admin=true;
     private Integer status;
     //TODO last_login_on
     private Language language=Language.RU;
