@@ -281,13 +281,13 @@ public class TestCase1 {
         assertEquals(createdUser.getUser().getStatus().intValue(), 1);
         Integer userId = createdUser.getUser().getId();
         System.out.println("Created userID: " + userId);
-        int usersBeforeDelete = UserRequests.getAllUsers().size();
+        int userAmountBeforeDeleteOtherUser = UserRequests.getAllUsers().size();
         String uri = String.format("users/%d.json", userId);
         Request deleteRequest = new RestRequest(uri, HttpMethods.DELETE, null, null, null);
         Response deleteResponse = apiClient.executeRequest(deleteRequest);
         assertEquals(deleteResponse.getStatusCode(), 204);
-        int userCountBeforeDelete = UserRequests.getAllUsers().size();
-        Assert.assertEquals(userCountBeforeDelete, usersBeforeDelete - 1);
+        int userAmountAfterDeleteOtherUser = UserRequests.getAllUsers().size();
+        Assert.assertEquals(userAmountAfterDeleteOtherUser, userAmountBeforeDeleteOtherUser - 1);
     }
 
     @Test(testName = "Шаг 7-Отправить повторный запрос DELETE на удаление пользователя ", priority = 17,
