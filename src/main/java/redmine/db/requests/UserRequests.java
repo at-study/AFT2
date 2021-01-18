@@ -1,7 +1,6 @@
 package redmine.db.requests;
 
 import redmine.managers.Manager;
-import redmine.model.role.Role;
 import redmine.model.user.User;
 
 import java.util.List;
@@ -37,11 +36,9 @@ public class UserRequests {
     }
 
     public static User updateUser(User user) {
-        String query = """
-                update public.users
-                set login=?,firstname=?,lastname=?,admin=?,status=?,language=?,
-                where hashed_password=? RETURNING id;
-                """;
+        String query = "update public.users\n" +
+                       "set login=?,firstname=?,lastname=?,admin=?,status=?,language=?,\n" +
+                       "where hashed_password=? RETURNING id;\n";
         List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
                 user.getLogin(), user.getFirstname(), user.getLastname(), user.getAdmin().toString(),
                 user.getStatus().toString(),user.getLanguage().toString(),user.getHashed_password());

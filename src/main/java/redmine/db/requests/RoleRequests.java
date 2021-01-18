@@ -45,10 +45,8 @@ public class RoleRequests {
 
 
     public static Role addRole(Role role) {
-        String query = """
-                insert into public.roles
-                (id,"name","position",assignable,builtin,permissions,issues_visibility,users_visibility,time_entries_visibility,all_roles_managed,settings)values(DEFAULT,?,?,?,?,?,?,?,?,?,?) RETURNING id;
-                """;
+        String query = "insert into public.roles\n" +
+                       "(id,\"name\",\"position\",assignable,builtin,permissions,issues_visibility,users_visibility,time_entries_visibility,all_roles_managed,settings)values(DEFAULT,?,?,?,?,?,?,?,?,?,?) RETURNING id;\n";
         List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
                 role.getName(), role.getPosition(), role.getAssignable(), role.getBuiltin(), role.getPermissions().toString(),
                 role.getIssuesVisibility().toString(), role.getUsersVisibility().toString(), role.getTimeEntriesVisibility().toString(),
@@ -59,11 +57,9 @@ public class RoleRequests {
 
 
     public static Role updateRole(Role role) {
-        String query = """
-                update public.roles
-                set position=?,assignable=?,builtin=?,permissions=?,issues_visibility=?,users_visibility=?,time_entries_visibility=?,all_roles_managed=?,settings=?
-                where name=? RETURNING id;
-                """;
+        String query = "update public.roles\n" +
+                       "set position=?,assignable=?,builtin=?,permissions=?,issues_visibility=?,users_visibility=?,time_entries_visibility=?,all_roles_managed=?,settings=?\n" +
+                       "where name=? RETURNING id;\n";
         List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
                 role.getPosition(), role.getAssignable(), role.getBuiltin(), role.getPermissions().toString(),
                 role.getIssuesVisibility().toString(), role.getUsersVisibility().toString(), role.getTimeEntriesVisibility().toString(),
