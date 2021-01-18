@@ -93,7 +93,7 @@ public class TestCase1 {
                 }""", login, firstName, lastName, mail, status);
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
-        Response response = apiClient.executeRequest(request);
+        apiClient.executeRequest(request);
         Response sameUserCreationRequest = apiClient.executeRequest(request);
         assertEquals(sameUserCreationRequest.getStatusCode(), 422);
         UserCreationError errors = GsonHelper.getGson().fromJson(sameUserCreationRequest.getBody().toString(), UserCreationError.class);
@@ -134,7 +134,7 @@ public class TestCase1 {
                 }""", login, firstName, lastName, incorrectMail, incorrectPassword);
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
-        Response response = apiClient.executeRequest(request);
+        apiClient.executeRequest(request);
         Request incorrectRequest = new RestRequest("users.json", HttpMethods.POST, null, null, incorrectBody);
         Response sameUserCreationRequest = apiClient.executeRequest(incorrectRequest);
         assertEquals(sameUserCreationRequest.getStatusCode(), 422);
