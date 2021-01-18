@@ -34,7 +34,7 @@ public class TestCase3 {
         String firstName = randomEnglishLowerString(12);
         String lastName = randomEnglishLowerString(12);
         String mail = randomEmail();
-        Integer status = 2;
+        Integer status = 1;
         String body = String.format("""
                 {
                  "user":{
@@ -50,15 +50,18 @@ public class TestCase3 {
         Request createRequest = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response createResponse = apiClient.executeRequest(createRequest);
         Assert.assertEquals(createResponse.getStatusCode(), 201);
+
         UserDto createdInfoUser = createResponse.getBody(UserDto.class);
         Assert.assertNotNull(createdInfoUser.getUser().getId());
         Integer userId = createdInfoUser.getUser().getId();
         String userApiKey = createdInfoUser.getUser().getApi_key();
         System.out.println("Created userID 1: " + userId);
+
         String uri = String.format("users/%d.json", userId);
         Request getRequest = new RestRequest(uri, HttpMethods.GET, null, null, null);
         Response getResponse = apiClient.executeRequest(getRequest);
         assertEquals(getResponse.getStatusCode(), 200);
+
         String responseBody = getResponse.getBody().toString();
         UserDto createdGetUser = GsonHelper.getGson().fromJson(responseBody, UserDto.class);
         Assert.assertEquals(createdGetUser.getUser().getLogin(), login);
@@ -74,21 +77,72 @@ public class TestCase3 {
 
     @Test(testName = "Шаг 2-Получение пользователем инфо о другом пользователе +допинфо  ")
     public void userInfoAboutOtherUser() {
-        Integer userId = 725;
-        String userApiKey = "5aed704a56f9c2711d4cf2035a2d28a698b0cca1";
-        Integer secondUserId = 726;
-        String secondUserApiKey = "5f53e117604928097361205d1bba409b5c6211a4";
-        String uri = String.format("users/%d.json", secondUserId);
+        String login1 = randomEnglishLowerString(8);
+        String firstName1 = randomEnglishLowerString(12);
+        String lastName1 = randomEnglishLowerString(12);
+        String mail1 = randomEmail();
+        Integer status1 = 1;
+        Boolean admin1=true;
+        String body1 = String.format("""
+                {
+                 "user":{
+                 "login":"%s",
+                 "firstname":"%s",
+                 "lastname":"%s",
+                 "admin":"%s",
+                 "mail":"%s",
+                 "status":"%s",
+                 "password":"1qaz@WSX"\s
+                 }
+                }""", login1, firstName1, lastName1,true, mail1, status1);
+        ApiClient apiClient = new RestApiClient(user);
+        Request createRequest = new RestRequest("users.json", HttpMethods.POST, null, null, body1);
+        Response createResponse = apiClient.executeRequest(createRequest);
+        Assert.assertEquals(createResponse.getStatusCode(), 201);
+        UserDto createdInfoUser = createResponse.getBody(UserDto.class);
+        Assert.assertNotNull(createdInfoUser.getUser().getId());
+        Integer userId = createdInfoUser.getUser().getId();
+        String userApiKey1 = createdInfoUser.getUser().getApi_key();
+        System.out.println("Created userID 1: " + userId);
+
+        String login2 = randomEnglishLowerString(8);
+        String firstName2 = randomEnglishLowerString(12);
+        String lastName2 = randomEnglishLowerString(12);
+        String mail2 = randomEmail();
+        Integer status2 = 1;
+        Boolean admin2=true;
+        String body2 = String.format("""
+                {
+                 "user":{
+                 "login":"%s",
+                 "firstname":"%s",
+                 "lastname":"%s",
+                 "admin":"%s",
+                 "mail":"%s",
+                 "status":"%s",
+                 "password":"1qaz@WSX"\s
+                 }
+                }""", login2, firstName2, lastName2,true, mail2, status2);
+        ApiClient apiClient2 = new RestApiClient(user);
+        Request createRequest2 = new RestRequest("users.json", HttpMethods.POST, null, null, body2);
+        Response createResponse2 = apiClient.executeRequest(createRequest2);
+        Assert.assertEquals(createResponse2.getStatusCode(), 201);
+        UserDto createdInfoUser2 = createResponse2.getBody(UserDto.class);
+        Integer userId2 = createdInfoUser2.getUser().getId();
+        String userApiKey2 = createdInfoUser2.getUser().getApi_key();
+        System.out.println("Created userID 2: " + userId2);
+
+        String uri = String.format("users/%d.json", userId2);
         io.restassured.response.Response getResponse = given().baseUri("http://edu-at.dfu.i-teco.ru/")
                 .contentType(ContentType.JSON)
-                .header("X-Redmine-API-Key", userApiKey)
+                .header("X-Redmine-API-Key", userApiKey1)
                 .request(Method.GET, uri);
-        Assert.assertEquals(getResponse.getStatusCode(), 200);
+        Assert.assertEquals(getResponse.getStatusCode(), 403);
         String responseBody = getResponse.getBody().asString();
         UserDto createdUser = GsonHelper.getGson().fromJson(responseBody, UserDto.class);
-        Assert.assertEquals(createdUser.getUser().getLogin(), "evgenyttuser2");
-        Assert.assertEquals(createdUser.getUser().getFirstname(), "evgeny");
-        Assert.assertEquals(createdUser.getUser().getLastname(), "tt");
+        Assert.assertEquals(createdUser.getUser().getLogin(), login2);
+        Assert.assertEquals(createdUser.getUser().getFirstname(), firstName2);
+        Assert.assertEquals(createdUser.getUser().getLastname(), lastName2);
         Assert.assertNull(createdUser.getUser().getPassword());
         Assert.assertNotNull(createdUser.getUser().getLast_login_on());
         Assert.assertNull(createdUser.getUser().getStatus());
