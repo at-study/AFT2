@@ -27,7 +27,7 @@ public class User implements Generatable<User> {
     //TODO created_on
     private Type type=Type.USER;
     private MailNotification mailNotification=MailNotification.ALL;
-    private Boolean inherit_members;
+    private Boolean inheritMembers;
     private String salt;
     private Boolean mustChangePasswd=false;
     //TODO passwd_changed_on;

@@ -82,7 +82,6 @@ public class TestCase3 {
         String lastName1 = randomEnglishLowerString(12);
         String mail1 = randomEmail();
         Integer status1 = 1;
-        Boolean admin1=true;
         String body1 = String.format("""
                 {
                  "user":{
@@ -110,7 +109,6 @@ public class TestCase3 {
         String lastName2 = randomEnglishLowerString(12);
         String mail2 = randomEmail();
         Integer status2 = 1;
-        Boolean admin2=true;
         String body2 = String.format("""
                 {
                  "user":{
@@ -129,7 +127,6 @@ public class TestCase3 {
         Assert.assertEquals(createResponse2.getStatusCode(), 201);
         UserDto createdInfoUser2 = createResponse2.getBody(UserDto.class);
         Integer userId2 = createdInfoUser2.getUser().getId();
-        String userApiKey2 = createdInfoUser2.getUser().getApi_key();
         System.out.println("Created userID 2: " + userId2);
 
         String uri = String.format("users/%d.json", userId2);
