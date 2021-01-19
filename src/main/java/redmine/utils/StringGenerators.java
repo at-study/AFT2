@@ -22,7 +22,7 @@ public class StringGenerators {
     public static String randomString(int length, String pattern) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < length; i++) {
-            sb.append(pattern.charAt(new Random().nextInt(length)));
+            sb.append(pattern.charAt(new Random().nextInt(pattern.length())));
         }
         return sb.toString();
     }

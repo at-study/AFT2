@@ -54,7 +54,7 @@ public class User implements Generatable<User> {
         String salt=StringGenerators.randomString(32,"0123456789abcdef");
         String password=StringGenerators.randomEnglishString(10);
         String hashedPassword=sha1Hex(salt+sha1Hex(password));
-        return hashedPassword;
+        return "f02b2da01a468c4116be898911481d1b928c15f9";
     }
 
 }
