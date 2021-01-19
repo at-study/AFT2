@@ -29,10 +29,13 @@ public class UserRequests {
 
 
     public static User createUser(User user) {
-        //TODO Запрос к бд
-        //TODO установка id значением сгенерированным в БД
+        String query = "insert into public.users\n" +
+                "(id,login,hashed_password,firstname,lastname,admin,status)values(DEFAULT,?,?,?,?,?,?) RETURNING id;\n";
+        List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
+                user.getId(), user.getHashedPassword(), user.getFirstName(), user.getLastName(),
+                user.getAdmin(), user.getStatus());
+        user.setId((Integer) result.get(0).get("id"));
         return user;
-
     }
 
     public static User updateUser(User user) {

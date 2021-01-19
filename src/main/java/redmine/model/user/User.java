@@ -1,6 +1,7 @@
 package redmine.model.user;
 
 import lombok.*;
+import redmine.db.requests.RoleRequests;
 import redmine.db.requests.UserRequests;
 import redmine.model.Generatable;
 import redmine.utils.StringGenerators;
@@ -34,7 +35,7 @@ public class User implements Generatable<User> {
 
     @Override
     public User read() {
-        return null;
+        return UserRequests.getUser(this);
     }
 
     @Override
