@@ -47,13 +47,12 @@ public class User implements Generatable<User> {
         return UserRequests.createUser(this);
     }
     /**
-     * custom user for restapi client generateRandomString(40,"0..f");
+     * "f02b2da01a468c4116be898911481d1b928c15f9"
      */
     public static String getApiKey() {
         String salt=StringGenerators.randomString(32,"0123456789abcdef");
         String password=StringGenerators.randomEnglishString(10);
-        String hashedPassword=sha1Hex(salt+sha1Hex(password));
-        return "f02b2da01a468c4116be898911481d1b928c15f9";
+        return sha1Hex(salt+sha1Hex(password));
     }
 
 }
