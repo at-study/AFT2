@@ -51,10 +51,10 @@ public class UserRequests {
 
     public static User getUser(User objectUser) {
         return getAllUsers().stream()
-                .filter(role -> {
+                .filter(user -> {
                     if (objectUser.getId() == null) {
-                        return objectUser.getLogin().equals(role.getLogin());
-                    } else return (objectUser.getId().equals(role.getId()));
+                        return objectUser.getLogin().equals(user.getLogin());
+                    } else return (objectUser.getId().equals(user.getId()));
                 })
                 .findFirst()
                 .orElse(null);
