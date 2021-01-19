@@ -1,7 +1,6 @@
 package redmine.model.user;
 
 import lombok.*;
-import redmine.db.requests.RoleRequests;
 import redmine.db.requests.UserRequests;
 import redmine.model.Generatable;
 import redmine.utils.StringGenerators;
