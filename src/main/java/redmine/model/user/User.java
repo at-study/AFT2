@@ -16,11 +16,11 @@ import static redmine.utils.StringGenerators.randomEnglishLowerString;
 public class User implements Generatable<User> {
     private Integer id;
     private String login="Evg"+randomEnglishLowerString(5);
-    private String hashedPassword;
+    private String hashedPassword=getApiKey();
     private String firstName="Evg"+randomEnglishLowerString(9);
     private String lastName="TTT"+randomEnglishLowerString(9);
-    private Boolean admin;
-    private Integer status;
+    private Boolean admin=true;
+    private Integer status=1;
     //TODO last_login_on
     private Language language=Language.RU;
     //TODO updated_on
@@ -28,7 +28,7 @@ public class User implements Generatable<User> {
     private Type type=Type.USER;
     private MailNotification mailNotification=MailNotification.ALL;
     private Boolean inherit_members;
-    private String salt;
+    private String salt=StringGenerators.randomString(32,"0123456789abcdef");
     private Boolean mustChangePassword =false;
     //TODO passwd_changed_on;
 
@@ -48,13 +48,13 @@ public class User implements Generatable<User> {
     }
 
     /**
+     *  String hashedPassword=sha1Hex(salt+sha1Hex(password));
      * @return Admin apiKey="f02b2da01a468c4116be898911481d1b928c15f9"
      */
     public static String getApiKey() {
         String salt=StringGenerators.randomString(32,"0123456789abcdef");
         String password=StringGenerators.randomEnglishString(10);
-        String hashedPassword=sha1Hex(salt+sha1Hex(password));
-        return "f02b2da01a468c4116be898911481d1b928c15f9";
+        return sha1Hex(salt+sha1Hex(password));
     }
 
 }

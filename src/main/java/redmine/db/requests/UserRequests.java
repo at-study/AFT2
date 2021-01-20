@@ -30,10 +30,18 @@ public class UserRequests {
 
     public static User createUser(User user) {
         String query = "insert into public.users\n" +
-                "(id,login,hashed_password,firstname,lastname,admin,status)values(DEFAULT,?,?,?,?,?,?) RETURNING id;\n";
+                "(id,login,hashed_password,firstname,lastname,admin,status,language,mail_notification,type,salt)values(DEFAULT,?,?,?,?,?,?,?,?,?,?) RETURNING id;\n";
         List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
-                user.getId(), user.getHashedPassword(), user.getFirstName(), user.getLastName(),
-                user.getAdmin(), user.getStatus());
+                user.getLogin(),
+                user.getHashedPassword(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getAdmin(),
+                user.getStatus(),
+                user.getLanguage().toString().toLowerCase(),
+                user.getMailNotification().toString().toLowerCase(),
+                user.getType().toString(),
+                user.getSalt());
         user.setId((Integer) result.get(0).get("id"));
         return user;
     }
