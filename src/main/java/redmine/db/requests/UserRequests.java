@@ -2,6 +2,7 @@ package redmine.db.requests;
 
 import redmine.managers.Manager;
 import redmine.model.user.User;
+import redmine.utils.StringGenerators;
 
 import java.util.List;
 import java.util.Map;
@@ -43,6 +44,15 @@ public class UserRequests {
                 user.getType().toString(),
                 user.getSalt());
         user.setId((Integer) result.get(0).get("id"));
+        Integer userId= (Integer) result.get(0).get("id");
+        System.out.println("User created,id :"+userId);
+
+        String value= StringGenerators.randomString(40,"0123456789abcdef");
+        String action="api";
+        String queryForToken = "insert into public.tokens\n" +
+                "(id,user_id,action,value)values(DEFAULT,?,?,?) RETURNING id;\n";
+        List<Map<String, Object>> resultForToken = Manager.dbConnection.executePreparedQuery(queryForToken,userId,action,value);
+        user.setId((Integer) resultForToken.get(0).get("id"));
         return user;
     }
 

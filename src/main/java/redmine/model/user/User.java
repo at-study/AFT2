@@ -1,10 +1,8 @@
 package redmine.model.user;
-
 import lombok.*;
 import redmine.db.requests.UserRequests;
 import redmine.model.Generatable;
 import redmine.utils.StringGenerators;
-
 import static org.apache.commons.codec.digest.DigestUtils.sha1Hex;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
