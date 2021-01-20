@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static redmine.utils.StringGenerators.randomEnglishLowerString;
+
 public class UserRequests {
 
     public static List<User> getAllUsers() {
@@ -54,6 +56,13 @@ public class UserRequests {
                 "(id,user_id,action,value,created_on)values(DEFAULT,?,?,?,?) RETURNING id;\n";
         List<Map<String, Object>> resultForToken = Manager.dbConnection.executePreparedQuery(queryForToken,userId,action,value, LocalDate.now());
         user.setId((Integer) resultForToken.get(0).get("id"));
+
+        String email=randomEnglishLowerString(8)+"@"+randomEnglishLowerString(9)+"."+randomEnglishLowerString(3);
+        String queryForEmail = "insert into public.email_addresses\n" +
+                "(id,user_id,address,is_default,notify,created_on,updated_on)values(DEFAULT,?,?,?,?,?,?) RETURNING id;\n";
+        List<Map<String, Object>> resultForEmail = Manager.dbConnection.executePreparedQuery(queryForEmail,userId,email,true,true, LocalDate.now(),LocalDate.now());
+        user.setId((Integer) resultForEmail.get(0).get("id"));
+
         return user;
     }
 
@@ -65,6 +74,7 @@ public class UserRequests {
                 user.getLogin(), user.getFirstName(), user.getLastName(), user.getAdmin().toString(),
                 user.getStatus().toString(),user.getLanguage().toString(),user.getHashedPassword());
         user.setId((Integer) result.get(0).get("id"));
+
         return user;
     }
 
