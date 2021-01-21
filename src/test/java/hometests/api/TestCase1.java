@@ -27,7 +27,7 @@ public class TestCase1 {
 
     @BeforeMethod
     public void prepareFixtures() {
-        user = new User().generate();
+        user = new User().setAdmin(true).setStatus(1).generate();
     }
 
     @Test(testName = "Шаг-1 Тест на создание пользователя ", priority = 5,
