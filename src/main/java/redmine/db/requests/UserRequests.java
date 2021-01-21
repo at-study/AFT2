@@ -55,12 +55,14 @@ public class UserRequests {
                 "(id,user_id,action,value,created_on)values(DEFAULT,?,?,?,?) RETURNING id;\n";
         List<Map<String, Object>> resultForToken = Manager.dbConnection.executePreparedQuery(queryForToken,userId,action,value, LocalDate.now());
         user.setId((Integer) resultForToken.get(0).get("id"));
+        System.out.println("UserId : "+userId+"   " +"ApiKey: "+value);
 
         String email=randomEnglishLowerString(8)+"@"+randomEnglishLowerString(9)+"."+randomEnglishLowerString(3);
         String queryForEmail = "insert into public.email_addresses\n" +
                 "(id,user_id,address,is_default,notify,created_on,updated_on)values(DEFAULT,?,?,?,?,?,?) RETURNING id;\n";
         List<Map<String, Object>> resultForEmail = Manager.dbConnection.executePreparedQuery(queryForEmail,userId,email,true,true, LocalDate.now(),LocalDate.now());
         user.setId((Integer) resultForEmail.get(0).get("id"));
+        System.out.println("UserId : "+userId+"   " +"Email: "+email);
 
         return user;
     }

@@ -45,15 +45,11 @@ public class User implements Generatable<User> {
         return UserRequests.createUser(this);
     }
 
-    /**
-     *  String hashedPassword=sha1Hex(salt+sha1Hex(password));
-     * @return Admin apiKey="f02b2da01a468c4116be898911481d1b928c15f9"
-     */
     public static String getApiKey() {
         return StringGenerators.randomString(40,"0123456789abcdef");
     }
     public static String getHashedPassword() {
-        String salt=StringGenerators.randomString(40,"0123456789abcdef");
+        String salt=StringGenerators.randomString(32,"0123456789abcdef");
         String password=StringGenerators.randomEnglishString(10);
         return sha1Hex(salt+sha1Hex(password));
     }
