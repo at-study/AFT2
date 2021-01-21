@@ -46,33 +46,33 @@ public class UserRequests {
                 user.getType().toString(),
                 user.getSalt());
         user.setId((Integer) result.get(0).get("id"));
-        Integer userId= (Integer) result.get(0).get("id");
-        System.out.println("User created,id :"+userId);
+        Integer userId = (Integer) result.get(0).get("id");
+        System.out.println("User created,id :" + userId);
 
-        String value=StringGenerators.randomString(40,"0123456789abcdef");
-        String action="api";
+        String value = StringGenerators.randomString(40, "0123456789abcdef");
+        String action = "api";
         String queryForToken = "insert into public.tokens\n" +
                 "(id,user_id,action,value,created_on)values(DEFAULT,?,?,?,?) RETURNING id;\n";
-        List<Map<String, Object>> resultForToken = Manager.dbConnection.executePreparedQuery(queryForToken,userId,action,value, LocalDate.now());
+        List<Map<String, Object>> resultForToken = Manager.dbConnection.executePreparedQuery(queryForToken, userId, action, value, LocalDate.now());
         user.setId((Integer) resultForToken.get(0).get("id"));
-        System.out.println("UserId : "+userId+"   " +"ApiKey: "+value);
+        System.out.println("UserId : " + userId + "   " + "ApiKey: " + value);
 
-        String email=randomEnglishLowerString(8)+"@"+randomEnglishLowerString(9)+"."+randomEnglishLowerString(3);
+        String email = randomEnglishLowerString(8) + "@" + randomEnglishLowerString(9) + "." + randomEnglishLowerString(3);
         String queryForEmail = "insert into public.email_addresses\n" +
                 "(id,user_id,address,is_default,notify,created_on,updated_on)values(DEFAULT,?,?,?,?,?,?) RETURNING id;\n";
-        List<Map<String, Object>> resultForEmail = Manager.dbConnection.executePreparedQuery(queryForEmail,userId,email,true,true, LocalDate.now(),LocalDate.now());
+        List<Map<String, Object>> resultForEmail = Manager.dbConnection.executePreparedQuery(queryForEmail, userId, email, true, true, LocalDate.now(), LocalDate.now());
         user.setId((Integer) resultForEmail.get(0).get("id"));
-        System.out.println("UserId : "+userId+"   " +"Email: "+email);
+        System.out.println("UserId : " + userId + "   " + "Email: " + email);
         return user;
     }
 
     public static User updateUser(User user) {
         String query = "update public.users\n" +
-                       "set login=?,hashed_password=?,firstname=?,lastname=?,admin=?,status=?,language=?,\n" +
-                       "where name=? RETURNING id;\n";
+                "set login=?,hashed_password=?,firstname=?,lastname=?,admin=?,status=?,language=?,\n" +
+                "where name=? RETURNING id;\n";
         List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
                 user.getLogin(), User.getHashedPassword(), user.getFirstName(), user.getLastName(), user.getAdmin().toString(),
-                user.getStatus().toString(),user.getLanguage().toString());
+                user.getStatus().toString(), user.getLanguage().toString());
         user.setId((Integer) result.get(0).get("id"));
         return user;
     }

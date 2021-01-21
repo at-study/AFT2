@@ -2,11 +2,13 @@ package redmine.utils.gson;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import java.time.LocalDateTime;
 
 public class GsonHelper {
     /**
      * получение джейсон умеющего работать с локалдейттайм
+     *
      * @return
      */
     public static Gson getGson() {
