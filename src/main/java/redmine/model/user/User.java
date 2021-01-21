@@ -1,5 +1,6 @@
 package redmine.model.user;
 import lombok.*;
+import lombok.experimental.Accessors;
 import redmine.db.requests.UserRequests;
 import redmine.model.Generatable;
 import redmine.utils.StringGenerators;
@@ -10,10 +11,11 @@ import static redmine.utils.StringGenerators.randomEnglishLowerString;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
+@Accessors(chain=true)
 
 public class User implements Generatable<User> {
     private Integer id;
-    private String login="Evg"+randomEnglishLowerString(5);
+    private String login="Evg"+randomEnglishLowerString(6);
     private String hashedPassword=getHashedPassword();
     private String firstName="Evg"+randomEnglishLowerString(9);
     private String lastName="TTT"+randomEnglishLowerString(9);

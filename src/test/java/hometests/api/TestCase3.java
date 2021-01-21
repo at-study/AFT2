@@ -14,7 +14,6 @@ import redmine.api.interfaces.Response;
 import redmine.model.dto.UserDto;
 import redmine.model.user.User;
 import redmine.utils.gson.GsonHelper;
-
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
@@ -25,7 +24,7 @@ public class TestCase3 {
 
     @BeforeMethod
     public void prepareFixtures() {
-        user = new User().generate();
+        user = new User().setAdmin(false).generate();
     }
 
     @Test(testName = "Шаг 1-Получение пользователем инфо о самом себе+допинфо ")
