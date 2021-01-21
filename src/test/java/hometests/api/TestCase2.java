@@ -4,7 +4,9 @@ import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import redmine.model.user.User;
 
 import java.util.Random;
 
@@ -13,9 +15,18 @@ import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 public class TestCase2 {
+
+    User user;
+
+    @BeforeMethod
+    public void prepareFixtures() {
+        user = new User().generate();
+    }
+
     @Test(testName = "Шаг 1-Отправить запрос POST на создание пользователя НЕ АДМИНИСТРАТОРОМ-403 ")
     public void userCreationByNonAdmin() {
-        String apiKey = "5aed704a56f9c2711d4cf2035a2d28a698b0cca1";
+      String apiKey = "5aed704a56f9c2711d4cf2035a2d28a698b0cca1";
+
         String login = randomEnglishLowerString(8);
         String mail = randomEmail();
         String password = String.valueOf(new Random().nextInt(500000) + 100000);
