@@ -80,6 +80,7 @@ public class TestCase1 {
         String firstName = randomEnglishLowerString(12);
         String lastName = randomEnglishLowerString(12);
         String mail = randomEmail();
+        String password=randomEnglishLowerString(8);
         Integer status = 2;
         String body = String.format("""
                 {
@@ -91,7 +92,7 @@ public class TestCase1 {
                  "status":"%s",
                  "password":"%s"\s
                  }
-                }""", login, firstName, lastName, mail, status, user.getHashedPassword());
+                }""", login, firstName, lastName, mail, status, password);
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         apiClient.executeRequest(request);
