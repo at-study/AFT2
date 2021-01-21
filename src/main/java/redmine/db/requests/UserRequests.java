@@ -5,6 +5,7 @@ import redmine.model.user.User;
 import redmine.utils.StringGenerators;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -47,20 +48,17 @@ public class UserRequests {
                 user.getSalt());
         user.setId((Integer) result.get(0).get("id"));
         Integer userId = (Integer) result.get(0).get("id");
-        System.out.println("User created,id :" + userId);
 
         String value = user.getApiKey();
         String action = "api";
         String queryForToken = "insert into public.tokens\n" +
                 "(id,user_id,action,value,created_on)values(DEFAULT,?,?,?,?) RETURNING id;\n";
         List<Map<String, Object>> resultForToken = Manager.dbConnection.executePreparedQuery(queryForToken, userId, action, value, LocalDate.now());
-        System.out.println("UserId : " + userId + "   " + "ApiKey: " + value);
 
         String email = randomEnglishLowerString(8) + "@" + randomEnglishLowerString(9) + "." + randomEnglishLowerString(3);
         String queryForEmail = "insert into public.email_addresses\n" +
                 "(id,user_id,address,is_default,notify,created_on,updated_on)values(DEFAULT,?,?,?,?,?,?) RETURNING id;\n";
-        List<Map<String, Object>> resultForEmail = Manager.dbConnection.executePreparedQuery(queryForEmail, userId, email, true, true, LocalDate.now(), LocalDate.now());
-        System.out.println("UserId : " + userId + "   " + "Email: " + email);
+        List<Map<String, Object>> resultForEmail = Manager.dbConnection.executePreparedQuery(queryForEmail, userId, email, true, true, LocalDateTime.now(), LocalDateTime.now());
         return user;
     }
 
