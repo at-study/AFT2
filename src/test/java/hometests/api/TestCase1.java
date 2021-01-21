@@ -168,7 +168,7 @@ public class TestCase1 {
                  "status":"%s",
                  "password":"%s"\s
                  }
-                }""", login, firstName, lastName, mail, status,password);
+                }""", login, firstName, lastName, mail, status, password);
 
         String statusBody = String.format("""
                 {

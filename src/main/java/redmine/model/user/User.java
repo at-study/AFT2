@@ -27,13 +27,13 @@ public class User implements Generatable<User> {
     private Language language = Language.RU;
     //TODO updated_on
     //TODO created_on
-    private String type ="User";
+    private String type = "User";
     private MailNotification mailNotification = MailNotification.ALL;
     private Boolean inheritMembers;
     private String salt = StringGenerators.randomString(32, "0123456789abcdef");
     private Boolean mustChangePassword = false;
     //TODO passwd_changed_on;
-    private String apiKey=StringGenerators.randomString(40, "0123456789abcdef");
+    private String apiKey = StringGenerators.randomString(40, "0123456789abcdef");
 
     @Override
     public User read() {

@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.db.requests.UserRequests;
 import redmine.model.user.User;
+
 import static io.restassured.RestAssured.given;
 
 public class TestCase4 {
@@ -19,7 +20,7 @@ public class TestCase4 {
         secondUser = new User().setAdmin(false).setStatus(1).generate();
     }
 
-    @Test(testName = "Шаг 1-Удаление пользователя другим пользователем и проверка в бд ",priority = 5)
+    @Test(testName = "Шаг 1-Удаление пользователя другим пользователем и проверка в бд ", priority = 5)
     public void userDeleteByOtherUser() {
         String firstUserApiKey = firstUser.getApiKey();
         Integer secondUserId = secondUser.getId();
@@ -34,7 +35,7 @@ public class TestCase4 {
         Assert.assertEquals(userCountAfterDelete, usersBeforeDelete);
     }
 
-    @Test(testName = "Шаг 2 -Удаление пользователя самим собою и проверка в бд ",priority = 10)
+    @Test(testName = "Шаг 2 -Удаление пользователя самим собою и проверка в бд ", priority = 10)
     public void userDeleteByHimself() {
         Integer userId = firstUser.getId();
         String userApiKey = firstUser.getApiKey();

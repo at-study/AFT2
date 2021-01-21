@@ -7,7 +7,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.model.user.User;
+
 import java.util.Random;
+
 import static io.restassured.RestAssured.given;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
@@ -22,11 +24,11 @@ public class TestCase2 {
 
     @Test(testName = "Шаг 1-Отправить запрос POST на создание пользователя НЕ АДМИНИСТРАТОРОМ-403 ")
     public void userCreationByNonAdmin() {
-        String apiKey=user.getApiKey();
+        String apiKey = user.getApiKey();
         String login = randomEnglishLowerString(8);
         String mail = randomEmail();
-        String name=randomEnglishLowerString(8);
-        String lastName=randomEnglishLowerString(8);
+        String name = randomEnglishLowerString(8);
+        String lastName = randomEnglishLowerString(8);
         String password = String.valueOf(new Random().nextInt(50000000) + 10000000);
         String body = String.format("""
                 {
@@ -37,7 +39,7 @@ public class TestCase2 {
                  "lastname":"%s",
                  "password":"%s"\s
                  }
-                }""", login,mail,name,lastName,password);
+                }""", login, mail, name, lastName, password);
         Response response = given().baseUri("http://edu-at.dfu.i-teco.ru/")
                 .contentType(ContentType.JSON)
                 .header("X-Redmine-API-Key", apiKey)
