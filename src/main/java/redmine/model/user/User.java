@@ -25,7 +25,7 @@ public class User implements Generatable<User> {
     //TODO created_on
     private Type type=Type.USER;
     private MailNotification mailNotification=MailNotification.ALL;
-    private Boolean inherit_members;
+    private Boolean inheritMembers;
     private String salt=StringGenerators.randomString(32,"0123456789abcdef");
     private Boolean mustChangePassword =false;
     //TODO passwd_changed_on;
@@ -48,6 +48,7 @@ public class User implements Generatable<User> {
     public static String getApiKey() {
         return StringGenerators.randomString(40,"0123456789abcdef");
     }
+
     public static String getHashedPassword() {
         String salt=StringGenerators.randomString(32,"0123456789abcdef");
         String password=StringGenerators.randomEnglishString(10);

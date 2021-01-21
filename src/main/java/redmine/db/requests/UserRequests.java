@@ -36,7 +36,7 @@ public class UserRequests {
                 "(id,login,hashed_password,firstname,lastname,\"admin\",status,language,mail_notification,type,salt)values(DEFAULT,?,?,?,?,?,?,?,?,?,?) RETURNING id;\n";
         List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
                 user.getLogin(),
-                user.getHashedPassword(),
+                user.
                 user.getFirstName(),
                 user.getLastName(),
                 user.getAdmin(),
@@ -69,13 +69,12 @@ public class UserRequests {
 
     public static User updateUser(User user) {
         String query = "update public.users\n" +
-                       "set login=?,firstname=?,lastname=?,admin=?,status=?,language=?,\n" +
-                       "where hashed_password=? RETURNING id;\n";
+                       "set login=?,hashed_password=?,firstname=?,lastname=?,admin=?,status=?,language=?,\n" +
+                       "where name=? RETURNING id;\n";
         List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
-                user.getLogin(), user.getFirstName(), user.getLastName(), user.getAdmin().toString(),
-                user.getStatus().toString(),user.getLanguage().toString(),user.getHashedPassword());
+                user.getLogin(), user.п, user.getFirstName(), user.getLastName(), user.getAdmin().toString(),
+                user.getStatus().toString(),user.getLanguage().toString());
         user.setId((Integer) result.get(0).get("id"));
-
         return user;
     }
 
