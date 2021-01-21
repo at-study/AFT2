@@ -2,14 +2,11 @@ package redmine.db.requests;
 
 import redmine.managers.Manager;
 import redmine.model.user.User;
-import redmine.utils.StringGenerators;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 public class UserRequests {
@@ -53,12 +50,12 @@ public class UserRequests {
         String action = "api";
         String queryForToken = "insert into public.tokens\n" +
                 "(id,user_id,action,value,created_on)values(DEFAULT,?,?,?,?) RETURNING id;\n";
-        List<Map<String, Object>> resultForToken = Manager.dbConnection.executePreparedQuery(queryForToken, userId, action, value, LocalDate.now());
+        Manager.dbConnection.executePreparedQuery(queryForToken, userId, action, value, LocalDate.now());
 
         String email = randomEnglishLowerString(8) + "@" + randomEnglishLowerString(9) + "." + randomEnglishLowerString(3);
         String queryForEmail = "insert into public.email_addresses\n" +
                 "(id,user_id,address,is_default,notify,created_on,updated_on)values(DEFAULT,?,?,?,?,?,?) RETURNING id;\n";
-        List<Map<String, Object>> resultForEmail = Manager.dbConnection.executePreparedQuery(queryForEmail, userId, email, true, true, LocalDateTime.now(), LocalDateTime.now());
+        Manager.dbConnection.executePreparedQuery(queryForEmail, userId, email, true, true, LocalDateTime.now(), LocalDateTime.now());
         return user;
     }
 
