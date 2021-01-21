@@ -49,7 +49,7 @@ public class UserRequests {
         Integer userId= (Integer) result.get(0).get("id");
         System.out.println("User created,id :"+userId);
 
-        String value= StringGenerators.randomString(40,"0123456789abcdef");
+        String value=StringGenerators.randomString(40,"0123456789abcdef");
         String action="api";
         String queryForToken = "insert into public.tokens\n" +
                 "(id,user_id,action,value,created_on)values(DEFAULT,?,?,?,?) RETURNING id;\n";
@@ -63,7 +63,6 @@ public class UserRequests {
         List<Map<String, Object>> resultForEmail = Manager.dbConnection.executePreparedQuery(queryForEmail,userId,email,true,true, LocalDate.now(),LocalDate.now());
         user.setId((Integer) resultForEmail.get(0).get("id"));
         System.out.println("UserId : "+userId+"   " +"Email: "+email);
-
         return user;
     }
 

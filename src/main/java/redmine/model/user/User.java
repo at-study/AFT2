@@ -31,6 +31,7 @@ public class User implements Generatable<User> {
     private String salt=StringGenerators.randomString(32,"0123456789abcdef");
     private Boolean mustChangePassword =false;
     //TODO passwd_changed_on;
+   // private String apiKey=getApiKey();
 
     @Override
     public User read() {
