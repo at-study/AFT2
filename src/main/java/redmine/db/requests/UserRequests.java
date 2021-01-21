@@ -43,7 +43,7 @@ public class UserRequests {
                 user.getStatus(),
                 user.getLanguage().toString().toLowerCase(),
                 user.getMailNotification().toString().toLowerCase(),
-                user.getType().toString(),
+                user.getType(),
                 user.getSalt());
         user.setId((Integer) result.get(0).get("id"));
         Integer userId = (Integer) result.get(0).get("id");

@@ -27,7 +27,7 @@ public class User implements Generatable<User> {
     private Language language = Language.RU;
     //TODO updated_on
     //TODO created_on
-    private Type type = Type.USER;
+    private String type ="User";
     private MailNotification mailNotification = MailNotification.ALL;
     private Boolean inheritMembers;
     private String salt = StringGenerators.randomString(32, "0123456789abcdef");
