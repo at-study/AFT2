@@ -24,7 +24,7 @@ public class TestCase3 {
 
     @BeforeMethod
     public void prepareFixtures() {
-        user = new User().setAdmin(false).generate();
+        user = new User().setAdmin(false).setStatus(1).generate();
     }
 
     @Test(testName = "Шаг 1-Получение пользователем инфо о самом себе+допинфо ")
