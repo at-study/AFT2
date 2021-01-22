@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import redmine.Property;
 import redmine.model.user.User;
 
 public class MyFirstTest {
@@ -19,7 +20,7 @@ public class MyFirstTest {
         user=new User().generate();
         System.setProperty("webdriver.chrome.driver","src\\main\\resources\\chromedriver.exe");
         driver = new ChromeDriver();
-        driver.get("http://edu-at.dfu.i-teco.ru/login");
+        driver.get(Property.getStringProperty("ui.url")+"/login");
     }
 
     @Test
