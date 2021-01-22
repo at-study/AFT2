@@ -1,6 +1,8 @@
 package hometests.ui;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -18,6 +20,9 @@ public class MyFirstTest {
 
     @Test
     public void myFirstLoginTest() {
+        WebElement  loginElement=driver.findElement(By.xpath("//input[@id='username']"));
+        WebElement  passwordElement=driver.findElement(By.xpath("//input[@id='password']"));
+        WebElement  submitElement=driver.findElement(By.xpath("//input[@id='login-submit']"));
 
     }
     @AfterMethod
