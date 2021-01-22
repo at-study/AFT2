@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.Property;
 import redmine.model.user.User;
+import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 
 public class MyFirstTest {
@@ -27,11 +28,9 @@ public class MyFirstTest {
     @Test
     public void myFirstLoginTest() {
         new LoginPage(driver).login("admin","admin123");
-
-        WebElement loggedAs=driver.findElement(By.xpath("//div[@id='loggedas']"));
-        Assert.assertEquals(loggedAs.getText(),"Вошли как admin");
-
+        Assert.assertEquals(new HeaderPage(driver).loggedAs(),"Вошли как admin");
     }
+
     @AfterMethod
     public void tearDown(){
         driver.quit();

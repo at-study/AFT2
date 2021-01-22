@@ -7,13 +7,17 @@ import java.util.Objects;
 
 public class LoginPage {
     private WebDriver driver;
-    private WebElement loginElement=driver.findElement(By.xpath("//input[@id='username']"));;
-    private WebElement passwordElement=driver.findElement(By.xpath("//input[@id='password']"));
-    private WebElement submitButton=driver.findElement(By.xpath("//input[@id='login-submit']"));
+    private WebElement loginElement;
+    private WebElement passwordElement;
+    private WebElement submitButton;
 
     public LoginPage(WebDriver driver){
         Objects.requireNonNull(driver,"Драйвер должен быть проинициализирован");
         this.driver=driver;
+
+        loginElement=driver.findElement(By.xpath("//input[@id='username']"));;
+        passwordElement=driver.findElement(By.xpath("//input[@id='password']"));
+        submitButton=driver.findElement(By.xpath("//input[@id='login-submit']"));
     }
     public void  login(String login,String password){
      loginElement.sendKeys(login);
