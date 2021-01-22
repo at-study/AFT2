@@ -13,6 +13,7 @@ public class MyFirstTest {
     public void prepareFixture(){
         System.setProperty("webdriver.chrome.driver","src\\main\\resources\\chromedriver.exe");
         driver = new ChromeDriver();
+        driver.get("http://edu-at.dfu.i-teco.ru/login");
     }
 
     @Test
