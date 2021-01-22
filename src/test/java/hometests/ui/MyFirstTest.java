@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.Property;
 import redmine.model.user.User;
+import redmine.ui.pages.LoginPage;
 
 public class MyFirstTest {
     User user;
@@ -25,13 +26,7 @@ public class MyFirstTest {
 
     @Test
     public void myFirstLoginTest() {
-        WebElement  loginElement=driver.findElement(By.xpath("//input[@id='username']"));
-        WebElement  passwordElement=driver.findElement(By.xpath("//input[@id='password']"));
-        WebElement  submitElement=driver.findElement(By.xpath("//input[@id='login-submit']"));
-
-        loginElement.sendKeys("admin");
-        passwordElement.sendKeys("admin123");
-        submitElement.click();
+        new LoginPage(driver).login("admin","admin123");
 
         WebElement loggedAs=driver.findElement(By.xpath("//div[@id='loggedas']"));
         Assert.assertEquals(loggedAs.getText(),"Вошли как admin");
