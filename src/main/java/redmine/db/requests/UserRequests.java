@@ -35,7 +35,7 @@ public class UserRequests {
                 "(id,login,hashed_password,firstname,lastname,\"admin\",\"status\",language,mail_notification,type,salt)values(DEFAULT,?,?,?,?,?,?,?,?,?,?) RETURNING id;\n";
         List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
                 user.getLogin(),
-                User.getHashedPassword(),
+                user.getHashedPassword(),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getAdmin(),
@@ -65,7 +65,7 @@ public class UserRequests {
                 "set login=?,hashed_password=?,firstname=?,lastname=?,admin=?,status=?,language=?,\n" +
                 "where name=? RETURNING id;\n";
         List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
-                user.getLogin(), User.getHashedPassword(), user.getFirstName(), user.getLastName(), user.getAdmin().toString(),
+                user.getLogin(), user.getHashedPassword(), user.getFirstName(), user.getLastName(), user.getAdmin().toString(),
                 user.getStatus().toString(), user.getLanguage().toString());
         user.setId((Integer) result.get(0).get("id"));
         return user;
