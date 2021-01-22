@@ -21,13 +21,12 @@ public class MyFirstTest {
     }
 
     @Test
-    public void myFirstLoginTest() throws InterruptedException {
+    public void myFirstLoginTest() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         System.out.println(user.getLogin());
         System.out.println(user.getHashedPassword());
         System.out.println(user.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).loggedAs(),"Вошли как "+user.getLogin());
-        Thread.sleep(500_000_000_000_000L) ;
     }
 
     @AfterMethod
