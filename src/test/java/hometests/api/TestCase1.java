@@ -340,6 +340,7 @@ public class TestCase1 {
         Request deleteRequest = new RestRequest(uri, HttpMethods.DELETE, null, null, null);
         Response deleteResponse = apiClient.executeRequest(deleteRequest);
         assertEquals(deleteResponse.getStatusCode(), 204);
+
         Response deleteRepeatedResponse = apiClient.executeRequest(deleteRequest);
         assertEquals(deleteRepeatedResponse.getStatusCode(), 404);
     }
