@@ -18,7 +18,7 @@ public class MyFirstTest {
     @BeforeMethod
     public void prepareFixture(){
         user=new User().generate();
-        System.setProperty("webdriver.chrome.driver","src\\main\\resources\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver",Property.getStringProperty("webdriver.chrome.driver"));
         driver = new ChromeDriver();
         driver.get(Property.getStringProperty("ui.url")+"/login");
     }
