@@ -7,8 +7,11 @@ import org.testng.annotations.Test;
 import redmine.model.user.User;
 import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
+import redmine.ui.pages.Pages;
+
 import static redmine.managers.Manager.*;
 import static redmine.managers.Manager.driverQuit;
+import static redmine.ui.pages.Pages.getPage;
 
 public class MyFirstTest {
     User user;
@@ -21,8 +24,8 @@ public class MyFirstTest {
 
     @Test
     public void myFirstLoginTest() {
-        new LoginPage().login("admin","admin123");
-        Assert.assertEquals(new HeaderPage().loggedAs(),"Вошли как admin");
+        getPage(LoginPage.class).login("admin","admin123");
+        Assert.assertEquals(getPage(HeaderPage.class).loggedAs(),"Вошли как admin");
     }
 
     @AfterMethod

@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import static redmine.managers.Manager.driver;
 
-public class LoginPage {
+public class LoginPage extends AbstractPage {
     private WebDriver driver;
 
     @FindBy(xpath = "//input[@id='username']")
@@ -17,10 +17,6 @@ public class LoginPage {
 
     @FindBy(xpath = "//input[@id='login-submit']")
     private WebElement submitButton;
-
-    public LoginPage() {
-        PageFactory.initElements(driver(), this);
-    }
 
     public void login(String login, String password) {
         loginElement.sendKeys(login);
