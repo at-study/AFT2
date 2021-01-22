@@ -15,8 +15,8 @@ public class MyFirstTest {
     User user;
 
     @BeforeMethod
-    public void prepareFixture(){
-        user=new User().generate();
+    public void prepareFixture() {
+        user = new User().generate();
         openPage("login");
     }
 
@@ -26,11 +26,11 @@ public class MyFirstTest {
         System.out.println(user.getLogin());
         System.out.println(user.getHashedPassword());
         System.out.println(user.getPassword());
-        Assert.assertEquals(getPage(HeaderPage.class).loggedAs(),"Вошли как "+user.getLogin());
+        Assert.assertEquals(getPage(HeaderPage.class).loggedAs(), "Вошли как " + user.getLogin());
     }
 
     @AfterMethod
-    public void tearDown(){
+    public void tearDown() {
         driverQuit();
     }
 }

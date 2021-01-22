@@ -12,7 +12,9 @@ import redmine.api.interfaces.ApiClient;
 import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
 import redmine.model.user.User;
+
 import java.util.Random;
+
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;

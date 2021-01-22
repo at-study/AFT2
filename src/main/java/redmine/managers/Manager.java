@@ -14,7 +14,7 @@ public class Manager {
 
     public static WebDriver driver() {
         if (driver == null) {
-            driver=getPropertyDriver();
+            driver = getPropertyDriver();
             driver.manage().window().maximize();
         }
         return driver;
@@ -25,22 +25,22 @@ public class Manager {
         driver = null;
     }
 
-    public static void openPage(String uri){
-        driver().get(Property.getStringProperty("ui.url")+uri);
+    public static void openPage(String uri) {
+        driver().get(Property.getStringProperty("ui.url") + uri);
     }
 
-    private static WebDriver getPropertyDriver(){
-       switch( Property.getStringProperty("browser")){
-           case "chrome":
-               System.setProperty("webdriver.chrome.driver", Property.getStringProperty("webdriver.chrome.driver"));
-               driver = new ChromeDriver();
-               return new ChromeDriver();
-           case "firefox":
-               System.setProperty("webdriver.gecko.driver", Property.getStringProperty("webdriver.gecko.driver"));
-               driver = new FirefoxDriver();
-               return new FirefoxDriver();
-           default:
-               throw new IllegalArgumentException("Неизвестный тип браузера (добавить в Менеджер и Properties !)");
-       }
+    private static WebDriver getPropertyDriver() {
+        switch (Property.getStringProperty("browser")) {
+            case "chrome":
+                System.setProperty("webdriver.chrome.driver", Property.getStringProperty("webdriver.chrome.driver"));
+                driver = new ChromeDriver();
+                return new ChromeDriver();
+            case "firefox":
+                System.setProperty("webdriver.gecko.driver", Property.getStringProperty("webdriver.gecko.driver"));
+                driver = new FirefoxDriver();
+                return new FirefoxDriver();
+            default:
+                throw new IllegalArgumentException("Неизвестный тип браузера (добавить в Менеджер и Properties !)");
+        }
     }
 }

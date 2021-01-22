@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 
-public  class LoginPage extends AbstractPage {
+public class LoginPage extends AbstractPage {
     private WebDriver driver;
 
     @FindBy(xpath = "//input[@id='username']")
@@ -26,7 +26,7 @@ public  class LoginPage extends AbstractPage {
         submitButton.click();
     }
 
-    public String errorMessage(){
+    public String errorMessage() {
         return flashError.getText();
     }
 
