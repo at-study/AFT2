@@ -3,8 +3,7 @@ package redmine.ui.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import static redmine.managers.Manager.*;
+
 
 public class HeaderPage extends AbstractPage {
     private WebDriver driver;
