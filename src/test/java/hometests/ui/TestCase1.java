@@ -23,9 +23,6 @@ public class TestCase1 {
     @Test(testName = "Авторизация администратором", priority = 2, description = "Авторизация администратором")
     public void authorizationByAdminAndElements() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
-        System.out.println(user.getLogin());
-        System.out.println(user.getHashedPassword());
-        System.out.println(user.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).loggedAs(), "Вошли как " + user.getLogin());
     }
 
