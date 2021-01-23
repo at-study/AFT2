@@ -24,7 +24,7 @@ public class TestCase2 {
     }
 
     @Test(testName = "Авторизация подтверждённым пользователем", priority = 3, description = "Авторизация подтверждённым пользователем")
-    public void authorizationByAdminAndElements() {
+    public void authorizationByAcceptedUserAndElements() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).loggedAs(), "Вошли как " + user.getLogin());
         Assert.assertEquals(getPage(HeaderPage.class).adminHomePage(), "Домашняя страница");
