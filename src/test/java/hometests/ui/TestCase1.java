@@ -24,6 +24,16 @@ public class TestCase1 {
     public void authorizationByAdminAndElements() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).loggedAs(), "Вошли как " + user.getLogin());
+        Assert.assertEquals(getPage(HeaderPage.class).adminHomePage(), "Домашняя страница" );
+        Assert.assertEquals(getPage(HeaderPage.class).myPage(), "Моя страница" );
+        Assert.assertEquals(getPage(HeaderPage.class).projects(), "Проекты" );
+        Assert.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование" );
+        Assert.assertEquals(getPage(HeaderPage.class).help(), "Помощь" );
+        Assert.assertEquals(getPage(HeaderPage.class).myAccount(), "Моя учётная запись" );
+        Assert.assertEquals(getPage(HeaderPage.class).logout(), "Выйти" );
+        Assert.assertEquals(getPage(HeaderPage.class).signIn(),false);
+        //Assert.assertNull(getPage(HeaderPage.class).register());
+        //Assert.assertEquals(getPage(HeaderPage.class).searchField(),true);
     }
 
     @AfterMethod
