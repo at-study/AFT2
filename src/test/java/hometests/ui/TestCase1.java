@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import redmine.model.user.User;
 import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
+import redmine.utils.BrowserUtils;
 
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
@@ -31,15 +32,14 @@ public class TestCase1 {
         Assert.assertEquals(getPage(HeaderPage.class).help(), "Помощь" );
         Assert.assertEquals(getPage(HeaderPage.class).myAccount(), "Моя учётная запись" );
         Assert.assertEquals(getPage(HeaderPage.class).logout(), "Выйти" );
+        Assert.assertFalse(BrowserUtils.isElementPresent(getPage(HeaderPage.class).signIn));
+        Assert.assertFalse(BrowserUtils.isElementPresent(getPage(HeaderPage.class).register));
         Assert.assertEquals(getPage(HeaderPage.class).searсhLabel(),"Поиск");
-        //Assert.assertFalse(getPage(HeaderPage.class).signIn());
-        //Assert.assertFalse(getPage(HeaderPage.class).register());
-        //Assert.assertTrue(getPage(HeaderPage.class).searchField());
+        Assert.assertTrue(BrowserUtils.isElementPresent(getPage(HeaderPage.class).searchField));
     }
 
     @AfterMethod
     public void tearDown() {
         driverQuit();
     }
-
 }

@@ -27,13 +27,12 @@ public class HeaderPage extends AbstractPage {
     private WebElement logout;
     @FindBy(xpath = "//form/label/a")
     private WebElement searchLabel;
-
     @FindBy(xpath = "//form/input[@id='q']")
-    private WebElement searchField;
+    public WebElement searchField;
     @FindBy(xpath = "//a[@class='login']")
-    private WebElement signIn;
+    public WebElement signIn;
     @FindBy(xpath = "//a[@class='register']")
-    private WebElement register;
+    public WebElement register;
 
 
 
@@ -69,20 +68,5 @@ public class HeaderPage extends AbstractPage {
     public String searсhLabel() {
         return searchLabel.getText();
     }
-
-    public boolean searchField() {
-        if(searchField.isDisplayed()){return true;}
-        else return false;
-    }
-
-    public boolean signIn() {
-        if(signIn.isEnabled()){return true;}
-        else return false;
-    }
-    public boolean register() {
-        if(register.isDisplayed()){return true;}
-        else return false;
-    }
-
 
 }
