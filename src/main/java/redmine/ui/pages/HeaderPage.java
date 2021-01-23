@@ -34,31 +34,24 @@ public class HeaderPage extends AbstractPage {
     @FindBy(xpath = "//a[@class='register']")
     public WebElement register;
 
-
-
-
     public String loggedAs() {
         return loggedAs.getText();
     }
     public String adminHomePage() {
         return adminHomePage.getText();
     }
-
     public String myPage() {
         return myPage.getText();
     }
-
     public String projects() {
         return projects.getText();
     }
-
     public String administration() {
         return administration.getText();
     }
     public String help() {
         return help.getText();
     }
-
     public String myAccount() {
         return myAccount.getText();
     }
