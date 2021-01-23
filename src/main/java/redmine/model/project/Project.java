@@ -24,8 +24,8 @@ public class Project implements Generatable<Project> {
     //TODO updated_on
     //TODO created_on
     private Integer status=1;
-    private Integer ift;
-    private Integer rgt;
+    private Integer lft=3;
+    private Integer rgt=3;
     private Boolean inheritMembers=false;
 
     @Override
