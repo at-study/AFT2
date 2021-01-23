@@ -18,7 +18,7 @@ public class HeaderPage extends AbstractPage {
     @FindBy(xpath = "//a[@class='my-page']")
     private WebElement myPage;
     @FindBy(xpath = "//a[@class='administration']")
-    private WebElement administration;
+    public WebElement administration;
     @FindBy(xpath = "//a[@class='help']")
     private WebElement help;
     @FindBy(xpath = "//a[@class='my-account']")

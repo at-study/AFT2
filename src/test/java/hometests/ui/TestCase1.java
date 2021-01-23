@@ -21,20 +21,21 @@ public class TestCase1 {
         user = new User().setAdmin(true).setStatus(1).generate();
         openPage("login");
     }
+
     @Test(testName = "Авторизация администратором", priority = 2, description = "Авторизация администратором")
     public void authorizationByAdminAndElements() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).loggedAs(), "Вошли как " + user.getLogin());
-        Assert.assertEquals(getPage(HeaderPage.class).adminHomePage(), "Домашняя страница" );
-        Assert.assertEquals(getPage(HeaderPage.class).myPage(), "Моя страница" );
-        Assert.assertEquals(getPage(HeaderPage.class).projects(), "Проекты" );
-        Assert.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование" );
-        Assert.assertEquals(getPage(HeaderPage.class).help(), "Помощь" );
-        Assert.assertEquals(getPage(HeaderPage.class).myAccount(), "Моя учётная запись" );
-        Assert.assertEquals(getPage(HeaderPage.class).logout(), "Выйти" );
+        Assert.assertEquals(getPage(HeaderPage.class).adminHomePage(), "Домашняя страница");
+        Assert.assertEquals(getPage(HeaderPage.class).myPage(), "Моя страница");
+        Assert.assertEquals(getPage(HeaderPage.class).projects(), "Проекты");
+        Assert.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
+        Assert.assertEquals(getPage(HeaderPage.class).help(), "Помощь");
+        Assert.assertEquals(getPage(HeaderPage.class).myAccount(), "Моя учётная запись");
+        Assert.assertEquals(getPage(HeaderPage.class).logout(), "Выйти");
         Assert.assertFalse(BrowserUtils.isElementPresent(getPage(HeaderPage.class).signIn));
         Assert.assertFalse(BrowserUtils.isElementPresent(getPage(HeaderPage.class).register));
-        Assert.assertEquals(getPage(HeaderPage.class).searсhLabel(),"Поиск");
+        Assert.assertEquals(getPage(HeaderPage.class).searсhLabel(), "Поиск");
         Assert.assertTrue(BrowserUtils.isElementPresent(getPage(HeaderPage.class).searchField));
     }
 
