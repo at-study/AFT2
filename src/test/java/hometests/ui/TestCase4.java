@@ -8,8 +8,9 @@ import redmine.model.project.Project;
 import redmine.model.user.User;
 import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
-import static redmine.managers.Manager.driverQuit;
-import static redmine.managers.Manager.openPage;
+import redmine.ui.pages.ProjectsPage;
+
+import static redmine.managers.Manager.*;
 import static redmine.ui.pages.Pages.getPage;
 
 public class TestCase4 {
@@ -28,6 +29,8 @@ public class TestCase4 {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).projects(), "Проекты");
         getPage(HeaderPage.class).projects.click();
+
+
 
 
 
