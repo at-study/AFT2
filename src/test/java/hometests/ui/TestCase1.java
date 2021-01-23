@@ -31,9 +31,10 @@ public class TestCase1 {
         Assert.assertEquals(getPage(HeaderPage.class).help(), "Помощь" );
         Assert.assertEquals(getPage(HeaderPage.class).myAccount(), "Моя учётная запись" );
         Assert.assertEquals(getPage(HeaderPage.class).logout(), "Выйти" );
-        Assert.assertEquals(getPage(HeaderPage.class).signIn(),false);
-        //Assert.assertNull(getPage(HeaderPage.class).register());
-        //Assert.assertEquals(getPage(HeaderPage.class).searchField(),true);
+        Assert.assertEquals(getPage(HeaderPage.class).searсhLabel(),"Поиск:");
+        //Assert.assertFalse(getPage(HeaderPage.class).signIn());
+        //Assert.assertFalse(getPage(HeaderPage.class).register());
+        //Assert.assertTrue(getPage(HeaderPage.class).searchField());
     }
 
     @AfterMethod
