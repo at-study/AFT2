@@ -13,6 +13,8 @@ public class Project {
     private Integer id;
     private String name="EvgProject" + randomEnglishLowerString(6);
     private String description;
+    private String homepage;
+    private Integer parentId;
     private Boolean isPublic;
     private String identifier="Autoproject"+ randomEnglishLowerString(6);;
     //TODO updated_on
