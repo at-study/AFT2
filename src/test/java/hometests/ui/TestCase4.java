@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.model.project.Project;
 import redmine.model.user.User;
+import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
@@ -25,6 +26,11 @@ public class TestCase4 {
     @Test(testName = " Видимость проекта. Приватный проект. Администратор", priority = 5, description = " Видимость проекта. Приватный проект. Администратор")
     public void visibiltyOfPrivateProjectForAdmin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
+        Assert.assertEquals(getPage(HeaderPage.class).projects(), "Проекты");
+        getPage(HeaderPage.class).projects.click();
+
+
+
     }
 
     @AfterMethod

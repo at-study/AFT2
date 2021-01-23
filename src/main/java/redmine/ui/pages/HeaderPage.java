@@ -10,7 +10,7 @@ public class HeaderPage extends AbstractPage {
     @FindBy(xpath = "//a[@class='home']")
     private WebElement home;
     @FindBy(xpath = "//a[@class='projects']")
-    private WebElement projects;
+    public WebElement projects;
     @FindBy(xpath = "//div[@id='loggedas']")
     private WebElement loggedAs;
     @FindBy(xpath = "//a[@class='home']")
