@@ -20,6 +20,7 @@ public class TestCase4 {
     @BeforeMethod
     public void prepareFixture() {
         user = new User().setAdmin(true).setStatus(1).generate();
+        project=new Project().setIsPublic(false).generate();
         openPage("login");
     }
 

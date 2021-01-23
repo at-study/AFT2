@@ -32,7 +32,7 @@ public class ProjectRequests {
 
     public static Project createProject(Project project) {
         String query = "insert into public.projects\n" +
-                "(id,\"name\",\"description\",is_public,status)values(DEFAULT,?,?,?,?) RETURNING id;\n";
+                "(id,\"name\",\"description\",\"is_public\",status)values(DEFAULT,?,?,?,?) RETURNING id;\n";
         List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
                 project.getName(),
                 project.getDescription(),

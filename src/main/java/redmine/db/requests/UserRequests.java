@@ -2,12 +2,10 @@ package redmine.db.requests;
 
 import redmine.managers.Manager;
 import redmine.model.user.User;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 public class UserRequests {
