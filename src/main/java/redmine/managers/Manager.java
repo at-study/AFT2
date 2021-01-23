@@ -6,6 +6,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import redmine.Property;
 import redmine.db.DataBaseConnection;
 
+import java.util.concurrent.TimeUnit;
+
 public class Manager {
 
     public final static DataBaseConnection dbConnection = new DataBaseConnection();
@@ -16,6 +18,7 @@ public class Manager {
         if (driver == null) {
             driver = getPropertyDriver();
             driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(Property.getIntegerProperty("ui.implicitly.wait"), TimeUnit.SECONDS);
         }
         return driver;
     }
