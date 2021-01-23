@@ -3,6 +3,7 @@ package redmine.managers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import redmine.Property;
 import redmine.db.DataBaseConnection;
 
@@ -13,12 +14,14 @@ public class Manager {
     public final static DataBaseConnection dbConnection = new DataBaseConnection();
     //TODO на треадлокал когда будет многопоточность
     private static WebDriver driver;
+    private static WebDriverWait wait;
 
     public static WebDriver driver() {
         if (driver == null) {
             driver = getPropertyDriver();
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Property.getIntegerProperty("ui.implicitly.wait"), TimeUnit.SECONDS);
+            wait=new WebDriverWait(driver,Property.getIntegerProperty("ui.condition.wait")) ;
         }
         return driver;
     }
@@ -26,6 +29,10 @@ public class Manager {
     public static void driverQuit() {
         driver.quit();
         driver = null;
+    }
+
+    public static WebDriverWait waiter(){
+        return wait;
     }
 
     public static void openPage(String uri) {
