@@ -18,25 +18,18 @@ public class TestCase3 {
 
     @BeforeMethod
     public void prepareFixture() {
-        user = new User().setAdmin(false).setStatus(1).generate();
+        user = new User().setAdmin(false).setStatus(2).generate();
         openPage("login");
     }
 
-    @Test(testName = "Авторизация НЕподтверждённым пользователем", priority = 3, description = "Авторизация НЕподтверждённым пользователем")
+    @Test(testName = "Авторизация НЕподтверждённым пользователем", priority = 4, description = "Авторизация НЕподтверждённым пользователем")
     public void authorizationByUnacceptedUserAndElements() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
-        Assert.assertEquals(getPage(HeaderPage.class).loggedAs(), "Вошли как " + user.getLogin());
-        Assert.assertEquals(getPage(HeaderPage.class).adminHomePage(), "Домашняя страница");
-        Assert.assertEquals(getPage(HeaderPage.class).myPage(), "Моя страница");
-        Assert.assertEquals(getPage(HeaderPage.class).projects(), "Проекты");
-        Assert.assertEquals(getPage(HeaderPage.class).help(), "Помощь");
-        Assert.assertEquals(getPage(HeaderPage.class).myAccount(), "Моя учётная запись");
-        Assert.assertEquals(getPage(HeaderPage.class).logout(), "Выйти");
-        Assert.assertFalse(BrowserUtils.isElementPresent(getPage(HeaderPage.class).administration));
-        Assert.assertFalse(BrowserUtils.isElementPresent(getPage(HeaderPage.class).signIn));
-        Assert.assertFalse(BrowserUtils.isElementPresent(getPage(HeaderPage.class).register));
-        Assert.assertEquals(getPage(HeaderPage.class).searсhLabel(), "Поиск");
-        Assert.assertTrue(BrowserUtils.isElementPresent(getPage(HeaderPage.class).searchField));
+        Assert.assertEquals(getPage(HeaderPage.class).adminHomePage(), "Home");
+        Assert.assertEquals(getPage(LoginPage.class).errorMessage(),"Your account was created and is now pending administrator approval.");
+        Assert.assertFalse(BrowserUtils.isElementPresent(getPage(HeaderPage.class).myPage));
+        Assert.assertTrue(BrowserUtils.isElementPresent(getPage(HeaderPage.class).signIn));
+        Assert.assertTrue(BrowserUtils.isElementPresent(getPage(HeaderPage.class).register));
     }
 
     @AfterMethod

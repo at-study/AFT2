@@ -32,7 +32,7 @@ public class UserRequests {
 
     public static User createUser(User user) {
         String query = "insert into public.users\n" +
-                "(id,login,hashed_password,firstname,lastname,\"admin\",\"status\",language,mail_notification,type,salt)values(DEFAULT,?,?,?,?,?,?,?,?,?,?) RETURNING id;\n";
+                "(id,login,hashed_password,firstname,lastname,\"admin\",\"status\",\"language\",mail_notification,type,salt)values(DEFAULT,?,?,?,?,?,?,?,?,?,?) RETURNING id;\n";
         List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
                 user.getLogin(),
                 user.getHashedPassword(),
