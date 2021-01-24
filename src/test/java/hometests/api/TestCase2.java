@@ -35,16 +35,15 @@ public class TestCase2 {
         String name = randomEnglishLowerString(8);
         String lastName = randomEnglishLowerString(8);
         String password = String.valueOf(new Random().nextInt(50000000) + 10000000);
-        String body = String.format("""
-                {
-                 "user":{
-                 "login":"%s",
-                 "mail":"%s",
-                 "firstname":"%s",
-                 "lastname":"%s",
-                 "password":"%s"\s
-                 }
-                }""", login, mail, name, lastName, password);
+        String body = String.format("{\n" +
+                "                 \"user\":{\n" +
+                "                 \"login\":\"%s\",\n" +
+                "                 \"mail\":\"%s\",\n" +
+                "                 \"firstname\":\"%s\",\n" +
+                "                 \"lastname\":\"%s\",\n" +
+                "                 \"password\":\"%s\"\n" +
+                "                 }\n" +
+                "                }", login, mail, name, lastName, password);
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         apiClient.executeRequest(request);

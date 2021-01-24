@@ -38,17 +38,17 @@ public class TestCase1 {
         String lastName = randomEnglishLowerString(12);
         String mail = randomEmail();
         Integer status = 2;
-        String body = String.format("""
-                {
-                 "user":{
-                 "login":"%s",
-                 "firstname":"%s",
-                 "lastname":"%s",
-                 "mail":"%s",
-                 "status":"%s",
-                 "password":"1qaz@WSX"\s
-                 }
-                }""", login, firstName, lastName, mail, status);
+        String body = String.format("{\n" +
+                        "         \"user\":{\n" +
+                        "         \"login\":\"%s\",\n" +
+                        "         \"firstname\":\"%s\",\n" +
+                        "         \"lastname\":\"%s\",\n" +
+                        "         \"mail\":\"%s\",\n" +
+                        "         \"status\":\"%s\",\n" +
+                        "         \"password\":\"1qaz@WSX\"\n" +
+                        "         }\n" +
+                        "        }"
+                , login, firstName, lastName, mail, status);
         int usersBeforeUserCreation = UserRequests.getAllUsers().size();
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
@@ -82,17 +82,16 @@ public class TestCase1 {
         String mail = randomEmail();
         String password = randomEnglishLowerString(8);
         Integer status = 2;
-        String body = String.format("""
-                {
-                 "user":{
-                 "login":"%s",
-                 "firstname":"%s",
-                 "lastname":"%s",
-                 "mail":"%s",
-                 "status":"%s",
-                 "password":"%s"\s
-                 }
-                }""", login, firstName, lastName, mail, status, password);
+        String body = String.format("{\n" +
+                "                 \"user\":{\n" +
+                "                 \"login\":\"%s\",\n" +
+                "                 \"firstname\":\"%s\",\n" +
+                "                 \"lastname\":\"%s\",\n" +
+                "                 \"mail\":\"%s\",\n" +
+                "                 \"status\":\"%s\",\n" +
+                "                 \"password\":\"%s\"\n" +
+                "                 }\n" +
+                "                }", login, firstName, lastName, mail, status, password);
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         apiClient.executeRequest(request);
@@ -115,26 +114,24 @@ public class TestCase1 {
         String incorrectMail = "santa.claus.petersburg";
         String password = StringGenerators.randomEnglishString(10);
         String incorrectPassword = String.valueOf(new Random().nextInt(500000) + 100000);
-        String body = String.format("""
-                {
-                 "user":{
-                 "login":"%s",
-                 "firstname":"%s",
-                 "lastname":"%s",
-                 "mail":"%s",
-                 "password":"%s"\s
-                 }
-                }""", login, firstName, lastName, mail, password);
-        String incorrectBody = String.format("""
-                {
-                 "user":{
-                 "login":"%s",
-                 "firstname":"%s",
-                 "lastname":"%s",
-                 "mail":"%s",
-                 "password":"%s"\s
-                 }
-                }""", login, firstName, lastName, incorrectMail, incorrectPassword);
+        String body = String.format(" {\n" +
+                "                 \"user\":{\n" +
+                "                 \"login\":\"%s\",\n" +
+                "                 \"firstname\":\"%s\",\n" +
+                "                 \"lastname\":\"%s\",\n" +
+                "                 \"mail\":\"%s\",\n" +
+                "                 \"password\":\"%s\"\n" +
+                "                 }\n" +
+                "                }", login, firstName, lastName, mail, password);
+        String incorrectBody = String.format("{\n" +
+                "                 \"user\":{\n" +
+                "                 \"login\":\"%s\",\n" +
+                "                 \"firstname\":\"%s\",\n" +
+                "                 \"lastname\":\"%s\",\n" +
+                "                 \"mail\":\"%s\",\n" +
+                "                 \"password\":\"%s\"\n" +
+                "                 }\n" +
+                "                }", login, firstName, lastName, incorrectMail, incorrectPassword);
         ApiClient apiClient = new RestApiClient(user);
 
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
@@ -159,29 +156,27 @@ public class TestCase1 {
         Integer status = 2;
         Integer putStatus = 1;
         String password = StringGenerators.randomEnglishString(10);
-        String body = String.format("""
-                {
-                 "user":{
-                 "login":"%s",
-                 "firstname":"%s",
-                 "lastname":"%s",
-                 "mail":"%s",
-                 "status":"%s",
-                 "password":"%s"\s
-                 }
-                }""", login, firstName, lastName, mail, status, password);
+        String body = String.format("{\n" +
+                "                 \"user\":{\n" +
+                "                 \"login\":\"%s\",\n" +
+                "                 \"firstname\":\"%s\",\n" +
+                "                 \"lastname\":\"%s\",\n" +
+                "                 \"mail\":\"%s\",\n" +
+                "                 \"status\":\"%s\",\n" +
+                "                 \"password\":\"%s\"\n" +
+                "                 }\n" +
+                "                }", login, firstName, lastName, mail, status, password);
 
-        String statusBody = String.format("""
-                {
-                 "user":{
-                 "login":"%s",
-                 "firstname":"%s",
-                 "lastname":"%s",
-                 "mail":"%s",
-                 "status":"%s",
-                 "password":"%s"\s
-                 }
-                }""", login, firstName, lastName, mail, putStatus, password);
+        String statusBody = String.format("{\n" +
+                "                 \"user\":{\n" +
+                "                 \"login\":\"%s\",\n" +
+                "                 \"firstname\":\"%s\",\n" +
+                "                 \"lastname\":\"%s\",\n" +
+                "                 \"mail\":\"%s\",\n" +
+                "                 \"status\":\"%s\",\n" +
+                "                 \"password\":\"%s\"\n" +
+                "                 }\n" +
+                "                }", login, firstName, lastName, mail, putStatus, password);
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
@@ -211,17 +206,16 @@ public class TestCase1 {
         String lastName = "AndGet" + randomEnglishLowerString(6);
         String mail = randomEmail();
         Integer status = 1;
-        String body = String.format("""
-                {
-                 "user":{
-                 "login":"%s",
-                 "firstname":"%s",
-                 "lastname":"%s",
-                 "mail":"%s",
-                 "status":"%s",
-                 "password":"1qaz@WSX"\s
-                 }
-                }""", login, firstName, lastName, mail, status);
+        String body = String.format("{\n" +
+                "                 \"user\":{\n" +
+                "                 \"login\":\"%s\",\n" +
+                "                 \"firstname\":\"%s\",\n" +
+                "                 \"lastname\":\"%s\",\n" +
+                "                 \"mail\":\"%s\",\n" +
+                "                 \"status\":\"%s\",\n" +
+                "                 \"password\":\"1qaz@WSX\"\n" +
+                "                 }\n" +
+                "                }", login, firstName, lastName, mail, status);
 
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
@@ -263,17 +257,16 @@ public class TestCase1 {
         String lastName = "AndDelete" + randomEnglishLowerString(6);
         String mail = randomEmail();
         Integer status = 1;
-        String body = String.format("""
-                {
-                 "user":{
-                 "login":"%s",
-                 "firstname":"%s",
-                 "lastname":"%s",
-                 "mail":"%s",
-                 "status":"%s",
-                 "password":"1qaz@WSX"\s
-                 }
-                }""", login, firstName, lastName, mail, status);
+        String body = String.format("{\n" +
+                "                 \"user\":{\n" +
+                "                 \"login\":\"%s\",\n" +
+                "                 \"firstname\":\"%s\",\n" +
+                "                 \"lastname\":\"%s\",\n" +
+                "                 \"mail\":\"%s\",\n" +
+                "                 \"status\":\"%s\",\n" +
+                "                 \"password\":\"1qaz@WSX\"\n" +
+                "                 }\n" +
+                "                }", login, firstName, lastName, mail, status);
 
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
@@ -308,17 +301,16 @@ public class TestCase1 {
         String lastName = "AndDelete" + randomEnglishLowerString(6);
         String mail = randomEmail();
         Integer status = 1;
-        String body = String.format("""
-                {
-                 "user":{
-                 "login":"%s",
-                 "firstname":"%s",
-                 "lastname":"%s",
-                 "mail":"%s",
-                 "status":"%s",
-                 "password":"1qaz@WSX"\s
-                 }
-                }""", login, firstName, lastName, mail, status);
+        String body = String.format("{\n" +
+                "                 \"user\":{\n" +
+                "                 \"login\":\"%s\",\n" +
+                "                 \"firstname\":\"%s\",\n" +
+                "                 \"lastname\":\"%s\",\n" +
+                "                 \"mail\":\"%s\",\n" +
+                "                 \"status\":\"%s\",\n" +
+                "                 \"password\":\"1qaz@WSX\"\n" +
+                "                 }\n" +
+                "                }", login, firstName, lastName, mail, status);
         ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);

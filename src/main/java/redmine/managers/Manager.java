@@ -65,15 +65,15 @@ public class Manager {
             return new RemoteWebDriver(new URL(Property.getStringProperty("selenoid.hub.url")), capabilities);
         } else {
             switch (Property.getStringProperty("browser")) {
-                case "chrome" -> {
+                case "chrome":
                     System.setProperty("webdriver.chrome.driver", Property.getStringProperty("webdriver.chrome.driver"));
                     return new ChromeDriver();
-                }
-                case "firefox" -> {
+
+                case "firefox":
                     System.setProperty("webdriver.gecko.driver", Property.getStringProperty("webdriver.gecko.driver"));
                     return new FirefoxDriver();
-                }
-                default -> throw new IllegalArgumentException("Неизвестный тип браузера (добавить в Менеджер и Properties !)");
+
+                default: throw new IllegalArgumentException("Неизвестный тип браузера (добавить в Менеджер и Properties !)");
             }
         }
 

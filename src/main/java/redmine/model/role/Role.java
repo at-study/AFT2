@@ -24,21 +24,20 @@ public class Role implements Generatable<Role> {
     private UsersVisibility usersVisibility = UsersVisibility.ALL;
     private TimeEntriesVisibility timeEntriesVisibility = TimeEntriesVisibility.ALL;
     private Boolean allRolesManaged = true;
-    private String settings = """
-            --- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
-            permissions_all_trackers: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
-              view_issues: '1'
-              add_issues: '1'
-              edit_issues: '1'
-              add_issue_notes: '1'
-              delete_issues: '1'
-            permissions_tracker_ids: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
-              view_issues: []
-              add_issues: []
-              edit_issues: []
-              add_issue_notes: []
-              delete_issues: []
-            """;
+    private String settings = "--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\n" +
+            "permissions_all_trackers: !ruby/hash:ActiveSupport::HashWithIndifferentAccess\n" +
+            "  view_issues: '1'\n" +
+            "  add_issues: '1'\n" +
+            "  edit_issues: '1'\n" +
+            "  add_issue_notes: '1'\n" +
+            "  delete_issues: '1'\n" +
+            "permissions_tracker_ids: !ruby/hash:ActiveSupport::HashWithIndifferentAccess\n" +
+            "  view_issues: []\n" +
+            "  add_issues: []\n" +
+            "  edit_issues: []\n" +
+            "  add_issue_notes: []\n" +
+            "  delete_issues: []\n";
+
 
     @Override
     public Role read() {
