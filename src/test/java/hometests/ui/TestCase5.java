@@ -9,6 +9,7 @@ import redmine.model.role.Role;
 import redmine.model.role.RolePermissions;
 import redmine.model.user.User;
 import redmine.ui.pages.LoginPage;
+
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.model.role.RolePermission.VIEW_ISSUES;
@@ -24,7 +25,7 @@ public class TestCase5 {
     @BeforeMethod
     public void prepareFixture() {
         user = new User().setAdmin(false).setStatus(1).generate();
-        role=new Role().setPermissions(new RolePermissions(VIEW_ISSUES)).generate();
+        role = new Role().setPermissions(new RolePermissions(VIEW_ISSUES)).generate();
         project = new Project().setIsPublic(true).generate();
         project2 = new Project().setIsPublic(false).generate();
         project3 = new Project().setIsPublic(false).generate();
