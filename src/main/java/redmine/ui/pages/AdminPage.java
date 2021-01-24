@@ -15,6 +15,7 @@ public class AdminPage extends AbstractPage {
     public String adminPageName() {
         return adminPageName.getText();
     }
+
     public String users() {
         return users.getText();
     }

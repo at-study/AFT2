@@ -18,11 +18,12 @@ public class ProjectsPage extends AbstractPage {
     }
 
     public WebElement projectName(String projectName) {
-        String fullProjectXpath=String.format("//a[text()='%s']",projectName);
+        String fullProjectXpath = String.format("//a[text()='%s']", projectName);
         return driver().findElement(By.xpath(fullProjectXpath));
     }
+
     public WebElement projectNameDescription(String projectName) {
-        String fullProjectXpath=String.format("//a[text()='%s']/following-sibling::div[@class='wiki description']",projectName);
+        String fullProjectXpath = String.format("//a[text()='%s']/following-sibling::div[@class='wiki description']", projectName);
         return driver().findElement(By.xpath(fullProjectXpath));
     }
 }

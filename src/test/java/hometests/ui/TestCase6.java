@@ -26,9 +26,12 @@ public class TestCase6 {
     @BeforeMethod
     public void prepareFixture() {
         userAdmin = new User().setAdmin(true).setStatus(1).generate();
-        user1=new User().setAdmin(false).setStatus(1).generate();;
-        user2=new User().setAdmin(false).setStatus(1).generate();;
-        user3=new User().setAdmin(false).setStatus(1).generate();;
+        user1 = new User().setAdmin(false).setStatus(1).generate();
+        ;
+        user2 = new User().setAdmin(false).setStatus(1).generate();
+        ;
+        user3 = new User().setAdmin(false).setStatus(1).generate();
+        ;
         openPage("login");
     }
 
@@ -42,8 +45,6 @@ public class TestCase6 {
         getPage(AdminPage.class).users.click();
         Assert.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(UsersPage.class).table));
-
-
 
 
     }

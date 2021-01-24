@@ -10,6 +10,7 @@ import redmine.model.user.User;
 import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.utils.StringGenerators;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -30,11 +31,11 @@ public class MyFirstTest {
     public void myFirstLoginTest() throws IOException {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).loggedAs(), "Вошли как " + user.getLogin());
-       // byte[] screenshot=Manager.takesScreenshot();
-       // FileOutputStream stream=new FileOutputStream("target\\"+ StringGenerators.randomEnglishLowerString(12)+".png");
-      //  stream.write(screenshot);
-       // stream.flush();
-      //  stream.close();
+        // byte[] screenshot=Manager.takesScreenshot();
+        // FileOutputStream stream=new FileOutputStream("target\\"+ StringGenerators.randomEnglishLowerString(12)+".png");
+        //  stream.write(screenshot);
+        // stream.flush();
+        //  stream.close();
     }
 
     @AfterMethod

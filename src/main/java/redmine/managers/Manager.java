@@ -57,11 +57,11 @@ public class Manager {
 
     private static WebDriver getPropertyDriver() throws MalformedURLException {
         if (Property.getBooleanProperty("remote")) {
-            MutableCapabilities capabilities=new ChromeOptions();
+            MutableCapabilities capabilities = new ChromeOptions();
             capabilities.setCapability("browserName", Property.getStringProperty("browser"));
             capabilities.setCapability("browserVersion", Property.getStringProperty("browser.version"));
-            Map<String, Object>selenoidOptions= ImmutableMap.of("enableVNC", Property.getBooleanProperty("enable.vnc"),"enableVideo", Property.getBooleanProperty("enable.video"));
-            capabilities.setCapability("selenoid:options",selenoidOptions);
+            Map<String, Object> selenoidOptions = ImmutableMap.of("enableVNC", Property.getBooleanProperty("enable.vnc"), "enableVideo", Property.getBooleanProperty("enable.video"));
+            capabilities.setCapability("selenoid:options", selenoidOptions);
             return new RemoteWebDriver(new URL(Property.getStringProperty("selenoid.hub.url")), capabilities);
         } else {
             switch (Property.getStringProperty("browser")) {
@@ -73,7 +73,8 @@ public class Manager {
                     System.setProperty("webdriver.gecko.driver", Property.getStringProperty("webdriver.gecko.driver"));
                     return new FirefoxDriver();
 
-                default: throw new IllegalArgumentException("Неизвестный тип браузера (добавить в Менеджер и Properties !)");
+                default:
+                    throw new IllegalArgumentException("Неизвестный тип браузера (добавить в Менеджер и Properties !)");
             }
         }
 
