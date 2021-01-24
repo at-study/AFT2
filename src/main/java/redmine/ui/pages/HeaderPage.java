@@ -58,8 +58,7 @@ public class HeaderPage extends AbstractPage {
     public String logout() {
         return logout.getText();
     }
-    public String searchLabel() {
-        return searchLabel.getText();
+    public String searchLabel() { return searchLabel.getText();
     }
 
 }

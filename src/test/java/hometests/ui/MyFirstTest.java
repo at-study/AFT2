@@ -1,6 +1,6 @@
 package hometests.ui;
 
-import org.openqa.selenium.OutputType;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -10,8 +10,6 @@ import redmine.model.user.User;
 import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.utils.StringGenerators;
-
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
