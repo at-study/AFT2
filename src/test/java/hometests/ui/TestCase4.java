@@ -10,8 +10,6 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.ProjectsPage;
 import redmine.utils.BrowserUtils;
-
-
 import static redmine.managers.Manager.*;
 import static redmine.ui.pages.Pages.getPage;
 
