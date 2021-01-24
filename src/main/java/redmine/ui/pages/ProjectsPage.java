@@ -21,4 +21,8 @@ public class ProjectsPage extends AbstractPage {
         String fullProjectXpath=String.format("//a[text()='%s']",projectName);
         return driver().findElement(By.xpath(fullProjectXpath));
     }
+    public WebElement projectNameDescription(String projectName) {
+        String fullProjectXpath=String.format("//a[text()='%s']/following-sibling::div[@class='wiki description']",projectName);
+        return driver().findElement(By.xpath(fullProjectXpath));
+    }
 }
