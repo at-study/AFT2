@@ -8,8 +8,8 @@ public class UsersPage extends AbstractPage {
     private WebDriver driver;
 
     @FindBy(xpath = "//table[@class='list users']")
-    private WebElement table;
-    @FindBy(xpath = "//h2[text()='ПОльзователи']")
+   public WebElement table;
+    @FindBy(xpath = "//h2[text()='Пользователи']")
     public WebElement usersPageName;
 
     public String table() {

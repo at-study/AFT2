@@ -9,6 +9,7 @@ import redmine.model.role.Role;
 import redmine.model.role.RolePermissions;
 import redmine.model.user.User;
 import redmine.ui.pages.*;
+import redmine.utils.BrowserUtils;
 
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
@@ -40,7 +41,9 @@ public class TestCase6 {
         Assert.assertEquals(getPage(AdminPage.class).users(), "Пользователи");
         getPage(AdminPage.class).users.click();
         Assert.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
-        Assert.assertEquals(getPage(UsersPage.class).table(), "Пользователи");
+        Assert.assertTrue(BrowserUtils.isElementPresent(getPage(UsersPage.class).table));
+
+
 
 
     }
