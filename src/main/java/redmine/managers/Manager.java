@@ -1,5 +1,8 @@
 package redmine.managers;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -33,6 +36,14 @@ public class Manager {
 
     public static WebDriverWait waiter(){
         return wait;
+    }
+
+    public static byte[] takesScreenshot(){
+        return ((TakesScreenshot) driver()).getScreenshotAs(OutputType.BYTES);
+    }
+
+    public static JavascriptExecutor js(){
+        return (JavascriptExecutor) driver();
     }
 
     public static void openPage(String uri) {
