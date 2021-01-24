@@ -26,7 +26,7 @@ public class TestCase3 {
     public void authorizationByUnacceptedUserAndElements() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).adminHomePage(), "Home");
-        Assert.assertEquals(getPage(LoginPage.class).errorMessage(),"Your account was created and is now pending administrator approval.");
+        Assert.assertEquals(getPage(LoginPage.class).errorMessage(), "Your account was created and is now pending administrator approval.");
         Assert.assertFalse(BrowserUtils.isElementPresent(getPage(HeaderPage.class).myPage));
         Assert.assertTrue(BrowserUtils.isElementPresent(getPage(HeaderPage.class).signIn));
         Assert.assertTrue(BrowserUtils.isElementPresent(getPage(HeaderPage.class).register));
