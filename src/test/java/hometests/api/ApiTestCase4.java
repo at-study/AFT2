@@ -10,7 +10,7 @@ import redmine.model.user.User;
 
 import static io.restassured.RestAssured.given;
 
-public class TestCase4 {
+public class ApiTestCase4 {
     User firstUser;
     User secondUser;
 

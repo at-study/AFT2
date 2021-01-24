@@ -18,7 +18,7 @@ import redmine.utils.gson.GsonHelper;
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
-public class TestCase3 {
+public class ApiTestCase3 {
     User firstUser;
     User secondUser;
 

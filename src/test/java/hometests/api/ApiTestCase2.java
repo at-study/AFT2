@@ -20,7 +20,7 @@ import static org.testng.Assert.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
-public class TestCase2 {
+public class ApiTestCase2 {
     User user;
 
     @BeforeMethod
