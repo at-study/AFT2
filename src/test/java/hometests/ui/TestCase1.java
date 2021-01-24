@@ -33,10 +33,10 @@ public class TestCase1 {
         Assert.assertEquals(getPage(HeaderPage.class).help(), "Помощь");
         Assert.assertEquals(getPage(HeaderPage.class).myAccount(), "Моя учётная запись");
         Assert.assertEquals(getPage(HeaderPage.class).logout(), "Выйти");
-        Assert.assertFalse(BrowserUtils.isElementPresent(getPage(HeaderPage.class).signIn));
-        Assert.assertFalse(BrowserUtils.isElementPresent(getPage(HeaderPage.class).register));
+        Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).signIn));
+        Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).register));
         Assert.assertEquals(getPage(HeaderPage.class).searchLabel(), "Поиск");
-        Assert.assertTrue(BrowserUtils.isElementPresent(getPage(HeaderPage.class).searchField));
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).searchField));
     }
 
     @AfterMethod

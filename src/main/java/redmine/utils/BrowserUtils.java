@@ -16,7 +16,6 @@ public class BrowserUtils {
         }
     }
 
-
     public static  boolean isElementCurrentlyPresent(WebElement element){
         try {
             Manager.driver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);

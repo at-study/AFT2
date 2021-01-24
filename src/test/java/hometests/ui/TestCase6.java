@@ -41,7 +41,7 @@ public class TestCase6 {
         Assert.assertEquals(getPage(AdminPage.class).users(), "Пользователи");
         getPage(AdminPage.class).users.click();
         Assert.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
-        Assert.assertTrue(BrowserUtils.isElementPresent(getPage(UsersPage.class).table));
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(UsersPage.class).table));
 
 
 
