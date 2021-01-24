@@ -24,8 +24,9 @@ public class BrowserUtils {
             Manager.driver().manage().timeouts().implicitlyWait(Property.getIntegerProperty("ui.implicitly.wait"),TimeUnit.SECONDS);
             return isDisplayed;
         }catch (NoSuchElementException exception){
-            Manager.driver().manage().timeouts().implicitlyWait(Property.getIntegerProperty("ui.implicitly.wait"),TimeUnit.SECONDS);
             return false;
+        }finally{
+            Manager.driver().manage().timeouts().implicitlyWait(Property.getIntegerProperty("ui.implicitly.wait"),TimeUnit.SECONDS);
         }
     }
 }
