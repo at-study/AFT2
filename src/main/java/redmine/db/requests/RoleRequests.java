@@ -46,7 +46,7 @@ public class RoleRequests {
 
     public static Role addRole(Role role) {
         String query = "insert into public.roles\n" +
-                "(id,\"name\",\"position\",assignable,builtin,permissions,issues_visibility,users_visibility,time_entries_visibility,all_roles_managed,settings)values(DEFAULT,?,?,?,?,?,?,?,?,?,?) RETURNING id;\n";
+                "(id,\"name\",\"position\",assignable,builtin,\"permissions\",issues_visibility,users_visibility,time_entries_visibility,all_roles_managed,settings)values(DEFAULT,?,?,?,?,?,?,?,?,?,?) RETURNING id;\n";
         List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
                 role.getName(), role.getPosition(), role.getAssignable(), role.getBuiltin(), role.getPermissions().toString(),
                 role.getIssuesVisibility().toString(), role.getUsersVisibility().toString(), role.getTimeEntriesVisibility().toString(),
