@@ -8,9 +8,7 @@ import redmine.model.project.Project;
 import redmine.model.role.Role;
 import redmine.model.role.RolePermissions;
 import redmine.model.user.User;
-import redmine.ui.pages.HeaderPage;
-import redmine.ui.pages.LoginPage;
-import redmine.ui.pages.ProjectsPage;
+import redmine.ui.pages.*;
 
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
@@ -38,8 +36,11 @@ public class TestCase6 {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
         getPage(HeaderPage.class).administration.click();
-        Assert.assertEquals(getPage(ProjectsPage.class).projectPageName(), "Администрирование");
-        Assert.assertEquals(getPage(ProjectsPage.class).projectPageName(), "Пользователи");
+        Assert.assertEquals(getPage(AdminPage.class).adminPageName(), "Администрирование");
+        Assert.assertEquals(getPage(AdminPage.class).users(), "Пользователи");
+        getPage(AdminPage.class).users.click();
+        Assert.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
+        Assert.assertEquals(getPage(UsersPage.class).table(), "Пользователи");
 
 
     }

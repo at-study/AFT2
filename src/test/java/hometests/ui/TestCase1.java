@@ -35,7 +35,7 @@ public class TestCase1 {
         Assert.assertEquals(getPage(HeaderPage.class).logout(), "Выйти");
         Assert.assertFalse(BrowserUtils.isElementPresent(getPage(HeaderPage.class).signIn));
         Assert.assertFalse(BrowserUtils.isElementPresent(getPage(HeaderPage.class).register));
-        Assert.assertEquals(getPage(HeaderPage.class).searсhLabel(), "Поиск");
+        Assert.assertEquals(getPage(HeaderPage.class).searchLabel(), "Поиск");
         Assert.assertTrue(BrowserUtils.isElementPresent(getPage(HeaderPage.class).searchField));
     }
 
