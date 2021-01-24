@@ -9,6 +9,8 @@ import redmine.model.user.User;
 import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.ProjectsPage;
+import redmine.utils.BrowserUtils;
+
 
 import static redmine.managers.Manager.*;
 import static redmine.ui.pages.Pages.getPage;
@@ -29,11 +31,8 @@ public class TestCase4 {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).projects(), "Проекты");
         getPage(HeaderPage.class).projects.click();
-
-
-
-
-
+        Assert.assertEquals(getPage(ProjectsPage.class).projectPageName(), "Проекты");
+        Assert.assertTrue(BrowserUtils.isElementPresent(getPage(ProjectsPage.class).projectName(project.getName())));
     }
 
     @AfterMethod
