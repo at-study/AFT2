@@ -23,7 +23,6 @@ public class LoginPage extends AbstractPage {
 
     @Step("Авторизация в Редмине c логином: {0} и паролём: {1}")
     public void login(String login, String password) {
-        Manager.takesScreenshot();
         loginElement.sendKeys(login);
         Manager.takesScreenshot();
         passwordElement.sendKeys(password);
