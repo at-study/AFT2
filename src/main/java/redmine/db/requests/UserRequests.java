@@ -1,5 +1,6 @@
 package redmine.db.requests;
 
+import io.qameta.allure.Step;
 import redmine.managers.Manager;
 import redmine.model.user.User;
 
@@ -28,7 +29,7 @@ public class UserRequests {
                     return user;
                 }).collect(Collectors.toList());
     }
-
+    @Step("Создание пользователя")
     public static User createUser(User user) {
         String query = "insert into public.users\n" +
                 "(id,login,hashed_password,firstname,lastname,\"admin\",\"status\",\"language\",mail_notification,type,salt)values(DEFAULT,?,?,?,?,?,?,?,?,?,?) RETURNING id;\n";
