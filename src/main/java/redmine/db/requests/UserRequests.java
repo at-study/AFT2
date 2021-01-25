@@ -27,7 +27,6 @@ public class UserRequests {
                     user.setStatus(((Integer) map.get("status")));
                     return user;
                 }).collect(Collectors.toList());
-
     }
 
     public static User createUser(User user) {
@@ -81,4 +80,5 @@ public class UserRequests {
                 .findFirst()
                 .orElse(null);
     }
+
 }

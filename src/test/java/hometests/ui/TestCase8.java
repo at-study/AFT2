@@ -1,14 +1,11 @@
 package hometests.ui;
-
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import redmine.managers.Manager;
+import redmine.api.interfaces.Request;
+import redmine.db.requests.UserRequests;
 import redmine.model.user.User;
 import redmine.ui.pages.*;
-import redmine.utils.BrowserUtils;
-
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
 import static redmine.utils.StringGenerators.randomEmail;
@@ -16,7 +13,7 @@ import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 public class TestCase8 {
     User userAdmin;
-
+    User user;
     @BeforeMethod
     public void prepareFixture() {
         userAdmin = new User().setAdmin(true).setStatus(1).generate();
@@ -44,9 +41,6 @@ public class TestCase8 {
         getPage(UsersNewPage.class).userCreation(login,firstName,lastName,mail);
         String flashNoticeText=String.format("Пользователь %s создан.",login);
         Assert.assertEquals(getPage(UsersNewPage.class).flashNotice(),flashNoticeText);
-
-
-
 
 
     }
