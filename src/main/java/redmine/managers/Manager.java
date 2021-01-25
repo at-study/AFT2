@@ -2,6 +2,7 @@ package redmine.managers;
 
 import com.google.common.collect.ImmutableMap;
 import io.qameta.allure.Allure;
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 import org.openqa.selenium.*;
@@ -47,11 +48,10 @@ public class Manager {
         return wait;
     }
 
-    @Step("Скриншотирование")
+    @Attachment(value="screenshot")
     public static byte[] takesScreenshot() {
-        byte[] content=((TakesScreenshot) driver()).getScreenshotAs(OutputType.BYTES);
-        Allure.addAttachment("screenshot",new ByteArrayInputStream(Manager.takesScreenshot()));
-        return content;
+       return ((TakesScreenshot) driver()).getScreenshotAs(OutputType.BYTES);
+
     }
 
     public static JavascriptExecutor js() {
