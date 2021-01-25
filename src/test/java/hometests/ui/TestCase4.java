@@ -33,8 +33,8 @@ public class TestCase4 {
         Assert.assertEquals(getPage(HeaderPage.class).projects(), "Проекты");
         getPage(HeaderPage.class).projects.click();
         Assert.assertEquals(getPage(ProjectsPage.class).projectPageName(), "Проекты");
-        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(ProjectsPage.class).projectName(project.getName())));
-        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(ProjectsPage.class).projectNameDescription(project.getName())));
+        Assert.assertEquals(getPage(ProjectsPage.class).projectName(project.getName()),project.getName());
+        Assert.assertEquals(getPage(ProjectsPage.class).projectNameDescription(project.getName()),project.getDescription());
     }
 
     @AfterMethod

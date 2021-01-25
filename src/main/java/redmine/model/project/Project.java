@@ -17,7 +17,7 @@ import static redmine.utils.StringGenerators.randomEnglishLowerString;
 public class Project implements Generatable<Project> {
     private Integer id;
     private String name = "EvgProject" + randomEnglishLowerString(6);
-    private String description = "Desc  " + randomEnglishLowerString(15);
+    private String description = "Desc " + randomEnglishLowerString(15);
     private String homepage;
     private Integer parentId;
     private Boolean isPublic;
