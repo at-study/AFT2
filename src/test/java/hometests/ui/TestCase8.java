@@ -4,10 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.model.user.User;
-import redmine.ui.pages.AdminPage;
-import redmine.ui.pages.HeaderPage;
-import redmine.ui.pages.LoginPage;
-import redmine.ui.pages.UsersPage;
+import redmine.ui.pages.*;
 import redmine.utils.BrowserUtils;
 
 import static redmine.managers.Manager.openPage;
@@ -33,6 +30,7 @@ public class TestCase8 {
         Assert.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
         Assert.assertEquals(getPage(UsersPage.class).newUserAdd(), "Новый пользователь");
         getPage(UsersPage.class).newUserAdd.click();
+        Assert.assertEquals(getPage(UsersNewPage.class).newUserPage(), "Новый пользователь");
 
     }
 }
