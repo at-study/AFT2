@@ -33,7 +33,7 @@ public class TestCase5 {
     }
 
     @Test(testName = " Видимость проектов. Пользователь", priority = 6, description = " Видимость проектов. Пользователь")
-    public void visibiltyOfPrivateProjectForAdmin() {
+    public void visibiltyOfProjectForUser() {
         System.out.println(user.getId());
         System.out.println(user.getFirstName());
         System.out.println(user.getLastName());

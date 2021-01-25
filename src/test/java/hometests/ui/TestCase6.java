@@ -36,7 +36,7 @@ public class TestCase6 {
     }
 
     @Test(testName = " Администрирование. Сортировка списка пользователей по пользователю", priority = 7, description = "Администрирование. Сортировка списка пользователей по пользователю")
-    public void visibiltyOfPrivateProjectForAdmin() {
+    public void usersSortingForAdminByUser() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
         getPage(HeaderPage.class).administration.click();
