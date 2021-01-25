@@ -45,7 +45,7 @@ public class RestApiClient implements ApiClient {
         response.then().log().all();
         Response restResponse=new RestResponse(response);
         addAttachments(request,restResponse);
-        return new RestResponse(response);
+        return restResponse;
     }
 private void addAttachments(Request request,Response response){
     Allure.addAttachment("Request",request.toString());
