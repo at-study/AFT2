@@ -29,6 +29,7 @@ public class UsersNewPage extends AbstractPage{
     @FindBy(xpath = "//div[@id='flash_notice']")
     private WebElement flashNotice;
 
+    @Step("Создание нового пользователя")
     public void userCreation(String login, String firstName,String lastName,String mail) {
         new Actions(Manager.driver())
                 .moveToElement(getPage(UsersNewPage.class).usernameField)
@@ -50,9 +51,11 @@ public class UsersNewPage extends AbstractPage{
                 .build()
                 .perform();
     }
+    @Step("Уведомление о добавлении нового пользователя")
     public String flashNotice() {
         return flashNotice.getText();
     }
+    @Step("Страница 'Новый пользователь' отображается")
     public String newUserPage() {
         return newUserPage.getText();
     }

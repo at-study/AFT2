@@ -18,9 +18,11 @@ public class UsersPage extends AbstractPage {
     public String table() {
         return table.getText();
     }
+    @Step("Страница 'Пользователи' отображается")
     public String usersPageName() {
         return usersPageName.getText();
     }
+    @Step("Пристуствует элемент  'Новый пользователь'")
     public String newUserAdd() {
         return newUserAdd.getText();
     }
