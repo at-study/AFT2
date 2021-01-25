@@ -30,7 +30,8 @@ public class TestCase8 {
         Assert.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
         Assert.assertEquals(getPage(UsersPage.class).newUserAdd(), "Новый пользователь");
         getPage(UsersPage.class).newUserAdd.click();
-        Assert.assertEquals(getPage(UsersNewPage.class).newUserPage(), "Новый пользователь");
+        Assert.assertEquals(getPage(UsersNewPage.class).users(), "Пользователи");
+
 
     }
 }
