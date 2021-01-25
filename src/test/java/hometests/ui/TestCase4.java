@@ -34,7 +34,6 @@ public class TestCase4 {
         getPage(HeaderPage.class).projects.click();
         Assert.assertEquals(getPage(ProjectsPage.class).projectPageName(), "Проекты");
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(ProjectsPage.class).projectName(project.getName())));
-        System.out.println(getPage(ProjectsPage.class).projectNameDescription(project.getName()));
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(ProjectsPage.class).projectNameDescription(project.getName())));
     }
 
