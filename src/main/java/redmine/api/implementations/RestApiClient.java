@@ -1,6 +1,7 @@
 package redmine.api.implementations;
 
 import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.specification.RequestSpecification;
@@ -26,6 +27,7 @@ public class RestApiClient implements ApiClient {
     }
 
     @Override
+    @Step("Выполнение REST запроса")
     public Response executeRequest(Request request) {
         RequestSpecification specification = given();
         Map<String, String> headers = request.getHeaders();
