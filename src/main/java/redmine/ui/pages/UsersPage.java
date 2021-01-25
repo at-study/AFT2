@@ -11,6 +11,8 @@ public class UsersPage extends AbstractPage {
     public WebElement table;
     @FindBy(xpath = "//h2[text()='Пользователи']")
     public WebElement usersPageName;
+    @FindBy(xpath = "//a[@class='icon icon-add']")
+    public WebElement newUserAdd;
 
     public String table() {
         return table.getText();
@@ -18,5 +20,9 @@ public class UsersPage extends AbstractPage {
 
     public String usersPageName() {
         return usersPageName.getText();
+    }
+
+    public String newUserAdd() {
+        return newUserAdd.getText();
     }
 }
