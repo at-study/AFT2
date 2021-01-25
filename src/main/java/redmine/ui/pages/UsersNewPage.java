@@ -54,6 +54,7 @@ public class UsersNewPage extends AbstractPage{
     public String flashNotice() {
         return flashNotice.getText();
     }
+
     @Step("Открыта страница создания нового пользователя")
     public String newUserPage() {
         return newUserPage.getText();

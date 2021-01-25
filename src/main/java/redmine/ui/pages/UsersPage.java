@@ -15,14 +15,17 @@ public class UsersPage extends AbstractPage {
     @FindBy(xpath = "//a[@class='icon icon-add']")
     public WebElement newUserAdd;
 
+    @Step("Присутствует элемент 'Таблица пользователей' ")
     public String table() {
         return table.getText();
     }
+
     @Step("Открыта страница пользователи")
     public String usersPageName() {
         return usersPageName.getText();
     }
 
+    @Step("Присутствует элемент 'Новый пользователь' ")
     public String newUserAdd() {
         return newUserAdd.getText();
     }
