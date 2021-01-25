@@ -1,6 +1,7 @@
 package redmine.managers;
 
 import com.google.common.collect.ImmutableMap;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 import org.openqa.selenium.*;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import redmine.Property;
 import redmine.db.DataBaseConnection;
 
+import java.io.ByteArrayInputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
@@ -47,7 +49,9 @@ public class Manager {
 
     @Step("Скриншотирование")
     public static byte[] takesScreenshot() {
-        return ((TakesScreenshot) driver()).getScreenshotAs(OutputType.BYTES);
+        byte[] content=((TakesScreenshot) driver()).getScreenshotAs(OutputType.BYTES);
+        Allure.addAttachment("screenshot",new ByteArrayInputStream(Manager.takesScreenshot()));
+        return content;
     }
 
     public static JavascriptExecutor js() {
