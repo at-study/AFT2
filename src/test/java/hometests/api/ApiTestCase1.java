@@ -31,7 +31,7 @@ public class ApiTestCase1 {
         user = new User().setAdmin(true).setStatus(1).generate();
     }
 
-    @Test(testName = "Шаг-1 Тест на создание пользователя ", priority = 0,
+    @Test(testName = "Шаг-1 Тест на создание пользователя ", priority = 1,
             description = "Отправить запрос POST на создание пользователя (данные пользователя должны быть сгенерированы корректно, пользователь должен иметь status = 2)")
     @Description("1. Отправить запрос POST на создание пользователя")
     public void testUserCreation() {
@@ -75,7 +75,7 @@ public class ApiTestCase1 {
         Assert.assertEquals(dataBaseUser.getStatus().toString(), "2");
     }
 
-    @Test(testName = "Шаг-2 Тест на создание пользователя повторно ", priority = 1,
+    @Test(testName = "Шаг-2 Тест на создание пользователя повторно ", priority = 2,
             description = "Отправить запрос POST на создание пользователя повторно с тем же телом запроса")
     @Description("2. Отправить запрос POST на создание пользователя повторно с тем же телом запроса")
     public void repeatedUserCreationTest() {

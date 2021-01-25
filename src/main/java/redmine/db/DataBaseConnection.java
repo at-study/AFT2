@@ -82,12 +82,12 @@ public class DataBaseConnection {
     @SneakyThrows
     public List<Map<String, Object>> executePreparedQuery(String query, Object... parameters) {
         PreparedStatement statement = connection.prepareStatement(query);
-        Allure.addAttachment("query",statement.toString());
         int index = 1;
         for (Object object : parameters) {
             statement.setObject(index++, object);
 
         }
+        Allure.addAttachment("query",statement.toString());
         ResultSet resultSet = statement.executeQuery();
         int count = resultSet.getMetaData().getColumnCount();
         List<String> columnNames = new ArrayList<>();
