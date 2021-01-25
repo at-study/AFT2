@@ -1,5 +1,6 @@
 package redmine.db.requests;
 
+import io.qameta.allure.Step;
 import redmine.managers.Manager;
 import redmine.model.role.IssuesVisibility;
 import redmine.model.role.Role;
@@ -43,7 +44,7 @@ public class RoleRequests {
                 .orElse(null);
     }
 
-
+    @Step("Создание роли")
     public static Role addRole(Role role) {
         String query = "insert into public.roles\n" +
                 "(id,\"name\",\"position\",assignable,builtin,\"permissions\",issues_visibility,users_visibility,time_entries_visibility,all_roles_managed,settings)values(DEFAULT,?,?,?,?,?,?,?,?,?,?) RETURNING id;\n";

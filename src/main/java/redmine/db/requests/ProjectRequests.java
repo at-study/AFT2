@@ -1,5 +1,6 @@
 package redmine.db.requests;
 
+import io.qameta.allure.Step;
 import redmine.managers.Manager;
 import redmine.model.project.Project;
 import redmine.model.user.User;
@@ -29,7 +30,7 @@ public class ProjectRequests {
                 }).collect(Collectors.toList());
 
     }
-
+    @Step("Создание проекта")
     public static Project createProject(Project project) {
         String query = "insert into public.projects\n" +
                 "(id,\"name\",\"description\",\"is_public\",status,identifier,lft,rgt)values(DEFAULT,?,?,?,?,?,?,?) RETURNING id;\n";
