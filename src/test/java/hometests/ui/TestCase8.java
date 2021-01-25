@@ -35,30 +35,17 @@ public class TestCase8 {
         Assert.assertEquals(getPage(UsersPage.class).newUserAdd(), "Новый пользователь");
         getPage(UsersPage.class).newUserAdd.click();
         Assert.assertEquals(getPage(UsersNewPage.class).newUserPage(), "Пользователи » Новый пользователь");
+
         String login = randomEnglishLowerString(8);
         String firstName = randomEnglishLowerString(12);
         String lastName = randomEnglishLowerString(12);
         String mail = randomEmail();
 
-        new Actions(Manager.driver())
-                .moveToElement(getPage(UsersNewPage.class).usernameField)
-                .click()
-                .sendKeys(login)
-                .moveToElement(getPage(UsersNewPage.class).userFirstNameField)
-                .click()
-                .sendKeys(firstName)
-                .moveToElement(getPage(UsersNewPage.class).userLastNameField)
-                .click()
-                .sendKeys(lastName)
-                .moveToElement(getPage(UsersNewPage.class).userMailField)
-                .click()
-                .sendKeys(mail)
-                .moveToElement(getPage(UsersNewPage.class).passwordCreationCheckBox)
-                .click()
-                .moveToElement(getPage(UsersNewPage.class).commit)
-                .click()
-                .build()
-                .perform();
+        getPage(UsersNewPage.class).userCreation(login,firstName,lastName,mail);
+        String flashNoticeText=String.format("Пользователь %s создан.",login);
+        Assert.assertEquals(getPage(UsersNewPage.class).flashNotice(),flashNoticeText);
+
+
 
     }
 }

@@ -26,7 +26,7 @@ public class TestCase4 {
     }
 
     @Test(testName = " Видимость проекта. Приватный проект. Администратор", priority = 5, description = " Видимость проекта. Приватный проект. Администратор")
-    public void visibiltyOfPrivateProjectForAdmin() {
+    public void visibilityOfPrivateProjectForAdmin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).projects(), "Проекты");
         getPage(HeaderPage.class).projects.click();
