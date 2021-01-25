@@ -14,18 +14,15 @@ public class ProjectsPage extends AbstractPage {
     @FindBy(xpath = "//h2[text()='Проекты']")
     private WebElement projectPageName;
 
-    @Step("Открыта страница Проекты")
     public String projectPageName() {
         return projectPageName.getText();
     }
 
-    @Step("Название  проекта соответствует указанному")
     public String projectName(String projectName) {
         String fullProjectXpath = String.format("//a[text()='%s']", projectName);
         return driver().findElement(By.xpath(fullProjectXpath)).getText();
     }
 
-    @Step("Описание проекта соответствует указанному")
     public String projectNameDescription(String projectName) {
         String fullProjectXpath = String.format("//a[text()='%s']/following-sibling::div",projectName);
         return driver().findElement(By.xpath(fullProjectXpath)).getText();

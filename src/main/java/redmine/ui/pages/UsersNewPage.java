@@ -50,12 +50,9 @@ public class UsersNewPage extends AbstractPage{
                 .build()
                 .perform();
     }
-    @Step("Уведомление о создании пользователя")
     public String flashNotice() {
         return flashNotice.getText();
     }
-
-    @Step("Открыта страница создания нового пользователя")
     public String newUserPage() {
         return newUserPage.getText();
     }
