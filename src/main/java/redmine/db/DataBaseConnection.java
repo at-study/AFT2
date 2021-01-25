@@ -1,5 +1,7 @@
 package redmine.db;
 
+import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 
 import java.sql.*;
@@ -33,6 +35,7 @@ public class DataBaseConnection {
     }
 
     @SneakyThrows
+    @Step("Подключение к БД")
     private void connect() {
         Class.forName("org.postgresql.Driver");
         String url = String.format("jdbc:postgresql://%s:%d/%s?user=%s&password=%s", dbHost, dbPort, dbName, dbUser, dbPass);
@@ -41,12 +44,13 @@ public class DataBaseConnection {
 
     /**
      * Выполняет SQL-запрос и возвращает результат
-     *
      * @param query -SQL-запрос
      * @return данные-результат запроса
      */
     @SneakyThrows
+    @Step("Выполнение SQL запроса")
     public List<Map<String, Object>> executeQuery(String query) {
+        Allure.addAttachment("query",query);
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
         int count = resultSet.getMetaData().getColumnCount();
@@ -64,6 +68,7 @@ public class DataBaseConnection {
             }
             result.add(columnData);
         }
+        Allure.addAttachment("response",result.toString());
         return result;
     }
 
