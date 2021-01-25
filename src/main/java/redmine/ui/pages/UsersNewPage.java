@@ -1,5 +1,6 @@
 package redmine.ui.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -49,10 +50,11 @@ public class UsersNewPage extends AbstractPage{
                 .build()
                 .perform();
     }
-
+    @Step("Уведомление о создании пользователя")
     public String flashNotice() {
         return flashNotice.getText();
     }
+    @Step("Открыта страница создания нового пользователя")
     public String newUserPage() {
         return newUserPage.getText();
     }
