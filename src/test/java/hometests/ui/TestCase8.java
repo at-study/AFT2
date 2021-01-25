@@ -1,12 +1,15 @@
 package hometests.ui;
 import io.qameta.allure.Description;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.api.interfaces.Request;
 import redmine.db.requests.UserRequests;
 import redmine.model.user.User;
 import redmine.ui.pages.*;
+
+import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
 import static redmine.utils.StringGenerators.randomEmail;
@@ -45,5 +48,10 @@ public class TestCase8 {
         Assert.assertEquals(getPage(UsersNewPage.class).flashNotice(),flashNoticeText);
 
 
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        driverQuit();
     }
 }
