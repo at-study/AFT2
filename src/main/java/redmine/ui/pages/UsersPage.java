@@ -1,5 +1,6 @@
 package redmine.ui.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,7 +18,7 @@ public class UsersPage extends AbstractPage {
     public String table() {
         return table.getText();
     }
-
+    @Step("Открыта страница пользователи")
     public String usersPageName() {
         return usersPageName.getText();
     }

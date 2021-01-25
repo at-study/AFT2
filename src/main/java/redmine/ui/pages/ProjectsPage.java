@@ -1,5 +1,6 @@
 package redmine.ui.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ public class ProjectsPage extends AbstractPage {
     @FindBy(xpath = "//h2[text()='Проекты']")
     private WebElement projectPageName;
 
+    @Step("Открыта страница Проекты")
     public String projectPageName() {
         return projectPageName.getText();
     }
