@@ -5,6 +5,8 @@ import lombok.SneakyThrows;
 import org.openqa.selenium.support.PageFactory;
 import redmine.managers.Manager;
 
+import java.io.ByteArrayInputStream;
+
 public class Pages {
 
     @SneakyThrows
@@ -12,6 +14,7 @@ public class Pages {
         return Allure.step("Обращение к странице" + clazz.getSimpleName(), () -> {
             T page = clazz.newInstance();
             PageFactory.initElements(Manager.driver(), page);
+            Allure.addAttachment("Screenshot",new ByteArrayInputStream(Manager.takesScreenshot()));
             return page;
         });
     }
