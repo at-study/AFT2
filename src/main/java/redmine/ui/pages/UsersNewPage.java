@@ -9,7 +9,7 @@ import redmine.managers.Manager;
 
 import static redmine.ui.pages.Pages.getPage;
 
-public class UsersNewPage extends AbstractPage{
+public class UsersNewPage extends AbstractPage {
     private WebDriver driver;
 
     @FindBy(xpath = "//h2[text()=' » Новый пользователь']")
@@ -30,7 +30,7 @@ public class UsersNewPage extends AbstractPage{
     private WebElement flashNotice;
 
     @Step("Создание нового пользователя")
-    public void userCreation(String login, String firstName,String lastName,String mail) {
+    public void userCreation(String login, String firstName, String lastName, String mail) {
         new Actions(Manager.driver())
                 .moveToElement(getPage(UsersNewPage.class).usernameField)
                 .click()
@@ -51,10 +51,12 @@ public class UsersNewPage extends AbstractPage{
                 .build()
                 .perform();
     }
+
     @Step("Уведомление о добавлении нового пользователя")
     public String flashNotice() {
         return flashNotice.getText();
     }
+
     @Step("Страница 'Новый пользователь' отображается")
     public String newUserPage() {
         return newUserPage.getText();

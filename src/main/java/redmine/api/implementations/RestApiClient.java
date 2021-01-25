@@ -45,12 +45,13 @@ public class RestApiClient implements ApiClient {
         Method method = Method.valueOf(request.getMethod().name());
         io.restassured.response.Response response = specification.log().all().request(method);
         response.then().log().all();
-        Response restResponse=new RestResponse(response);
-        addAttachments(request,restResponse);
+        Response restResponse = new RestResponse(response);
+        addAttachments(request, restResponse);
         return restResponse;
     }
-private void addAttachments(Request request,Response response){
-    Allure.addAttachment("Request",request.toString());
-    Allure.addAttachment("Response",response.toString());
-}
+
+    private void addAttachments(Request request, Response response) {
+        Allure.addAttachment("Request", request.toString());
+        Allure.addAttachment("Response", response.toString());
+    }
 }

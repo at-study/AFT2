@@ -29,7 +29,7 @@ public class ApiTestCase2 {
         user = new User().setAdmin(false).setStatus(1).generate();
     }
 
-    @Test(testName = "Шаг 1-Отправить запрос POST на создание пользователя НЕ АДМИНИСТРАТОРОМ-403 ",priority = 8,description = "3. Получение пользователей. Пользователь без прав администратора")
+    @Test(testName = "Шаг 1-Отправить запрос POST на создание пользователя НЕ АДМИНИСТРАТОРОМ-403 ", priority = 8, description = "3. Получение пользователей. Пользователь без прав администратора")
     @Description("1. Отправить запрос POST на создание пользователя (данные пользователя должны быть сгенерированы корректно)")
     public void userCreationByNonAdmin() {
         String login = randomEnglishLowerString(8);

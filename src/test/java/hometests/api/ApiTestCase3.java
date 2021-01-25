@@ -29,7 +29,7 @@ public class ApiTestCase3 {
         secondUser = new User().setAdmin(false).setStatus(1).generate();
     }
 
-    @Test(testName = "Шаг 1-Получение пользователем инфо о самом себе+допинфо ",description = "1. Отправить запрос GET на получение пользователя из п.1, используя ключ API из п.2 ")
+    @Test(testName = "Шаг 1-Получение пользователем инфо о самом себе+допинфо ", description = "1. Отправить запрос GET на получение пользователя из п.1, используя ключ API из п.2 ")
     @Description("1. Отправить запрос GET на получение пользователя из п.1, используя ключ API из п.2 ")
     public void userInfoAboutHimself() {
         ApiClient apiClient = new RestApiClient(firstUser);
@@ -51,7 +51,7 @@ public class ApiTestCase3 {
         Assert.assertEquals(createdGetUser.getUser().getApi_key(), firstUser.getApiKey());
     }
 
-    @Test(testName = "Шаг 2-Получение пользователем инфо о другом пользователе +допинфо",priority=9,description = "1. Отправить запрос GET на получение пользователя из п.1, используя ключ API из п.2 ")
+    @Test(testName = "Шаг 2-Получение пользователем инфо о другом пользователе +допинфо", priority = 9, description = "1. Отправить запрос GET на получение пользователя из п.1, используя ключ API из п.2 ")
     @Description("1. Отправить запрос GET на получение пользователя из п.1, используя ключ API из п.2 ")
     public void userInfoAboutOtherUser() {
         String uri = String.format("users/%d.json", secondUser.getId());

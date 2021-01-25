@@ -1,4 +1,5 @@
 package hometests.ui;
+
 import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -18,6 +19,7 @@ import static redmine.utils.StringGenerators.randomEnglishLowerString;
 public class TestCase8 {
     User userAdmin;
     User user;
+
     @BeforeMethod
     public void prepareFixture() {
         userAdmin = new User().setAdmin(true).setStatus(1).generate();
@@ -43,12 +45,13 @@ public class TestCase8 {
         String lastName = randomEnglishLowerString(12);
         String mail = randomEmail();
 
-        getPage(UsersNewPage.class).userCreation(login,firstName,lastName,mail);
-        String flashNoticeText=String.format("Пользователь %s создан.",login);
-        Assert.assertEquals(getPage(UsersNewPage.class).flashNotice(),flashNoticeText);
+        getPage(UsersNewPage.class).userCreation(login, firstName, lastName, mail);
+        String flashNoticeText = String.format("Пользователь %s создан.", login);
+        Assert.assertEquals(getPage(UsersNewPage.class).flashNotice(), flashNoticeText);
 
 
     }
+
     @AfterMethod
     public void tearDown() {
         driverQuit();

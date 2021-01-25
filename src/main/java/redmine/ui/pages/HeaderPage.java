@@ -39,34 +39,42 @@ public class HeaderPage extends AbstractPage {
     public String loggedAs() {
         return loggedAs.getText();
     }
+
     @Step("Присутствует элемент 'Домашняя страница'")
     public String adminHomePage() {
         return adminHomePage.getText();
     }
+
     @Step("Присутствует элемент 'Моя страница'")
     public String myPage() {
         return myPage.getText();
     }
+
     @Step("Присутствует элемент 'Проекты'")
     public String projects() {
         return projects.getText();
     }
+
     @Step("Присутствует элемент 'Администрирование'")
     public String administration() {
         return administration.getText();
     }
+
     @Step("Присутствует элемент 'Помощь'")
     public String help() {
         return help.getText();
     }
+
     @Step("Присутствует элемент 'Моя учётная запись'")
     public String myAccount() {
         return myAccount.getText();
     }
+
     @Step("Присутствует элемент 'Выйти'")
     public String logout() {
         return logout.getText();
     }
+
     @Step("Присутствует элемент 'Поиск'")
     public String searchLabel() {
         return searchLabel.getText();

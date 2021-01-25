@@ -34,6 +34,7 @@ public class Manager {
         }
         return driver;
     }
+
     @Step("Выход из драйвера")
     public static void driverQuit() {
         driver.quit();
@@ -43,7 +44,8 @@ public class Manager {
     public static WebDriverWait waiter() {
         return wait;
     }
-    @Step("Сделать скриншот")
+
+    @Step("Скриншотирование")
     public static byte[] takesScreenshot() {
         return ((TakesScreenshot) driver()).getScreenshotAs(OutputType.BYTES);
     }
@@ -51,7 +53,8 @@ public class Manager {
     public static JavascriptExecutor js() {
         return (JavascriptExecutor) driver();
     }
-    @Step("Открыть страницу")
+
+    @Step("Открыть страницу {0}")
     public static void openPage(String uri) {
         driver().get(Property.getStringProperty("ui.url") + uri);
     }

@@ -20,12 +20,13 @@ public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//div[@id='flash_error']")
     private WebElement flashError;
 
-    @Step("Авторизация в Редмине")
+    @Step("Авторизация в Редмине c логином: {0} и паролём: {1}")
     public void login(String login, String password) {
         loginElement.sendKeys(login);
         passwordElement.sendKeys(password);
         submitButton.click();
     }
+
     @Step("Уведомление об ошибке")
     public String errorMessage() {
         return flashError.getText();

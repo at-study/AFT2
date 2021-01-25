@@ -29,6 +29,7 @@ public class UserRequests {
                     return user;
                 }).collect(Collectors.toList());
     }
+
     @Step("Создание пользователя")
     public static User createUser(User user) {
         String query = "insert into public.users\n" +

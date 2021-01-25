@@ -4,6 +4,7 @@ import io.restassured.http.Header;
 import lombok.Getter;
 import redmine.api.interfaces.Response;
 import redmine.utils.gson.GsonHelper;
+
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -33,11 +34,13 @@ public class RestResponse implements Response {
 
     @Override
     public String toString() {
-        StringBuilder sb=new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         sb.append(statusCode).append(System.lineSeparator());
-        headers.forEach((key,value)->sb.append(key).append("=").append(value).append(System.lineSeparator()));
+        headers.forEach((key, value) -> sb.append(key).append("=").append(value).append(System.lineSeparator()));
         sb.append(System.lineSeparator());
-        if(body!=null){sb.append(body.toString());}
+        if (body != null) {
+            sb.append(body.toString());
+        }
         return sb.toString();
     }
 }

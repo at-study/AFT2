@@ -30,6 +30,7 @@ public class ProjectRequests {
                 }).collect(Collectors.toList());
 
     }
+
     @Step("Создание проекта")
     public static Project createProject(Project project) {
         String query = "insert into public.projects\n" +
