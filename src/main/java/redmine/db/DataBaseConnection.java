@@ -80,6 +80,7 @@ public class DataBaseConnection {
      * @return данные-результат запроса
      */
     @SneakyThrows
+    @Step("Выполнение SQL запроса")
     public List<Map<String, Object>> executePreparedQuery(String query, Object... parameters) {
         PreparedStatement statement = connection.prepareStatement(query);
         int index = 1;
