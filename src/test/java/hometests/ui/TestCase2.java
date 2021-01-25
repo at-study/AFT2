@@ -1,5 +1,6 @@
 package hometests.ui;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -24,6 +25,8 @@ public class TestCase2 {
     }
 
     @Test(testName = "Авторизация подтверждённым пользователем", priority = 3, description = "Авторизация подтверждённым пользователем")
+
+    @Description("2. Авторизация подтвержденным пользователем")
     public void authorizationByAcceptedUserAndElements() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).loggedAs(), "Вошли как " + user.getLogin());

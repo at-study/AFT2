@@ -1,5 +1,6 @@
 package hometests.ui;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -23,6 +24,7 @@ public class TestCase3 {
     }
 
     @Test(testName = "Авторизация НЕподтверждённым пользователем", priority = 4, description = "Авторизация НЕподтверждённым пользователем")
+    @Description("3. Авторизация неподтвержденным пользователем")
     public void authorizationByUnacceptedUserAndElements() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).adminHomePage(), "Home");

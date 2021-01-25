@@ -1,5 +1,6 @@
 package hometests.api;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -32,6 +33,7 @@ public class ApiTestCase1 {
 
     @Test(testName = "Шаг-1 Тест на создание пользователя ", priority = 5,
             description = "Отправить запрос POST на создание пользователя (данные пользователя должны быть сгенерированы корректно, пользователь должен иметь status = 2)")
+    @Description("1. Отправить запрос POST на создание пользователя")
     public void testUserCreation() {
         String login = randomEnglishLowerString(8);
         String firstName = randomEnglishLowerString(12);
@@ -75,6 +77,7 @@ public class ApiTestCase1 {
 
     @Test(testName = "Шаг-2 Тест на создание пользователя повторно ", priority = 7,
             description = "Отправить запрос POST на создание пользователя повторно с тем же телом запроса")
+    @Description("2. Отправить запрос POST на создание пользователя повторно с тем же телом запроса")
     public void repeatedUserCreationTest() {
         String login = randomEnglishLowerString(8);
         String firstName = randomEnglishLowerString(12);
@@ -106,6 +109,7 @@ public class ApiTestCase1 {
 
     @Test(testName = "Шаг-3 Тест на создание пользователя повторно с почти тем же запросом ", priority = 9,
             description = "Отправить запрос POST на создание пользователя повторно с тем же телом запроса")
+    @Description("3. Отправить запрос POST на создание пользователя повторно с тем же телом запроса(C ошибками)")
     public void repeatedUserCreationTestWithSpecialErrors() {
         String login = randomEnglishLowerString(8);
         String firstName = randomEnglishLowerString(12);
@@ -148,6 +152,7 @@ public class ApiTestCase1 {
 
     @Test(testName = "Шаг-4 Изменение статуса у существующего ", priority = 11,
             description = "Отправить запрос PUT на изменение пользователя. Использовать данные из ответа запроса, выполненного в шаге №1, но при этом изменить поле status = 1")
+    @Description("4. Отправить запрос PUT на изменение пользователя. ")
     public void testStatusChange() {
         String login = randomEnglishLowerString(8);
         String firstName = "Evgeny" + randomEnglishLowerString(6);
@@ -200,6 +205,7 @@ public class ApiTestCase1 {
 
     @Test(testName = "Шаг-5 Отправить запрос GET на получение пользователя ", priority = 13,
             description = "Отправить запрос GET на получение пользователя")
+    @Description("5. Отправить запрос GET на получение пользователя")
     public void testGetRequest() {
         String login = randomEnglishLowerString(8);
         String firstName = "UserCreate" + randomEnglishLowerString(4);
@@ -251,6 +257,7 @@ public class ApiTestCase1 {
 
     @Test(testName = "Шаг-6 Отправить запрос DELETE на удаление пользователя ", priority = 15,
             description = "Отправить запрос DELETE на удаление пользователя")
+    @Description("6. Отправить запрос DELETE на удаление пользователя")
     public void testDeleteRequest() {
         String login = randomEnglishLowerString(8);
         String firstName = "UserCreate" + randomEnglishLowerString(4);
@@ -295,6 +302,7 @@ public class ApiTestCase1 {
 
     @Test(testName = "Шаг 7-Отправить повторный запрос DELETE на удаление пользователя ", priority = 17,
             description = "Отправить повторный запрос DELETE на удаление пользователя")
+    @Description("7. Отправить запрос DELETE на удаление пользователя (повторно)")
     public void testRepeatDeleteRequest() {
         String login = randomEnglishLowerString(8);
         String firstName = "UserCreate" + randomEnglishLowerString(4);

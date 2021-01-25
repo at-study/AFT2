@@ -1,5 +1,6 @@
 package hometests.ui;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -26,6 +27,7 @@ public class TestCase4 {
     }
 
     @Test(testName = " Видимость проекта. Приватный проект. Администратор", priority = 5, description = " Видимость проекта. Приватный проект. Администратор")
+    @Description("4. Видимость проекта. Приватный проект. Администратор")
     public void visibilityOfPrivateProjectForAdmin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).projects(), "Проекты");

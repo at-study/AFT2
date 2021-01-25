@@ -1,5 +1,6 @@
 package hometests.ui;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -27,15 +28,13 @@ public class TestCase6 {
     public void prepareFixture() {
         userAdmin = new User().setAdmin(true).setStatus(1).generate();
         user1 = new User().setAdmin(false).setStatus(1).generate();
-        ;
         user2 = new User().setAdmin(false).setStatus(1).generate();
-        ;
         user3 = new User().setAdmin(false).setStatus(1).generate();
-        ;
         openPage("login");
     }
 
     @Test(testName = " Администрирование. Сортировка списка пользователей по пользователю", priority = 7, description = "Администрирование. Сортировка списка пользователей по пользователю")
+    @Description("6. Администрирование. Сортировка списка пользователей по пользователю")
     public void usersSortingForAdminByUser() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
@@ -45,8 +44,6 @@ public class TestCase6 {
         getPage(AdminPage.class).users.click();
         Assert.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(UsersPage.class).table));
-
-
     }
 
     @AfterMethod

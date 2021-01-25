@@ -1,5 +1,6 @@
 package hometests.ui;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -35,6 +36,7 @@ public class TestCase7 {
     }
 
     @Test(testName = " Администрирование. Сортировка списка пользователей по имени  и фамилии", priority = 7, description = "Администрирование. Сортировка списка пользователей по имени  и фамилии")
+    @Description("7. Администрирование. Сортировка списка пользователей по имени и фамилии")
     public void usersSortingForAdminByUserNameAndLastName() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");

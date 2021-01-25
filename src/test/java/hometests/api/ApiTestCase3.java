@@ -1,5 +1,6 @@
 package hometests.api;
 
+import io.qameta.allure.Description;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import org.testng.Assert;
@@ -28,7 +29,8 @@ public class ApiTestCase3 {
         secondUser = new User().setAdmin(false).setStatus(1).generate();
     }
 
-    @Test(testName = "Шаг 1-Получение пользователем инфо о самом себе+допинфо ")
+    @Test(testName = "Шаг 1-Получение пользователем инфо о самом себе+допинфо ",description = "1. Отправить запрос GET на получение пользователя из п.1, используя ключ API из п.2 ")
+    @Description("1. Отправить запрос GET на получение пользователя из п.1, используя ключ API из п.2 ")
     public void userInfoAboutHimself() {
         ApiClient apiClient = new RestApiClient(firstUser);
         String uri = String.format("users/%d.json", firstUser.getId());
@@ -49,7 +51,8 @@ public class ApiTestCase3 {
         Assert.assertEquals(createdGetUser.getUser().getApi_key(), firstUser.getApiKey());
     }
 
-    @Test(testName = "Шаг 2-Получение пользователем инфо о другом пользователе +допинфо  ")
+    @Test(testName = "Шаг 2-Получение пользователем инфо о другом пользователе +допинфо",description = "1. Отправить запрос GET на получение пользователя из п.1, используя ключ API из п.2 ")
+    @Description("1. Отправить запрос GET на получение пользователя из п.1, используя ключ API из п.2 ")
     public void userInfoAboutOtherUser() {
         String uri = String.format("users/%d.json", secondUser.getId());
         io.restassured.response.Response getResponse = given().baseUri("http://edu-at.dfu.i-teco.ru/")

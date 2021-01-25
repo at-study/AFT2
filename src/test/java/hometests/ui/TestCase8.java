@@ -1,4 +1,5 @@
 package hometests.ui;
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -21,6 +22,7 @@ public class TestCase8 {
     }
 
     @Test(testName = " Администрирование. Создание пользователя", priority = 7, description = "Администрирование. Создание пользователя")
+    @Description("8.Администрирование. Создание пользователя.")
     public void usersCreationForAdmin() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
         Assert.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
