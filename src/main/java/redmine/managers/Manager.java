@@ -1,6 +1,7 @@
 package redmine.managers;
 
 import com.google.common.collect.ImmutableMap;
+import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -33,7 +34,7 @@ public class Manager {
         }
         return driver;
     }
-
+    @Step("Выход из драйвера")
     public static void driverQuit() {
         driver.quit();
         driver = null;
@@ -42,7 +43,7 @@ public class Manager {
     public static WebDriverWait waiter() {
         return wait;
     }
-
+    @Step("Сделать скриншот")
     public static byte[] takesScreenshot() {
         return ((TakesScreenshot) driver()).getScreenshotAs(OutputType.BYTES);
     }
@@ -50,7 +51,7 @@ public class Manager {
     public static JavascriptExecutor js() {
         return (JavascriptExecutor) driver();
     }
-
+    @Step("Открыть страницу")
     public static void openPage(String uri) {
         driver().get(Property.getStringProperty("ui.url") + uri);
     }
