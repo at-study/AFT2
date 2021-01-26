@@ -1,6 +1,8 @@
 package hometests.ui;
-import static redmine.utils.Asserts.assertEquals;
+
 import io.qameta.allure.Description;
+import io.qameta.allure.Step;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -9,15 +11,21 @@ import redmine.model.user.User;
 import redmine.ui.pages.*;
 import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
 
 public class TestCase6 {
-    User userAdmin;
-    User user1;
-    User user2;
-    User user3;
+    private User userAdmin;
+    private User user1;
+    private User user2;
+    private User user3;
+    private String username;
 
 
     @BeforeMethod
@@ -40,11 +48,27 @@ public class TestCase6 {
         getPage(AdminPage.class).users.click();
         Asserts.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(UsersPage.class).table));
+        userSortingByAscending();
     }
+        @Step("Сортировка пользователей по возрастанию при заходе на страницу")
+        private void userSortingByAscending () {
+            List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTable
+                    .stream()
+                    .map(WebElement::getText)
+                    .collect(Collectors.toList());
+
+            List<String> expectedOrderedByAscList = actualOrderedByAscList
+                    .stream()
+                    .sorted(Comparator.naturalOrder())
+                    .collect(Collectors.toList());
+
+            Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
+        }
 
     @AfterMethod
     public void tearDown() {
         driverQuit();
     }
+
 }
 

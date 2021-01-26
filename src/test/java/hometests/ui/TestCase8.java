@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import redmine.model.user.User;
 import redmine.ui.pages.*;
 import redmine.utils.Asserts;
+
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
@@ -15,7 +16,7 @@ import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 public class TestCase8 {
-    User userAdmin;
+    private User userAdmin;
 
     @BeforeMethod
     public void prepareFixture() {

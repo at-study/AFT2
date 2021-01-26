@@ -1,5 +1,7 @@
 package hometests.ui;
+
 import static redmine.utils.Asserts.assertEquals;
+
 import io.qameta.allure.Description;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -10,16 +12,17 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.UsersPage;
 import redmine.utils.BrowserUtils;
+
 import static org.testng.Assert.*;
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
 
 public class TestCase7 {
-    User userAdmin;
-    User user1;
-    User user2;
-    User user3;
+    private User userAdmin;
+    private User user1;
+    private User user2;
+    private User user3;
 
 
     @BeforeMethod

@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class UsersPage extends AbstractPage {
     private WebDriver driver;
 
@@ -14,6 +16,10 @@ public class UsersPage extends AbstractPage {
     public WebElement usersPageName;
     @FindBy(xpath = "//a[@class='icon icon-add']")
     public WebElement newUserAdd;
+    @FindBy(xpath = "//table[@class='list users']//a[text()='Пользователь']")
+    public WebElement usersHeaderInTable;
+    @FindBy(xpath = "//tr[@class='user active']//td[@class='username']")
+    public List<WebElement> listOfUsersInTable;
 
     public String table() {
         return table.getText();
@@ -24,7 +30,7 @@ public class UsersPage extends AbstractPage {
         return usersPageName.getText();
     }
 
-    @Step("Пристуствует элемент  'Новый пользователь'")
+    @Step("Присутствует элемент  'Новый пользователь'")
     public String newUserAdd() {
         return newUserAdd.getText();
     }

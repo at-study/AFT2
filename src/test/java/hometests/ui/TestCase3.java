@@ -10,13 +10,14 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
+
 import static redmine.utils.Asserts.assertEquals;
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
 
 public class TestCase3 {
-    User user;
+    private User user;
 
     @BeforeMethod
     public void prepareFixture() {
