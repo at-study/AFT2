@@ -14,6 +14,7 @@ import redmine.db.requests.UserRequests;
 import redmine.model.dto.UserCreationError;
 import redmine.model.dto.UserDto;
 import redmine.model.user.User;
+import redmine.utils.Asserts;
 import redmine.utils.StringGenerators;
 import redmine.utils.gson.GsonHelper;
 import java.util.Random;
@@ -54,8 +55,9 @@ public class ApiTestCase1 {
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
         assertEquals(response.getStatusCode(), 201);
+
         UserDto createdUser = response.getBody(UserDto.class);
-        Assert.assertNotNull(createdUser.getUser().getId());
+        Asserts.assertNotNull(createdUser.getUser().getId());
         assertEquals(createdUser.getUser().getLogin(), login);
         assertEquals(createdUser.getUser().getFirstname(), firstName);
         assertEquals(createdUser.getUser().getLastname(), lastName);
@@ -223,7 +225,7 @@ public class ApiTestCase1 {
         assertEquals(response.getStatusCode(), 201);
 
         UserDto createdUser = response.getBody(UserDto.class);
-        Assert.assertNotNull(createdUser.getUser().getId());
+        Asserts.assertNotNull(createdUser.getUser().getId());
         assertEquals(createdUser.getUser().getLogin(), login);
         assertEquals(createdUser.getUser().getFirstname(), firstName);
         assertEquals(createdUser.getUser().getLastname(), lastName);
@@ -239,7 +241,7 @@ public class ApiTestCase1 {
         Response getResponse = apiClient.executeRequest(getRequest);
         assertEquals(getResponse.getStatusCode(), 200);
         UserDto createdGetUser = getResponse.getBody(UserDto.class);
-        Assert.assertNotNull(createdGetUser.getUser().getId());
+        Asserts.assertNotNull(createdGetUser.getUser().getId());
         assertEquals(createdGetUser.getUser().getLogin(), login);
         assertEquals(createdGetUser.getUser().getFirstname(), firstName);
         assertEquals(createdGetUser.getUser().getLastname(), lastName);
@@ -273,7 +275,7 @@ public class ApiTestCase1 {
         Response response = apiClient.executeRequest(request);
         assertEquals(response.getStatusCode(), 201);
         UserDto createdUser = response.getBody(UserDto.class);
-        Assert.assertNotNull(createdUser.getUser().getId());
+        Asserts.assertNotNull(createdUser.getUser().getId());
         assertEquals(createdUser.getUser().getLogin(), login);
         assertEquals(createdUser.getUser().getFirstname(), firstName);
         assertEquals(createdUser.getUser().getLastname(), lastName);
@@ -318,7 +320,7 @@ public class ApiTestCase1 {
         assertEquals(response.getStatusCode(), 201);
 
         UserDto createdUser = response.getBody(UserDto.class);
-        Assert.assertNotNull(createdUser.getUser().getId());
+        Asserts.assertNotNull(createdUser.getUser().getId());
         assertEquals(createdUser.getUser().getLogin(), login);
         assertEquals(createdUser.getUser().getFirstname(), firstName);
         assertEquals(createdUser.getUser().getLastname(), lastName);

@@ -69,7 +69,7 @@ public class ApiTestCase3 {
         Asserts.assertEquals(createdUser.getUser().getLastname(), secondUser.getLastName());
         Assert.assertNull(createdUser.getUser().getPassword());
         Assert.assertNull(createdUser.getUser().getLast_login_on());
-        Assert.assertNull(createdUser.getUser().getStatus(), secondUser.getStatus().toString());
+        Asserts.assertEquals(createdUser.getUser().getStatus(), secondUser.getStatus().toString());
 
         Assert.assertNull(createdUser.getUser().getAdmin());
         Assert.assertNull(createdUser.getUser().getApi_key());

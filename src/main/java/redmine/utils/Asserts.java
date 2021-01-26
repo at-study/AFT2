@@ -8,4 +8,9 @@ public class Asserts {
     public static void assertEquals(Object actual,Object expected){
         Assert.assertEquals(actual,expected);
     }
+    @Step("Присутствует поле ID равное: {0} ")
+    public static void assertNotNull(Object object){
+        Assert.assertNotNull(object);
+    }
+
 }
