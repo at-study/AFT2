@@ -16,10 +16,9 @@ import redmine.model.dto.UserDto;
 import redmine.model.user.User;
 import redmine.utils.StringGenerators;
 import redmine.utils.gson.GsonHelper;
-
 import java.util.Random;
 
-import static org.testng.Assert.assertEquals;
+import static redmine.utils.Asserts.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
@@ -64,15 +63,15 @@ public class ApiTestCase1 {
         Assert.assertNull(createdUser.getUser().getPassword());
         assertEquals(createdUser.getUser().getMail(), mail);
         Assert.assertNull(createdUser.getUser().getLast_login_on());
-        assertEquals(createdUser.getUser().getStatus().intValue(), 2);
+        assertEquals(createdUser.getUser().getStatus(), 2);
         Assert.assertFalse(createdUser.getUser().getAdmin());
 
         int usersCountAfter = UserRequests.getAllUsers().size();
-        Assert.assertEquals(usersCountAfter, usersBeforeUserCreation + 1);
+        assertEquals(usersCountAfter, usersBeforeUserCreation + 1);
         int idForCheck = createdUser.getUser().getId();
         user.setId(idForCheck);
         User dataBaseUser = UserRequests.getUser(user);
-        Assert.assertEquals(dataBaseUser.getStatus().toString(), "2");
+        assertEquals(dataBaseUser.getStatus().toString(), "2");
     }
 
     @Test(testName = "Шаг-2 Тест на создание пользователя повторно ", priority = 2,
@@ -185,7 +184,7 @@ public class ApiTestCase1 {
         String responseBody = response.getBody().toString();
         UserDto createdUser = GsonHelper.getGson().fromJson(responseBody, UserDto.class);
         Integer userId = createdUser.getUser().getId();
-        assertEquals(createdUser.getUser().getStatus().intValue(), 2);
+        assertEquals(createdUser.getUser().getStatus(), 2);
         System.out.println("Created userID: " + userId);
 
         String uri = String.format("users/%d.json", userId);
@@ -194,10 +193,10 @@ public class ApiTestCase1 {
         Response putResponse = apiClient.executeRequest(putRequest);
         assertEquals(putResponse.getStatusCode(), 204);
         int userCountAfterManipulation = UserRequests.getAllUsers().size();
-        Assert.assertEquals(userCountAfterManipulation, userBeforeManipulation);
+        assertEquals(userCountAfterManipulation, userBeforeManipulation);
         user.setId(userId);
         User dataBaseUser = UserRequests.getUser(user);
-        Assert.assertEquals(dataBaseUser.getStatus().toString(), "1");
+        assertEquals(dataBaseUser.getStatus().toString(), "1");
     }
 
     @Test(testName = "Шаг-5 Отправить запрос GET на получение пользователя ", priority = 5,
@@ -228,11 +227,11 @@ public class ApiTestCase1 {
         Assert.assertNotNull(createdUser.getUser().getId());
         assertEquals(createdUser.getUser().getLogin(), login);
         assertEquals(createdUser.getUser().getFirstname(), firstName);
-        Assert.assertEquals(createdUser.getUser().getLastname(), lastName);
+        assertEquals(createdUser.getUser().getLastname(), lastName);
         Assert.assertNull(createdUser.getUser().getPassword());
         assertEquals(createdUser.getUser().getMail(), mail);
         Assert.assertNull(createdUser.getUser().getLast_login_on());
-        assertEquals(createdUser.getUser().getStatus().intValue(), 1);
+        assertEquals(createdUser.getUser().getStatus(), 1);
         Integer userId = createdUser.getUser().getId();
         System.out.println("Created userID: " + userId);
 
@@ -248,7 +247,7 @@ public class ApiTestCase1 {
         Assert.assertNull(createdGetUser.getUser().getPassword());
         assertEquals(createdGetUser.getUser().getMail(), mail);
         Assert.assertNull(createdGetUser.getUser().getLast_login_on());
-        assertEquals(createdGetUser.getUser().getStatus().intValue(), 1);
+        assertEquals(createdGetUser.getUser().getStatus(), 1);
     }
 
     @Test(testName = "Шаг-6 Отправить запрос DELETE на удаление пользователя ", priority = 6,
@@ -282,7 +281,7 @@ public class ApiTestCase1 {
         Assert.assertNull(createdUser.getUser().getPassword());
         assertEquals(createdUser.getUser().getMail(), mail);
         Assert.assertNull(createdUser.getUser().getLast_login_on());
-        assertEquals(createdUser.getUser().getStatus().intValue(), 1);
+        assertEquals(createdUser.getUser().getStatus(), 1);
         Integer userId = createdUser.getUser().getId();
         System.out.println("Created userID: " + userId);
 
@@ -292,7 +291,7 @@ public class ApiTestCase1 {
         Response deleteResponse = apiClient.executeRequest(deleteRequest);
         assertEquals(deleteResponse.getStatusCode(), 204);
         int userAmountAfterDeleteOtherUser = UserRequests.getAllUsers().size();
-        Assert.assertEquals(userAmountAfterDeleteOtherUser, userAmountBeforeDeleteOtherUser - 1);
+        assertEquals(userAmountAfterDeleteOtherUser, userAmountBeforeDeleteOtherUser - 1);
     }
 
     @Test(testName = "Шаг 7-Отправить повторный запрос DELETE на удаление пользователя ", priority = 7,
@@ -327,7 +326,7 @@ public class ApiTestCase1 {
         Assert.assertNull(createdUser.getUser().getPassword());
         assertEquals(createdUser.getUser().getMail(), mail);
         Assert.assertNull(createdUser.getUser().getLast_login_on());
-        assertEquals(createdUser.getUser().getStatus().intValue(), 1);
+        assertEquals(createdUser.getUser().getStatus(), 1);
         Integer userId = createdUser.getUser().getId();
         System.out.println("Created userID: " + userId);
 
