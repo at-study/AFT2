@@ -1,5 +1,6 @@
 package redmine.model.role;
 
+import io.qameta.allure.Step;
 import lombok.*;
 import lombok.experimental.Accessors;
 import redmine.db.requests.RoleRequests;

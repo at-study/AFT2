@@ -20,8 +20,8 @@ import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
 public class ApiTestCase3 {
-    User firstUser;
-    User secondUser;
+    private User firstUser;
+    private User secondUser;
 
     @BeforeMethod
     public void prepareFixtures() {

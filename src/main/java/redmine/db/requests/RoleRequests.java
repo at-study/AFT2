@@ -32,7 +32,7 @@ public class RoleRequests {
                     return role;
                 }).collect(Collectors.toList());
     }
-
+    @Step("Информация о роли получена")
     public static Role getRole(Role objectRole) {
         return getAllRoles().stream()
                 .filter(role -> {
@@ -56,7 +56,7 @@ public class RoleRequests {
         return role;
     }
 
-
+    @Step("Информация о роли измененна")
     public static Role updateRole(Role role) {
         String query = "update public.roles\n" +
                 "set position=?,assignable=?,builtin=?,permissions=?,issues_visibility=?,users_visibility=?,time_entries_visibility=?,all_roles_managed=?,settings=?\n" +

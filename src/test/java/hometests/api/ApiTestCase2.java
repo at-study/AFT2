@@ -22,11 +22,13 @@ import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 public class ApiTestCase2 {
-    User user;
+    private User user;
+    private ApiClient apiClient;
 
     @BeforeMethod
     public void prepareFixtures() {
         user = new User().setAdmin(false).setStatus(1).generate();
+        apiClient = new RestApiClient(user);
     }
 
     @Test(testName = "Шаг 1-Отправить запрос POST на создание пользователя НЕ АДМИНИСТРАТОРОМ-403 ", priority = 8, description = "3. Получение пользователей. Пользователь без прав администратора")
@@ -46,7 +48,6 @@ public class ApiTestCase2 {
                 "                 \"password\":\"%s\"\n" +
                 "                 }\n" +
                 "                }", login, mail, name, lastName, password);
-        ApiClient apiClient = new RestApiClient(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         apiClient.executeRequest(request);
         redmine.api.interfaces.Response userCreationByNonAdmin = apiClient.executeRequest(request);

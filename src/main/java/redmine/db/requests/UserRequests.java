@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 public class UserRequests {
-
+    @Step("Информация о пользователях получена")
     public static List<User> getAllUsers() {
         String query = "select * from users u inner join tokens t on u.id=t.user_id inner join email_addresses e on u.id=e.user_id";
         List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
@@ -60,7 +60,7 @@ public class UserRequests {
         Manager.dbConnection.executePreparedQuery(queryForEmail, userId, email, true, true, LocalDateTime.now(), LocalDateTime.now());
         return user;
     }
-
+    @Step("Информация о пользователе изменена")
     public static User updateUser(User user) {
         String query = "update public.users\n" +
                 "set login=?,hashed_password=?,firstname=?,lastname=?,admin=?,status=?,language=?,\n" +
@@ -71,7 +71,7 @@ public class UserRequests {
         user.setId((Integer) result.get(0).get("id"));
         return user;
     }
-
+    @Step("Информация о пользователе получена")
     public static User getUser(User objectUser) {
         return getAllUsers().stream()
                 .filter(user -> {

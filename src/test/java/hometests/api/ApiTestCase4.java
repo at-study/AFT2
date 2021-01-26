@@ -12,8 +12,8 @@ import redmine.model.user.User;
 import static io.restassured.RestAssured.given;
 
 public class ApiTestCase4 {
-    User firstUser;
-    User secondUser;
+    private User firstUser;
+    private User secondUser;
 
     @BeforeMethod
     public void prepareFixtures() {

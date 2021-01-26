@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 public class ProjectRequests {
+    @Step("Информация о проектах получена")
     public static List<Project> getAllProjects() {
         String query = "select * from projects";
         List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
