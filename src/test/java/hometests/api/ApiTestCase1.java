@@ -65,7 +65,7 @@ public class ApiTestCase1 {
         assertEquals(createdUser.getUser().getMail(), mail);
         Assert.assertNull(createdUser.getUser().getLast_login_on());
         assertEquals(createdUser.getUser().getStatus(), 2);
-        Assert.assertFalse(createdUser.getUser().getAdmin());
+        Asserts.assertFalse(createdUser.getUser().getAdmin());
 
         int usersCountAfter = UserRequests.getAllUsers().size();
         assertEquals(usersCountAfter, usersBeforeUserCreation + 1);
