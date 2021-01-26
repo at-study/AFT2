@@ -20,6 +20,15 @@ public class UsersPage extends AbstractPage {
     public WebElement usersHeaderInTable;
     @FindBy(xpath = "//tr[@class='user active']//td[@class='username']")
     public List<WebElement> listOfUsersInTable;
+    @FindBy(xpath = "//tr[@class='user active']//td[@class='lastname']")
+    public List<WebElement> listOfUsersInTableByLastNames;
+    @FindBy(xpath = "//tr[@class='user active']//td[@class='firstname']")
+    public List<WebElement> listOfUsersInTableByNames;
+    @FindBy(xpath = "//table[@class='list users']//a[text()='Фамилия']")
+    public WebElement usersByLastNameHeaderInTable;
+    @FindBy(xpath = "//table[@class='list users']//a[text()='Имя']")
+    public WebElement usersByNameHeaderInTable;
+
 
     public String table() {
         return table.getText();
