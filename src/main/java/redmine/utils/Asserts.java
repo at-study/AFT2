@@ -8,4 +8,14 @@ public class Asserts {
     public static void assertEquals(Object actual,Object expected){
         Assert.assertEquals(actual,expected);
     }
+    @Step("Присутствует поле ID равное: {0} ")
+    public static void assertNotNull(Object object){
+        Assert.assertNotNull(object);
+    }
+    @Step("Отсуствует поле : {0} ")
+    public static  void assertNull(Object object){
+        String element=object.toString();
+        Assert.assertNull(object);
+    }
+
 }
