@@ -9,7 +9,7 @@ import redmine.model.role.Role;
 import redmine.model.role.RolePermissions;
 import redmine.model.user.User;
 import redmine.ui.pages.LoginPage;
-
+import static redmine.utils.Asserts.assertEquals;
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.model.role.RolePermission.VIEW_ISSUES;

@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.model.user.User;
 import redmine.ui.pages.*;
+import redmine.utils.Asserts;
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
@@ -26,15 +27,15 @@ public class TestCase8 {
     @Description("8.Администрирование. Создание пользователя.")
     public void usersCreationForAdmin() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
-        Assert.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
+        Asserts.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
         getPage(HeaderPage.class).administration.click();
-        Assert.assertEquals(getPage(AdminPage.class).adminPageName(), "Администрирование");
-        Assert.assertEquals(getPage(AdminPage.class).users(), "Пользователи");
+        Asserts.assertEquals(getPage(AdminPage.class).adminPageName(), "Администрирование");
+        Asserts.assertEquals(getPage(AdminPage.class).users(), "Пользователи");
         getPage(AdminPage.class).users.click();
-        Assert.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
-        Assert.assertEquals(getPage(UsersPage.class).newUserAdd(), "Новый пользователь");
+        Asserts.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
+        Asserts.assertEquals(getPage(UsersPage.class).newUserAdd(), "Новый пользователь");
         getPage(UsersPage.class).newUserAdd.click();
-        Assert.assertEquals(getPage(UsersNewPage.class).newUserPage(), "Пользователи » Новый пользователь");
+        Asserts.assertEquals(getPage(UsersNewPage.class).newUserPage(), "Пользователи » Новый пользователь");
 
         String login = randomEnglishLowerString(8);
         String firstName = randomEnglishLowerString(12);

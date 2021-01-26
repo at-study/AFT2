@@ -1,5 +1,5 @@
 package hometests.ui;
-
+import static redmine.utils.Asserts.assertEquals;
 import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -10,6 +10,8 @@ import redmine.model.user.User;
 import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.ProjectsPage;
+import redmine.utils.Asserts;
+
 import static redmine.managers.Manager.*;
 import static redmine.ui.pages.Pages.getPage;
 
@@ -28,11 +30,11 @@ public class TestCase4 {
     @Description("4. Видимость проекта. Приватный проект. Администратор")
     public void visibilityOfPrivateProjectForAdmin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
-        Assert.assertEquals(getPage(HeaderPage.class).projects(), "Проекты");
+        Asserts.assertEquals(getPage(HeaderPage.class).projects(), "Проекты");
         getPage(HeaderPage.class).projects.click();
-        Assert.assertEquals(getPage(ProjectsPage.class).projectPageName(), "Проекты");
-        Assert.assertEquals(getPage(ProjectsPage.class).projectName(project.getName()), project.getName());
-        Assert.assertEquals(getPage(ProjectsPage.class).projectNameDescription(project.getName()), project.getDescription());
+        Asserts.assertEquals(getPage(ProjectsPage.class).projectPageName(), "Проекты");
+        Asserts.assertEquals(getPage(ProjectsPage.class).projectName(project.getName()), project.getName());
+        Asserts.assertEquals(getPage(ProjectsPage.class).projectNameDescription(project.getName()), project.getDescription());
     }
 
     @AfterMethod

@@ -17,7 +17,6 @@ import redmine.model.user.User;
 import redmine.utils.StringGenerators;
 import redmine.utils.gson.GsonHelper;
 import java.util.Random;
-
 import static redmine.utils.Asserts.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;

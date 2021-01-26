@@ -1,5 +1,5 @@
 package hometests.ui;
-
+import static redmine.utils.Asserts.assertEquals;
 import io.qameta.allure.Description;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

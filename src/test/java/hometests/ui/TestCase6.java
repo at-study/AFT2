@@ -1,5 +1,5 @@
 package hometests.ui;
-
+import static redmine.utils.Asserts.assertEquals;
 import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.model.user.User;
 import redmine.ui.pages.*;
+import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
@@ -32,12 +33,12 @@ public class TestCase6 {
     @Description("6. Администрирование. Сортировка списка пользователей по пользователю")
     public void usersSortingForAdminByUser() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
-        Assert.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
+        Asserts.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
         getPage(HeaderPage.class).administration.click();
-        Assert.assertEquals(getPage(AdminPage.class).adminPageName(), "Администрирование");
-        Assert.assertEquals(getPage(AdminPage.class).users(), "Пользователи");
+        Asserts.assertEquals(getPage(AdminPage.class).adminPageName(), "Администрирование");
+        Asserts.assertEquals(getPage(AdminPage.class).users(), "Пользователи");
         getPage(AdminPage.class).users.click();
-        Assert.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
+        Asserts.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(UsersPage.class).table));
     }
 
