@@ -5,16 +5,11 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import redmine.model.project.Project;
-import redmine.model.role.Role;
-import redmine.model.role.RolePermissions;
 import redmine.model.user.User;
 import redmine.ui.pages.*;
 import redmine.utils.BrowserUtils;
-
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
-import static redmine.model.role.RolePermission.VIEW_ISSUES;
 import static redmine.ui.pages.Pages.getPage;
 
 public class TestCase6 {
