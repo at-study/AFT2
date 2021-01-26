@@ -15,7 +15,7 @@ import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 public class TestCase8 {
-    User userAdmin;
+    private User userAdmin;
 
     @BeforeMethod
     public void prepareFixture() {

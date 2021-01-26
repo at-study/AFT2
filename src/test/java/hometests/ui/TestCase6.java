@@ -15,10 +15,10 @@ import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
 
 public class TestCase6 {
-    User userAdmin;
-    User user1;
-    User user2;
-    User user3;
+    private User userAdmin;
+    private User user1;
+    private User user2;
+    private User user3;
 
 
     @BeforeMethod

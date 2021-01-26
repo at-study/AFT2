@@ -16,11 +16,11 @@ import static redmine.model.role.RolePermission.VIEW_ISSUES;
 import static redmine.ui.pages.Pages.getPage;
 
 public class TestCase5 {
-    User user;
-    Project project;
-    Project project2;
-    Project project3;
-    Role role;
+    private User user;
+    private Project project;
+    private Project project2;
+    private Project project3;
+    private Role role;
 
     @BeforeMethod
     public void prepareFixture() {

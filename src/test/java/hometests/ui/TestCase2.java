@@ -19,7 +19,7 @@ import static redmine.ui.pages.Pages.getPage;
 
 public class TestCase2 {
 
-    User user;
+    private User user;
 
     @BeforeMethod
     public void prepareFixture() {
