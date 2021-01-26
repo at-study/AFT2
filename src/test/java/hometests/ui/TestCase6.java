@@ -1,4 +1,5 @@
 package hometests.ui;
+import static redmine.utils.Asserts.*;
 import static redmine.utils.Asserts.assertEquals;
 import io.qameta.allure.Description;
 import org.testng.Assert;
@@ -33,12 +34,12 @@ public class TestCase6 {
     @Description("6. Администрирование. Сортировка списка пользователей по пользователю")
     public void usersSortingForAdminByUser() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
-        Asserts.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
+        assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
         getPage(HeaderPage.class).administration.click();
-        Asserts.assertEquals(getPage(AdminPage.class).adminPageName(), "Администрирование");
-        Asserts.assertEquals(getPage(AdminPage.class).users(), "Пользователи");
+        assertEquals(getPage(AdminPage.class).adminPageName(), "Администрирование");
+        assertEquals(getPage(AdminPage.class).users(), "Пользователи");
         getPage(AdminPage.class).users.click();
-        Asserts.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
+        assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(UsersPage.class).table));
     }
 

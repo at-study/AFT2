@@ -11,6 +11,7 @@ import redmine.model.user.User;
 import redmine.utils.Asserts;
 
 import static io.restassured.RestAssured.given;
+import static redmine.utils.Asserts.*;
 
 public class ApiTestCase4 {
     private User firstUser;
@@ -33,9 +34,9 @@ public class ApiTestCase4 {
                 .contentType(ContentType.JSON)
                 .header("X-Redmine-API-Key", firstUserApiKey)
                 .request(Method.DELETE, uri);
-        Asserts.assertEquals(deleteResponse.getStatusCode(), 403);
+        assertEquals(deleteResponse.getStatusCode(), 403);
         int userCountAfterDelete = UserRequests.getAllUsers().size();
-        Asserts.assertEquals(userCountAfterDelete, usersBeforeDelete);
+        assertEquals(userCountAfterDelete, usersBeforeDelete);
     }
 
     @Test(testName = "Шаг 2 -Удаление пользователя самим собою и проверка в бд ", priority = 11, description = "2. Отправить запрос DELETE на удаление пользователя из п.1, используя ключи из п.2 (удаление себя)")
@@ -49,8 +50,8 @@ public class ApiTestCase4 {
                 .contentType(ContentType.JSON)
                 .header("X-Redmine-API-Key", userApiKey)
                 .request(Method.DELETE, uri);
-        Asserts.assertEquals(deleteResponse.getStatusCode(), 403);
+        assertEquals(deleteResponse.getStatusCode(), 403);
         int userCountAfterDelete = UserRequests.getAllUsers().size();
-        Asserts.assertEquals(userCountAfterDelete, usersBeforeDelete);
+        assertEquals(userCountAfterDelete, usersBeforeDelete);
     }
 }

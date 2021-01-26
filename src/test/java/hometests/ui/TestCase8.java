@@ -7,10 +7,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.model.user.User;
 import redmine.ui.pages.*;
-import redmine.utils.Asserts;
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
+import static redmine.utils.Asserts.*;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
@@ -27,15 +27,15 @@ public class TestCase8 {
     @Description("8.Администрирование. Создание пользователя.")
     public void usersCreationForAdmin() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
-        Asserts.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
+        assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
         getPage(HeaderPage.class).administration.click();
-        Asserts.assertEquals(getPage(AdminPage.class).adminPageName(), "Администрирование");
-        Asserts.assertEquals(getPage(AdminPage.class).users(), "Пользователи");
+        assertEquals(getPage(AdminPage.class).adminPageName(), "Администрирование");
+        assertEquals(getPage(AdminPage.class).users(), "Пользователи");
         getPage(AdminPage.class).users.click();
-        Asserts.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
-        Asserts.assertEquals(getPage(UsersPage.class).newUserAdd(), "Новый пользователь");
+        assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
+        assertEquals(getPage(UsersPage.class).newUserAdd(), "Новый пользователь");
         getPage(UsersPage.class).newUserAdd.click();
-        Asserts.assertEquals(getPage(UsersNewPage.class).newUserPage(), "Пользователи » Новый пользователь");
+        assertEquals(getPage(UsersNewPage.class).newUserPage(), "Пользователи » Новый пользователь");
 
         String login = randomEnglishLowerString(8);
         String firstName = randomEnglishLowerString(12);
