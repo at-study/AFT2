@@ -25,7 +25,6 @@ public class TestCase6 {
     private User user1;
     private User user2;
     private User user3;
-    private String username;
 
 
     @BeforeMethod
@@ -49,8 +48,10 @@ public class TestCase6 {
         Asserts.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(UsersPage.class).table));
         userSortingByAscending();
+        orderSwitch();
+        userSortingByDescending();
     }
-        @Step("Сортировка пользователей по возрастанию при заходе на страницу")
+    @Step("Сортировка пользователей по возрастанию при заходе на страницу")
         private void userSortingByAscending () {
             List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTable
                     .stream()
@@ -64,6 +65,26 @@ public class TestCase6 {
 
             Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
         }
+
+    @Step("Сортировка пользователей по убыванию после клика для переключения порядка")
+    private void userSortingByDescending () {
+        List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTable
+                .stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+
+        List<String> expectedOrderedByAscList = actualOrderedByAscList
+                .stream()
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.toList());
+
+        Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
+    }
+
+    @Step("В шапке таблицы нажать на 'Пользователь'")
+    private void orderSwitch () {
+        getPage(UsersPage.class).usersHeaderInTable.click();
+    }
 
     @AfterMethod
     public void tearDown() {
