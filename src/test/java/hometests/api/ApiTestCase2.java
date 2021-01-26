@@ -1,10 +1,6 @@
 package hometests.api;
 
 import io.qameta.allure.Description;
-import io.restassured.http.ContentType;
-import io.restassured.http.Method;
-import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.api.implementations.RestApiClient;
@@ -13,11 +9,8 @@ import redmine.api.interfaces.ApiClient;
 import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
 import redmine.model.user.User;
-
+import redmine.utils.Asserts;
 import java.util.Random;
-
-import static io.restassured.RestAssured.given;
-import static org.testng.Assert.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
@@ -51,6 +44,6 @@ public class ApiTestCase2 {
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         apiClient.executeRequest(request);
         redmine.api.interfaces.Response userCreationByNonAdmin = apiClient.executeRequest(request);
-        assertEquals(userCreationByNonAdmin.getStatusCode(), 403);
+        Asserts.assertEquals(userCreationByNonAdmin.getStatusCode(), 403);
     }
 }

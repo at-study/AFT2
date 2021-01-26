@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.db.requests.UserRequests;
 import redmine.model.user.User;
+import redmine.utils.Asserts;
 
 import static io.restassured.RestAssured.given;
 
@@ -32,9 +33,9 @@ public class ApiTestCase4 {
                 .contentType(ContentType.JSON)
                 .header("X-Redmine-API-Key", firstUserApiKey)
                 .request(Method.DELETE, uri);
-        Assert.assertEquals(deleteResponse.getStatusCode(), 403);
+        Asserts.assertEquals(deleteResponse.getStatusCode(), 403);
         int userCountAfterDelete = UserRequests.getAllUsers().size();
-        Assert.assertEquals(userCountAfterDelete, usersBeforeDelete);
+        Asserts.assertEquals(userCountAfterDelete, usersBeforeDelete);
     }
 
     @Test(testName = "Шаг 2 -Удаление пользователя самим собою и проверка в бд ", priority = 11, description = "2. Отправить запрос DELETE на удаление пользователя из п.1, используя ключи из п.2 (удаление себя)")
@@ -48,8 +49,8 @@ public class ApiTestCase4 {
                 .contentType(ContentType.JSON)
                 .header("X-Redmine-API-Key", userApiKey)
                 .request(Method.DELETE, uri);
-        Assert.assertEquals(deleteResponse.getStatusCode(), 403);
+        Asserts.assertEquals(deleteResponse.getStatusCode(), 403);
         int userCountAfterDelete = UserRequests.getAllUsers().size();
-        Assert.assertEquals(userCountAfterDelete, usersBeforeDelete);
+        Asserts.assertEquals(userCountAfterDelete, usersBeforeDelete);
     }
 }

@@ -14,6 +14,7 @@ import redmine.api.interfaces.Request;
 import redmine.api.interfaces.Response;
 import redmine.model.dto.UserDto;
 import redmine.model.user.User;
+import redmine.utils.Asserts;
 import redmine.utils.gson.GsonHelper;
 
 import static io.restassured.RestAssured.given;
@@ -40,15 +41,15 @@ public class ApiTestCase3 {
 
         String responseBody = getResponse.getBody().toString();
         UserDto createdGetUser = GsonHelper.getGson().fromJson(responseBody, UserDto.class);
-        Assert.assertEquals(createdGetUser.getUser().getId(), firstUser.getId());
-        Assert.assertEquals(createdGetUser.getUser().getLogin(), firstUser.getLogin());
-        Assert.assertEquals(createdGetUser.getUser().getFirstname(), firstUser.getFirstName());
-        Assert.assertEquals(createdGetUser.getUser().getLastname(), firstUser.getLastName());
+        Asserts.assertEquals(createdGetUser.getUser().getId(), firstUser.getId());
+        Asserts.assertEquals(createdGetUser.getUser().getLogin(), firstUser.getLogin());
+        Asserts.assertEquals(createdGetUser.getUser().getFirstname(), firstUser.getFirstName());
+        Asserts.assertEquals(createdGetUser.getUser().getLastname(), firstUser.getLastName());
         Assert.assertNull(createdGetUser.getUser().getCreated_on());
         Assert.assertNull(createdGetUser.getUser().getLast_login_on());
 
         Assert.assertFalse(createdGetUser.getUser().getAdmin());
-        Assert.assertEquals(createdGetUser.getUser().getApi_key(), firstUser.getApiKey());
+        Asserts.assertEquals(createdGetUser.getUser().getApi_key(), firstUser.getApiKey());
     }
 
     @Test(testName = "Шаг 2-Получение пользователем инфо о другом пользователе +допинфо", priority = 9, description = "2. Отправить запрос GET на получения пользователя из п.3, используя ключ API из п.2 ")
@@ -60,12 +61,12 @@ public class ApiTestCase3 {
                 .header("X-Redmine-API-Key", firstUser.getApiKey())
                 .request(Method.GET, uri);
 
-        Assert.assertEquals(getResponse.getStatusCode(), 200);
+        Asserts.assertEquals(getResponse.getStatusCode(), 200);
         String responseBody = getResponse.getBody().asString();
         UserDto createdUser = GsonHelper.getGson().fromJson(responseBody, UserDto.class);
-        Assert.assertEquals(createdUser.getUser().getLogin(), secondUser.getLogin());
-        Assert.assertEquals(createdUser.getUser().getFirstname(), secondUser.getFirstName());
-        Assert.assertEquals(createdUser.getUser().getLastname(), secondUser.getLastName());
+        Asserts.assertEquals(createdUser.getUser().getLogin(), secondUser.getLogin());
+        Asserts.assertEquals(createdUser.getUser().getFirstname(), secondUser.getFirstName());
+        Asserts.assertEquals(createdUser.getUser().getLastname(), secondUser.getLastName());
         Assert.assertNull(createdUser.getUser().getPassword());
         Assert.assertNull(createdUser.getUser().getLast_login_on());
         Assert.assertNull(createdUser.getUser().getStatus(), secondUser.getStatus().toString());
