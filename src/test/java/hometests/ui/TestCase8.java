@@ -7,8 +7,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.api.interfaces.Response;
+import redmine.db.requests.RoleRequests;
 import redmine.db.requests.UserRequests;
 import redmine.managers.Manager;
+import redmine.model.role.Role;
 import redmine.model.user.User;
 import redmine.ui.pages.*;
 import redmine.utils.Asserts;
@@ -58,6 +60,7 @@ public class TestCase8 {
     }
         @Step("Поверка создания пользователя в Базе Данных")
         private void userCheckInDataBase(String login){
+
         }
     @AfterMethod
     public void tearDown() {
