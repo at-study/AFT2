@@ -1,8 +1,7 @@
 package hometests.ui;
 
-import static org.codehaus.groovy.runtime.DefaultGroovyMethods.collect;
-import static redmine.utils.Asserts.assertEquals;
 
+import static redmine.utils.Asserts.assertEquals;
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
@@ -28,17 +27,14 @@ import static redmine.ui.pages.Pages.getPage;
 
 public class TestCase7 {
     private User userAdmin;
-    private User user1;
-    private User user2;
-    private User user3;
 
 
     @BeforeMethod
     public void prepareFixture() {
         userAdmin = new User().setAdmin(true).setStatus(1).generate();
-        user1 = new User().setAdmin(false).setStatus(1).generate();
-        user2 = new User().setAdmin(false).setStatus(1).generate();
-        user3 = new User().setAdmin(false).setStatus(1).generate();
+        User user1 = new User().setAdmin(false).setStatus(1).generate();
+        User user2 = new User().setAdmin(false).setStatus(1).generate();
+        User user3 = new User().setAdmin(false).setStatus(1).generate();
         openPage("login");
     }
 
@@ -156,10 +152,7 @@ public class TestCase7 {
         Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
     }
 
-       @Step("В шапке таблицы нажать на 'Пользователь'")
-        private void orderSwitchUserName () {
-            getPage(UsersPage.class).usersHeaderInTable.click();
-        }
+
         @Step("В шапке таблицы нажать на 'Фамилии'")
          private void orderSwitchUserLastName() {
              getPage(UsersPage.class).usersByLastNameHeaderInTable.click();
