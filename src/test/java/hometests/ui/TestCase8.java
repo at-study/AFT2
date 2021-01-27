@@ -1,13 +1,18 @@
 package hometests.ui;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import redmine.managers.Manager;
 import redmine.model.user.User;
 import redmine.ui.pages.*;
 import redmine.utils.Asserts;
+
+import java.util.List;
+import java.util.Map;
 
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
@@ -46,10 +51,13 @@ public class TestCase8 {
         getPage(UsersNewPage.class).userCreation(login, firstName, lastName, mail);
         String flashNoticeText = String.format("Пользователь %s создан.", login);
         Assert.assertEquals(getPage(UsersNewPage.class).flashNotice(), flashNoticeText);
-
-
+        userCheckInDataBase(login);
     }
-
+        @Step("Поверка создания пользователя в Базе Данных")
+        private void userCheckInDataBase(String login){
+        String quary=String.format("select * from users where login=%s",login);
+        List<Map<String,Object>> quaryResult= Manager.dbConnection.executeQuery(quary);
+        }
     @AfterMethod
     public void tearDown() {
         driverQuit();
