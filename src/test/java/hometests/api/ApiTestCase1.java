@@ -24,6 +24,7 @@ import static redmine.utils.StringGenerators.randomEnglishLowerString;
 public class ApiTestCase1 {
     private User user;
     private ApiClient apiClient ;
+
     @BeforeMethod
     public void prepareFixtures() {
         user = new User().setAdmin(true).setStatus(1).generate();
