@@ -107,7 +107,7 @@ public class TestCase7 {
 
             List<String> expectedOrderedByAscList = actualOrderedByAscList
                     .stream()
-                    .sorted((String s1,String s2)->{ return s1.compareTo(s2);})
+                    .sorted(String::compareToIgnoreCase)
                     .collect(Collectors.toList());
 
             Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
@@ -121,7 +121,7 @@ public class TestCase7 {
 
         List<String> expectedOrderedByAscList = actualOrderedByAscList
                 .stream()
-                .sorted(Comparator.reverseOrder())
+                .sorted(String.CASE_INSENSITIVE_ORDER.reversed())
                 .collect(Collectors.toList());
 
         Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
@@ -136,7 +136,7 @@ public class TestCase7 {
 
         List<String> expectedOrderedByAscList = actualOrderedByAscList
                 .stream()
-                .sorted(Comparator.naturalOrder())
+                .sorted(String::compareToIgnoreCase)
                 .collect(Collectors.toList());
 
         Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
@@ -150,7 +150,7 @@ public class TestCase7 {
 
         List<String> expectedOrderedByAscList = actualOrderedByAscList
                 .stream()
-                .sorted(Comparator.reverseOrder())
+                .sorted(String.CASE_INSENSITIVE_ORDER.reversed())
                 .collect(Collectors.toList());
 
         Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
