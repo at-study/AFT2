@@ -6,6 +6,8 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import redmine.api.interfaces.Response;
+import redmine.db.requests.UserRequests;
 import redmine.managers.Manager;
 import redmine.model.user.User;
 import redmine.ui.pages.*;
@@ -13,6 +15,7 @@ import redmine.utils.Asserts;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
@@ -57,6 +60,8 @@ public class TestCase8 {
         private void userCheckInDataBase(String login){
         String quary=String.format("select * from users where login=%s",login);
         List<Map<String,Object>> quaryResult= Manager.dbConnection.executeQuery(quary);
+
+
         }
     @AfterMethod
     public void tearDown() {
