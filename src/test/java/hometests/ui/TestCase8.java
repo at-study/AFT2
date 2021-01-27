@@ -58,10 +58,6 @@ public class TestCase8 {
     }
         @Step("Поверка создания пользователя в Базе Данных")
         private void userCheckInDataBase(String login){
-        String quary=String.format("select * from users where login=%s",login);
-        List<Map<String,Object>> quaryResult= Manager.dbConnection.executeQuery(quary);
-
-
         }
     @AfterMethod
     public void tearDown() {
