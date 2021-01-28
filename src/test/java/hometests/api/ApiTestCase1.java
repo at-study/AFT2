@@ -16,14 +16,16 @@ import redmine.model.dto.UserDto;
 import redmine.model.user.User;
 import redmine.utils.StringGenerators;
 import redmine.utils.gson.GsonHelper;
+
 import java.util.Random;
+
 import static redmine.utils.Asserts.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 public class ApiTestCase1 {
     private User user;
-    private ApiClient apiClient ;
+    private ApiClient apiClient;
 
     @BeforeMethod
     public void prepareFixtures() {

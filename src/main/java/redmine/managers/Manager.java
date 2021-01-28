@@ -48,9 +48,9 @@ public class Manager {
         return wait;
     }
 
-    @Attachment(value="screenshot")
+    @Attachment(value = "screenshot")
     public static byte[] takesScreenshot() {
-       return ((TakesScreenshot) driver()).getScreenshotAs(OutputType.BYTES);
+        return ((TakesScreenshot) driver()).getScreenshotAs(OutputType.BYTES);
 
     }
 

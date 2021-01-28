@@ -44,13 +44,14 @@ public class DataBaseConnection {
 
     /**
      * Выполняет SQL-запрос и возвращает результат
+     *
      * @param query -SQL-запрос
      * @return данные-результат запроса
      */
     @SneakyThrows
     @Step("Выполнение SQL запроса")
     public List<Map<String, Object>> executeQuery(String query) {
-        Allure.addAttachment("query",query);
+        Allure.addAttachment("query", query);
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
         int count = resultSet.getMetaData().getColumnCount();
@@ -68,7 +69,7 @@ public class DataBaseConnection {
             }
             result.add(columnData);
         }
-        Allure.addAttachment("response",result.toString());
+        Allure.addAttachment("response", result.toString());
         return result;
     }
 
@@ -88,7 +89,7 @@ public class DataBaseConnection {
             statement.setObject(index++, object);
 
         }
-        Allure.addAttachment("query",statement.toString());
+        Allure.addAttachment("query", statement.toString());
         ResultSet resultSet = statement.executeQuery();
         int count = resultSet.getMetaData().getColumnCount();
         List<String> columnNames = new ArrayList<>();
@@ -105,7 +106,7 @@ public class DataBaseConnection {
             }
             result.add(columnData);
         }
-        Allure.addAttachment("response",result.toString());
+        Allure.addAttachment("response", result.toString());
         return result;
     }
 

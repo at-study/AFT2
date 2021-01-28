@@ -2,6 +2,7 @@ package hometests.ui;
 
 
 import static redmine.utils.Asserts.assertEquals;
+
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
@@ -64,20 +65,21 @@ public class TestCase7 {
         tableNotSortedByLastName();
         usersOrderedByNameDesc();
     }
-        @Step("Таблица не отсортирована по фамилии")
-        private void tableNotSortedByLastName() {
-            List<String> actualNonOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByLastNames
-                    .stream()
-                    .map(WebElement::getText)
-                    .collect(Collectors.toList());
 
-            List<String> notExpectedOrderedByAscList = actualNonOrderedByAscList
-                    .stream()
-                    .sorted()
-                    .collect(Collectors.toList());
+    @Step("Таблица не отсортирована по фамилии")
+    private void tableNotSortedByLastName() {
+        List<String> actualNonOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByLastNames
+                .stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
 
-            Assert.assertNotEquals(actualNonOrderedByAscList, notExpectedOrderedByAscList);
-        }
+        List<String> notExpectedOrderedByAscList = actualNonOrderedByAscList
+                .stream()
+                .sorted()
+                .collect(Collectors.toList());
+
+        Assert.assertNotEquals(actualNonOrderedByAscList, notExpectedOrderedByAscList);
+    }
 
     @Step("Таблица не отсортирована по имени")
     private void tableNotSortedByName() {
@@ -94,22 +96,23 @@ public class TestCase7 {
         Assert.assertNotEquals(actualNonOrderedByAscList, notExpectedOrderedByAscList);
     }
 
-        @Step("Сортировка пользователей по возрастанию после клика для переключения порядка Фамилии")
-        private void usersOrderedByLastNameAsc () {
-            List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByLastNames
-                    .stream()
-                    .map(WebElement::getText)
-                    .collect(Collectors.toList());
+    @Step("Сортировка пользователей по возрастанию после клика для переключения порядка Фамилии")
+    private void usersOrderedByLastNameAsc() {
+        List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByLastNames
+                .stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
 
-            List<String> expectedOrderedByAscList = actualOrderedByAscList
-                    .stream()
-                    .sorted(String::compareToIgnoreCase)
-                    .collect(Collectors.toList());
+        List<String> expectedOrderedByAscList = actualOrderedByAscList
+                .stream()
+                .sorted(String::compareToIgnoreCase)
+                .collect(Collectors.toList());
 
-            Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
-        }
+        Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
+    }
+
     @Step("Сортировка пользователей по убыванию после клика для переключения порядка Фамилии")
-    private void usersOrderedByLastNameDesc () {
+    private void usersOrderedByLastNameDesc() {
         List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByLastNames
                 .stream()
                 .map(WebElement::getText)
@@ -124,7 +127,7 @@ public class TestCase7 {
     }
 
     @Step("Сортировка пользователей по возрастанию после клика для переключения порядка Имени")
-    private void usersOrderedByNameAsc () {
+    private void usersOrderedByNameAsc() {
         List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByNames
                 .stream()
                 .map(WebElement::getText)
@@ -137,8 +140,9 @@ public class TestCase7 {
 
         Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
     }
+
     @Step("Сортировка пользователей по убыванию после клика для переключения порядка Имени")
-    private void usersOrderedByNameDesc () {
+    private void usersOrderedByNameDesc() {
         List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByNames
                 .stream()
                 .map(WebElement::getText)
@@ -153,15 +157,15 @@ public class TestCase7 {
     }
 
 
-        @Step("В шапке таблицы нажать на 'Фамилии'")
-         private void orderSwitchUserLastName() {
-             getPage(UsersPage.class).usersByLastNameHeaderInTable.click();
-             }
-         @Step("В шапке таблицы нажать на 'Имя'")
-        private void orderSwitchName() {
-             getPage(UsersPage.class).usersByNameHeaderInTable.click();
-          }
+    @Step("В шапке таблицы нажать на 'Фамилии'")
+    private void orderSwitchUserLastName() {
+        getPage(UsersPage.class).usersByLastNameHeaderInTable.click();
+    }
 
+    @Step("В шапке таблицы нажать на 'Имя'")
+    private void orderSwitchName() {
+        getPage(UsersPage.class).usersByNameHeaderInTable.click();
+    }
 
     @AfterMethod
     public void tearDown() {

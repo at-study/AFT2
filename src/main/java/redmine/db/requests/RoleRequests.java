@@ -32,6 +32,7 @@ public class RoleRequests {
                     return role;
                 }).collect(Collectors.toList());
     }
+
     @Step("Информация о роли получена")
     public static Role getRole(Role objectRole) {
         return getAllRoles().stream()

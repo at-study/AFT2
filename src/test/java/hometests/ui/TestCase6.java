@@ -51,23 +51,24 @@ public class TestCase6 {
         orderSwitch();
         userSortingByDescending();
     }
+
     @Step("Сортировка пользователей по возрастанию при заходе на страницу")
-        private void userSortingByAscending () {
-            List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTable
-                    .stream()
-                    .map(WebElement::getText)
-                    .collect(Collectors.toList());
+    private void userSortingByAscending() {
+        List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTable
+                .stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
 
-            List<String> expectedOrderedByAscList = actualOrderedByAscList
-                    .stream()
-                    .sorted(Comparator.naturalOrder())
-                    .collect(Collectors.toList());
+        List<String> expectedOrderedByAscList = actualOrderedByAscList
+                .stream()
+                .sorted(Comparator.naturalOrder())
+                .collect(Collectors.toList());
 
-            Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
-        }
+        Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
+    }
 
     @Step("Сортировка пользователей по убыванию после клика для переключения порядка")
-    private void userSortingByDescending () {
+    private void userSortingByDescending() {
         List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTable
                 .stream()
                 .map(WebElement::getText)
@@ -82,7 +83,7 @@ public class TestCase6 {
     }
 
     @Step("В шапке таблицы нажать на 'Пользователь'")
-    private void orderSwitch () {
+    private void orderSwitch() {
         getPage(UsersPage.class).usersHeaderInTable.click();
     }
 

@@ -60,6 +60,7 @@ public class UserRequests {
         Manager.dbConnection.executePreparedQuery(queryForEmail, userId, email, true, true, LocalDateTime.now(), LocalDateTime.now());
         return user;
     }
+
     @Step("Информация о пользователе изменена")
     public static User updateUser(User user) {
         String query = "update public.users\n" +
@@ -71,6 +72,7 @@ public class UserRequests {
         user.setId((Integer) result.get(0).get("id"));
         return user;
     }
+
     @Step("Информация о пользователе получена")
     public static User getUser(User objectUser) {
         return getAllUsers().stream()

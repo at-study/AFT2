@@ -10,7 +10,9 @@ import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
 import redmine.model.user.User;
 import redmine.utils.Asserts;
+
 import java.util.Random;
+
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
