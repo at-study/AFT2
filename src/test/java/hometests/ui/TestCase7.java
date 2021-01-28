@@ -1,8 +1,6 @@
 package hometests.ui;
 
-
 import static redmine.utils.Asserts.assertEquals;
-
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
@@ -16,11 +14,9 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.UsersPage;
 import redmine.utils.BrowserUtils;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static org.testng.Assert.*;
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
@@ -28,7 +24,6 @@ import static redmine.ui.pages.Pages.getPage;
 
 public class TestCase7 {
     private User userAdmin;
-
 
     @BeforeMethod
     public void prepareFixture() {
@@ -155,7 +150,6 @@ public class TestCase7 {
 
         Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
     }
-
 
     @Step("В шапке таблицы нажать на 'Фамилии'")
     private void orderSwitchUserLastName() {
