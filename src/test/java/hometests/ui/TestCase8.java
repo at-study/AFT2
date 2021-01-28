@@ -1,6 +1,7 @@
 package hometests.ui;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -19,12 +20,10 @@ import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 public class TestCase8 {
     private User userAdmin;
-    private User user;
 
     @BeforeMethod
     public void prepareFixture() {
         userAdmin = new User().setAdmin(true).setStatus(1).generate();
-        User user=new User().setAdmin(false).setStatus(1).generate();
         openPage("login");
     }
 
@@ -47,18 +46,34 @@ public class TestCase8 {
         String lastName = randomEnglishLowerString(12);
         String mail = randomEmail();
 
+        formFillAndNotice(login, firstName, lastName, mail);
+        checkInDb(login, firstName, lastName, mail);
+    }
+
+    @Step("Заполнение формы и уведомление")
+    private void formFillAndNotice(String login, String firstName, String lastName, String mail) {
         getPage(UsersNewPage.class).userCreation(login, firstName, lastName, mail);
         String flashNoticeText = String.format("Пользователь %s создан.", login);
         Assert.assertEquals(getPage(UsersNewPage.class).flashNotice(), flashNoticeText);
 
+    }
 
-        String query = String.format("select * from users u inner join tokens t on u.id=t.user_id inner join email_addresses e on u.id=e.user_id where login='%s'", login);
+
+    @Step("Проверка создания пользователя в БД")
+    private void checkInDb(String login, String firstName, String lastName, String mail) {
+        String query = String.format("select * from users u  inner join email_addresses e on u.id=e.user_id where login='%s'", login);
         List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
-
+        Assert.assertEquals(result.size(), 1, "Проверка размера результата");
+        Map<String, Object> dbUser = result.get(0);
+        dbUser.get("id");
+        Asserts.assertEquals(dbUser.get("login"), login);
+        Asserts.assertEquals(dbUser.get("firstname"), firstName);
+        Asserts.assertEquals(dbUser.get("lastname"), lastName);
+        Asserts.assertEquals(dbUser.get("address"), mail);
     }
 
     @AfterMethod
-    public void tearDown(){
+    public void tearDown() {
         driverQuit();
     }
 }

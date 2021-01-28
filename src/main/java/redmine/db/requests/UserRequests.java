@@ -82,8 +82,6 @@ public class UserRequests {
                 .findFirst()
                 .orElse(null);
     }
-    @Step("Информация о пользователе получена")
-    public static List<User> getUserByLogin(User objectUser){
-        return getAllUsers().stream()
-                .filter(user -> objectUser.getLogin().equals(user.getLogin()))
-                .collect(Collectors.toList());}}
+
+
+}
