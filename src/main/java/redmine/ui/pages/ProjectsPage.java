@@ -31,4 +31,19 @@ public class ProjectsPage extends AbstractPage {
         return driver().findElement(By.xpath(fullProjectXpath)).getText();
     }
 
+    @Step("Отсуствует соответсвующее название проекта")
+    public String projectNameAbsent(String projectName) {
+        String fullProjectXpath = String.format("//a[text()='%s']", projectName);
+        if(driver().findElement(By.xpath(fullProjectXpath)).getText()!=null)
+            return driver().findElement(By.xpath(fullProjectXpath)).getText() ;
+        else return "Отсутствует Название проекта";
+    }
+
+    @Step("Отсутствует соответствующий элемент описания проекта")
+    public String projectNameDescriptionAbsent(String projectName) {
+        String fullProjectXpath = String.format("//a[text()='%s']/following-sibling::div", projectName);
+        if(driver().findElement(By.xpath(fullProjectXpath)).getText()!=null)
+            return driver().findElement(By.xpath(fullProjectXpath)).getText() ;
+        else return "Отсутствует описание проекта";
+    }
 }
