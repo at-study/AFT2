@@ -70,10 +70,10 @@ public class TestCase5 {
         Asserts.assertEquals(getPage(ProjectsPage.class).projectNameDescription(publicProject.getName()), publicProject.getDescription());
     }
 
-    @Step("Пользователь  НЕ видит приватный проект ,важно отсутствие привязки или привязка к ждругому пользователю")
+    @Step("Пользователь  НЕ видит приватный проект ,важно отсутствие привязки или привязка к другому пользователю")
     private void userCouldNotSeePrivateProject(){
-        Asserts.assertEquals(getPage(ProjectsPage.class).projectNameAbsent(privateNotConnectedProject.getName()), "Отсутствует Название проекта");
-        Asserts.assertEquals(getPage(ProjectsPage.class).projectNameDescriptionAbsent(privateNotConnectedProject.getName()), "Отсутствует описание проекта");
+        Assert.assertFalse(BrowserUtils.isElementPresent(getPage(ProjectsPage.class).projectNameAbsent(privateNotConnectedProject.getName())));
+        Assert.assertFalse(BrowserUtils.isElementPresent(getPage(ProjectsPage.class).projectNameDescriptionAbsent(privateNotConnectedProject.getDescription())));
     }
 
     @Step("Пользователь видит публичный проект ,важно наличие привязки")
