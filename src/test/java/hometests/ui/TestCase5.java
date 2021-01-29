@@ -1,6 +1,7 @@
 package hometests.ui;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -8,7 +9,10 @@ import redmine.model.project.Project;
 import redmine.model.role.Role;
 import redmine.model.role.RolePermissions;
 import redmine.model.user.User;
+import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
+import redmine.ui.pages.ProjectsPage;
+import redmine.utils.Asserts;
 
 import static redmine.utils.Asserts.assertEquals;
 import static redmine.managers.Manager.driverQuit;
@@ -36,13 +40,24 @@ public class TestCase5 {
     @Test(testName = " Видимость проектов. Пользователь", priority = 6, description = " Видимость проектов. Пользователь")
     @Description("5. Видимость проектов. Пользователь")
     public void visibiltyOfProjectForUser() {
-        System.out.println(user.getId());
-        System.out.println(user.getFirstName());
-        System.out.println(user.getLastName());
-        System.out.println(role.getName());
-        System.out.println(role.getPermissions());
-        getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
+       authorizationAndSituatingOnHomePage();
+       clickAndPassingOnProjectPage();
+       projectReflection();
+    }
 
+    @Step("Пользовель авторизировался и находиться на домашней странице")
+    private void authorizationAndSituatingOnHomePage(){
+        getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
+        Asserts.assertEquals(getPage(HeaderPage.class).projects(), "Проекты");
+    }
+
+    @Step("Пользовель кликнул на элемент Проекты и перешёл на страницу Проекты")
+    private void clickAndPassingOnProjectPage() {
+        getPage(HeaderPage.class).projects.click();
+        Asserts.assertEquals(getPage(ProjectsPage.class).projectPageName(), "Проекты");
+    }
+    @Step("Отображение проектов")
+    private void projectReflection() {
 
     }
 
