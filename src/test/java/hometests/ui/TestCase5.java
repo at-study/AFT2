@@ -59,25 +59,10 @@ public class TestCase5 {
     }
     @Step("Отображение проектов")
     private void projectReflection() {
-        userCouldSeePublicProject();
-        userCouldNotSeePrivateProject();
-        userCouldSeePrivateProject();
-    }
-
-    @Step("Пользователь видит публичный проект ,привязка не важна")
-    private void userCouldSeePublicProject(){
         Asserts.assertEquals(getPage(ProjectsPage.class).projectName(publicProject.getName()), publicProject.getName());
         Asserts.assertEquals(getPage(ProjectsPage.class).projectNameDescription(publicProject.getName()), publicProject.getDescription());
-    }
 
-    @Step("Пользователь  НЕ видит приватный проект ,важно отсутствие привязки или привязка к другому пользователю")
-    private void userCouldNotSeePrivateProject(){
-        Assert.assertFalse(BrowserUtils.isElementPresent(getPage(ProjectsPage.class).projectNameAbsent(privateNotConnectedProject.getName())));
-        Assert.assertFalse(BrowserUtils.isElementPresent(getPage(ProjectsPage.class).projectNameDescriptionAbsent(privateNotConnectedProject.getDescription())));
-    }
 
-    @Step("Пользователь видит публичный проект ,важно наличие привязки")
-    private void userCouldSeePrivateProject(){
     }
 
     @AfterMethod
