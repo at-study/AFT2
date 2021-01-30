@@ -21,14 +21,14 @@ public class ProjectsPage extends AbstractPage {
 
     @Step("Присутствует соответсвующее название проекта")
     public String  projectName(String projectName) {
-        String fullProjectXpath = String.format("//a[text()='%s']", projectName);
-        return driver().findElement(By.xpath(fullProjectXpath)).getText();
+        String fullProjectNameXpath = String.format("//a[text()='%s']", projectName);
+        return driver().findElement(By.xpath(fullProjectNameXpath)).getText();
     }
 
     @Step("Присутствует соответствующий элемент описания проекта")
     public String  projectNameDescription(String projectName) {
-        String fullProjectXpath = String.format("//a[text()='%s']/following-sibling::div", projectName);
-        return driver().findElement(By.xpath(fullProjectXpath)).getText();
+        String fullProjectDescriptionXpath = String.format("//a[text()='%s']/following-sibling::div", projectName);
+        return driver().findElement(By.xpath(fullProjectDescriptionXpath)).getText();
     }
 
 }

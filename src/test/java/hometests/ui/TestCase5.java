@@ -2,6 +2,7 @@ package hometests.ui;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,8 +17,7 @@ import redmine.ui.pages.ProjectsPage;
 import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
 
-import static redmine.managers.Manager.driverQuit;
-import static redmine.managers.Manager.openPage;
+import static redmine.managers.Manager.*;
 import static redmine.model.role.RolePermission.VIEW_ISSUES;
 import static redmine.ui.pages.Pages.getPage;
 
@@ -62,6 +62,8 @@ public class TestCase5 {
         Asserts.assertEquals(getPage(ProjectsPage.class).projectName(publicProject.getName()), publicProject.getName());
         Asserts.assertEquals(getPage(ProjectsPage.class).projectNameDescription(publicProject.getName()), publicProject.getDescription());
 
+        String fullProjectNameXpath = String.format("//a[text()='%s']", privateNotConnectedProject.getName());
+        String fullProjectDescriptionXpath = String.format("//a[text()='%s']/following-sibling::div", privateNotConnectedProject.getName());
 
     }
 
