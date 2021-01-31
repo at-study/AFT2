@@ -89,7 +89,6 @@ public class DataBaseConnection {
         int index = 1;
         for (Object object : parameters) {
             statement.setObject(index++, object);
-
         }
         Allure.addAttachment("query", statement.toString());
         ResultSet resultSet = statement.executeQuery();

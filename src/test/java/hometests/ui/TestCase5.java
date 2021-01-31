@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import redmine.db.requests.ProjectRequests;
 import redmine.model.project.Project;
 import redmine.model.role.Role;
 import redmine.model.role.RolePermissions;
@@ -15,6 +16,8 @@ import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.ProjectsPage;
 import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
+
+import static redmine.db.requests.ProjectRequests.addUserAndRoleToProject;
 import static redmine.managers.Manager.*;
 import static redmine.model.role.RolePermission.VIEW_ISSUES;
 import static redmine.ui.pages.Pages.getPage;
@@ -76,7 +79,11 @@ public class TestCase5 {
 
     @Step("Отображается приватный  проект ( привязанный )")
     private  void privateConnectedProjectVisibility(){
-
+    Project createdConnectedProject=addUserAndRoleToProject(privateConnectedProject,user,role);
+    String createdProjectName=createdConnectedProject.getName();
+    String createdProjectDescription=createdConnectedProject.getDescription();
+    Asserts.assertEquals(getPage(ProjectsPage.class).projectName(createdProjectName), createdProjectName);
+    Asserts.assertEquals(getPage(ProjectsPage.class).projectNameDescription(createdProjectName), createdProjectDescription);
     }
 
     @AfterMethod

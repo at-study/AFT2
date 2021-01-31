@@ -7,6 +7,8 @@ import redmine.model.Generatable;
 import redmine.model.role.Role;
 import redmine.model.user.User;
 
+import java.time.LocalDateTime;
+
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 @Getter
@@ -24,8 +26,8 @@ public class Project implements Generatable<Project> {
     private Integer parentId;
     private Boolean isPublic;
     private String identifier = "Autoproject" + randomEnglishLowerString(6);
-    //TODO updated_on
-    //TODO created_on
+    private LocalDateTime updatedOn= LocalDateTime.now();
+    private LocalDateTime createdOn= LocalDateTime.now();
     private Integer status = 1;
     private Integer lft = 3;
     private Integer rgt = 3;

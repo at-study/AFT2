@@ -1,11 +1,10 @@
 package redmine.db.requests;
 
-import com.google.gson.JsonArray;
 import io.qameta.allure.Step;
 import redmine.model.project.Project;
 import redmine.model.role.Role;
 import redmine.model.user.User;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -34,7 +33,7 @@ public class ProjectRequests {
     @Step("Создание проекта")
     public static Project createProject(Project project) {
         String query = "insert into public.projects\n" +
-                "(id,\"name\",\"description\",\"is_public\",status,identifier,lft,rgt)values(DEFAULT,?,?,?,?,?,?,?) RETURNING id;\n";
+                "(id,\"name\",\"description\",\"is_public\",status,identifier,lft,rgt,created_on,updated_on)values(DEFAULT,?,?,?,?,?,?,?,?,?) RETURNING id;\n";
         List<Map<String, Object>> result = dbConnection.executePreparedQuery(query,
                 project.getName(),
                 project.getDescription(),
@@ -42,19 +41,29 @@ public class ProjectRequests {
                 project.getStatus(),
                 project.getIdentifier(),
                 project.getLft(),
-                project.getRgt());
+                project.getRgt(),
+                project.getCreatedOn(),
+                project.getUpdatedOn());
         project.setId((Integer) result.get(0).get("id"));
         Integer projectId = (Integer) result.get(0).get("id");
         return project;
     }
 
     @Step("Инсерт пользователя+проекта в мемберс &&  инсерт members+role в мемберсрол")
-    public static void addUserAndRoleToProject(Project project, User user, Role role) {
-    String quaryPutIntoMembers="insert into public.members\n"+
-            "(id,user_id,project_id,created_on,mail_notification) values(default,?,?,?,false) returning id;\n";
-    String quaryPutToMembersRoles="insert into public.member_roles\n"+
-            "(id,member_id,role_id,inherited_from) values (default,?,?,NULL) returning id;\n";
+    public static Project addUserAndRoleToProject(Project project, User user, Role role) {
 
+    String quaryPutIntoMembers="insert into public.members\n"+
+            "(id,user_id,project_id,created_on,mail_notification) values(default,?,?,?,false) RETURNING id;\n";
+    List<Map<String, Object>> resultQuaryPutIntoMembers = dbConnection.executePreparedQuery(quaryPutIntoMembers,
+                user.getId(),project.getId(), LocalDateTime.now());
+    user.setId((Integer) resultQuaryPutIntoMembers.get(0).get("id"));
+    Integer membersId = (Integer) resultQuaryPutIntoMembers.get(0).get("id");
+
+    String quaryPutToMembersRoles="insert into public.member_roles\n"+
+                "(id,member_id,role_id,inherited_from) values (default,?,?,NULL) returning id;\n";
+    List<Map<String, Object>> resultQuaryPutToMembersRoles = dbConnection.executePreparedQuery(quaryPutToMembersRoles,
+                membersId,role.getId());
+    return project;
     }
 }
 
