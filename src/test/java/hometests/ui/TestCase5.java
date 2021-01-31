@@ -2,7 +2,6 @@ package hometests.ui;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,7 +15,6 @@ import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.ProjectsPage;
 import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
-
 import static redmine.managers.Manager.*;
 import static redmine.model.role.RolePermission.VIEW_ISSUES;
 import static redmine.ui.pages.Pages.getPage;
@@ -60,15 +58,20 @@ public class TestCase5 {
     @Step("  ***  Отображение проектов  ***  ")
     private void projectReflection() {
        publicProjectVisibility();
+        privateNotConnectedProjectVisibility();
 
-        Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(getPage(ProjectsPage.class)
-                .projectNameElement(privateNotConnectedProject.getName())));
     }
 
     @Step("Отображается публичный проект")
     private  void publicProjectVisibility(){
         Asserts.assertEquals(getPage(ProjectsPage.class).projectName(publicProject.getName()), publicProject.getName());
         Asserts.assertEquals(getPage(ProjectsPage.class).projectNameDescription(publicProject.getName()), publicProject.getDescription());
+    }
+
+    @Step("НЕ Отображается приватный  проект ( непривязанный )")
+    private  void privateNotConnectedProjectVisibility(){
+        Assert.assertFalse(getPage(ProjectsPage.class).projectInListSituating(privateNotConnectedProject.getName()));
+        Assert.assertFalse(getPage(ProjectsPage.class).projectDescriptionInListSituating(privateNotConnectedProject.getDescription()));
     }
 
     @AfterMethod
