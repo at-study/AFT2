@@ -1,15 +1,13 @@
 package redmine.ui.pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import redmine.managers.Manager;
-
 import static redmine.ui.pages.Pages.getPage;
 
-public class UsersNewPage extends AbstractPage {
+public class NewUserCreationPage extends AbstractPage {
 
     @FindBy(xpath = "//h2[text()=' » Новый пользователь']")
     private WebElement newUserPage;
@@ -38,22 +36,12 @@ public class UsersNewPage extends AbstractPage {
     @Step("Создание нового пользователя")
     public void userCreation(String login, String firstName, String lastName, String mail) {
         new Actions(Manager.driver())
-                .moveToElement(getPage(UsersNewPage.class).usernameField)
-                .click()
-                .sendKeys(login)
-                .moveToElement(getPage(UsersNewPage.class).userFirstNameField)
-                .click()
-                .sendKeys(firstName)
-                .moveToElement(getPage(UsersNewPage.class).userLastNameField)
-                .click()
-                .sendKeys(lastName)
-                .moveToElement(getPage(UsersNewPage.class).userMailField)
-                .click()
-                .sendKeys(mail)
-                .moveToElement(getPage(UsersNewPage.class).passwordCreationCheckBox)
-                .click()
-                .moveToElement(getPage(UsersNewPage.class).commit)
-                .click()
+                .moveToElement(getPage(NewUserCreationPage.class).usernameField).sendKeys(login)
+                .moveToElement(getPage(NewUserCreationPage.class).userFirstNameField).sendKeys(firstName)
+                .moveToElement(getPage(NewUserCreationPage.class).userLastNameField).sendKeys(lastName)
+                .moveToElement(getPage(NewUserCreationPage.class).userMailField).sendKeys(mail)
+                .moveToElement(getPage(NewUserCreationPage.class).passwordCreationCheckBox).click()
+                .moveToElement(getPage(NewUserCreationPage.class).commit).click()
                 .build()
                 .perform();
     }

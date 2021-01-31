@@ -72,8 +72,8 @@ public class TestCase5 {
 
     @Step("НЕ Отображается приватный  проект ( непривязанный )")
     private void privateNotConnectedProjectVisibility() {
-        Assert.assertFalse(getPage(ProjectsPage.class).projectInListSituating(privateNotConnectedProject.getName()));
-        Assert.assertFalse(getPage(ProjectsPage.class).projectDescriptionInListSituating(privateNotConnectedProject.getDescription()));
+        Assert.assertFalse(getPage(ProjectsPage.class).isProjectNameIsSituatingInListOfProjects(privateNotConnectedProject.getName()));
+        Assert.assertFalse(getPage(ProjectsPage.class).isProjectDescriptionIsSituatingInListOfProjects(privateNotConnectedProject.getDescription()));
     }
 
     @Step("Отображается приватный  проект ( привязанный )")

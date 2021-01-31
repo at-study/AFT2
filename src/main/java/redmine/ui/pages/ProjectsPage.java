@@ -2,16 +2,12 @@ package redmine.ui.pages;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.List;
-
 import static redmine.managers.Manager.driver;
 
 public class ProjectsPage extends AbstractPage {
-    private WebDriver driver;
 
     @FindBy(xpath = "//li[@class='root']")
     public List<WebElement> projectList;
@@ -19,7 +15,7 @@ public class ProjectsPage extends AbstractPage {
     @FindBy(xpath = "//h2[text()='Проекты']")
     private WebElement projectPageName;
 
-    @Step("Отображается страница 'Проекты'")
+    @Step("Отображается элемент 'Проекты'")
     public String projectPageName() {
         return projectPageName.getText();
     }
@@ -36,15 +32,16 @@ public class ProjectsPage extends AbstractPage {
         return driver().findElement(By.xpath(fullProjectDescriptionXpath)).getText();
     }
 
-    @Step("Проверка ОТСУТСТВИЯ названия поекта в списке проектов")
-    public boolean projectInListSituating(String projectName) {
-        return projectList.stream().map(element -> element.getText())
+    @Step("Проверка ОТСУТСТВИЯ названия проекта в списке проектов")
+    public boolean isProjectNameIsSituatingInListOfProjects(String projectName) {
+        return projectList.stream().map(WebElement::getText)
                 .anyMatch(text -> text.equals(projectName));
+
     }
 
-    @Step("Проверка ОТСУТСТВИЯ описания поекта в списке проектов")
-    public boolean projectDescriptionInListSituating(String projectDescription) {
-        return projectList.stream().map(element -> element.getText())
+    @Step("Проверка ОТСУТСТВИЯ описания проекта в списке проектов")
+    public boolean isProjectDescriptionIsSituatingInListOfProjects(String projectDescription) {
+        return projectList.stream().map(WebElement::getText)
                 .anyMatch(text -> text.equals(projectDescription));
     }
 }

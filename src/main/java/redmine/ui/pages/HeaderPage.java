@@ -1,7 +1,6 @@
 package redmine.ui.pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -46,7 +45,7 @@ public class HeaderPage extends AbstractPage {
     @FindBy(xpath = "//a[@class='register']")
     public WebElement register;
 
-    @Step("Присутствует элемент 'Вошли как <Логин>'")
+    @Step("Присутствует текст 'Вошли как <Логин>'")
     public String loggedAs() {
         return loggedAs.getText();
     }

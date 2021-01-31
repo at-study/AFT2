@@ -41,7 +41,7 @@ public class TestCase8 {
         Asserts.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
         Asserts.assertEquals(getPage(UsersPage.class).newUserAdd(), "Новый пользователь");
         getPage(UsersPage.class).newUserAdd.click();
-        Asserts.assertEquals(getPage(UsersNewPage.class).newUserPage(), "Пользователи » Новый пользователь");
+        Asserts.assertEquals(getPage(NewUserCreationPage.class).newUserPage(), "Пользователи » Новый пользователь");
 
         String login = randomEnglishLowerString(8);
         String firstName = randomEnglishLowerString(12);
@@ -54,9 +54,9 @@ public class TestCase8 {
 
     @Step("Заполнение формы и уведомление")
     private void formFillAndNotice(String login, String firstName, String lastName, String mail) {
-        getPage(UsersNewPage.class).userCreation(login, firstName, lastName, mail);
+        getPage(NewUserCreationPage.class).userCreation(login, firstName, lastName, mail);
         String flashNoticeText = String.format("Пользователь %s создан.", login);
-        Assert.assertEquals(getPage(UsersNewPage.class).flashNotice(), flashNoticeText);
+        Assert.assertEquals(getPage(NewUserCreationPage.class).flashNotice(), flashNoticeText);
     }
 
     @Step("Проверка создания пользователя в БД")
