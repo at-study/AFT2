@@ -3,6 +3,7 @@ package redmine.db.requests;
 import io.qameta.allure.Step;
 import redmine.managers.Manager;
 import redmine.model.project.Project;
+import redmine.model.role.Role;
 import redmine.model.user.User;
 
 import java.time.LocalDateTime;
@@ -47,6 +48,12 @@ public class ProjectRequests {
         project.setId((Integer) result.get(0).get("id"));
         Integer projectId = (Integer) result.get(0).get("id");
         return project;
+    }
+
+    @Step("Инсерт пользователя+проекта в мемберс &&  инсерт members+role в мемберсрол")
+    public static void addUserAndRoleToProject(Project project, User user, Role role)
+    {
+
     }
 }
 
