@@ -58,8 +58,8 @@ public class TestCase6 {
 
         List<String> expectedOrderedByAscList = actualOrderedByAscList
                 .stream()
-                .sorted(Comparator.naturalOrder())
-                .collect(Collectors.toList());
+                .sorted(String::compareToIgnoreCase)
+                .collect(Collectors.toList());;
 
         Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
     }
