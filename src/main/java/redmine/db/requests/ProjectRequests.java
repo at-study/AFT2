@@ -49,7 +49,7 @@ public class ProjectRequests {
         return project;
     }
 
-    @Step("Инсерт пользователя+проекта в мемберс &&  инсерт members+role в мемберсрол")
+    @Step("Добавление пользователя и роли к проекту")
     public static Project addUserAndRoleToProject(Project project, User user, Role role) {
         String queryPutIntoMembers = "insert into public.members\n" +
                 "(id,user_id,project_id,created_on,mail_notification) values(default,?,?,?,false) RETURNING id;\n";

@@ -6,16 +6,13 @@ import redmine.db.requests.UserRequests;
 import redmine.model.Generatable;
 import redmine.utils.StringGenerators;
 
+import java.time.LocalDateTime;
+
 import static org.apache.commons.codec.digest.DigestUtils.sha1Hex;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@EqualsAndHashCode
 @Accessors(chain = true)
 @Data
-
 public class User implements Generatable<User> {
     private Integer id;
     private String login = "Evg" + randomEnglishLowerString(6);
@@ -26,13 +23,13 @@ public class User implements Generatable<User> {
     private String lastName = "TTT" + randomEnglishLowerString(9);
     private Boolean admin = true;
     private Integer status = 1;
-    //TODO last_login_on
+    private LocalDateTime loginOn = LocalDateTime.now();
     private Language language = Language.RU;
     private String type = "User";
     private MailNotification mailNotification = MailNotification.ALL;
     private Boolean inheritMembers;
     private Boolean mustChangePassword = false;
-    //TODO passwd_changed_on;
+    private LocalDateTime changedOn= LocalDateTime.now();
     private String apiKey = StringGenerators.randomString(40, "0123456789abcdef");
 
     @Override
