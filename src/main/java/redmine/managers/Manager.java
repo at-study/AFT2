@@ -12,7 +12,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import redmine.Property;
 import redmine.db.DataBaseConnection;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
@@ -82,6 +81,5 @@ public class Manager {
                     throw new IllegalArgumentException("Неизвестный тип браузера (добавить в Менеджер и Properties !)");
             }
         }
-
     }
 }

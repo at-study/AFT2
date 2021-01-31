@@ -1,9 +1,11 @@
 package redmine.model.dto;
 
+import lombok.Data;
+
 import java.time.LocalDateTime;
 
+@Data
 public class ProjectInfo {
-
     private Integer id;
     private String name;
     private String description;

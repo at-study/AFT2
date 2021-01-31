@@ -6,15 +6,9 @@ import redmine.db.requests.ProjectRequests;
 import redmine.model.Generatable;
 import redmine.model.role.Role;
 import redmine.model.user.User;
-
 import java.time.LocalDateTime;
-
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@EqualsAndHashCode
 @Accessors(chain = true)
 @Data
 
