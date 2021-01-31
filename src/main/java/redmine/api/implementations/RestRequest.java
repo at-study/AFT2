@@ -4,7 +4,6 @@ import lombok.Getter;
 import redmine.Property;
 import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;

@@ -29,7 +29,6 @@ public class ProjectRequests {
                     project.setIdentifier((String) map.get("identifier"));
                     return project;
                 }).collect(Collectors.toList());
-
     }
 
     @Step("Создание проекта")
@@ -52,7 +51,6 @@ public class ProjectRequests {
 
     @Step("Инсерт пользователя+проекта в мемберс &&  инсерт members+role в мемберсрол")
     public static Project addUserAndRoleToProject(Project project, User user, Role role) {
-
         String queryPutIntoMembers = "insert into public.members\n" +
                 "(id,user_id,project_id,created_on,mail_notification) values(default,?,?,?,false) RETURNING id;\n";
         List<Map<String, Object>> resultQuaryPutIntoMembers = dbConnection.executePreparedQuery(queryPutIntoMembers,
