@@ -6,7 +6,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import redmine.db.requests.ProjectRequests;
 import redmine.model.project.Project;
 import redmine.model.role.Role;
 import redmine.model.role.RolePermissions;
@@ -15,7 +14,6 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.ProjectsPage;
 import redmine.utils.Asserts;
-
 import static redmine.db.requests.ProjectRequests.addUserAndRoleToProject;
 import static redmine.managers.Manager.*;
 import static redmine.model.role.RolePermission.VIEW_ISSUES;
@@ -26,7 +24,7 @@ public class TestCase5 {
     private Project publicProject;
     public Project privateNotConnectedProject;
     private Project privateConnectedProject;
-    Project createdConnectedProject;
+    private Project createdConnectedProject;
     private Role role;
 
     @BeforeMethod

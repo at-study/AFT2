@@ -10,10 +10,8 @@ import redmine.managers.Manager;
 import redmine.model.user.User;
 import redmine.ui.pages.*;
 import redmine.utils.Asserts;
-
 import java.util.List;
 import java.util.Map;
-
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
