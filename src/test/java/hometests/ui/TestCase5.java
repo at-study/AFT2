@@ -24,7 +24,7 @@ import static redmine.ui.pages.Pages.getPage;
 public class TestCase5 {
     private User user;
     private Project publicProject;
-    private Project privateNotConnectedProject;
+    public Project privateNotConnectedProject;
     private Project privateConnectedProject;
     private Role role;
 
@@ -57,14 +57,18 @@ public class TestCase5 {
         getPage(HeaderPage.class).projects.click();
         Asserts.assertEquals(getPage(ProjectsPage.class).projectPageName(), "Проекты");
     }
-    @Step("Отображение проектов")
+    @Step("  ***  Отображение проектов  ***  ")
     private void projectReflection() {
+       publicProjectVisibility();
+
+        Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(getPage(ProjectsPage.class)
+                .projectNameElement(privateNotConnectedProject.getName())));
+    }
+
+    @Step("Отображается публичный проект")
+    private  void publicProjectVisibility(){
         Asserts.assertEquals(getPage(ProjectsPage.class).projectName(publicProject.getName()), publicProject.getName());
         Asserts.assertEquals(getPage(ProjectsPage.class).projectNameDescription(publicProject.getName()), publicProject.getDescription());
-
-        String fullProjectNameXpath = String.format("//a[text()='%s']", privateNotConnectedProject.getName());
-        String fullProjectDescriptionXpath = String.format("//a[text()='%s']/following-sibling::div", privateNotConnectedProject.getName());
-
     }
 
     @AfterMethod

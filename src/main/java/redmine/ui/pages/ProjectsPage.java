@@ -6,10 +6,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 import static redmine.managers.Manager.driver;
 
 public class ProjectsPage extends AbstractPage {
     private WebDriver driver;
+
+    @FindBy(xpath="//li[@class='root'")
+    public List<WebElement> projectList;
 
     @FindBy(xpath = "//h2[text()='Проекты']")
     private WebElement projectPageName;
@@ -29,6 +34,17 @@ public class ProjectsPage extends AbstractPage {
     public String  projectNameDescription(String projectName) {
         String fullProjectDescriptionXpath = String.format("//a[text()='%s']/following-sibling::div", projectName);
         return driver().findElement(By.xpath(fullProjectDescriptionXpath)).getText();
+    }
+    @Step("Присутствует соответсвующее название проекта")
+    public WebElement  projectNameElement(String projectName) {
+        String fullProjectNameXpath = String.format("//a[text()='%s']", projectName);
+        return driver().findElement(By.xpath(fullProjectNameXpath));
+    }
+
+    @Step("Присутствует соответствующий элемент описания проекта")
+    public WebElement  projectNameDescriptionElement(String projectName) {
+        String fullProjectDescriptionXpath = String.format("//a[text()='%s']/following-sibling::div", projectName);
+        return driver().findElement(By.xpath(fullProjectDescriptionXpath));
     }
 
 }
