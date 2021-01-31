@@ -5,9 +5,7 @@ import lombok.experimental.Accessors;
 import redmine.db.requests.UserRequests;
 import redmine.model.Generatable;
 import redmine.utils.StringGenerators;
-
 import java.time.LocalDateTime;
-
 import static org.apache.commons.codec.digest.DigestUtils.sha1Hex;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
