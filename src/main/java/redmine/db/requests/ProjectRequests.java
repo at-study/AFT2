@@ -4,10 +4,12 @@ import io.qameta.allure.Step;
 import redmine.model.project.Project;
 import redmine.model.role.Role;
 import redmine.model.user.User;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
 import static redmine.managers.Manager.*;
 
 public class ProjectRequests {

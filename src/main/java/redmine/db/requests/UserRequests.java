@@ -3,11 +3,14 @@ package redmine.db.requests;
 import io.qameta.allure.Step;
 import redmine.managers.Manager;
 import redmine.model.user.User;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import static redmine.utils.StringGenerators.randomEnglishLowerString;
+
+import static redmine.utils.StringGenerators.randomEmail;
+
 
 public class UserRequests {
     @Step("Информация о пользователях получена")
@@ -52,10 +55,9 @@ public class UserRequests {
                 "(id,user_id,action,value,created_on,updated_on)values(DEFAULT,?,?,?,?,?) RETURNING id;\n";
         Manager.dbConnection.executePreparedQuery(queryForToken, userId, action, value, LocalDateTime.now(), LocalDateTime.now());
 
-        String email = randomEnglishLowerString(8) + "@" + randomEnglishLowerString(9) + "." + randomEnglishLowerString(3);
         String queryForEmail = "insert into public.email_addresses\n" +
                 "(id,user_id,address,is_default,notify,created_on,updated_on)values(DEFAULT,?,?,?,?,?,?) RETURNING id;\n";
-        Manager.dbConnection.executePreparedQuery(queryForEmail, userId, email, true, true, LocalDateTime.now(), LocalDateTime.now());
+        Manager.dbConnection.executePreparedQuery(queryForEmail, userId, randomEmail(), true, true, LocalDateTime.now(), LocalDateTime.now());
         return user;
     }
 
@@ -82,6 +84,4 @@ public class UserRequests {
                 .findFirst()
                 .orElse(null);
     }
-
-
 }

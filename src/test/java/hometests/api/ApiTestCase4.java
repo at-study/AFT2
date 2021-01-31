@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import redmine.db.requests.UserRequests;
 import redmine.model.user.User;
 import redmine.utils.Asserts;
+
 import static io.restassured.RestAssured.given;
 
 public class ApiTestCase4 {
