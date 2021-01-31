@@ -6,7 +6,6 @@ import redmine.model.role.IssuesVisibility;
 import redmine.model.role.Role;
 import redmine.model.role.RolePermissions;
 import redmine.model.role.TimeEntriesVisibility;
-
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;

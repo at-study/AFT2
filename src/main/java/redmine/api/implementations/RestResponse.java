@@ -4,15 +4,14 @@ import io.restassured.http.Header;
 import lombok.Getter;
 import redmine.api.interfaces.Response;
 import redmine.utils.gson.GsonHelper;
-
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @Getter
 public class RestResponse implements Response {
-    private int statusCode;
-    private Map<String, String> headers;
-    private Object body;
+    private final int statusCode;
+    private final Map<String, String> headers;
+    private final Object body;
 
     public RestResponse(int statusCode, Map<String, String> headers, Object body) {
         this.statusCode = statusCode;

@@ -1,17 +1,13 @@
 package redmine.db;
 
-import com.google.gson.JsonArray;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import lombok.SneakyThrows;
-
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
 import static redmine.Property.getIntegerProperty;
 import static redmine.Property.getStringProperty;
 
@@ -43,10 +39,8 @@ public class DataBaseConnection {
         String url = String.format("jdbc:postgresql://%s:%d/%s?user=%s&password=%s", dbHost, dbPort, dbName, dbUser, dbPass);
         connection = DriverManager.getConnection(url);
     }
-
     /**
      * Выполняет SQL-запрос и возвращает результат
-     *
      * @param query -SQL-запрос
      * @return данные-результат запроса
      */
@@ -74,10 +68,8 @@ public class DataBaseConnection {
         Allure.addAttachment("response", result.toString());
         return result;
     }
-
     /**
      * Выполняет SQL-запрос с подготовлением данных и возвращает результат
-     *
      * @param query      -SQL-запрос
      * @param parameters параметры,подставляемые в запросы
      * @return данные-результат запроса

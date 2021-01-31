@@ -11,27 +11,22 @@ import redmine.model.user.User;
 import redmine.ui.pages.*;
 import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
 
 public class TestCase6 {
     private User userAdmin;
-    private User user1;
-    private User user2;
-    private User user3;
 
     @BeforeMethod
     public void prepareFixture() {
         userAdmin = new User().setAdmin(true).setStatus(1).generate();
-        user1 = new User().setAdmin(false).setStatus(1).generate();
-        user2 = new User().setAdmin(false).setStatus(1).generate();
-        user3 = new User().setAdmin(false).setStatus(1).generate();
+        new User().setAdmin(false).setStatus(1).generate();
+        new User().setAdmin(false).setStatus(1).generate();
+        new User().setAdmin(false).setStatus(1).generate();
         openPage("login");
     }
 
@@ -41,9 +36,9 @@ public class TestCase6 {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
         Asserts.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
         getPage(HeaderPage.class).administration.click();
-        Asserts.assertEquals(getPage(AdminPage.class).adminPageName(), "Администрирование");
-        Asserts.assertEquals(getPage(AdminPage.class).users(), "Пользователи");
-        getPage(AdminPage.class).users.click();
+        Asserts.assertEquals(getPage(AdministrationPage.class).adminPageName(), "Администрирование");
+        Asserts.assertEquals(getPage(AdministrationPage.class).users(), "Пользователи");
+        getPage(AdministrationPage.class).users.click();
         Asserts.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(UsersPage.class).table));
         userSortingByAscending();
@@ -62,7 +57,6 @@ public class TestCase6 {
                 .stream()
                 .sorted(String::compareToIgnoreCase)
                 .collect(Collectors.toList());
-        ;
 
         Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
     }

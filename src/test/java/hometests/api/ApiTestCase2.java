@@ -12,17 +12,15 @@ import redmine.model.user.User;
 import redmine.utils.Asserts;
 
 import java.util.Random;
-
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 public class ApiTestCase2 {
-    private User user;
     private ApiClient apiClient;
 
     @BeforeMethod
     public void prepareFixtures() {
-        user = new User().setAdmin(false).setStatus(1).generate();
+        User user = new User().setAdmin(false).setStatus(1).generate();
         apiClient = new RestApiClient(user);
     }
 

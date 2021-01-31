@@ -1,13 +1,11 @@
 package redmine.ui.pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import redmine.managers.Manager;
 
 public class LoginPage extends AbstractPage {
-    private WebDriver driver;
 
     @FindBy(xpath = "//input[@id='username']")
     private WebElement loginElement;

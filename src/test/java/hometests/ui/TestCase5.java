@@ -23,17 +23,15 @@ public class TestCase5 {
     private User user;
     private Project publicProject;
     public Project privateNotConnectedProject;
-    private Project privateConnectedProject;
     private Project createdConnectedProject;
-    private Role role;
 
     @BeforeMethod
     public void prepareFixture() {
         user = new User().setAdmin(false).setStatus(1).generate();
-        role = new Role().setPermissions(new RolePermissions(VIEW_ISSUES)).generate();
+        Role role = new Role().setPermissions(new RolePermissions(VIEW_ISSUES)).generate();
         publicProject = new Project().setIsPublic(true).generate();
         privateNotConnectedProject = new Project().setIsPublic(false).generate();
-        privateConnectedProject = new Project().setIsPublic(false).generate();
+        Project privateConnectedProject = new Project().setIsPublic(false).generate();
         createdConnectedProject = addUserAndRoleToProject(privateConnectedProject, user, role);
         openPage("login");
     }

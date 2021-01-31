@@ -33,9 +33,9 @@ public class TestCase8 {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
         Asserts.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
         getPage(HeaderPage.class).administration.click();
-        Asserts.assertEquals(getPage(AdminPage.class).adminPageName(), "Администрирование");
-        Asserts.assertEquals(getPage(AdminPage.class).users(), "Пользователи");
-        getPage(AdminPage.class).users.click();
+        Asserts.assertEquals(getPage(AdministrationPage.class).adminPageName(), "Администрирование");
+        Asserts.assertEquals(getPage(AdministrationPage.class).users(), "Пользователи");
+        getPage(AdministrationPage.class).users.click();
         Asserts.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
         Asserts.assertEquals(getPage(UsersPage.class).newUserAdd(), "Новый пользователь");
         getPage(UsersPage.class).newUserAdd.click();

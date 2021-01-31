@@ -4,7 +4,6 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import redmine.Property;
 import redmine.managers.Manager;
-
 import java.util.concurrent.TimeUnit;
 
 public class BrowserUtils {
