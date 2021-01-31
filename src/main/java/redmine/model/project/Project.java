@@ -4,6 +4,8 @@ import lombok.*;
 import lombok.experimental.Accessors;
 import redmine.db.requests.ProjectRequests;
 import redmine.model.Generatable;
+import redmine.model.role.Role;
+import redmine.model.user.User;
 
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
@@ -44,4 +46,8 @@ public class Project implements Generatable<Project> {
         return ProjectRequests.createProject(this);
     }
 
+    public Project addUserAndRoleToProject(User user, Role role){
+        ProjectRequests.addUserAndRoleToProject(this,user,role);
+        return this;
+    }
 }

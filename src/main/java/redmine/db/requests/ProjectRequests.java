@@ -1,23 +1,21 @@
 package redmine.db.requests;
 
+import com.google.gson.JsonArray;
 import io.qameta.allure.Step;
-import redmine.managers.Manager;
 import redmine.model.project.Project;
 import redmine.model.role.Role;
 import redmine.model.user.User;
-
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import static redmine.utils.StringGenerators.randomEnglishLowerString;
+import static redmine.managers.Manager.*;
 
 public class ProjectRequests {
     @Step("Информация о проектах получена")
     public static List<Project> getAllProjects() {
         String query = "select * from projects";
-        List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
+        List<Map<String, Object>> result = dbConnection.executeQuery(query);
         return result.stream()
                 .map(map -> {
                     Project project = new Project();
@@ -37,7 +35,7 @@ public class ProjectRequests {
     public static Project createProject(Project project) {
         String query = "insert into public.projects\n" +
                 "(id,\"name\",\"description\",\"is_public\",status,identifier,lft,rgt)values(DEFAULT,?,?,?,?,?,?,?) RETURNING id;\n";
-        List<Map<String, Object>> result = Manager.dbConnection.executePreparedQuery(query,
+        List<Map<String, Object>> result = dbConnection.executePreparedQuery(query,
                 project.getName(),
                 project.getDescription(),
                 project.getIsPublic(),
@@ -51,8 +49,11 @@ public class ProjectRequests {
     }
 
     @Step("Инсерт пользователя+проекта в мемберс &&  инсерт members+role в мемберсрол")
-    public static void addUserAndRoleToProject(Project project, User user, Role role)
-    {
+    public static void addUserAndRoleToProject(Project project, User user, Role role) {
+    String quaryPutIntoMembers="insert into public.members\n"+
+            "(id,user_id,project_id,created_on,mail_notification) values(default,?,?,?,false) returning id;\n";
+    String quaryPutToMembersRoles="insert into public.member_roles\n"+
+            "(id,member_id,role_id,inherited_from) values (default,?,?,NULL) returning id;\n";
 
     }
 }

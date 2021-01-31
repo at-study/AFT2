@@ -1,11 +1,13 @@
 package redmine.db;
 
+import com.google.gson.JsonArray;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -109,5 +111,4 @@ public class DataBaseConnection {
         Allure.addAttachment("response", result.toString());
         return result;
     }
-
 }

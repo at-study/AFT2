@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Manager {
 
-    public final static DataBaseConnection dbConnection = new DataBaseConnection();
+    public  static DataBaseConnection dbConnection = new DataBaseConnection();
     //TODO на треадлокал когда будет многопоточность
     private static WebDriver driver;
     private static WebDriverWait wait;
