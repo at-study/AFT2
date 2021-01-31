@@ -58,8 +58,8 @@ public class TestCase5 {
     @Step("  ***  Отображение проектов  ***  ")
     private void projectReflection() {
        publicProjectVisibility();
-        privateNotConnectedProjectVisibility();
-
+       privateNotConnectedProjectVisibility();
+       privateConnectedProjectVisibility();
     }
 
     @Step("Отображается публичный проект")
@@ -72,6 +72,11 @@ public class TestCase5 {
     private  void privateNotConnectedProjectVisibility(){
         Assert.assertFalse(getPage(ProjectsPage.class).projectInListSituating(privateNotConnectedProject.getName()));
         Assert.assertFalse(getPage(ProjectsPage.class).projectDescriptionInListSituating(privateNotConnectedProject.getDescription()));
+    }
+
+    @Step("Отображается приватный  проект ( привязанный )")
+    private  void privateConnectedProjectVisibility(){
+
     }
 
     @AfterMethod
