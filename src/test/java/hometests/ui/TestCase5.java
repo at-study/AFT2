@@ -15,7 +15,6 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.ProjectsPage;
 import redmine.utils.Asserts;
-import redmine.utils.BrowserUtils;
 
 import static redmine.db.requests.ProjectRequests.addUserAndRoleToProject;
 import static redmine.managers.Manager.*;
@@ -27,6 +26,7 @@ public class TestCase5 {
     private Project publicProject;
     public Project privateNotConnectedProject;
     private Project privateConnectedProject;
+    Project createdConnectedProject;
     private Role role;
 
     @BeforeMethod
@@ -34,21 +34,22 @@ public class TestCase5 {
         user = new User().setAdmin(false).setStatus(1).generate();
         role = new Role().setPermissions(new RolePermissions(VIEW_ISSUES)).generate();
         publicProject = new Project().setIsPublic(true).generate();
-        privateNotConnectedProject= new Project().setIsPublic(false).generate();
-        privateConnectedProject= new Project().setIsPublic(false).generate();
+        privateNotConnectedProject = new Project().setIsPublic(false).generate();
+        privateConnectedProject = new Project().setIsPublic(false).generate();
+        createdConnectedProject = addUserAndRoleToProject(privateConnectedProject, user, role);
         openPage("login");
     }
 
     @Test(testName = " Видимость проектов. Пользователь", priority = 6, description = " Видимость проектов. Пользователь")
     @Description("5. Видимость проектов. Пользователь")
     public void visibiltyOfProjectForUser() {
-       authorizationAndSituatingOnHomePage();
-       clickAndPassingOnProjectPage();
-       projectReflection();
+        authorizationAndSituatingOnHomePage();
+        clickAndPassingOnProjectPage();
+        projectReflection();
     }
 
     @Step("Пользовель авторизировался и находиться на домашней странице")
-    private void authorizationAndSituatingOnHomePage(){
+    private void authorizationAndSituatingOnHomePage() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         Asserts.assertEquals(getPage(HeaderPage.class).projects(), "Проекты");
     }
@@ -58,32 +59,32 @@ public class TestCase5 {
         getPage(HeaderPage.class).projects.click();
         Asserts.assertEquals(getPage(ProjectsPage.class).projectPageName(), "Проекты");
     }
+
     @Step("  ***  Отображение проектов  ***  ")
     private void projectReflection() {
-       publicProjectVisibility();
-       privateNotConnectedProjectVisibility();
-       privateConnectedProjectVisibility();
+        publicProjectVisibility();
+        privateNotConnectedProjectVisibility();
+        privateConnectedProjectVisibility();
     }
 
     @Step("Отображается публичный проект")
-    private  void publicProjectVisibility(){
+    private void publicProjectVisibility() {
         Asserts.assertEquals(getPage(ProjectsPage.class).projectName(publicProject.getName()), publicProject.getName());
         Asserts.assertEquals(getPage(ProjectsPage.class).projectNameDescription(publicProject.getName()), publicProject.getDescription());
     }
 
     @Step("НЕ Отображается приватный  проект ( непривязанный )")
-    private  void privateNotConnectedProjectVisibility(){
+    private void privateNotConnectedProjectVisibility() {
         Assert.assertFalse(getPage(ProjectsPage.class).projectInListSituating(privateNotConnectedProject.getName()));
         Assert.assertFalse(getPage(ProjectsPage.class).projectDescriptionInListSituating(privateNotConnectedProject.getDescription()));
     }
 
     @Step("Отображается приватный  проект ( привязанный )")
-    private  void privateConnectedProjectVisibility(){
-    Project createdConnectedProject=addUserAndRoleToProject(privateConnectedProject,user,role);
-    String createdProjectName=createdConnectedProject.getName();
-    String createdProjectDescription=createdConnectedProject.getDescription();
-    Asserts.assertEquals(getPage(ProjectsPage.class).projectName(createdProjectName), createdProjectName);
-    Asserts.assertEquals(getPage(ProjectsPage.class).projectNameDescription(createdProjectName), createdProjectDescription);
+    private void privateConnectedProjectVisibility() {
+        String createdProjectName = createdConnectedProject.getName();
+        String createdProjectDescription = createdConnectedProject.getDescription();
+        Asserts.assertEquals(getPage(ProjectsPage.class).projectName(createdProjectName), createdProjectName);
+        Asserts.assertEquals(getPage(ProjectsPage.class).projectNameDescription(createdProjectName), createdProjectDescription);
     }
 
     @AfterMethod

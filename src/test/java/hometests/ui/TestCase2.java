@@ -48,14 +48,14 @@ public class TestCase2 {
     }
 
     @Step("В заголовке страницы не отображаются элементы 'Администрирование', 'Войти','Регистрация'")
-    private void notDisplayedElements(){
+    private void notDisplayedElements() {
         Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).administration));
         Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).signIn));
         Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).register));
     }
 
     @Step("Отображается элемент \"Поиск\"")
-    private void searchIsDisplayed(){
+    private void searchIsDisplayed() {
         assertEquals(getPage(HeaderPage.class).searchLabel(), "Поиск");
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).searchField));
     }

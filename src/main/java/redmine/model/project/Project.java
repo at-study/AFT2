@@ -26,8 +26,8 @@ public class Project implements Generatable<Project> {
     private Integer parentId;
     private Boolean isPublic;
     private String identifier = "Autoproject" + randomEnglishLowerString(6);
-    private LocalDateTime updatedOn= LocalDateTime.now();
-    private LocalDateTime createdOn= LocalDateTime.now();
+    private LocalDateTime updatedOn = LocalDateTime.now();
+    private LocalDateTime createdOn = LocalDateTime.now();
     private Integer status = 1;
     private Integer lft = 3;
     private Integer rgt = 3;
@@ -48,8 +48,8 @@ public class Project implements Generatable<Project> {
         return ProjectRequests.createProject(this);
     }
 
-    public Project addUserAndRoleToProject(User user, Role role){
-        ProjectRequests.addUserAndRoleToProject(this,user,role);
+    public Project addUserAndRoleToProject(User user, Role role) {
+        ProjectRequests.addUserAndRoleToProject(this, user, role);
         return this;
     }
 }
