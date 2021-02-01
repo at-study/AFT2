@@ -1,6 +1,7 @@
 package redmine.model.role;
 
 import lombok.AllArgsConstructor;
+
 import java.util.stream.Stream;
 
 @AllArgsConstructor

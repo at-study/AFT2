@@ -5,6 +5,7 @@ import lombok.experimental.Accessors;
 import redmine.db.requests.RoleRequests;
 import redmine.model.Generatable;
 import redmine.utils.StringGenerators;
+
 import java.util.HashSet;
 
 @Data

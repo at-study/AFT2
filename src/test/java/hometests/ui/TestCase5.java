@@ -14,6 +14,7 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.ProjectsPage;
 import redmine.utils.Asserts;
+
 import static redmine.managers.Manager.*;
 import static redmine.model.role.RolePermission.VIEW_ISSUES;
 import static redmine.ui.pages.Pages.getPage;
@@ -30,11 +31,11 @@ public class TestCase5 {
         Role role = new Role().setPermissions(new RolePermissions(VIEW_ISSUES)).generate();
         publicProject = new Project().setIsPublic(true).generate();
         privateNotConnectedProject = new Project().setIsPublic(false).generate();
-        createdConnectedProject.addUserAndRoleToProject(user,role);
+        createdConnectedProject.addUserAndRoleToProject(user, role);
         openPage("login");
     }
 
-    @Test(testName = " Видимость проектов. Пользователь",  description = " Видимость проектов. Пользователь")
+    @Test(testName = " Видимость проектов. Пользователь", description = " Видимость проектов. Пользователь")
     @Description("5. Видимость проектов. Пользователь")
     public void visibiltyOfProjectForUser() {
         userLoginAndLocationOnHomePage();

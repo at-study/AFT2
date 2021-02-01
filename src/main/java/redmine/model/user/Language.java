@@ -1,6 +1,7 @@
 package redmine.model.user;
 
 import lombok.*;
+
 import java.util.stream.Stream;
 
 @Getter

@@ -10,6 +10,7 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
+
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
@@ -23,7 +24,7 @@ public class TestCase3 {
         openPage("login");
     }
 
-    @Test(testName = "Авторизация НЕподтверждённым пользователем",  description = "Авторизация НЕподтверждённым пользователем")
+    @Test(testName = "Авторизация НЕподтверждённым пользователем", description = "Авторизация НЕподтверждённым пользователем")
     @Description("3. Авторизация неподтвержденным пользователем")
     public void unAcceptedUserLogin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());

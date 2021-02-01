@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import redmine.managers.Manager;
+
 import static redmine.ui.pages.Pages.getPage;
 
 public class NewUserCreationPage extends AbstractPage {
