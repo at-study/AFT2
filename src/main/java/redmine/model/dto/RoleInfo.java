@@ -1,6 +1,7 @@
 package redmine.model.dto;
 
 import lombok.Data;
+
 import java.util.List;
 
 @Data

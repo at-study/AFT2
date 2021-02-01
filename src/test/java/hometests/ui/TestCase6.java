@@ -9,7 +9,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.model.user.User;
 import redmine.ui.pages.*;
-import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
 import java.util.Comparator;
 import java.util.List;
