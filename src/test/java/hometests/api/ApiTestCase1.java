@@ -33,7 +33,7 @@ public class ApiTestCase1 {
         apiClient = new RestApiClient(user);
     }
 
-    @Test(testName = "Шаг-1 Тест на создание пользователя ", priority = 1,
+    @Test(testName = "Шаг-1 Тест на создание пользователя ",
             description = "1.Отправить запрос POST на создание пользователя (данные пользователя должны быть сгенерированы корректно, пользователь должен иметь status = 2)")
     @Description("1. Отправить запрос POST на создание пользователя")
     public void testUserCreation() {
@@ -76,7 +76,7 @@ public class ApiTestCase1 {
         assertEquals(dataBaseUser.getStatus().toString(), "2");
     }
 
-    @Test(testName = "Шаг-2 Тест на создание пользователя повторно ", priority = 2,
+    @Test(testName = "Шаг-2 Тест на создание пользователя повторно ",
             description = "2.Отправить запрос POST на создание пользователя повторно с тем же телом запроса")
     @Description("2. Отправить запрос POST на создание пользователя повторно с тем же телом запроса")
     public void repeatedUserCreationTest() {
@@ -107,7 +107,7 @@ public class ApiTestCase1 {
         assertEquals(errors.getErrors().get(1), "Пользователь уже существует");
     }
 
-    @Test(testName = "Шаг-3 Тест на создание пользователя повторно с почти тем же запросом ", priority = 3,
+    @Test(testName = "Шаг-3 Тест на создание пользователя повторно с почти тем же запросом ",
             description = "3.Отправить запрос POST на создание пользователя повторно с тем же телом запроса")
     @Description("3. Отправить запрос POST на создание пользователя повторно с тем же телом запроса(C ошибками)")
     public void repeatedUserCreationTestWithSpecialErrors() {
@@ -149,7 +149,7 @@ public class ApiTestCase1 {
         assertEquals(errors.getErrors().get(2), "Пароль недостаточной длины (не может быть меньше 8 символа)");
     }
 
-    @Test(testName = "Шаг-4 Изменение статуса у существующего ", priority = 4,
+    @Test(testName = "Шаг-4 Изменение статуса у существующего ",
             description = "4.Отправить запрос PUT на изменение пользователя. Использовать данные из ответа запроса, выполненного в шаге №1, но при этом изменить поле status = 1")
     @Description("4. Отправить запрос PUT на изменение пользователя. ")
     public void testStatusChange() {
@@ -201,7 +201,7 @@ public class ApiTestCase1 {
         assertEquals(dataBaseUser.getStatus().toString(), "1");
     }
 
-    @Test(testName = "Шаг-5 Отправить запрос GET на получение пользователя ", priority = 5,
+    @Test(testName = "Шаг-5 Отправить запрос GET на получение пользователя ",
             description = "5.Отправить запрос GET на получение пользователя")
     @Description("5. Отправить запрос GET на получение пользователя")
     public void testGetRequest() {
@@ -252,7 +252,7 @@ public class ApiTestCase1 {
         assertEquals(createdGetUser.getUser().getStatus(), 1);
     }
 
-    @Test(testName = "Шаг-6 Отправить запрос DELETE на удаление пользователя ", priority = 6,
+    @Test(testName = "Шаг-6 Отправить запрос DELETE на удаление пользователя ",
             description = "6.Отправить запрос DELETE на удаление пользователя")
     @Description("6. Отправить запрос DELETE на удаление пользователя")
     public void testDeleteRequest() {
@@ -296,7 +296,7 @@ public class ApiTestCase1 {
         assertEquals(userAmountAfterDeleteOtherUser, userAmountBeforeDeleteOtherUser - 1);
     }
 
-    @Test(testName = "Шаг 7-Отправить повторный запрос DELETE на удаление пользователя ", priority = 7,
+    @Test(testName = "Шаг 7-Отправить повторный запрос DELETE на удаление пользователя ",
             description = "7.Отправить повторный запрос DELETE на удаление пользователя")
     @Description("7. Отправить запрос DELETE на удаление пользователя (повторно)")
     public void testRepeatDeleteRequest() {

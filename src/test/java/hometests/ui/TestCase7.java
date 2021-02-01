@@ -1,7 +1,6 @@
 package hometests.ui;
 
 import static redmine.utils.Asserts.assertEquals;
-
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
@@ -15,11 +14,9 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.UsersPage;
 import redmine.utils.BrowserUtils;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static org.testng.Assert.*;
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
@@ -37,7 +34,7 @@ public class TestCase7 {
         openPage("login");
     }
 
-    @Test(testName = " Администрирование. Сортировка списка пользователей по имени  и фамилии", priority = 7, description = "Администрирование. Сортировка списка пользователей по имени  и фамилии")
+    @Test(testName = " Администрирование. Сортировка списка пользователей по имени  и фамилии", description = "Администрирование. Сортировка списка пользователей по имени  и фамилии")
     @Description("7. Администрирование. Сортировка списка пользователей по имени и фамилии")
     public void usersSortingForAdminByUserNameAndLastName() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());

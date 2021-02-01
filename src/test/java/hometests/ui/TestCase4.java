@@ -10,7 +10,6 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.ProjectsPage;
 import redmine.utils.Asserts;
-
 import static redmine.managers.Manager.*;
 import static redmine.ui.pages.Pages.getPage;
 
@@ -25,7 +24,7 @@ public class TestCase4 {
         openPage("login");
     }
 
-    @Test(testName = " Видимость проекта. Приватный проект. Администратор", priority = 5, description = " Видимость проекта. Приватный проект. Администратор")
+    @Test(testName = " Видимость проекта. Приватный проект. Администратор", description = " Видимость проекта. Приватный проект. Администратор")
     @Description("4. Видимость проекта. Приватный проект. Администратор")
     public void visibilityOfPrivateProjectForAdmin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());

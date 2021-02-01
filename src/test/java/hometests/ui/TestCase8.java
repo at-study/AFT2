@@ -29,7 +29,7 @@ public class TestCase8 {
         openPage("login");
     }
 
-    @Test(testName = " Администрирование. Создание пользователя", priority = 7, description = "Администрирование. Создание пользователя")
+    @Test(testName = " Администрирование. Создание пользователя", description = "Администрирование. Создание пользователя")
     @Description("8.Администрирование. Создание пользователя.")
     public void usersCreationForAdmin() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
@@ -40,7 +40,7 @@ public class TestCase8 {
         getPage(AdministrationPage.class).users.click();
         Asserts.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
         Asserts.assertEquals(getPage(UsersPage.class).newUserAdd(), "Новый пользователь");
-        getPage(UsersPage.class).newUserAdd.click();
+        getPage(UsersPage.class).addNewUser.click();
         Asserts.assertEquals(getPage(NewUserCreationPage.class).newUserPage(), "Пользователи » Новый пользователь");
 
         String login = randomEnglishLowerString(8);

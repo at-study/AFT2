@@ -10,7 +10,6 @@ import redmine.model.user.User;
 import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.utils.BrowserUtils;
-
 import static redmine.utils.Asserts.assertEquals;
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
@@ -25,7 +24,7 @@ public class TestCase2 {
         openPage("login");
     }
 
-    @Test(testName = "Авторизация подтверждённым пользователем", priority = 3, description = "Авторизация подтверждённым пользователем")
+    @Test(testName = "Авторизация подтверждённым пользователем", description = "Авторизация подтверждённым пользователем")
 
     @Description("2. Авторизация подтвержденным пользователем")
     public void authorizationByAcceptedUserAndElements() {

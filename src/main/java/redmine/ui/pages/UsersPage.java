@@ -14,13 +14,13 @@ public class UsersPage extends AbstractPage {
     public WebElement usersPageName;
 
     @FindBy(xpath = "//a[@class='icon icon-add']")
-    public WebElement newUserAdd;
+    public WebElement addNewUser;
 
     @FindBy(xpath = "//table[@class='list users']//a[text()='Пользователь']")
     public WebElement usersHeaderInTable;
 
     @FindBy(xpath = "//tr[@class='user active']//td[@class='username']")
-    public List<WebElement> listOfUsersInTable;
+    public List<WebElement> listOfUsersInTableByUsername;
 
     @FindBy(xpath = "//tr[@class='user active']//td[@class='lastname']")
     public List<WebElement> listOfUsersInTableByLastNames;
@@ -38,13 +38,13 @@ public class UsersPage extends AbstractPage {
         return table.getText();
     }
 
-    @Step("Страница 'Пользователи' отображается")
+    @Step("Присутствует элемент 'Пользователи' ")
     public String usersPageName() {
         return usersPageName.getText();
     }
 
     @Step("Присутствует элемент  'Новый пользователь'")
     public String newUserAdd() {
-        return newUserAdd.getText();
+        return addNewUser.getText();
     }
 }

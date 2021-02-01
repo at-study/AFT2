@@ -11,11 +11,9 @@ import redmine.model.user.User;
 import redmine.ui.pages.*;
 import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
@@ -32,7 +30,7 @@ public class TestCase6 {
         openPage("login");
     }
 
-    @Test(testName = " Администрирование. Сортировка списка пользователей по пользователю", priority = 7, description = "Администрирование. Сортировка списка пользователей по пользователю")
+    @Test(testName = " Администрирование. Сортировка списка пользователей по пользователю", description = "Администрирование. Сортировка списка пользователей по пользователю")
     @Description("6. Администрирование. Сортировка списка пользователей по пользователю")
     public void usersSortingForAdminByUser() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
@@ -50,7 +48,7 @@ public class TestCase6 {
 
     @Step("Сортировка пользователей по возрастанию при заходе на страницу")
     private void userSortingByAscending() {
-        List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTable
+        List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByUsername
                 .stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
@@ -65,7 +63,7 @@ public class TestCase6 {
 
     @Step("Сортировка пользователей по убыванию после клика для переключения порядка")
     private void userSortingByDescending() {
-        List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTable
+        List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByUsername
                 .stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());

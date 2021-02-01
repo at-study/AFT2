@@ -14,7 +14,6 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.ProjectsPage;
 import redmine.utils.Asserts;
-
 import static redmine.db.requests.ProjectRequests.addUserAndRoleToProject;
 import static redmine.managers.Manager.*;
 import static redmine.model.role.RolePermission.VIEW_ISSUES;
@@ -37,7 +36,7 @@ public class TestCase5 {
         openPage("login");
     }
 
-    @Test(testName = " Видимость проектов. Пользователь", priority = 6, description = " Видимость проектов. Пользователь")
+    @Test(testName = " Видимость проектов. Пользователь",  description = " Видимость проектов. Пользователь")
     @Description("5. Видимость проектов. Пользователь")
     public void visibiltyOfProjectForUser() {
         authorizationAndSituatingOnHomePage();

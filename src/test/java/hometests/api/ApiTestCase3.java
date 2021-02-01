@@ -52,7 +52,7 @@ public class ApiTestCase3 {
         Asserts.assertEquals(createdGetUser.getUser().getApi_key(), firstUser.getApiKey());
     }
 
-    @Test(testName = "Шаг 2-Получение пользователем инфо о другом пользователе +допинфо", priority = 9, description = "2. Отправить запрос GET на получения пользователя из п.3, используя ключ API из п.2 ")
+    @Test(testName = "Шаг 2-Получение пользователем инфо о другом пользователе +допинфо", description = "2. Отправить запрос GET на получения пользователя из п.3, используя ключ API из п.2 ")
     @Description("2. Отправить запрос GET на получения пользователя из п.3, используя ключ API из п.2")
     public void userInfoAboutOtherUser() {
         String uri = String.format("users/%d.json", secondUser.getId());
