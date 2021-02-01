@@ -9,10 +9,8 @@ import redmine.api.interfaces.ApiClient;
 import redmine.api.interfaces.Request;
 import redmine.api.interfaces.Response;
 import redmine.model.user.User;
-
 import java.util.Map;
 import java.util.Objects;
-
 import static io.restassured.RestAssured.given;
 
 public class RestApiClient implements ApiClient {

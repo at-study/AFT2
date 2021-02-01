@@ -3,13 +3,11 @@ package redmine.db;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import lombok.SneakyThrows;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
 import static redmine.Property.getIntegerProperty;
 import static redmine.Property.getStringProperty;
 

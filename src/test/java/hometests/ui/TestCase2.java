@@ -10,7 +10,6 @@ import redmine.model.user.User;
 import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.utils.BrowserUtils;
-
 import static redmine.utils.Asserts.assertEquals;
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;

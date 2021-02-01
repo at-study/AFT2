@@ -4,9 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.List;
-
 import static redmine.managers.Manager.driver;
 
 public class ProjectsPage extends AbstractPage {

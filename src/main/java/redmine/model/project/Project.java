@@ -6,9 +6,7 @@ import redmine.db.requests.ProjectRequests;
 import redmine.model.Generatable;
 import redmine.model.role.Role;
 import redmine.model.user.User;
-
 import java.time.LocalDateTime;
-
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 @Accessors(chain = true)
@@ -20,7 +18,7 @@ public class Project implements Generatable<Project> {
     private String description = "Desc " + randomEnglishLowerString(15);
     private String homepage;
     private Integer parentId;
-    private Boolean isPublic;
+    private Boolean isPublic=true;
     private String identifier = "Autoproject" + randomEnglishLowerString(6);
     private LocalDateTime updatedOn = LocalDateTime.now();
     private LocalDateTime createdOn = LocalDateTime.now();
@@ -44,8 +42,7 @@ public class Project implements Generatable<Project> {
         return ProjectRequests.createProject(this);
     }
 
-    public Project addUserAndRoleToProject(User user, Role role) {
-        ProjectRequests.addUserAndRoleToProject(this, user, role);
-        return this;
+    public static Project addUserAndRoleToProject(Project project, User user, Role role) {
+        return ProjectRequests.addUserAndRoleToProject(project,user,role);
     }
 }

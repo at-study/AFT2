@@ -14,37 +14,41 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.ProjectsPage;
 import redmine.utils.Asserts;
-
-import static redmine.managers.Manager.*;
+import static redmine.managers.Manager.driverQuit;
+import static redmine.managers.Manager.openPage;
+import static redmine.model.project.Project.addUserAndRoleToProject;
 import static redmine.model.role.RolePermission.VIEW_ISSUES;
 import static redmine.ui.pages.Pages.getPage;
 
 public class TestCase5 {
     private User user;
     private Project publicProject;
-    public Project privateNotConnectedProject;
-    public Project createdConnectedProject;
+    private Project privateNotConnectedProject;
+    private Project privateConnectedProject;
+    Role role;
+    private Project createdConnectedProject;
 
     @BeforeMethod
     public void prepareFixture() {
         user = new User().setAdmin(false).setStatus(1).generate();
-        Role role = new Role().setPermissions(new RolePermissions(VIEW_ISSUES)).generate();
+        role = new Role().setPermissions(new RolePermissions(VIEW_ISSUES)).generate();
         publicProject = new Project().setIsPublic(true).generate();
         privateNotConnectedProject = new Project().setIsPublic(false).generate();
-        createdConnectedProject.addUserAndRoleToProject(user, role);
+        privateConnectedProject = new Project().setIsPublic(false).generate();
+        createdConnectedProject=addUserAndRoleToProject(privateConnectedProject,user, role);
         openPage("login");
     }
 
-    @Test(testName = " Видимость проектов. Пользователь", description = " Видимость проектов. Пользователь")
+    @Test(testName = " Видимость проектов. Пользователь", priority = 6, description = " Видимость проектов. Пользователь")
     @Description("5. Видимость проектов. Пользователь")
-    public void visibiltyOfProjectForUser() {
-        userLoginAndLocationOnHomePage();
+    public void visibilityOfProjectsForUser() {
+        loginAndLocationOnHomePage();
         clickAndPassingOnProjectPage();
-        displayOfCreatedProjects();
+        createdProjectsVisibility();
     }
 
     @Step("Пользовель авторизировался и находиться на домашней странице")
-    private void userLoginAndLocationOnHomePage() {
+    private void loginAndLocationOnHomePage() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         Asserts.assertEquals(getPage(HeaderPage.class).projects(), "Проекты");
     }
@@ -56,9 +60,9 @@ public class TestCase5 {
     }
 
     @Step("  ***  Отображение проектов  ***  ")
-    private void displayOfCreatedProjects() {
+    private void createdProjectsVisibility(){
         assertPublicProjectIsDisplayed();
-        assertPrivateProjectNotDisplayed();
+        assertPrivateProjectWithoutRoleIsNotDisplayed();
         assertPrivateProjectWithRoleIsDisplayed();
     }
 
@@ -69,7 +73,7 @@ public class TestCase5 {
     }
 
     @Step("НЕ Отображается приватный  проект ( непривязанный )")
-    private void assertPrivateProjectNotDisplayed() {
+    private void assertPrivateProjectWithoutRoleIsNotDisplayed() {
         Assert.assertFalse(getPage(ProjectsPage.class).isProjectNameIsSituatingInListOfProjects(privateNotConnectedProject.getName()));
         Assert.assertFalse(getPage(ProjectsPage.class).isProjectDescriptionIsSituatingInListOfProjects(privateNotConnectedProject.getDescription()));
     }

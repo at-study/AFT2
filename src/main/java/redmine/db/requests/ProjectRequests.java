@@ -53,15 +53,14 @@ public class ProjectRequests {
     public static Project addUserAndRoleToProject(Project project, User user, Role role) {
         String queryPutIntoMembers = "insert into public.members\n" +
                 "(id,user_id,project_id,created_on,mail_notification) values(default,?,?,?,false) RETURNING id;\n";
-        List<Map<String, Object>> resultQuaryPutIntoMembers = dbConnection.executePreparedQuery(queryPutIntoMembers,
+        List<Map<String, Object>> resultQueryPutIntoMembers = dbConnection.executePreparedQuery(queryPutIntoMembers,
                 user.getId(), project.getId(), LocalDateTime.now());
-        user.setId((Integer) resultQuaryPutIntoMembers.get(0).get("id"));
-        Integer membersId = (Integer) resultQuaryPutIntoMembers.get(0).get("id");
+        user.setId((Integer) resultQueryPutIntoMembers.get(0).get("id"));
+        Integer membersId = (Integer) resultQueryPutIntoMembers.get(0).get("id");
 
         String queryPutToMembersRoles = "insert into public.member_roles\n" +
                 "(id,member_id,role_id,inherited_from) values (default,?,?,NULL) returning id;\n";
-        dbConnection.executePreparedQuery(queryPutToMembersRoles,
-                membersId, role.getId());
+        dbConnection.executePreparedQuery(queryPutToMembersRoles, membersId, role.getId());
         return project;
     }
 }
