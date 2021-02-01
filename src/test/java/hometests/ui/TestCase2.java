@@ -28,10 +28,16 @@ public class TestCase2 {
     @Description("2. Авторизация подтвержденным пользователем")
     public void acceptedUserLogin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
+        displayOfHomePage();
         displayOfLoggedAsElement();
         displayOfElements();
         notDisplayOfElements();
         displayOfSearch();
+    }
+
+    @Step("1. Отображается домашняя страница")
+    private void displayOfHomePage(){
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).home));
     }
 
     @Step("2. Отображается 'Вошли как <логин пользователя>'")

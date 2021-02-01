@@ -35,17 +35,32 @@ public class TestCase6 {
     @Description("6. Администрирование. Сортировка списка пользователей по пользователю")
     public void usersSortingByAdminByUser() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
-        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).adminHomePage));
-        getPage(HeaderPage.class).administration.click();
-        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).administration));
-        getPage(AdministrationPage.class).users.click();
-        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(UsersPage.class).table));
+        displayOfHomePage();
+        displayOfAdministartionPage();
+        displayOfUsersTable();
         sortUsersByUsernameAsc();
         switchOrderByUsername();
         sortUsersByUsernameDesc();
     }
 
-    @Step("Сортировка пользователей по возрастанию при заходе на страницу")
+    @Step("1. Отображается домашняя страница")
+    private void displayOfHomePage(){
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).adminHomePage));
+    }
+
+    @Step("2. Отображается страница \"Администрирование\"")
+    private void displayOfAdministartionPage(){
+        getPage(HeaderPage.class).administration.click();
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).administration));
+    }
+
+    @Step("3.Отображается таблица с пользователями")
+    private  void displayOfUsersTable(){
+        getPage(AdministrationPage.class).users.click();
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(UsersPage.class).table));
+    }
+
+    @Step("4.Сортировка пользователей по возрастанию при заходе на страницу")
     private void sortUsersByUsernameAsc() {
         List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByUsername
                 .stream()
@@ -60,7 +75,7 @@ public class TestCase6 {
         Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
     }
 
-    @Step("Сортировка пользователей по убыванию после клика для переключения порядка")
+    @Step("5.Сортировка пользователей по убыванию после клика для переключения порядка")
     private void sortUsersByUsernameDesc() {
         List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByUsername
                 .stream()
@@ -75,7 +90,6 @@ public class TestCase6 {
         Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
     }
 
-    @Step("В шапке таблицы нажать на 'Пользователь'")
     private void switchOrderByUsername() {
         getPage(UsersPage.class).usersHeaderInTable.click();
     }
