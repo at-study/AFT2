@@ -10,9 +10,7 @@ import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
 import redmine.model.user.User;
 import redmine.utils.Asserts;
-
 import java.util.Random;
-
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
@@ -25,7 +23,7 @@ public class ApiTestCase2 {
         apiClient = new RestApiClient(user);
     }
 
-    @Test(testName = "Шаг 1-Отправить запрос POST на создание пользователя НЕ АДМИНИСТРАТОРОМ-403 ", description = "3. Получение пользователей. Пользователь без прав администратора")
+    @Test(testName = "2. Создание пользователя. Пользователь без прав администратора ", description = "2. Создание пользователя. Пользователь без прав администратора")
     @Description("1. Отправить запрос POST на создание пользователя (данные пользователя должны быть сгенерированы корректно)")
     public void userCreationByNonAdmin() {
         String login = randomEnglishLowerString(8);

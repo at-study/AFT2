@@ -28,13 +28,13 @@ public class TestCase2 {
     @Description("2. Авторизация подтвержденным пользователем")
     public void acceptedUserLogin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
-        displayedElements();
-        notDisplayedElements();
-        searchIsDisplayed();
+        displayOfElements();
+        notDisplayOfElements();
+        displayOfSearch();
     }
 
     @Step("Oтображаются элементы: \"Домашняя страница\", \"Моя страница\", \"Проекты\", \"Помощь\", \"Моя учётная запись\", \"Выйти\"")
-    private void displayedElements() {
+    private void displayOfElements() {
         assertEquals(getPage(HeaderPage.class).loggedAs(), "Вошли как " + user.getLogin());
         assertEquals(getPage(HeaderPage.class).adminHomePage(), "Домашняя страница");
         assertEquals(getPage(HeaderPage.class).myPage(), "Моя страница");
@@ -45,14 +45,14 @@ public class TestCase2 {
     }
 
     @Step("В заголовке страницы не отображаются элементы 'Администрирование', 'Войти','Регистрация'")
-    private void notDisplayedElements() {
+    private void notDisplayOfElements() {
         Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).administration));
         Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).signIn));
         Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).register));
     }
 
     @Step("Отображается элемент \"Поиск\"")
-    private void searchIsDisplayed() {
+    private void displayOfSearch() {
         assertEquals(getPage(HeaderPage.class).searchLabel(), "Поиск");
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).searchField));
     }

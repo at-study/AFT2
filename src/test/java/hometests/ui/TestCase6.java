@@ -32,7 +32,7 @@ public class TestCase6 {
 
     @Test(testName = " Администрирование. Сортировка списка пользователей по пользователю", description = "Администрирование. Сортировка списка пользователей по пользователю")
     @Description("6. Администрирование. Сортировка списка пользователей по пользователю")
-    public void usersSortingForAdminByUser() {
+    public void usersSortingByAdminByUser() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
         Asserts.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
         getPage(HeaderPage.class).administration.click();

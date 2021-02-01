@@ -16,7 +16,6 @@ import redmine.model.dto.UserDto;
 import redmine.model.user.User;
 import redmine.utils.Asserts;
 import redmine.utils.gson.GsonHelper;
-
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
@@ -30,7 +29,12 @@ public class ApiTestCase3 {
         secondUser = new User().setAdmin(false).setStatus(1).generate();
     }
 
-    @Test(testName = "Шаг 1-Получение пользователем инфо о самом себе+допинфо ", description = "1. Отправить запрос GET на получение пользователя из п.1, используя ключ API из п.2 ")
+    @Test(testName = "3. Получение пользователей. Пользователь без прав администратора", description = "3. Получение пользователей. Пользователь без прав администратора")
+    public void userCreationByUser(){
+        userInfoAboutHimself();
+        userInfoAboutOtherUser();
+    }
+
     @Description("1. Отправить запрос GET на получение пользователя из п.1, используя ключ API из п.2 ")
     public void userInfoAboutHimself() {
         ApiClient apiClient = new RestApiClient(firstUser);
@@ -52,7 +56,7 @@ public class ApiTestCase3 {
         Asserts.assertEquals(createdGetUser.getUser().getApi_key(), firstUser.getApiKey());
     }
 
-    @Test(testName = "Шаг 2-Получение пользователем инфо о другом пользователе +допинфо", description = "2. Отправить запрос GET на получения пользователя из п.3, используя ключ API из п.2 ")
+
     @Description("2. Отправить запрос GET на получения пользователя из п.3, используя ключ API из п.2")
     public void userInfoAboutOtherUser() {
         String uri = String.format("users/%d.json", secondUser.getId());
