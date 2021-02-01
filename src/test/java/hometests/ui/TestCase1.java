@@ -23,7 +23,7 @@ public class TestCase1 {
         openPage("login");
     }
 
-    @Test(testName = "Авторизация администратором", description = "Авторизация администратором")
+    @Test(testName = "Авторизация администратором")
     @Description("1. Авторизация администратором")
     public void administratorLogin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());

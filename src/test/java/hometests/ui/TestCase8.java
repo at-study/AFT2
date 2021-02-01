@@ -28,7 +28,7 @@ public class TestCase8 {
         openPage("login");
     }
 
-    @Test(testName = " Администрирование. Создание пользователя", description = "Администрирование. Создание пользователя")
+    @Test(testName = " Администрирование. Создание пользователя")
     @Description("8.Администрирование. Создание пользователя.")
     public void userCreationByAdmin() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
