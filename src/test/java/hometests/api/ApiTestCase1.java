@@ -1,6 +1,6 @@
 package hometests.api;
 
-import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,6 +16,7 @@ import redmine.model.dto.UserDto;
 import redmine.model.user.User;
 import redmine.utils.StringGenerators;
 import redmine.utils.gson.GsonHelper;
+
 import static redmine.utils.Asserts.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
@@ -41,7 +42,7 @@ public class ApiTestCase1 {
         testRepeatedDeleteRequest();
     }
 
-    @Description("1. Отправить запрос POST на создание пользователя")
+    @Step("1. Отправить запрос POST на создание пользователя")
     public void testUserCreation() {
         String login = randomEnglishLowerString(8);
         String firstName = randomEnglishLowerString(12);
@@ -82,7 +83,7 @@ public class ApiTestCase1 {
         assertEquals(dbUser.getStatus().toString(), "2");
     }
 
-    @Description("2. Отправить запрос POST на создание пользователя повторно с тем же телом запроса")
+    @Step("2. Отправить запрос POST на создание пользователя повторно с тем же телом запроса")
     public void testRepeatedUserCreation() {
         String login = randomEnglishLowerString(8);
         String firstName = randomEnglishLowerString(12);
@@ -111,7 +112,7 @@ public class ApiTestCase1 {
         assertEquals(errors.getErrors().get(1), "Пользователь уже существует");
     }
 
-    @Description("3. Отправить запрос POST на создание пользователя повторно с тем же телом запроса(C ошибками)")
+    @Step("3. Отправить запрос POST на создание пользователя повторно с тем же телом запроса(C ошибками)")
     public void testRepeatedUserCreationWithSpecialErrors() {
         String login = randomEnglishLowerString(8);
         String firstName = randomEnglishLowerString(12);
@@ -150,7 +151,7 @@ public class ApiTestCase1 {
         assertEquals(errors.getErrors().get(2), "Пароль недостаточной длины (не может быть меньше 8 символа)");
     }
 
-    @Description("4. Отправить запрос PUT на изменение пользователя. ")
+    @Step("4. Отправить запрос PUT на изменение пользователя. ")
     public void testStatusChange() {
         String login = randomEnglishLowerString(8);
         String firstName = "Evgeny" + randomEnglishLowerString(6);
@@ -200,7 +201,7 @@ public class ApiTestCase1 {
         assertEquals(dataBaseUser.getStatus().toString(), "1");
     }
 
-    @Description("5. Отправить запрос GET на получение пользователя")
+    @Step("5. Отправить запрос GET на получение пользователя")
     public void testGetRequest() {
         String login = randomEnglishLowerString(8);
         String firstName = "UserCreate" + randomEnglishLowerString(4);
@@ -249,7 +250,7 @@ public class ApiTestCase1 {
         assertEquals(createdGetUser.getUser().getStatus(), 1);
     }
 
-    @Description("6. Отправить запрос DELETE на удаление пользователя")
+    @Step("6. Отправить запрос DELETE на удаление пользователя")
     public void testDeleteRequest() {
         String login = randomEnglishLowerString(8);
         String firstName = "UserCreate" + randomEnglishLowerString(4);
@@ -291,7 +292,7 @@ public class ApiTestCase1 {
         assertEquals(userAmountAfterDeleteOtherUser, userCountBeforeDeleteOtherUser - 1);
     }
 
-    @Description("7. Отправить запрос DELETE на удаление пользователя (повторно)")
+    @Step("7. Отправить запрос DELETE на удаление пользователя (повторно)")
     public void testRepeatedDeleteRequest() {
         String login = randomEnglishLowerString(8);
         String firstName = "UserCreate" + randomEnglishLowerString(4);

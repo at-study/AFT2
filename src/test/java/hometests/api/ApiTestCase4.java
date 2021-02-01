@@ -1,6 +1,6 @@
 package hometests.api;
 
-import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import org.testng.annotations.BeforeMethod;
@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import redmine.db.requests.UserRequests;
 import redmine.model.user.User;
 import redmine.utils.Asserts;
+
 import static io.restassured.RestAssured.given;
 
 public class ApiTestCase4 {
@@ -26,7 +27,7 @@ public class ApiTestCase4 {
         userDeleteByHimself();
     }
 
-    @Description("Отправить запрос DELETE на удаление пользователя из п.3, используя ключ из п.2. (удаление другого пользователя)")
+    @Step("Отправить запрос DELETE на удаление пользователя из п.3, используя ключ из п.2. (удаление другого пользователя)")
     public void userDeleteByOtherUser() {
         String firstUserApiKey = firstUser.getApiKey();
         Integer secondUserId = secondUser.getId();
@@ -41,7 +42,7 @@ public class ApiTestCase4 {
         Asserts.assertEquals(userCountAfterUserDelete, userCountBeforeUserDelete);
     }
 
-    @Description("Отправить запрос DELETE на удаление пользователя из п.1, используя ключи из п.2 (удаление себя)")
+    @Step("Отправить запрос DELETE на удаление пользователя из п.1, используя ключи из п.2 (удаление себя)")
     public void userDeleteByHimself() {
         Integer userId = firstUser.getId();
         String userApiKey = firstUser.getApiKey();
