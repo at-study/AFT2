@@ -39,13 +39,13 @@ public class TestCase5 {
     @Test(testName = " Видимость проектов. Пользователь",  description = " Видимость проектов. Пользователь")
     @Description("5. Видимость проектов. Пользователь")
     public void visibiltyOfProjectForUser() {
-        authorizationAndSituatingOnHomePage();
+        userLoginAndLocationOnHomePage();
         clickAndPassingOnProjectPage();
-        projectReflection();
+        displayOfCreatedProjects();
     }
 
     @Step("Пользовель авторизировался и находиться на домашней странице")
-    private void authorizationAndSituatingOnHomePage() {
+    private void userLoginAndLocationOnHomePage() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         Asserts.assertEquals(getPage(HeaderPage.class).projects(), "Проекты");
     }
@@ -57,7 +57,7 @@ public class TestCase5 {
     }
 
     @Step("  ***  Отображение проектов  ***  ")
-    private void projectReflection() {
+    private void displayOfCreatedProjects() {
         publicProjectVisibility();
         privateNotConnectedProjectVisibility();
         privateConnectedProjectVisibility();

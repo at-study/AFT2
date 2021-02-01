@@ -25,9 +25,8 @@ public class TestCase2 {
     }
 
     @Test(testName = "Авторизация подтверждённым пользователем", description = "Авторизация подтверждённым пользователем")
-
     @Description("2. Авторизация подтвержденным пользователем")
-    public void authorizationByAcceptedUserAndElements() {
+    public void acceptedUserLogin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         displayedElements();
         notDisplayedElements();

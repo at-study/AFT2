@@ -41,13 +41,13 @@ public class TestCase6 {
         getPage(AdministrationPage.class).users.click();
         Asserts.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(UsersPage.class).table));
-        userSortingByAscending();
-        orderSwitch();
-        userSortingByDescending();
+        sortUsersByUsernameAsc();
+        switchOrderByUsername();
+        sortUsersByUsernameDesc();
     }
 
     @Step("Сортировка пользователей по возрастанию при заходе на страницу")
-    private void userSortingByAscending() {
+    private void sortUsersByUsernameAsc() {
         List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByUsername
                 .stream()
                 .map(WebElement::getText)
@@ -62,7 +62,7 @@ public class TestCase6 {
     }
 
     @Step("Сортировка пользователей по убыванию после клика для переключения порядка")
-    private void userSortingByDescending() {
+    private void sortUsersByUsernameDesc() {
         List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByUsername
                 .stream()
                 .map(WebElement::getText)
@@ -77,7 +77,7 @@ public class TestCase6 {
     }
 
     @Step("В шапке таблицы нажать на 'Пользователь'")
-    private void orderSwitch() {
+    private void switchOrderByUsername() {
         getPage(UsersPage.class).usersHeaderInTable.click();
     }
 

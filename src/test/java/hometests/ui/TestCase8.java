@@ -31,7 +31,7 @@ public class TestCase8 {
 
     @Test(testName = " Администрирование. Создание пользователя", description = "Администрирование. Создание пользователя")
     @Description("8.Администрирование. Создание пользователя.")
-    public void usersCreationForAdmin() {
+    public void userCreationByAdmin() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
         Asserts.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
         getPage(HeaderPage.class).administration.click();
@@ -48,19 +48,19 @@ public class TestCase8 {
         String lastName = randomEnglishLowerString(12);
         String mail = randomEmail();
 
-        formFillAndNotice(login, firstName, lastName, mail);
-        checkInDb(login, firstName, lastName, mail);
+        assertFormAndNotice(login, firstName, lastName, mail);
+        assertUserCreationInDb(login, firstName, lastName, mail);
     }
 
     @Step("Заполнение формы и уведомление")
-    private void formFillAndNotice(String login, String firstName, String lastName, String mail) {
+    private void assertFormAndNotice(String login, String firstName, String lastName, String mail) {
         getPage(NewUserCreationPage.class).userCreation(login, firstName, lastName, mail);
         String flashNoticeText = String.format("Пользователь %s создан.", login);
         Assert.assertEquals(getPage(NewUserCreationPage.class).flashNotice(), flashNoticeText);
     }
 
     @Step("Проверка создания пользователя в БД")
-    private void checkInDb(String login, String firstName, String lastName, String mail) {
+    private void assertUserCreationInDb(String login, String firstName, String lastName, String mail) {
         String query = String.format("select * from users u  inner join email_addresses e on u.id=e.user_id where login='%s'", login);
         List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
         Assert.assertEquals(result.size(), 1, "Проверка размера результата");

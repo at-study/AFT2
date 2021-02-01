@@ -25,7 +25,7 @@ public class TestCase1 {
 
     @Test(testName = "Авторизация администратором",  description = "Авторизация администратором")
     @Description("1. Авторизация администратором")
-    public void authorizationByAdminAndElements() {
+    public void administratorLogin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         assertEquals(getPage(HeaderPage.class).loggedAs(), "Вошли как " + user.getLogin());
         assertEquals(getPage(HeaderPage.class).adminHomePage(), "Домашняя страница");

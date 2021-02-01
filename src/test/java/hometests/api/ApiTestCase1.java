@@ -16,9 +16,7 @@ import redmine.model.dto.UserDto;
 import redmine.model.user.User;
 import redmine.utils.StringGenerators;
 import redmine.utils.gson.GsonHelper;
-
 import java.util.Random;
-
 import static redmine.utils.Asserts.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
@@ -79,7 +77,7 @@ public class ApiTestCase1 {
     @Test(testName = "Шаг-2 Тест на создание пользователя повторно ",
             description = "2.Отправить запрос POST на создание пользователя повторно с тем же телом запроса")
     @Description("2. Отправить запрос POST на создание пользователя повторно с тем же телом запроса")
-    public void repeatedUserCreationTest() {
+    public void testRepeatedUserCreation() {
         String login = randomEnglishLowerString(8);
         String firstName = randomEnglishLowerString(12);
         String lastName = randomEnglishLowerString(12);
@@ -110,7 +108,7 @@ public class ApiTestCase1 {
     @Test(testName = "Шаг-3 Тест на создание пользователя повторно с почти тем же запросом ",
             description = "3.Отправить запрос POST на создание пользователя повторно с тем же телом запроса")
     @Description("3. Отправить запрос POST на создание пользователя повторно с тем же телом запроса(C ошибками)")
-    public void repeatedUserCreationTestWithSpecialErrors() {
+    public void testRepeatedUserCreationWithSpecialErrors() {
         String login = randomEnglishLowerString(8);
         String firstName = randomEnglishLowerString(12);
         String lastName = randomEnglishLowerString(12);
@@ -299,7 +297,7 @@ public class ApiTestCase1 {
     @Test(testName = "Шаг 7-Отправить повторный запрос DELETE на удаление пользователя ",
             description = "7.Отправить повторный запрос DELETE на удаление пользователя")
     @Description("7. Отправить запрос DELETE на удаление пользователя (повторно)")
-    public void testRepeatDeleteRequest() {
+    public void testRepeatedDeleteRequest() {
         String login = randomEnglishLowerString(8);
         String firstName = "UserCreate" + randomEnglishLowerString(4);
         String lastName = "AndDelete" + randomEnglishLowerString(6);
