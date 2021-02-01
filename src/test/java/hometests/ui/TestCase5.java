@@ -14,7 +14,6 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.ProjectsPage;
 import redmine.utils.Asserts;
-import static redmine.db.requests.ProjectRequests.addUserAndRoleToProject;
 import static redmine.managers.Manager.*;
 import static redmine.model.role.RolePermission.VIEW_ISSUES;
 import static redmine.ui.pages.Pages.getPage;
@@ -57,25 +56,25 @@ public class TestCase5 {
 
     @Step("  ***  Отображение проектов  ***  ")
     private void displayOfCreatedProjects() {
-        publicProjectVisibility();
-        privateNotConnectedProjectVisibility();
-        privateConnectedProjectVisibility();
+        assertPublicProjectIsDisplayed();
+        assertPrivateProjectNotDisplayed();
+        assertPrivateProjectWithRoleIsDisplayed();
     }
 
     @Step("Отображается публичный проект")
-    private void publicProjectVisibility() {
+    private void assertPublicProjectIsDisplayed() {
         Asserts.assertEquals(getPage(ProjectsPage.class).projectName(publicProject.getName()), publicProject.getName());
         Asserts.assertEquals(getPage(ProjectsPage.class).projectNameDescription(publicProject.getName()), publicProject.getDescription());
     }
 
     @Step("НЕ Отображается приватный  проект ( непривязанный )")
-    private void privateNotConnectedProjectVisibility() {
+    private void assertPrivateProjectNotDisplayed() {
         Assert.assertFalse(getPage(ProjectsPage.class).isProjectNameIsSituatingInListOfProjects(privateNotConnectedProject.getName()));
         Assert.assertFalse(getPage(ProjectsPage.class).isProjectDescriptionIsSituatingInListOfProjects(privateNotConnectedProject.getDescription()));
     }
 
     @Step("Отображается приватный  проект ( привязанный )")
-    private void privateConnectedProjectVisibility() {
+    private void assertPrivateProjectWithRoleIsDisplayed() {
         String createdProjectName = createdConnectedProject.getName();
         String createdProjectDescription = createdConnectedProject.getDescription();
         Asserts.assertEquals(getPage(ProjectsPage.class).projectName(createdProjectName), createdProjectName);

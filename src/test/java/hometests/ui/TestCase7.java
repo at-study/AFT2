@@ -45,24 +45,25 @@ public class TestCase7 {
         getPage(AdministrationPage.class).users.click();
         assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
         assertTrue(BrowserUtils.isElementPresent(getPage(UsersPage.class).table));
-        tableNotSortedByLastName();
-        tableNotSortedByName();
+        assertTableNotSortedByLastName();
+        assertTableNotSortedByName();
         switchOrderByLastName();
         sortUsersByLastNameAsc();
-        tableNotSortedByName();
+        assertTableNotSortedByName();
         switchOrderByLastName();
         sortUsersByLastNameDesc();
-        tableNotSortedByName();
+
+        assertTableNotSortedByName();
         switchOrderByName();
-        tableNotSortedByLastName();
+        assertTableNotSortedByLastName();
         sortUsersByNameAsc();
         switchOrderByName();
-        tableNotSortedByLastName();
+        assertTableNotSortedByLastName();
         sortUsersByNameDesc();
     }
 
     @Step("Таблица не отсортирована по фамилии")
-    private void tableNotSortedByLastName() {
+    private void assertTableNotSortedByLastName() {
         List<String> actualNonOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByLastNames
                 .stream()
                 .map(WebElement::getText)
@@ -77,7 +78,7 @@ public class TestCase7 {
     }
 
     @Step("Таблица не отсортирована по имени")
-    private void tableNotSortedByName() {
+    private void assertTableNotSortedByName() {
         List<String> actualNonOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByNames
                 .stream()
                 .map(WebElement::getText)

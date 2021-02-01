@@ -65,7 +65,6 @@ public class TestCase8 {
         List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
         Assert.assertEquals(result.size(), 1, "Проверка размера результата");
         Map<String, Object> dbUser = result.get(0);
-        dbUser.get("id");
         Asserts.assertEquals(dbUser.get("login"), login);
         Asserts.assertEquals(dbUser.get("firstname"), firstName);
         Asserts.assertEquals(dbUser.get("lastname"), lastName);
