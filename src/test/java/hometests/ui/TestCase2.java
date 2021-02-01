@@ -24,7 +24,7 @@ public class TestCase2 {
         openPage("login");
     }
 
-    @Test(testName = "Авторизация подтверждённым пользователем")
+    @Test(testName = "Авторизация подтверждённым пользователем",description = "Авторизация подтверждённым пользователем")
     @Description("2. Авторизация подтвержденным пользователем")
     public void acceptedUserLogin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
@@ -51,7 +51,7 @@ public class TestCase2 {
         Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).register));
     }
 
-    @Step("Отображается элемент \"Поиск\"")
+    @Step("Отображается элемент  \"Поиск\"")
     private void displayOfSearch() {
         assertEquals(getPage(HeaderPage.class).searchLabel(), "Поиск");
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).searchField));

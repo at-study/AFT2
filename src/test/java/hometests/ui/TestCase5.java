@@ -39,7 +39,7 @@ public class TestCase5 {
         openPage("login");
     }
 
-    @Test(testName = " Видимость проектов. Пользователь")
+    @Test(testName = " Видимость проектов. Пользователь",description = "Видимость проектов. Пользователь")
     @Description("5. Видимость проектов. Пользователь")
     public void visibilityOfProjectsForUser() {
         loginAndLocationOnHomePage();

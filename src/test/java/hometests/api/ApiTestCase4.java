@@ -20,7 +20,7 @@ public class ApiTestCase4 {
         secondUser = new User().setAdmin(false).setStatus(1).generate();
     }
 
-    @Test(testName = "4. Удаление пользователей. Пользователь без прав администратора ")
+    @Test(testName = "4. Удаление пользователей. Пользователь без прав администратора ",description = "Удаление пользователей. Пользователь без прав администратора")
     public void deleteUsers() {
         userDeleteByOtherUser();
         userDeleteByHimself();

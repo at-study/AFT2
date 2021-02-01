@@ -1,6 +1,6 @@
 package hometests.api;
 
-import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import org.testng.Assert;
@@ -16,6 +16,7 @@ import redmine.model.dto.UserDto;
 import redmine.model.user.User;
 import redmine.utils.Asserts;
 import redmine.utils.gson.GsonHelper;
+
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
@@ -29,13 +30,13 @@ public class ApiTestCase3 {
         secondUser = new User().setAdmin(false).setStatus(1).generate();
     }
 
-    @Test(testName = "3. Получение пользователей. Пользователь без прав администратора")
+    @Test(testName = "3. Получение пользователей. Пользователь без прав администратора",description = "Получение пользователей. Пользователь без прав администратора")
     public void userCreationByUser() {
         userInfoAboutHimself();
         userInfoAboutOtherUser();
     }
 
-    @Description("Отправить запрос GET на получение пользователя из п.1, используя ключ API из п.2 ")
+    @Step("Отправить запрос GET на получение пользователя из п.1, используя ключ API из п.2 ")
     public void userInfoAboutHimself() {
         ApiClient apiClient = new RestApiClient(firstUser);
         String uri = String.format("users/%d.json", firstUser.getId());
@@ -57,7 +58,7 @@ public class ApiTestCase3 {
     }
 
 
-    @Description("Отправить запрос GET на получения пользователя из п.3, используя ключ API из п.2")
+    @Step("Отправить запрос GET на получения пользователя из п.3, используя ключ API из п.2")
     public void userInfoAboutOtherUser() {
         String uri = String.format("users/%d.json", secondUser.getId());
         io.restassured.response.Response getResponse = given().baseUri("http://edu-at.dfu.i-teco.ru/")

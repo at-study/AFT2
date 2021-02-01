@@ -1,6 +1,5 @@
 package hometests.api;
 
-import io.qameta.allure.Description;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.api.implementations.RestApiClient;
@@ -11,6 +10,7 @@ import redmine.api.interfaces.Request;
 import redmine.api.interfaces.Response;
 import redmine.model.user.User;
 import redmine.utils.Asserts;
+
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
@@ -24,7 +24,6 @@ public class ApiTestCase2 {
     }
 
     @Test(testName = "2. Создание пользователя. Пользователь без прав администратора ", description = "Создание пользователя. Пользователь без прав администратора")
-    @Description("Отправить запрос POST на создание пользователя (данные пользователя должны быть сгенерированы корректно)")
     public void userCreationByNonAdmin() {
         String login = randomEnglishLowerString(8);
         String mail = randomEmail();

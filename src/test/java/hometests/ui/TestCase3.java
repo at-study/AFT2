@@ -23,7 +23,7 @@ public class TestCase3 {
         openPage("login");
     }
 
-    @Test(testName = "Авторизация НЕподтверждённым пользователем")
+    @Test(testName = "Авторизация НЕподтверждённым пользователем",description = "Авторизация НЕподтверждённым пользователем")
     @Description("3. Авторизация неподтвержденным пользователем")
     public void unAcceptedUserLogin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());

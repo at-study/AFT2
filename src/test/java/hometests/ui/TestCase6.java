@@ -31,7 +31,7 @@ public class TestCase6 {
         openPage("login");
     }
 
-    @Test(testName = " Администрирование. Сортировка списка пользователей по пользователю")
+    @Test(testName = " Администрирование. Сортировка списка пользователей по пользователю",description = "Администрирование. Сортировка списка пользователей по пользователю")
     @Description("6. Администрирование. Сортировка списка пользователей по пользователю")
     public void usersSortingByAdminByUser() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
