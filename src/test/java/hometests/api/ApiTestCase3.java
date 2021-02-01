@@ -16,7 +16,6 @@ import redmine.model.dto.UserDto;
 import redmine.model.user.User;
 import redmine.utils.Asserts;
 import redmine.utils.gson.GsonHelper;
-
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
@@ -30,7 +29,7 @@ public class ApiTestCase3 {
         secondUser = new User().setAdmin(false).setStatus(1).generate();
     }
 
-    @Test(testName = "3. Получение пользователей. Пользователь без прав администратора", description = "3. Получение пользователей. Пользователь без прав администратора")
+    @Test(testName = "3. Получение пользователей. Пользователь без прав администратора")
     public void userCreationByUser() {
         userInfoAboutHimself();
         userInfoAboutOtherUser();

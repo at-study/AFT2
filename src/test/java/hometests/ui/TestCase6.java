@@ -15,7 +15,6 @@ import redmine.ui.pages.UsersPage;
 import redmine.utils.BrowserUtils;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;

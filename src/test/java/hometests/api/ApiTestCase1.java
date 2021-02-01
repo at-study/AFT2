@@ -16,7 +16,6 @@ import redmine.model.dto.UserDto;
 import redmine.model.user.User;
 import redmine.utils.StringGenerators;
 import redmine.utils.gson.GsonHelper;
-
 import static redmine.utils.Asserts.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
@@ -31,8 +30,7 @@ public class ApiTestCase1 {
         apiClient = new RestApiClient(user);
     }
 
-    @Test(testName = "1. Создание, изменение, получение, удаление пользователя. Администратор системы",
-            description = "1. Создание, изменение, получение, удаление пользователя. Администратор системы")
+    @Test(testName = "1. Создание, изменение, получение, удаление пользователя. Администратор системы")
     public void operationsWithUserByAdmin() {
         testUserCreation();
         testRepeatedUserCreation();
@@ -42,7 +40,6 @@ public class ApiTestCase1 {
         testDeleteRequest();
         testRepeatedDeleteRequest();
     }
-
 
     @Description("1. Отправить запрос POST на создание пользователя")
     public void testUserCreation() {
