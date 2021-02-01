@@ -31,14 +31,14 @@ public class ApiTestCase4 {
         String firstUserApiKey = firstUser.getApiKey();
         Integer secondUserId = secondUser.getId();
         String uri = String.format("users/%d.json", secondUserId);
-        int usersBeforeDelete = UserRequests.getAllUsers().size();
+        int userCountBeforeUserDelete = UserRequests.getAllUsers().size();
         io.restassured.response.Response deleteResponse = given().baseUri("http://edu-at.dfu.i-teco.ru/")
                 .contentType(ContentType.JSON)
                 .header("X-Redmine-API-Key", firstUserApiKey)
                 .request(Method.DELETE, uri);
         Asserts.assertEquals(deleteResponse.getStatusCode(), 403);
-        int userCountAfterDelete = UserRequests.getAllUsers().size();
-        Asserts.assertEquals(userCountAfterDelete, usersBeforeDelete);
+        int userCountAfterUserDelete = UserRequests.getAllUsers().size();
+        Asserts.assertEquals(userCountAfterUserDelete, userCountBeforeUserDelete);
     }
 
     @Description("Отправить запрос DELETE на удаление пользователя из п.1, используя ключи из п.2 (удаление себя)")
@@ -46,13 +46,13 @@ public class ApiTestCase4 {
         Integer userId = firstUser.getId();
         String userApiKey = firstUser.getApiKey();
         String uri = String.format("users/%d.json", userId);
-        int usersBeforeDelete = UserRequests.getAllUsers().size();
+        int userCountBeforeUserDelete = UserRequests.getAllUsers().size();
         io.restassured.response.Response deleteResponse = given().baseUri("http://edu-at.dfu.i-teco.ru/")
                 .contentType(ContentType.JSON)
                 .header("X-Redmine-API-Key", userApiKey)
                 .request(Method.DELETE, uri);
         Asserts.assertEquals(deleteResponse.getStatusCode(), 403);
-        int userCountAfterDelete = UserRequests.getAllUsers().size();
-        Asserts.assertEquals(userCountAfterDelete, usersBeforeDelete);
+        int userCountAfterUserDelete = UserRequests.getAllUsers().size();
+        Asserts.assertEquals(userCountAfterUserDelete, userCountBeforeUserDelete);
     }
 }

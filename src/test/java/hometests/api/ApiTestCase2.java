@@ -8,9 +8,9 @@ import redmine.api.implementations.RestRequest;
 import redmine.api.interfaces.ApiClient;
 import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
+import redmine.api.interfaces.Response;
 import redmine.model.user.User;
 import redmine.utils.Asserts;
-import java.util.Random;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
@@ -30,7 +30,7 @@ public class ApiTestCase2 {
         String mail = randomEmail();
         String name = randomEnglishLowerString(8);
         String lastName = randomEnglishLowerString(8);
-        String password = String.valueOf(new Random().nextInt(50000000) + 10000000);
+        String password = randomEnglishLowerString(8);
         String body = String.format("{\n" +
                 "                 \"user\":{\n" +
                 "                 \"login\":\"%s\",\n" +
@@ -42,7 +42,7 @@ public class ApiTestCase2 {
                 "                }", login, mail, name, lastName, password);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         apiClient.executeRequest(request);
-        redmine.api.interfaces.Response userCreationByNonAdmin = apiClient.executeRequest(request);
+        Response userCreationByNonAdmin = apiClient.executeRequest(request);
         Asserts.assertEquals(userCreationByNonAdmin.getStatusCode(), 403);
     }
 }

@@ -25,7 +25,7 @@ public class TestCase3 {
 
     @Test(testName = "Авторизация НЕподтверждённым пользователем",  description = "Авторизация НЕподтверждённым пользователем")
     @Description("3. Авторизация неподтвержденным пользователем")
-    public void unacceptedUserLogin() {
+    public void unAcceptedUserLogin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
         Asserts.assertEquals(getPage(HeaderPage.class).adminHomePage(), "Home");
         Asserts.assertEquals(getPage(LoginPage.class).errorMessage(), "Your account was created and is now pending administrator approval.");

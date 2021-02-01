@@ -61,7 +61,7 @@ public class ApiTestCase1 {
                         "         }\n" +
                         "        }"
                 , login, firstName, lastName, mail, status);
-        int usersBeforeUserCreation = UserRequests.getAllUsers().size();
+        int usersCountBeforeUserCreation = UserRequests.getAllUsers().size();
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
         assertEquals(response.getStatusCode(), 201);
@@ -76,12 +76,12 @@ public class ApiTestCase1 {
         assertEquals(createdUser.getUser().getStatus(), 2);
         Assert.assertFalse(createdUser.getUser().getAdmin());
 
-        int usersCountAfter = UserRequests.getAllUsers().size();
-        assertEquals(usersCountAfter, usersBeforeUserCreation + 1);
-        int idForCheck = createdUser.getUser().getId();
-        user.setId(idForCheck);
-        User dataBaseUser = UserRequests.getUser(user);
-        assertEquals(dataBaseUser.getStatus().toString(), "2");
+        int usersCountAfterUserCreation = UserRequests.getAllUsers().size();
+        assertEquals(usersCountAfterUserCreation, usersCountBeforeUserCreation + 1);
+        int createdUserId = createdUser.getUser().getId();
+        user.setId(createdUserId);
+        User dbUser = UserRequests.getUser(user);
+        assertEquals(dbUser.getStatus().toString(), "2");
     }
 
     @Description("2. Отправить запрос POST на создание пользователя повторно с тем же телом запроса")
@@ -284,13 +284,13 @@ public class ApiTestCase1 {
         Integer userId = createdUser.getUser().getId();
         System.out.println("Created userID: " + userId);
 
-        int userAmountBeforeDeleteOtherUser = UserRequests.getAllUsers().size();
+        int userCountBeforeDeleteOtherUser = UserRequests.getAllUsers().size();
         String uri = String.format("users/%d.json", userId);
         Request deleteRequest = new RestRequest(uri, HttpMethods.DELETE, null, null, null);
         Response deleteResponse = apiClient.executeRequest(deleteRequest);
         assertEquals(deleteResponse.getStatusCode(), 204);
         int userAmountAfterDeleteOtherUser = UserRequests.getAllUsers().size();
-        assertEquals(userAmountAfterDeleteOtherUser, userAmountBeforeDeleteOtherUser - 1);
+        assertEquals(userAmountAfterDeleteOtherUser, userCountBeforeDeleteOtherUser - 1);
     }
 
     @Description("7. Отправить запрос DELETE на удаление пользователя (повторно)")
