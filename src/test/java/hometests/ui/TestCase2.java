@@ -28,14 +28,19 @@ public class TestCase2 {
     @Description("2. Авторизация подтвержденным пользователем")
     public void acceptedUserLogin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
+        displayOfLoggedAsElement();
         displayOfElements();
         notDisplayOfElements();
         displayOfSearch();
     }
 
-    @Step("Oтображаются элементы: \"Домашняя страница\", \"Моя страница\", \"Проекты\", \"Помощь\", \"Моя учётная запись\", \"Выйти\"")
-    private void displayOfElements() {
+    @Step("2. Отображается 'Вошли как <логин пользователя>'")
+    private void displayOfLoggedAsElement(){
         assertEquals(getPage(HeaderPage.class).loggedAs(), "Вошли как " + user.getLogin());
+    }
+
+    @Step("3.Oтображаются элементы: \"Домашняя страница\", \"Моя страница\", \"Проекты\", \"Помощь\", \"Моя учётная запись\", \"Выйти\"")
+    private void displayOfElements() {
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).home));
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).myPage));
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).projects));
@@ -44,14 +49,14 @@ public class TestCase2 {
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).logout));
     }
 
-    @Step("В заголовке страницы не отображаются элементы 'Администрирование', 'Войти','Регистрация'")
+    @Step("4.В заголовке страницы не отображаются элементы 'Администрирование', 'Войти','Регистрация'")
     private void notDisplayOfElements() {
         Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).administration));
         Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).signIn));
         Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).register));
     }
 
-    @Step("Отображается элемент  \"Поиск\"")
+    @Step("5.Отображается элемент  \"Поиск\"")
     private void displayOfSearch() {
         assertEquals(getPage(HeaderPage.class).searchLabel(), "Поиск");
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).searchField));

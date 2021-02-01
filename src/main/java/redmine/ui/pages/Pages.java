@@ -12,6 +12,7 @@ public class Pages {
         return Allure.step("Обращение к странице " + clazz.getSimpleName(), () -> {
             T page = clazz.newInstance();
             PageFactory.initElements(Manager.driver(), page);
+            Manager.takesScreenshot();
             return page;
         });
     }
