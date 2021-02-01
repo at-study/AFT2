@@ -26,7 +26,7 @@ public class ApiTestCase4 {
         userDeleteByHimself();
     }
 
-    @Description("1. Отправить запрос DELETE на удаление пользователя из п.3, используя ключ из п.2. (удаление другого пользователя)")
+    @Description("Отправить запрос DELETE на удаление пользователя из п.3, используя ключ из п.2. (удаление другого пользователя)")
     public void userDeleteByOtherUser() {
         String firstUserApiKey = firstUser.getApiKey();
         Integer secondUserId = secondUser.getId();
@@ -41,7 +41,7 @@ public class ApiTestCase4 {
         Asserts.assertEquals(userCountAfterDelete, usersBeforeDelete);
     }
 
-    @Description("2. Отправить запрос DELETE на удаление пользователя из п.1, используя ключи из п.2 (удаление себя)")
+    @Description("Отправить запрос DELETE на удаление пользователя из п.1, используя ключи из п.2 (удаление себя)")
     public void userDeleteByHimself() {
         Integer userId = firstUser.getId();
         String userApiKey = firstUser.getApiKey();

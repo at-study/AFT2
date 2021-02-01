@@ -35,7 +35,7 @@ public class ApiTestCase3 {
         userInfoAboutOtherUser();
     }
 
-    @Description("1. Отправить запрос GET на получение пользователя из п.1, используя ключ API из п.2 ")
+    @Description("Отправить запрос GET на получение пользователя из п.1, используя ключ API из п.2 ")
     public void userInfoAboutHimself() {
         ApiClient apiClient = new RestApiClient(firstUser);
         String uri = String.format("users/%d.json", firstUser.getId());
@@ -57,7 +57,7 @@ public class ApiTestCase3 {
     }
 
 
-    @Description("2. Отправить запрос GET на получения пользователя из п.3, используя ключ API из п.2")
+    @Description("Отправить запрос GET на получения пользователя из п.3, используя ключ API из п.2")
     public void userInfoAboutOtherUser() {
         String uri = String.format("users/%d.json", secondUser.getId());
         io.restassured.response.Response getResponse = given().baseUri("http://edu-at.dfu.i-teco.ru/")

@@ -24,7 +24,7 @@ public class ApiTestCase2 {
     }
 
     @Test(testName = "2. Создание пользователя. Пользователь без прав администратора ", description = "2. Создание пользователя. Пользователь без прав администратора")
-    @Description("1. Отправить запрос POST на создание пользователя (данные пользователя должны быть сгенерированы корректно)")
+    @Description("Отправить запрос POST на создание пользователя (данные пользователя должны быть сгенерированы корректно)")
     public void userCreationByNonAdmin() {
         String login = randomEnglishLowerString(8);
         String mail = randomEmail();
