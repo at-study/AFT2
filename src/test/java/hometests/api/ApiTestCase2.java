@@ -11,6 +11,7 @@ import redmine.api.interfaces.Request;
 import redmine.api.interfaces.Response;
 import redmine.model.user.User;
 import redmine.utils.Asserts;
+
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 

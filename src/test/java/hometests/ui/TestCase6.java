@@ -8,11 +8,15 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.model.user.User;
-import redmine.ui.pages.*;
+import redmine.ui.pages.AdministrationPage;
+import redmine.ui.pages.HeaderPage;
+import redmine.ui.pages.LoginPage;
+import redmine.ui.pages.UsersPage;
 import redmine.utils.BrowserUtils;
-import java.util.Comparator;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
@@ -67,7 +71,7 @@ public class TestCase6 {
 
         List<String> expectedOrderedByAscList = actualOrderedByAscList
                 .stream()
-                .sorted(Comparator.reverseOrder())
+                .sorted(String.CASE_INSENSITIVE_ORDER.reversed())
                 .collect(Collectors.toList());
 
         Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);

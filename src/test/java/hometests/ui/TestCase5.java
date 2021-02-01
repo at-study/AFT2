@@ -14,6 +14,7 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.ProjectsPage;
 import redmine.utils.Asserts;
+
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.model.project.Project.addUserAndRoleToProject;
@@ -35,7 +36,7 @@ public class TestCase5 {
         publicProject = new Project().setIsPublic(true).generate();
         privateNotConnectedProject = new Project().setIsPublic(false).generate();
         privateConnectedProject = new Project().setIsPublic(false).generate();
-        createdConnectedProject=addUserAndRoleToProject(privateConnectedProject,user, role);
+        createdConnectedProject = addUserAndRoleToProject(privateConnectedProject, user, role);
         openPage("login");
     }
 
@@ -60,7 +61,7 @@ public class TestCase5 {
     }
 
     @Step("  ***  Отображение проектов  ***  ")
-    private void createdProjectsVisibility(){
+    private void createdProjectsVisibility() {
         assertPublicProjectIsDisplayed();
         assertPrivateProjectWithoutRoleIsNotDisplayed();
         assertPrivateProjectWithRoleIsDisplayed();

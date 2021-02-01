@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import redmine.db.requests.UserRequests;
 import redmine.model.user.User;
 import redmine.utils.Asserts;
+
 import static io.restassured.RestAssured.given;
 
 public class ApiTestCase4 {
@@ -21,7 +22,7 @@ public class ApiTestCase4 {
     }
 
     @Test(testName = "4. Удаление пользователей. Пользователь без прав администратора ", description = "4. Удаление пользователей. Пользователь без прав администратора")
-    public void deleteUsers(){
+    public void deleteUsers() {
         userDeleteByOtherUser();
         userDeleteByHimself();
     }

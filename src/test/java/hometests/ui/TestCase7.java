@@ -13,9 +13,11 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.UsersPage;
 import redmine.utils.BrowserUtils;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import static org.testng.Assert.assertTrue;
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
