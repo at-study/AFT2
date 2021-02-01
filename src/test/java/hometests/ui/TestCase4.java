@@ -1,6 +1,7 @@
 package hometests.ui;
 
 import io.qameta.allure.Description;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -10,6 +11,8 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.ProjectsPage;
 import redmine.utils.Asserts;
+import redmine.utils.BrowserUtils;
+
 import static redmine.managers.Manager.*;
 import static redmine.ui.pages.Pages.getPage;
 
@@ -28,9 +31,9 @@ public class TestCase4 {
     @Description("4. Видимость проекта. Приватный проект. Администратор")
     public void visibilityOfPrivateProjectForAdmin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
-        Asserts.assertEquals(getPage(HeaderPage.class).projects(), "Проекты");
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).home));
         getPage(HeaderPage.class).projects.click();
-        Asserts.assertEquals(getPage(ProjectsPage.class).projectPageName(), "Проекты");
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(ProjectsPage.class).projectPageName));
         Asserts.assertEquals(getPage(ProjectsPage.class).projectName(project.getName()), project.getName());
         Asserts.assertEquals(getPage(ProjectsPage.class).projectNameDescription(project.getName()), project.getDescription());
     }

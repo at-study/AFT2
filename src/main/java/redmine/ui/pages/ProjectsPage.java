@@ -13,7 +13,7 @@ public class ProjectsPage extends AbstractPage {
     public List<WebElement> projectList;
 
     @FindBy(xpath = "//h2[text()='Проекты']")
-    private WebElement projectPageName;
+    public WebElement projectPageName;
 
     @Step("Отображается элемент 'Проекты'")
     public String projectPageName() {

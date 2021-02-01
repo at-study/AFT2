@@ -40,12 +40,10 @@ public class TestCase7 {
     @Description("7. Администрирование. Сортировка списка пользователей по имени и фамилии")
     public void usersSortingByAdminByUserNameAndLastName() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
-        assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).home));
         getPage(HeaderPage.class).administration.click();
-        assertEquals(getPage(AdministrationPage.class).adminPageName(), "Администрирование");
-        assertEquals(getPage(AdministrationPage.class).users(), "Пользователи");
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(AdministrationPage.class).adminPageName));
         getPage(AdministrationPage.class).users.click();
-        assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
         assertTrue(BrowserUtils.isElementPresent(getPage(UsersPage.class).table));
         assertTableNotSortedByLastName();
         assertTableNotSortedByName();
@@ -54,7 +52,6 @@ public class TestCase7 {
         assertTableNotSortedByName();
         switchOrderByLastName();
         sortUsersByLastNameDesc();
-
         assertTableNotSortedByName();
         switchOrderByName();
         assertTableNotSortedByLastName();

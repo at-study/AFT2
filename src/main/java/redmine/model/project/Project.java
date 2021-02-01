@@ -11,7 +11,6 @@ import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
 @Accessors(chain = true)
 @Data
-
 public class Project implements Generatable<Project> {
     private Integer id;
     private String name = "EvgProject" + randomEnglishLowerString(6);

@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 public class HeaderPage extends AbstractPage {
 
     @FindBy(xpath = "//a[@class='home']")
-    private WebElement home;
+    public WebElement home;
 
     @FindBy(xpath = "//a[@class='projects']")
     public WebElement projects;
@@ -16,7 +16,7 @@ public class HeaderPage extends AbstractPage {
     private WebElement loggedAs;
 
     @FindBy(xpath = "//a[@class='home']")
-    private WebElement adminHomePage;
+    public WebElement adminHomePage;
 
     @FindBy(xpath = "//a[@class='my-page']")
     public WebElement myPage;
@@ -25,13 +25,13 @@ public class HeaderPage extends AbstractPage {
     public WebElement administration;
 
     @FindBy(xpath = "//a[@class='help']")
-    private WebElement help;
+    public WebElement help;
 
     @FindBy(xpath = "//a[@class='my-account']")
-    private WebElement myAccount;
+    public WebElement myAccount;
 
     @FindBy(xpath = "//a[@class='logout']")
-    private WebElement logout;
+    public WebElement logout;
 
     @FindBy(xpath = "//form/label/a")
     private WebElement searchLabel;

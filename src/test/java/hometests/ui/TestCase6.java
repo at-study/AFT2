@@ -34,12 +34,10 @@ public class TestCase6 {
     @Description("6. Администрирование. Сортировка списка пользователей по пользователю")
     public void usersSortingByAdminByUser() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
-        Asserts.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).adminHomePage));
         getPage(HeaderPage.class).administration.click();
-        Asserts.assertEquals(getPage(AdministrationPage.class).adminPageName(), "Администрирование");
-        Asserts.assertEquals(getPage(AdministrationPage.class).users(), "Пользователи");
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).administration));
         getPage(AdministrationPage.class).users.click();
-        Asserts.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(UsersPage.class).table));
         sortUsersByUsernameAsc();
         switchOrderByUsername();

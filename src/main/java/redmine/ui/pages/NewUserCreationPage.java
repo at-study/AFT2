@@ -10,7 +10,7 @@ import static redmine.ui.pages.Pages.getPage;
 public class NewUserCreationPage extends AbstractPage {
 
     @FindBy(xpath = "//h2[text()=' » Новый пользователь']")
-    private WebElement newUserCreationPage;
+    public WebElement newUserCreationPage;
 
     @FindBy(xpath = "//input[@id='user_login']")
     public WebElement usernameField;
@@ -33,6 +33,11 @@ public class NewUserCreationPage extends AbstractPage {
     @FindBy(xpath = "//div[@id='flash_notice']")
     private WebElement flashNoticeAboutNewUSerCreation;
 
+    @Step("Уведомление о добавлении нового пользователя")
+    public String flashNoticeAboutNewUSerCreation() {
+        return flashNoticeAboutNewUSerCreation.getText();
+    }
+
     @Step("Создание нового пользователя")
     public void userCreation(String login, String firstName, String lastName, String mail) {
         new Actions(Manager.driver())
@@ -44,15 +49,5 @@ public class NewUserCreationPage extends AbstractPage {
                 .moveToElement(getPage(NewUserCreationPage.class).commit).click()
                 .build()
                 .perform();
-    }
-
-    @Step("Уведомление о добавлении нового пользователя")
-    public String flashNoticeAboutNewUSerCreation() {
-        return flashNoticeAboutNewUSerCreation.getText();
-    }
-
-    @Step("Страница 'Новый пользователь' отображается")
-    public String newUserCreationPage() {
-        return newUserCreationPage.getText();
     }
 }

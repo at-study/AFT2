@@ -27,7 +27,7 @@ public class TestCase3 {
     @Description("3. Авторизация неподтвержденным пользователем")
     public void unAcceptedUserLogin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
-        Asserts.assertEquals(getPage(HeaderPage.class).adminHomePage(), "Home");
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).home));
         Asserts.assertEquals(getPage(LoginPage.class).errorMessage(), "Your account was created and is now pending administrator approval.");
         Assert.assertFalse(BrowserUtils.isElementPresent(getPage(HeaderPage.class).myPage));
         Assert.assertTrue(BrowserUtils.isElementPresent(getPage(HeaderPage.class).signIn));

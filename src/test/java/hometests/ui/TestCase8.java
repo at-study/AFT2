@@ -10,6 +10,7 @@ import redmine.managers.Manager;
 import redmine.model.user.User;
 import redmine.ui.pages.*;
 import redmine.utils.Asserts;
+import redmine.utils.BrowserUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -33,15 +34,12 @@ public class TestCase8 {
     @Description("8.Администрирование. Создание пользователя.")
     public void userCreationByAdmin() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
-        Asserts.assertEquals(getPage(HeaderPage.class).administration(), "Администрирование");
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).adminHomePage));
         getPage(HeaderPage.class).administration.click();
-        Asserts.assertEquals(getPage(AdministrationPage.class).adminPageName(), "Администрирование");
-        Asserts.assertEquals(getPage(AdministrationPage.class).users(), "Пользователи");
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(AdministrationPage.class).adminPageName));
         getPage(AdministrationPage.class).users.click();
-        Asserts.assertEquals(getPage(UsersPage.class).usersPageName(), "Пользователи");
-        Asserts.assertEquals(getPage(UsersPage.class).newUserAdd(), "Новый пользователь");
         getPage(UsersPage.class).addNewUser.click();
-        Asserts.assertEquals(getPage(NewUserCreationPage.class).newUserCreationPage(), "Пользователи » Новый пользователь");
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(NewUserCreationPage.class).newUserCreationPage));
 
         String login = randomEnglishLowerString(8);
         String firstName = randomEnglishLowerString(12);

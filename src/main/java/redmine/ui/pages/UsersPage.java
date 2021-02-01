@@ -34,10 +34,6 @@ public class UsersPage extends AbstractPage {
     @FindBy(xpath = "//table[@class='list users']//a[text()='Имя']")
     public WebElement usersByNameHeaderInTable;
 
-    public String table() {
-        return table.getText();
-    }
-
     @Step("Присутствует элемент 'Пользователи' ")
     public String usersPageName() {
         return usersPageName.getText();

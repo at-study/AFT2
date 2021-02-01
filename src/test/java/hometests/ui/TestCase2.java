@@ -36,12 +36,12 @@ public class TestCase2 {
     @Step("Oтображаются элементы: \"Домашняя страница\", \"Моя страница\", \"Проекты\", \"Помощь\", \"Моя учётная запись\", \"Выйти\"")
     private void displayOfElements() {
         assertEquals(getPage(HeaderPage.class).loggedAs(), "Вошли как " + user.getLogin());
-        assertEquals(getPage(HeaderPage.class).adminHomePage(), "Домашняя страница");
-        assertEquals(getPage(HeaderPage.class).myPage(), "Моя страница");
-        assertEquals(getPage(HeaderPage.class).projects(), "Проекты");
-        assertEquals(getPage(HeaderPage.class).help(), "Помощь");
-        assertEquals(getPage(HeaderPage.class).myAccount(), "Моя учётная запись");
-        assertEquals(getPage(HeaderPage.class).logout(), "Выйти");
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).home));
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).myPage));
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).projects));
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).help));
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).myAccount));
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).logout));
     }
 
     @Step("В заголовке страницы не отображаются элементы 'Администрирование', 'Войти','Регистрация'")
