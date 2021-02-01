@@ -13,7 +13,6 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.UsersPage;
 import redmine.utils.BrowserUtils;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
