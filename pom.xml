@@ -25,6 +25,7 @@
         <allure-maven.version>2.10.0</allure-maven.version>
         <cucumber-java.version>4.2.4</cucumber-java.version>
         <cucumber-testng.version>4.2.4</cucumber-testng.version>
+        <allure-cucumber-jvm.version>2.13.8</allure-cucumber-jvm.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -98,6 +99,13 @@
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-testng</artifactId>
             <version>${cucumber-testng.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber-jvm -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-cucumber-jvm</artifactId>
+            <version>${allure-cucumber-jvm.version}</version>
         </dependency>
 
     </dependencies>
