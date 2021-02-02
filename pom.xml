@@ -26,6 +26,7 @@
         <cucumber-java.version>4.2.4</cucumber-java.version>
         <cucumber-testng.version>4.2.4</cucumber-testng.version>
         <allure-cucumber-jvm.version>2.13.8</allure-cucumber-jvm.version>
+        <aspectjrt.version>1.9.6</aspectjrt.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -106,6 +107,13 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-cucumber-jvm</artifactId>
             <version>${allure-cucumber-jvm.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectjrt.version}</version>
         </dependency>
 
     </dependencies>
