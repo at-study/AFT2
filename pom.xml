@@ -23,6 +23,7 @@
         <allure-java-commons.version>2.13.8</allure-java-commons.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <allure-maven.version>2.10.0</allure-maven.version>
+        <cucumber-java.version>6.9.1</cucumber-java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -82,6 +83,13 @@
             <artifactId>allure-java-commons</artifactId>
             <version>${allure-java-commons.version}</version>
             <scope>compile</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber-java.version}</version>
         </dependency>
     </dependencies>
 
