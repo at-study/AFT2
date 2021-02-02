@@ -74,7 +74,7 @@ public class TestCase7 {
         assertTrue(BrowserUtils.isElementPresent(getPage(UsersPage.class).table));
     }
 
-    @Step("4.Таблица не отсортирована по фамилии")
+    @Step("4.Таблица не отсортирована по Фамилии")
     private void assertTableNotSortedByLastName() {
         List<String> actualNonOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByLastNames
                 .stream()
@@ -104,7 +104,7 @@ public class TestCase7 {
         Assert.assertNotEquals(actualNonOrderedByAscList, notExpectedOrderedByAscList);
     }
 
-    @Step("6.Сортировка пользователей по возрастанию после клика для переключения порядка Фамилии")
+    @Step("Сортировка пользователей по возрастанию после клика для переключения порядка Фамилии")
     private void sortUsersByLastNameAsc() {
         List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByLastNames
                 .stream()
@@ -119,7 +119,7 @@ public class TestCase7 {
         Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
     }
 
-    @Step("7.Сортировка пользователей по убыванию после клика для переключения порядка Фамилии")
+    @Step("Сортировка пользователей по убыванию после клика для переключения порядка Фамилии")
     private void sortUsersByLastNameDesc() {
         List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByLastNames
                 .stream()
@@ -134,7 +134,7 @@ public class TestCase7 {
         Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
     }
 
-    @Step("8.Сортировка пользователей по возрастанию после клика для переключения порядка Имени")
+    @Step("Сортировка пользователей по возрастанию после клика для переключения порядка Имени")
     private void sortUsersByNameAsc() {
         List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByNames
                 .stream()
@@ -149,7 +149,7 @@ public class TestCase7 {
         Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
     }
 
-    @Step("9.Сортировка пользователей по убыванию после клика для переключения порядка Имени")
+    @Step("Сортировка пользователей по убыванию после клика для переключения порядка Имени")
     private void sortUsersByNameDesc() {
         List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByNames
                 .stream()
