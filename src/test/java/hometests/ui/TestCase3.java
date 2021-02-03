@@ -29,10 +29,15 @@ public class TestCase3 {
     @Description("3. Авторизация неподтвержденным пользователем")
     public void unAcceptedUserLogin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
-        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).home));
+        displayOfHomePage();
         flashNoticeAboutAccount();
         notDisplayedElement();
         displayedElements();
+    }
+
+    @Step("1. Отображается домашняя страница")
+    private void displayOfHomePage() {
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).home));
     }
 
     @Step(" 2. Отображается ошибка с текстом 'Ваша учётная запись создана и ожидает подтверждения администратора.'")
