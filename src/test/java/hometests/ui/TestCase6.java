@@ -13,8 +13,10 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.UsersPage;
 import redmine.utils.BrowserUtils;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
@@ -31,7 +33,7 @@ public class TestCase6 {
         openPage("login");
     }
 
-    @Test(testName = " Администрирование. Сортировка списка пользователей по пользователю",description = "Администрирование. Сортировка списка пользователей по пользователю")
+    @Test(testName = " Администрирование. Сортировка списка пользователей по пользователю", description = "Администрирование. Сортировка списка пользователей по пользователю")
     @Description("6. Администрирование. Сортировка списка пользователей по пользователю")
     public void usersSortingByAdminByUser() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
@@ -44,18 +46,18 @@ public class TestCase6 {
     }
 
     @Step("1. Отображается домашняя страница")
-    private void displayOfHomePage(){
+    private void displayOfHomePage() {
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).adminHomePage));
     }
 
     @Step("2. Отображается страница \"Администрирование\"")
-    private void displayOfAdministartionPage(){
+    private void displayOfAdministartionPage() {
         getPage(HeaderPage.class).administration.click();
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).administration));
     }
 
     @Step("3.Отображается таблица с пользователями")
-    private  void displayOfUsersTable(){
+    private void displayOfUsersTable() {
         getPage(AdministrationPage.class).users.click();
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(UsersPage.class).table));
     }

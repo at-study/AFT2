@@ -11,8 +11,10 @@ import redmine.model.user.User;
 import redmine.ui.pages.*;
 import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
+
 import java.util.List;
 import java.util.Map;
+
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
@@ -28,7 +30,7 @@ public class TestCase8 {
         openPage("login");
     }
 
-    @Test(testName = " Администрирование. Создание пользователя",description = " Администрирование. Создание пользователя")
+    @Test(testName = " Администрирование. Создание пользователя", description = " Администрирование. Создание пользователя")
     @Description("8.Администрирование. Создание пользователя.")
     public void userCreationByAdmin() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
@@ -44,18 +46,18 @@ public class TestCase8 {
     }
 
     @Step("1. Отображается домашняя страница")
-    private void displayOfHomePage(){
+    private void displayOfHomePage() {
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).adminHomePage));
     }
 
     @Step("2. Отображается страница \"Администрирование\"")
-    private void displayOfAdministrationPage(){
+    private void displayOfAdministrationPage() {
         getPage(HeaderPage.class).administration.click();
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(AdministrationPage.class).adminPageName));
     }
 
     @Step("3.  Отображается страница \"Пользователи >> Новый пользователь\"")
-    private void displayOfNewUserCreationPage(){
+    private void displayOfNewUserCreationPage() {
         getPage(AdministrationPage.class).users.click();
         getPage(UsersPage.class).addNewUser.click();
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(NewUserCreationPage.class).newUserCreationPage));

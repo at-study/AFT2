@@ -30,7 +30,7 @@ public class ApiTestCase3 {
         secondUser = new User().setAdmin(false).setStatus(1).generate();
     }
 
-    @Test(testName = "3. Получение пользователей. Пользователь без прав администратора",description = "Получение пользователей. Пользователь без прав администратора")
+    @Test(testName = "3. Получение пользователей. Пользователь без прав администратора", description = "Получение пользователей. Пользователь без прав администратора")
     public void userCreationByUser() {
         userInfoAboutHimself();
         userInfoAboutOtherUser();

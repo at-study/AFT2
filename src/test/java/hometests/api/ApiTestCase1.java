@@ -31,7 +31,7 @@ public class ApiTestCase1 {
         apiClient = new RestApiClient(user);
     }
 
-    @Test(testName = "1. Создание, изменение, получение, удаление пользователя. Администратор системы",description = "Создание, изменение, получение, удаление пользователя. Администратор системы")
+    @Test(testName = "1. Создание, изменение, получение, удаление пользователя. Администратор системы", description = "Создание, изменение, получение, удаление пользователя. Администратор системы")
     public void operationsWithUserByAdmin() {
         testUserCreation();
         testRepeatedUserCreation();

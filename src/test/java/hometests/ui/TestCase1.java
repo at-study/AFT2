@@ -10,6 +10,7 @@ import redmine.model.user.User;
 import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.utils.BrowserUtils;
+
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
@@ -24,7 +25,7 @@ public class TestCase1 {
         openPage("login");
     }
 
-    @Test(testName = "Авторизация администратором",description = "Авторизация администратором")
+    @Test(testName = "Авторизация администратором", description = "Авторизация администратором")
     @Description("1. Авторизация администратором")
     public void administratorLogin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
@@ -36,18 +37,18 @@ public class TestCase1 {
     }
 
     @Step("1. Отображается домашняя страница")
-    private void displayOfHomePage(){
+    private void displayOfHomePage() {
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).home));
     }
 
     @Step("2. Отображается 'Вошли как <логин пользователя>'")
-    private void displayOfLoggedAsElement(){
+    private void displayOfLoggedAsElement() {
         assertEquals(getPage(HeaderPage.class).loggedAs(), "Вошли как " + user.getLogin());
     }
 
     @Step("3. В заголовке страницы отображаются элементы: \"Домашняя страница\", \"Моя страница\", \"Проекты\", \"Администрирование\", \"Помощь\", \"Моя учётная запись\", \"Выйти\"'")
-    private void displayOfElements(){
-         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).adminHomePage));
+    private void displayOfElements() {
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).adminHomePage));
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).myPage));
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).projects));
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).administration));

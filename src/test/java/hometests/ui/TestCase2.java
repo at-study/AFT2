@@ -10,6 +10,7 @@ import redmine.model.user.User;
 import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.utils.BrowserUtils;
+
 import static redmine.utils.Asserts.assertEquals;
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
@@ -24,7 +25,7 @@ public class TestCase2 {
         openPage("login");
     }
 
-    @Test(testName = "Авторизация подтверждённым пользователем",description = "Авторизация подтверждённым пользователем")
+    @Test(testName = "Авторизация подтверждённым пользователем", description = "Авторизация подтверждённым пользователем")
     @Description("2. Авторизация подтвержденным пользователем")
     public void acceptedUserLogin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
@@ -36,12 +37,12 @@ public class TestCase2 {
     }
 
     @Step("1. Отображается домашняя страница")
-    private void displayOfHomePage(){
+    private void displayOfHomePage() {
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).home));
     }
 
     @Step("2. Отображается 'Вошли как <логин пользователя>'")
-    private void displayOfLoggedAsElement(){
+    private void displayOfLoggedAsElement() {
         assertEquals(getPage(HeaderPage.class).loggedAs(), "Вошли как " + user.getLogin());
     }
 

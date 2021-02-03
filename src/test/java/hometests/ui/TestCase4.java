@@ -13,6 +13,7 @@ import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.ProjectsPage;
 import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
+
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.Pages.getPage;
@@ -28,7 +29,7 @@ public class TestCase4 {
         openPage("login");
     }
 
-    @Test(testName = " Видимость проекта. Приватный проект. Администратор",description = "Видимость проекта. Приватный проект. Администратор")
+    @Test(testName = " Видимость проекта. Приватный проект. Администратор", description = "Видимость проекта. Приватный проект. Администратор")
     @Description("4. Видимость проекта. Приватный проект. Администратор")
     public void visibilityOfPrivateProjectForAdmin() {
         getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
@@ -39,17 +40,17 @@ public class TestCase4 {
     }
 
     @Step("1. Отображается домашняя страница")
-    private void displayOfHomePage(){
+    private void displayOfHomePage() {
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).home));
     }
 
     @Step("2. Отображается страница \"Проекты\"")
-    private void displayOfProjectPage(){
+    private void displayOfProjectPage() {
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(ProjectsPage.class).projectPageName));
     }
 
     @Step("3. На странице отображается проект из предусловия")
-    private void displayOfCreatedProject(){
+    private void displayOfCreatedProject() {
         Asserts.assertEquals(getPage(ProjectsPage.class).projectName(project.getName()), project.getName());
         Asserts.assertEquals(getPage(ProjectsPage.class).projectNameDescription(project.getName()), project.getDescription());
     }

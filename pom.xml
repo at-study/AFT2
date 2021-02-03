@@ -25,8 +25,9 @@
         <allure-maven.version>2.10.0</allure-maven.version>
         <cucumber-java.version>4.2.4</cucumber-java.version>
         <cucumber-testng.version>4.2.4</cucumber-testng.version>
-        <allure-cucumber-jvm.version>2.13.8</allure-cucumber-jvm.version>
+        <allure-cucumber4-jvm.version>2.13.8</allure-cucumber4-jvm.version>
         <aspectjrt.version>1.9.6</aspectjrt.version>
+        <slf4j-simple.version>1.7.30</slf4j-simple.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -95,6 +96,15 @@
             <version>${cucumber-java.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j-simple.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -102,11 +112,11 @@
             <version>${cucumber-testng.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber-jvm -->
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber4-jvm -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-cucumber-jvm</artifactId>
-            <version>${allure-cucumber-jvm.version}</version>
+            <artifactId>allure-cucumber4-jvm</artifactId>
+            <version>${allure-cucumber4-jvm.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
@@ -133,7 +143,7 @@
                     <useSystemClassLoader>false</useSystemClassLoader>
                     <reuseForks>false</reuseForks>
                     <systemPropertyVariables>
-                        <allure.results.directory>${project.build.directory}\allure-results</allure.results.directory>
+                        <allure.results.directory>${basedir}\target\allure-results</allure.results.directory>
                         <dataproviderthreadcount>1</dataproviderthreadcount>
                         <parallel>methods</parallel>
                     </systemPropertyVariables>
@@ -151,6 +161,9 @@
                 <artifactId>allure-maven</artifactId>
                 <version>${allure-maven.version}</version>
                 <configuration>
+                    <reportDirectory>${basedir}\target\allure-report</reportDirectory>
+                    <resultsDirectory>${basedir}\target\allure-results</resultsDirectory>
+                    <outputDirectory>${basedir}\site</outputDirectory>
                     <reportVersion>2.3.1</reportVersion>
                 </configuration>
             </plugin>
