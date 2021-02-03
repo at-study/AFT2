@@ -1,6 +1,5 @@
 package redmine.ui.pages;
 
-import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -10,9 +9,6 @@ public class UsersPage extends AbstractPage {
 
     @FindBy(xpath = "//table[@class='list users']")
     public WebElement table;
-
-    @FindBy(xpath = "//h2[text()='Пользователи']")
-    public WebElement usersPageName;
 
     @FindBy(xpath = "//a[@class='icon icon-add']")
     public WebElement addNewUser;
@@ -35,13 +31,4 @@ public class UsersPage extends AbstractPage {
     @FindBy(xpath = "//table[@class='list users']//a[text()='Имя']")
     public WebElement usersByNameHeaderInTable;
 
-    @Step("Присутствует элемент 'Пользователи' ")
-    public String usersPageName() {
-        return usersPageName.getText();
-    }
-
-    @Step("Присутствует элемент  'Новый пользователь'")
-    public String newUserAdd() {
-        return addNewUser.getText();
-    }
 }

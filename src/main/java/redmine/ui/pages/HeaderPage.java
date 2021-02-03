@@ -13,7 +13,7 @@ public class HeaderPage extends AbstractPage {
     public WebElement projects;
 
     @FindBy(xpath = "//div[@id='loggedas']")
-    private WebElement loggedAs;
+    public WebElement loggedAs;
 
     @FindBy(xpath = "//a[@class='home']")
     public WebElement adminHomePage;
@@ -34,7 +34,7 @@ public class HeaderPage extends AbstractPage {
     public WebElement logout;
 
     @FindBy(xpath = "//form/label/a")
-    private WebElement searchLabel;
+    public WebElement searchLabel;
 
     @FindBy(xpath = "//form/input[@id='q']")
     public WebElement searchField;
@@ -50,39 +50,10 @@ public class HeaderPage extends AbstractPage {
         return loggedAs.getText();
     }
 
-    @Step("Присутствует элемент 'Домашняя страница'")
-    public String adminHomePage() {
-        return adminHomePage.getText();
-    }
-
-    @Step("Присутствует элемент 'Моя страница'")
-    public String myPage() {
-        return myPage.getText();
-    }
-
-    @Step("Присутствует элемент 'Проекты'")
-    public String projects() {
-        return projects.getText();
-    }
-
-    @Step("Присутствует элемент 'Администрирование'")
-    public String administration() {
-        return administration.getText();
-    }
 
     @Step("Присутствует элемент 'Помощь'")
     public String help() {
         return help.getText();
-    }
-
-    @Step("Присутствует элемент 'Моя учётная запись'")
-    public String myAccount() {
-        return myAccount.getText();
-    }
-
-    @Step("Присутствует элемент 'Выйти'")
-    public String logout() {
-        return logout.getText();
     }
 
     @Step("Присутствует элемент 'Поиск'")

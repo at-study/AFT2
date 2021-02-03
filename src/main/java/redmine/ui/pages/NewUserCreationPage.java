@@ -32,7 +32,7 @@ public class NewUserCreationPage extends AbstractPage {
     public WebElement commit;
 
     @FindBy(xpath = "//div[@id='flash_notice']")
-    private WebElement flashNoticeAboutNewUSerCreation;
+    public WebElement flashNoticeAboutNewUSerCreation;
 
     @Step("Уведомление о добавлении нового пользователя")
     public String flashNoticeAboutNewUSerCreation() {

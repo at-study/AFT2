@@ -8,16 +8,16 @@ import redmine.managers.Manager;
 public class LoginPage extends AbstractPage {
 
     @FindBy(xpath = "//input[@id='username']")
-    private WebElement loginElement;
+    public WebElement loginElement;
 
     @FindBy(xpath = "//input[@id='password']")
-    private WebElement passwordElement;
+    public WebElement passwordElement;
 
     @FindBy(xpath = "//input[@id='login-submit']")
-    private WebElement submitButton;
+    public WebElement submitButton;
 
     @FindBy(xpath = "//div[@id='flash_error']")
-    private WebElement flashError;
+    public WebElement flashError;
 
     @Step("Авторизация в Редмине c логином: {0} и паролем: {1}")
     public void login(String login, String password) {
