@@ -8,6 +8,7 @@ import redmine.managers.Manager;
 import redmine.ui.pages.helpers.CucumberName;
 
 import static redmine.ui.pages.helpers.Pages.getPage;
+
 @CucumberName("Страница создания нового пользователя")
 public class NewUserCreationPage extends AbstractPage {
 

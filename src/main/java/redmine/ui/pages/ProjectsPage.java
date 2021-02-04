@@ -9,6 +9,7 @@ import redmine.ui.pages.helpers.CucumberName;
 import java.util.List;
 
 import static redmine.managers.Manager.driver;
+
 @CucumberName("Страница Проекты")
 public class ProjectsPage extends AbstractPage {
 

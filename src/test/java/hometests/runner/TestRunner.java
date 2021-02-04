@@ -8,15 +8,16 @@ import org.testng.ITest;
 import org.testng.annotations.*;
 import redmine.managers.Context;
 import redmine.managers.Manager;
+
 import java.lang.reflect.Method;
 
 @CucumberOptions(
-        plugin = {"pretty","io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm","json:target/cucumber.json"},
-        glue={"steps","hooks"}, features = "src/test/resources"
+        plugin = {"pretty", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm", "json:target/cucumber.json"},
+        glue = {"steps", "hooks"}, features = "src/test/resources"
 )
 @Listeners({TestNGListenerImpl.class})
 public class TestRunner extends AbstractTestNGCucumberTests implements ITest {
-   //TODO change to thread local
+    //TODO change to thread local
     private static String testCaseName;
 
     @BeforeClass(alwaysRun = true)
@@ -43,12 +44,12 @@ public class TestRunner extends AbstractTestNGCucumberTests implements ITest {
     }
 
     @BeforeMethod
-    public void beforeMethod(Method name,Object[] testData){
-        testCaseName=testData[0].toString();
+    public void beforeMethod(Method name, Object[] testData) {
+        testCaseName = testData[0].toString();
     }
 
     @AfterMethod
-    public void afterMethod(Method name,Object[] testData){
+    public void afterMethod(Method name, Object[] testData) {
         Context.clearStash();
         Manager.driverQuit();
     }

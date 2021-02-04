@@ -11,9 +11,9 @@ public class Context {
         return stash;
     }
 
-    public  static void clearStash(){
-        if(stash!=null){
-            stash=null;
+    public static void clearStash() {
+        if (stash != null) {
+            stash = null;
         }
     }
 }

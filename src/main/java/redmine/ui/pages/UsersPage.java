@@ -5,6 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import redmine.ui.pages.helpers.CucumberName;
 
 import java.util.List;
+
 @CucumberName("Страница пользователи")
 public class UsersPage extends AbstractPage {
 

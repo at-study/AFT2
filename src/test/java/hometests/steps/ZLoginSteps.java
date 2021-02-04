@@ -11,13 +11,13 @@ import static redmine.ui.pages.helpers.Pages.getPage;
 
 public class ZLoginSteps {
     @Если("Авторизоваться пользователем {string}")
-    public void authorizeBy(String userStashId){
-        User user= Context.getStash().get(userStashId,User.class);
-        getPage(LoginPage.class).login(user.getLogin(),user.getPassword());
+    public void authorizeBy(String userStashId) {
+        User user = Context.getStash().get(userStashId, User.class);
+        getPage(LoginPage.class).login(user.getLogin(), user.getPassword());
     }
 
     @И("Открыт браузер на главной странице")
-    public void openBrowserOnMainPage(){
+    public void openBrowserOnMainPage() {
         Manager.openPage("login");
     }
 }
