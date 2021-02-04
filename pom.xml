@@ -27,6 +27,7 @@
         <cucumber-testng.version>4.2.4</cucumber-testng.version>
         <aspectjrt.version>1.9.6</aspectjrt.version>
         <slf4j-simple.version>1.7.30</slf4j-simple.version>
+        <reflections.version>0.9.12</reflections.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -36,6 +37,13 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>${reflections.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->

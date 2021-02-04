@@ -3,7 +3,7 @@ package hometests.steps;
 import cucumber.api.java.ru.То;
 import org.testng.Assert;
 import redmine.managers.Context;
-import redmine.ui.pages.CucumberPageObjectHelper;
+import redmine.ui.pages.helpers.CucumberPageObjectHelper;
 import redmine.utils.BrowserUtils;
 
 public class ZAssertionSteps {

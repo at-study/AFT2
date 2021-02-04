@@ -21,7 +21,7 @@ import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.model.project.Project.addUserAndRoleToProject;
 import static redmine.model.role.RolePermission.VIEW_ISSUES;
-import static redmine.ui.pages.Pages.getPage;
+import static redmine.ui.pages.helpers.Pages.getPage;
 
 public class TestCase5 {
     private User user;

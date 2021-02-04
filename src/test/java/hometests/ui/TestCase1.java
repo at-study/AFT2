@@ -13,7 +13,7 @@ import redmine.utils.BrowserUtils;
 
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
-import static redmine.ui.pages.Pages.getPage;
+import static redmine.ui.pages.helpers.Pages.getPage;
 import static redmine.utils.Asserts.assertEquals;
 
 public class TestCase1 {

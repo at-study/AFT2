@@ -17,7 +17,7 @@ import java.util.Map;
 
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
-import static redmine.ui.pages.Pages.getPage;
+import static redmine.ui.pages.helpers.Pages.getPage;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 

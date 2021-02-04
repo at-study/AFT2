@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 import static org.testng.Assert.assertTrue;
 import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
-import static redmine.ui.pages.Pages.getPage;
+import static redmine.ui.pages.helpers.Pages.getPage;
 
 
 public class TestCase7 {

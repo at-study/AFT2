@@ -5,8 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import redmine.managers.Manager;
+import redmine.ui.pages.helpers.CucumberName;
 
-import static redmine.ui.pages.Pages.getPage;
+import static redmine.ui.pages.helpers.Pages.getPage;
 @CucumberName("Страница создания нового пользователя")
 public class NewUserCreationPage extends AbstractPage {
 

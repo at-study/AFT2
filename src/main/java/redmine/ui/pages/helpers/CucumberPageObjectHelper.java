@@ -1,14 +1,16 @@
-package redmine.ui.pages;
+package redmine.ui.pages.helpers;
 
 import lombok.SneakyThrows;
 import org.openqa.selenium.WebElement;
+import redmine.ui.pages.HeaderPage;
+
 import java.lang.reflect.Field;
 import java.util.stream.Stream;
 
 public class CucumberPageObjectHelper {
     @SneakyThrows
     public static WebElement getElementBy(String cucumberFieldName){
-        HeaderPage page=Pages.getPage(HeaderPage.class);
+        HeaderPage page= Pages.getPage(HeaderPage.class);
         Field founfField= Stream.of(page.getClass().getDeclaredFields())
                 .filter(field ->field.isAnnotationPresent(CucumberName.class))
                 .filter(field -> cucumberFieldName.equals(field.getAnnotation(CucumberName.class).value()))
