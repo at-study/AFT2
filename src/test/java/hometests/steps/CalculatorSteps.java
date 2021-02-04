@@ -1,7 +1,6 @@
 package hometests.steps;
-
 import cucumber.api.java.ru.Если;
-import cucumber.api.java.ru.И;
+import cucumber.api.java.ru.То;
 import org.testng.Assert;
 import temp.Calculator;
 
@@ -13,7 +12,7 @@ public class CalculatorSteps {
         res= Calculator.summ(num1,num2);
     }
 
-    @И("Сумма будет равна {int}")
+    @То("Сумма будет равна {int}")
     public void assertResult(int expected){
         Assert.assertEquals(res,expected);
     }
