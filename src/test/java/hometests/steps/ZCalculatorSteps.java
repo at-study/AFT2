@@ -3,7 +3,7 @@ import cucumber.api.java.ru.Если;
 import redmine.managers.Context;
 import temp.Calculator;
 
-public class CalculatorSteps {
+public class ZCalculatorSteps {
     @Если("В калькуляторе {string} числа {int} и {int} и сохранить результат в переменную {string}")
     public  void calculateSum(String operation,int num1, int num2,String resStashId){
         int res;

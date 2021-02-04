@@ -9,7 +9,7 @@ import redmine.ui.pages.LoginPage;
 
 import static redmine.ui.pages.Pages.getPage;
 
-public class LoginSteps {
+public class ZLoginSteps {
     @Если("Авторизоваться пользователем {string}")
     public void authorizeBy(String userStashId){
         User user= Context.getStash().get(userStashId,User.class);

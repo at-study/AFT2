@@ -5,7 +5,7 @@ import redmine.managers.Context;
 import redmine.model.user.User;
 import java.util.Map;
 
-public class GeneratorsSteps {
+public class ZGeneratorsSteps {
     @Пусть("Существует пользователь {string} с параметрами:")
     public void generateAndSaveUser(String stashId, Map<String, String> params) {
         User user = new User();

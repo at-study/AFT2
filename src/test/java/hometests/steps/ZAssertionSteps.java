@@ -8,7 +8,7 @@ import redmine.utils.BrowserUtils;
 
 import static redmine.ui.pages.Pages.getPage;
 
-public class AssertionSteps {
+public class ZAssertionSteps {
     @То("Значение переменной {string} равно  {int}")
     public void assertResult(String stashId,int expected){
         int  res=Context.getStash().get(stashId,Integer.class);
