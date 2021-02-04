@@ -6,6 +6,7 @@ import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.PickleEventWrapper;
 import org.testng.ITest;
 import org.testng.annotations.*;
+import redmine.managers.Context;
 import redmine.managers.Manager;
 import java.lang.reflect.Method;
 
@@ -48,7 +49,7 @@ public class TestRunner extends AbstractTestNGCucumberTests implements ITest {
 
     @AfterMethod
     public void afterMethod(Method name,Object[] testData){
-       // Manager.clearStash();
+        Context.clearStash();
         Manager.driverQuit();
     }
 
