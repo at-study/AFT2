@@ -24,12 +24,12 @@ public class CucumberPageObjectHelper {
 
     @SneakyThrows
     private static AbstractPage getPageBy(String cucumberPageName) {
-        Reflections reflections = new Reflections("my.project.prefix");
+        Reflections reflections = new Reflections("redmine.ui.pages");
         Set<Class<?>> allClasses = reflections.getTypesAnnotatedWith(CucumberName.class);
 
         Class<?> pageClass = allClasses.stream().filter(clazz -> cucumberPageName.equals(clazz.getAnnotation(CucumberName.class).value()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException(String.format("Нет аннотации @CucumberName(\"%s\") у класса", cucumberPageName)));
-        return (AbstractPage) pageClass.newInstance();
+        return Pages.getPage((Class<AbstractPage>) pageClass);
     }
 }

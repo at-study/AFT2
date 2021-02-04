@@ -28,5 +28,12 @@ public class ZAssertionSteps {
     @И("На странице {string} отображается элемент {string}")
     public void assertFieldIsDisplayed(String pageName,String fieldName){
         WebElement element=CucumberPageObjectHelper.getElementBy(pageName,fieldName);
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(element));
+    }
+
+    @И("На странице {string} не отображается элемент {string}")
+    public void assertFieldIsNotDisplayed(String pageName,String fieldName){
+        WebElement element=CucumberPageObjectHelper.getElementBy(pageName,fieldName);
+        Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(element));
     }
 }
