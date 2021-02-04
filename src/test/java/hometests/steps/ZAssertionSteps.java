@@ -3,10 +3,8 @@ package hometests.steps;
 import cucumber.api.java.ru.То;
 import org.testng.Assert;
 import redmine.managers.Context;
-import redmine.ui.pages.HeaderPage;
+import redmine.ui.pages.CucumberPageObjectHelper;
 import redmine.utils.BrowserUtils;
-
-import static redmine.ui.pages.Pages.getPage;
 
 public class ZAssertionSteps {
     @То("Значение переменной {string} равно  {int}")
@@ -14,8 +12,13 @@ public class ZAssertionSteps {
         int  res=Context.getStash().get(stashId,Integer.class);
         Assert.assertEquals(res,expected);
     }
-    @То("На главной странице отображается поле \"Проекты\"")
-    public void assertProjectElementIsDisplayed(){
-       Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).projects));
+
+    @То("На главной странице отображается поле {string}")
+    public void assertProjectElementIsDisplayed(String fieldName){
+       Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(CucumberPageObjectHelper.getElementBy(fieldName)));
+    }
+    @То("На главной странице не отображается поле {string}")
+    public void assertProjectElementIsNotDisplayed(String fieldName){
+        Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(CucumberPageObjectHelper.getElementBy(fieldName)));
     }
 }

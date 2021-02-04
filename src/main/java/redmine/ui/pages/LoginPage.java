@@ -4,7 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import redmine.managers.Manager;
-
+@CucumberName("Вход в систему")
 public class LoginPage extends AbstractPage {
 
     @FindBy(xpath = "//input[@id='username']")

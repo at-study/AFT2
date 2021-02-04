@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import redmine.managers.Manager;
 
 import static redmine.ui.pages.Pages.getPage;
-
+@CucumberName("Страница создания нового пользователя")
 public class NewUserCreationPage extends AbstractPage {
 
     @FindBy(xpath = "//h2[text()=' » Новый пользователь']")

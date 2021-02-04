@@ -3,7 +3,7 @@ package redmine.ui.pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
+@CucumberName("Администрирование")
 public class AdministrationPage extends AbstractPage {
 
     @FindBy(xpath = "//h2[text()='Администрирование']")

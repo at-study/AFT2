@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
-
+@CucumberName("Страница пользователи")
 public class UsersPage extends AbstractPage {
 
     @FindBy(xpath = "//table[@class='list users']")

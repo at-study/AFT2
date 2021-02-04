@@ -20,11 +20,11 @@
         <selenium-java.version>3.141.59</selenium-java.version>
         <allure-testng.version>2.13.8</allure-testng.version>
         <allure-java-commons.version>2.13.8</allure-java-commons.version>
+        <allure-cucumber4-jvm.version>2.13.8</allure-cucumber4-jvm.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <allure-maven.version>2.8</allure-maven.version>
         <cucumber-java.version>4.2.4</cucumber-java.version>
         <cucumber-testng.version>4.2.4</cucumber-testng.version>
-        <allure-cucumber4-jvm.version>2.13.8</allure-cucumber4-jvm.version>
         <aspectjrt.version>1.9.6</aspectjrt.version>
         <slf4j-simple.version>1.7.30</slf4j-simple.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

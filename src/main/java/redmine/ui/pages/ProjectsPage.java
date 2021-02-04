@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 import static redmine.managers.Manager.driver;
-
+@CucumberName("Страница Проекты")
 public class ProjectsPage extends AbstractPage {
 
     @FindBy(xpath = "//li[@class='root']")

@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
         plugin = {"pretty","io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm","json:target/cucumber.json"},
         glue={"steps","hooks"}, features = "src/test/resources"
 )
-@Listeners({ITestNGListenerImpl.class})
+@Listeners({TestNGListenerImpl.class})
 public class TestRunner extends AbstractTestNGCucumberTests implements ITest {
    //TODO change to thread local
     private static String testCaseName;
