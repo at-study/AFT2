@@ -1,2 +1,0 @@
-insert into public.email_addresses
-(id,user_id,address,is_default,notify,created_on,updated_on)values(DEFAULT,8069,'azncvbfr@uMjTrMtu.ygm','TRUE','TRUE','2021-02-04 21:57:56.075+02'::timestamp,'2021-02-04 21:57:56.075+02'::timestamp) RETURNING id

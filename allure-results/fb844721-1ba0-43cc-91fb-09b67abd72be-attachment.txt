@@ -1,1 +1,0 @@
-select * from users u inner join tokens t on u.id=t.user_id inner join email_addresses e on u.id=e.user_id

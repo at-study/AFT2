@@ -16,6 +16,6 @@ public class AssertionSteps {
     }
     @То("На главной странице отображается поле \"Проекты\"")
     public void assertProjectElementIsDisplayed(){
-        BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).projects);
+       Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).projects));
     }
 }
