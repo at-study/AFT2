@@ -1,6 +1,8 @@
 package hometests.steps;
 
+import cucumber.api.java.ru.И;
 import cucumber.api.java.ru.То;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import redmine.managers.Context;
 import redmine.ui.pages.helpers.CucumberPageObjectHelper;
@@ -15,11 +17,16 @@ public class ZAssertionSteps {
 
     @То("На главной странице отображается поле {string}")
     public void assertProjectElementIsDisplayed(String fieldName) {
-        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(CucumberPageObjectHelper.getElementBy(fieldName)));
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(CucumberPageObjectHelper.getElementBy("Заголовок",fieldName)));
     }
 
     @То("На главной странице не отображается поле {string}")
     public void assertProjectElementIsNotDisplayed(String fieldName) {
-        Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(CucumberPageObjectHelper.getElementBy(fieldName)));
+        Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(CucumberPageObjectHelper.getElementBy("Заголовок",fieldName)));
+    }
+
+    @И("На странице {string} отображается элемент {string}")
+    public void assertFieldIsDisplayed(String pageName,String fieldName){
+        WebElement element=CucumberPageObjectHelper.getElementBy(pageName,fieldName);
     }
 }
