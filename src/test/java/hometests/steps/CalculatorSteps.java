@@ -6,7 +6,7 @@ import temp.Calculator;
 public class CalculatorSteps {
     @Если("В калькуляторе {string} числа {int} и {int} и сохранить результат в переменную {string}")
     public  void calculateSum(String operation,int num1, int num2,String resStashId){
-        Integer res;
+        int res;
         switch (operation)
         {
             case "сложить":
