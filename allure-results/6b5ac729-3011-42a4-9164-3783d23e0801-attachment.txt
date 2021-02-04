@@ -1,0 +1,2 @@
+insert into public.tokens
+(id,user_id,action,value,created_on,updated_on)values(DEFAULT,8069,'api','13bd3a0435180af3cbf48b2c6230db74ad0810be','2021-02-04 21:57:55.994+02'::timestamp,'2021-02-04 21:57:55.994+02'::timestamp) RETURNING id

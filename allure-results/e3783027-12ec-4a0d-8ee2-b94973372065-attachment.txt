@@ -1,0 +1,3 @@
+update public.users
+set login='admin',hashed_password='12e60aba4ff335e52c41fec95df46e7472facc3c',firstname='Evgxtxtphkkr',lastname='TTTbvkyvmael',admin='true',status='1',language='ru',
+where name=? RETURNING id

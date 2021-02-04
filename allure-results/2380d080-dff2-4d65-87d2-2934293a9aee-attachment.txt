@@ -1,0 +1,2 @@
+insert into public.users
+(id,login,hashed_password,firstname,lastname,"admin","status","language",mail_notification,type,salt)values(DEFAULT,'Evgscsdwx','12aa944b092e8a5e5b457c8be7f1cf379534877f','Evgrnllbonud','TTTcktxebtxq','TRUE',1,'ru','all','User','e2559843ef3797dd99355be65d9ef79d') RETURNING id
