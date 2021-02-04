@@ -48,7 +48,7 @@ public class TestRunner extends AbstractTestNGCucumberTests implements ITest {
 
     @AfterMethod
     public void afterMethod(Method name,Object[] testData){
-        Manager.clearStash();
+       // Manager.clearStash();
         Manager.driverQuit();
     }
 
