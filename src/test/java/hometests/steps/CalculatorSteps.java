@@ -8,7 +8,7 @@ import temp.Calculator;
 public class CalculatorSteps {
     private int res;
     @Если("В калькуляторе сложить числа {int} и {int}")
-    public  void calculateSum(int num1,int num2){
+    public  void calculateSum(int num1, int num2){
         res= Calculator.summ(num1,num2);
     }
     @То("Сумма будет равна {int}")
