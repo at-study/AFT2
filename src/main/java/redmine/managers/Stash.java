@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Stash {
 
-    private Map<String, Object> entities = new HashMap<>();
+    private final Map<String, Object> entities = new HashMap<>();
 
     public void put(String stashId, Object entity) {
         entities.put(stashId, entity);

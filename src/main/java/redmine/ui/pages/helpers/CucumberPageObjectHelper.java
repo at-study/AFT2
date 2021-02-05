@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 public class CucumberPageObjectHelper {
     @SneakyThrows
-    public static WebElement getElementBy(String cucumberPageName,String cucumberFieldName) {
+    public static WebElement getElementBy(String cucumberPageName, String cucumberFieldName) {
         AbstractPage page = getPageBy(cucumberPageName);
         Field foundField = Stream.of(page.getClass().getDeclaredFields())
                 .filter(field -> field.isAnnotationPresent(CucumberName.class))

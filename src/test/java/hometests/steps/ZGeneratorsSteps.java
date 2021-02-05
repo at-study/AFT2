@@ -2,6 +2,7 @@ package hometests.steps;
 
 import cucumber.api.java.ru.Пусть;
 import redmine.managers.Context;
+import redmine.model.role.Role;
 import redmine.model.user.User;
 
 import java.util.Map;
@@ -16,7 +17,15 @@ public class ZGeneratorsSteps {
                 user.setStatus(Integer.parseInt(params.get("status")));
             }
             user.generate();
-            Context.getStash().put(stashId, user);
+            Context.put(stashId, user);
         }
     }
+
+    @Пусть("В системе существует роль {string} с параметрами по умолчанию")
+    public void generateDefaultRole(String roleStashId) {
+        Role role = new Role().generate();
+        Context.put(roleStashId, role);
+
+    }
+
 }

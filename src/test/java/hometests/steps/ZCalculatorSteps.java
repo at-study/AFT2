@@ -11,11 +11,11 @@ public class ZCalculatorSteps {
         switch (operation) {
             case "сложить":
                 res = Calculator.summ(num1, num2);
-                Context.getStash().put(resStashId, res);
+                Context.put(resStashId, res);
                 break;
             case "разделить":
                 res = Calculator.divide(num1, num2);
-                Context.getStash().put(resStashId, res);
+                Context.put(resStashId, res);
                 break;
             default:
                 throw new IllegalArgumentException("Не определена операция для чисел" + operation);

@@ -14,6 +14,7 @@ import java.lang.reflect.Method;
 @CucumberOptions(
         plugin = {"pretty", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm", "json:target/cucumber.json"},
         glue = {"steps", "hooks"}, features = "src/test/resources"
+        //,tags={"@generation_sample"}
 )
 @Listeners({TestNGListenerImpl.class})
 public class TestRunner extends AbstractTestNGCucumberTests implements ITest {
@@ -50,6 +51,7 @@ public class TestRunner extends AbstractTestNGCucumberTests implements ITest {
 
     @AfterMethod
     public void afterMethod(Method name, Object[] testData) {
+        //Context.saveStashToAllure();
         Context.clearStash();
         Manager.driverQuit();
     }
