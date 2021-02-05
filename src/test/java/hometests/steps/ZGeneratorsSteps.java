@@ -1,6 +1,7 @@
 package hometests.steps;
 
 import cucumber.api.java.ru.Пусть;
+import redmine.cucumber.ParametersValidator;
 import redmine.managers.Context;
 import redmine.model.role.*;
 import redmine.model.user.User;
@@ -35,6 +36,7 @@ public class ZGeneratorsSteps {
 
     @Пусть("В системе существует роль {string} с параметрами:")
     public void generateRoleWithParameters(String roleStashId, Map<String, String> parameters) {
+        ParametersValidator.validateRoleParameters(parameters);
         Role role = new Role();
         if (parameters.containsKey("Позиция")) {
             role.setPosition(parseInt(parameters.get("Позиция")));
@@ -64,6 +66,7 @@ public class ZGeneratorsSteps {
 
     @Пусть("Существует список прав роли {string} с правами:")
     public void putPermissionsToContext(String permissionStashId, List<String> permissionDescriptions) {
+
         Set<RolePermission> permissions = permissionDescriptions.stream().map(RolePermission::of).collect(Collectors.toSet());
         RolePermissions rolePermissions = new RolePermissions(permissions);
         Context.put(permissionStashId, rolePermissions);

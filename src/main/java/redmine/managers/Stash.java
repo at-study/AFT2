@@ -18,4 +18,6 @@ public class Stash {
     public Object get(String stashId) {
         return entities.get(stashId);
     }
+
+    Map<String,Object> getEntities(){return entities;}
 }

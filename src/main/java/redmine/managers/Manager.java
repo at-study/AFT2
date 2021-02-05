@@ -38,7 +38,9 @@ public class Manager {
 
     @Step("Выход из драйвера")
     public static void driverQuit() {
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
         driver = null;
     }
 
