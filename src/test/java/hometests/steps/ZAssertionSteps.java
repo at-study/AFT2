@@ -13,9 +13,10 @@ import redmine.model.role.UsersVisibility;
 import redmine.ui.pages.helpers.CucumberPageObjectHelper;
 import redmine.utils.BrowserUtils;
 
+import java.util.Arrays;
 import java.util.Map;
 
-import static java.lang.Boolean.*;
+import static java.lang.Boolean.parseBoolean;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.valueOf;
 import static org.testng.Assert.assertEquals;
@@ -52,6 +53,9 @@ public class ZAssertionSteps {
     @Тогда("Роль {string} имеет параметры:")
     public void assertRoleParameters(String roleStashId, Map<String, String> parameters) {
         Role role = Context.get(roleStashId, Role.class);
+        parameters.forEach((key,value)->Assert.assertTrue(Arrays.asList("Позиция","Встроенная","Задача может быть назначена этой роли",
+                "Видимость задач","Видимость пользователей","Видимость трудозатрат").contains(key),
+                "В переданных параметрах роли неизвестный параметр: "+key));
         if (parameters.containsKey("Позиция")) {
             assertEquals(role.getPosition(), valueOf(parseInt(parameters.get("Позиция"))));
         }
