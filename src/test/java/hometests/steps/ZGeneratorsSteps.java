@@ -12,7 +12,6 @@ import java.util.Map;
 
 import static java.lang.Boolean.parseBoolean;
 import static java.lang.Integer.parseInt;
-import static org.testng.Assert.assertEquals;
 
 public class ZGeneratorsSteps {
     @Пусть("Существует пользователь {string} с параметрами:")
@@ -48,9 +47,6 @@ public class ZGeneratorsSteps {
         if (parameters.containsKey("Видимость трудозатрат")) {
            role.setTimeEntriesVisibility(TimeEntriesVisibility.of(parameters.get("Видимость трудозатрат")));
         }
-
-
-
             Context.put(roleStashId, role);
         }
 }
