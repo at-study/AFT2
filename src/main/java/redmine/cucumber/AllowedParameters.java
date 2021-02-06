@@ -12,4 +12,5 @@ public class AllowedParameters {
             "Видимость пользователей",
             "Видимость трудозатрат",
             "Права");
+    static final List<String> USER_PARAMETERS = ImmutableList.of("admin", "status");
 }

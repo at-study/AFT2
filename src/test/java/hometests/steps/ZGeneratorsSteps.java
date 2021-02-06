@@ -66,7 +66,6 @@ public class ZGeneratorsSteps {
 
     @Пусть("Существует список прав роли {string} с правами:")
     public void putPermissionsToContext(String permissionStashId, List<String> permissionDescriptions) {
-
         Set<RolePermission> permissions = permissionDescriptions.stream().map(RolePermission::of).collect(Collectors.toSet());
         RolePermissions rolePermissions = new RolePermissions(permissions);
         Context.put(permissionStashId, rolePermissions);
