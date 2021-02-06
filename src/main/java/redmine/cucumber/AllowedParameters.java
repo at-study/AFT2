@@ -13,4 +13,5 @@ public class AllowedParameters {
             "Видимость трудозатрат",
             "Права");
     static final List<String> USER_PARAMETERS = ImmutableList.of("admin", "status");
+    static final List<String> PROJECT_PARAMETERS = ImmutableList.of("", "");
 }

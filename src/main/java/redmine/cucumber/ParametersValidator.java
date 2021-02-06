@@ -14,4 +14,9 @@ public class ParametersValidator {
         parameters.forEach((key, value) -> Assert.assertTrue(AllowedParameters.USER_PARAMETERS.contains(key),
                 "Список допустимых параметров по работе с пользователями не содержит параметр" + key));
     }
+
+    public static void validateProjectParameters(Map<String, String> parameters) {
+        parameters.forEach((key, value) -> Assert.assertTrue(AllowedParameters.PROJECT_PARAMETERS.contains(key),
+                "Список допустимых параметров по работе с пользователями не содержит параметр" + key));
+    }
 }

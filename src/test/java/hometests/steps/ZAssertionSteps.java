@@ -10,9 +10,7 @@ import redmine.managers.Context;
 import redmine.model.role.*;
 import redmine.ui.pages.helpers.CucumberPageObjectHelper;
 import redmine.utils.BrowserUtils;
-
 import java.util.Map;
-
 import static java.lang.Boolean.parseBoolean;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.valueOf;
