@@ -23,6 +23,7 @@ public class HeaderPage extends AbstractPage {
     @FindBy(xpath = "//a[@class='home']")
     public WebElement adminHomePage;
 
+    @CucumberName("Моя страница")
     @FindBy(xpath = "//a[@class='my-page']")
     public WebElement myPage;
 
@@ -42,15 +43,19 @@ public class HeaderPage extends AbstractPage {
     @FindBy(xpath = "//a[@class='logout']")
     public WebElement logout;
 
+    @CucumberName("Лейбл поиск")
     @FindBy(xpath = "//form/label/a")
     public WebElement searchLabel;
 
+    @CucumberName("Поле поиск")
     @FindBy(xpath = "//form/input[@id='q']")
     public WebElement searchField;
 
+    @CucumberName("Войти")
     @FindBy(xpath = "//a[@class='login']")
     public WebElement signIn;
 
+    @CucumberName("Регистрация")
     @FindBy(xpath = "//a[@class='register']")
     public WebElement register;
 

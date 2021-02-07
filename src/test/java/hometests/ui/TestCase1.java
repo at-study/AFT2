@@ -57,7 +57,7 @@ public class TestCase1 {
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).logout));
     }
 
-    @Step("4.В заголовке страницы не отображаются элементы 'Администрирование', 'Войти','Регистрация'")
+    @Step("4.В заголовке страницы не отображаются элементы 'Войти','Регистрация'")
     private void notDisplayOfElements() {
         Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).signIn));
         Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).register));
