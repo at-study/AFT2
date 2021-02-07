@@ -4,6 +4,7 @@ import cucumber.api.java.ru.И;
 import cucumber.api.java.ru.То;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import redmine.managers.Context;
 import redmine.model.user.User;
 import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.helpers.CucumberPageObjectHelper;
@@ -36,7 +37,8 @@ public class ElementAssertionSteps {
     }
 
     @И("Отображается \"Вошли как {string}\"")
-    private void displayOfLoggedAsElement(User user) {
+    private void displayOfLoggedAsElement(String userStashId) {
+        User user= Context.get(userStashId, User.class);
         assertEquals(getPage(HeaderPage.class).loggedAs(), "Вошли как " + user.getLogin());
     }
 }
