@@ -39,4 +39,5 @@ public class ElementAssertionSteps {
         String actualElementName=element.getText();
         Assert.assertEquals(actualElementName, "Вошли как " + user.getLogin());
     }
+
 }

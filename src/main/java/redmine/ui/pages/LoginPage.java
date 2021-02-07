@@ -9,6 +9,7 @@ import redmine.ui.pages.helpers.CucumberName;
 @CucumberName("Вход в систему")
 public class LoginPage extends AbstractPage {
 
+
     @FindBy(xpath = "//input[@id='username']")
     public WebElement loginElement;
 
@@ -18,6 +19,7 @@ public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//input[@id='login-submit']")
     public WebElement submitButton;
 
+    @CucumberName("\"Your account was created and is now pending administrator approval.\"")
     @FindBy(xpath = "//div[@id='flash_error']")
     public WebElement flashError;
 
@@ -28,6 +30,7 @@ public class LoginPage extends AbstractPage {
         Manager.takesScreenshot();
         submitButton.click();
     }
+
 
     @Step("Уведомление об ошибке")
     public String errorMessage() {
