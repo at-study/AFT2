@@ -21,7 +21,6 @@ public class ZAssertionSteps {
         assertEquals(res, expected);
     }
 
-
     @Тогда("Роль {string} имеет параметры:")
     public void assertRoleParameters(String roleStashId, Map<String, String> parameters) {
         Role role = Context.get(roleStashId, Role.class);
