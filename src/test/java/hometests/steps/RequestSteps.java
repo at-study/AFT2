@@ -10,7 +10,7 @@ public  class RequestSteps {
     public static Response answerOnUserCreationRequest(String userStashId){
         User admin = Context.get(userStashId, User.class);
         String apiKeyForQuery=admin.getApiKey();
-        System.out.println(apiKeyForQuery);
+
         return null;
     }
 }

@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 
 @CucumberOptions(
         plugin = {"pretty", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm", "json:target/cucumber.json"},
-        glue = {"steps", "hooks"}, features = "src/test/resources",
+        glue = {"hometests", "hometests/hooks"}, features = "src/test/resources",
         tags={"@generation_sample"}
 )
 @Listeners({TestNGListenerImpl.class})

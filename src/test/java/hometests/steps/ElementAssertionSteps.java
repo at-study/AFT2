@@ -9,7 +9,6 @@ import redmine.model.user.User;
 import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.helpers.CucumberPageObjectHelper;
 import redmine.utils.BrowserUtils;
-
 import static redmine.ui.pages.helpers.Pages.getPage;
 import static redmine.utils.Asserts.assertEquals;
 
@@ -36,9 +35,10 @@ public class ElementAssertionSteps {
         Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(element));
     }
 
-    @И("Отображается \"Вошли как {string}\"")
-    private void displayOfLoggedAsElement(String userStashId) {
+    @И("Отображается Вошли как {string}")
+    private void assertLoggedAsElement(String userStashId) {
         User user= Context.get(userStashId, User.class);
+        WebElement element=CucumberPageObjectHelper.getElementBy("Заголовок","Вошли как");
         assertEquals(getPage(HeaderPage.class).loggedAs(), "Вошли как " + user.getLogin());
     }
 }
