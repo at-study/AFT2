@@ -14,7 +14,7 @@ import static java.lang.Integer.parseInt;
 import static java.lang.Integer.valueOf;
 import static org.testng.Assert.assertEquals;
 
-public class ZAssertionSteps {
+public class AssertionSteps {
     @То("Значение переменной {string} равно  {int}")
     public void assertResult(String stashId, int expected) {
         int res = Context.get(stashId, Integer.class);

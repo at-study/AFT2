@@ -6,7 +6,6 @@ import redmine.managers.Context;
 import redmine.managers.Manager;
 import redmine.model.user.User;
 import redmine.ui.pages.LoginPage;
-
 import static redmine.ui.pages.helpers.Pages.getPage;
 
 public class LoginSteps {
