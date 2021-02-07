@@ -4,7 +4,7 @@ import cucumber.api.java.ru.И;
 import org.openqa.selenium.WebElement;
 import redmine.ui.pages.helpers.CucumberPageObjectHelper;
 
-public class ZElementSteps {
+public class ElementSteps {
     @И("На странице {string} нажать на элемент {string}")
     public void clickOnElement(String pageName, String fieldName) {
         WebElement element = CucumberPageObjectHelper.getElementBy(pageName, fieldName);

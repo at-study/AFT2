@@ -11,7 +11,7 @@ public class GeneratorsSteps {
 
     @Пусть("В системе существует пользователь {string} с параметрами:")
     public void generateAndSaveUser(String stashId, Map<String, String> parameters) {
-        ParametersValidator.validateRoleParameters(parameters);
+        ParametersValidator.validateUserParameters(parameters);
         User user = new User();
         if (parameters.containsKey("Администратор")) {
             user.setAdmin(Boolean.parseBoolean(parameters.get("Администратор")));
