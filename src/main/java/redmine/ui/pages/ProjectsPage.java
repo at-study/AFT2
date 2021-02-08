@@ -16,6 +16,7 @@ public class ProjectsPage extends AbstractPage {
     @FindBy(xpath = "//li[@class='root']")
     public List<WebElement> projectList;
 
+    @CucumberName("Проекты")
     @FindBy(xpath = "//h2[text()='Проекты']")
     public WebElement projectPageName;
 
@@ -25,13 +26,13 @@ public class ProjectsPage extends AbstractPage {
     }
 
     @Step("Присутствует соответсвующее название проекта")
-    public String projectName(String projectName) {
+    public static String projectName(String projectName) {
         String fullProjectNameXpath = String.format("//a[text()='%s']", projectName);
         return driver().findElement(By.xpath(fullProjectNameXpath)).getText();
     }
 
     @Step("Присутствует соответствующий элемент описания проекта")
-    public String projectNameDescription(String projectName) {
+    public static   String projectNameDescription(String projectName) {
         String fullProjectDescriptionXpath = String.format("//a[text()='%s']/following-sibling::div", projectName);
         return driver().findElement(By.xpath(fullProjectDescriptionXpath)).getText();
     }

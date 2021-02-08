@@ -4,7 +4,6 @@ import lombok.SneakyThrows;
 import org.openqa.selenium.WebElement;
 import org.reflections.Reflections;
 import redmine.ui.pages.AbstractPage;
-
 import java.lang.reflect.Field;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -23,7 +22,7 @@ public class CucumberPageObjectHelper {
     }
 
     @SneakyThrows
-    private static AbstractPage getPageBy(String cucumberPageName) {
+    public static AbstractPage getPageBy(String cucumberPageName) {
         Reflections reflections = new Reflections("redmine.ui.pages");
         Set<Class<?>> allClasses = reflections.getTypesAnnotatedWith(CucumberName.class);
 
