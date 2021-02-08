@@ -1,6 +1,5 @@
 package hometests.steps;
 
-import cucumber.api.java.ru.То;
 import cucumber.api.java.ru.Тогда;
 import org.testng.Assert;
 import redmine.cucumber.ParametersValidator;
@@ -13,11 +12,6 @@ import static java.lang.Integer.valueOf;
 import static org.testng.Assert.assertEquals;
 
 public class AssertionSteps {
-    @То("Значение переменной {string} равно  {int}")
-    public void assertResult(String stashId, int expected) {
-        int res = Context.get(stashId, Integer.class);
-        assertEquals(res, expected);
-    }
 
     @Тогда("Роль {string} имеет параметры:")
     public void assertRoleParameters(String roleStashId, Map<String, String> parameters) {

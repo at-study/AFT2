@@ -19,7 +19,7 @@ public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//input[@id='login-submit']")
     public WebElement submitButton;
 
-    @CucumberName("\"Your account was created and is now pending administrator approval.\"")
+    @CucumberName("Вошли как")
     @FindBy(xpath = "//div[@id='flash_error']")
     public WebElement flashError;
 
