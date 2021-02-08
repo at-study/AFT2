@@ -3,6 +3,7 @@ package bddTests.steps;
 import cucumber.api.java.ru.Пусть;
 import redmine.cucumber.ParametersValidator;
 import redmine.managers.Context;
+import redmine.model.project.Project;
 import redmine.model.role.*;
 import redmine.model.user.User;
 import java.util.List;
@@ -30,12 +31,6 @@ public class GeneratorsSteps {
         Set<RolePermission> permissions = permissionDescriptions.stream().map(RolePermission::of).collect(Collectors.toSet());
         RolePermissions rolePermissions = new RolePermissions(permissions);
         Context.put(permissionStashId, rolePermissions);
-    }
-
-    @Пусть("В системе существует роль {string} с параметрами по умолчанию")
-    public void generateDefaultRole(String roleStashId) {
-        Role role = new Role().generate();
-        Context.put(roleStashId, role);
     }
 
     @Пусть("В системе существует роль {string} с параметрами по умолчанию")
@@ -72,6 +67,16 @@ public class GeneratorsSteps {
         }
         role.generate();
         Context.put(roleStashId, role);
+    }
+
+    @Пусть("В системе существует проект {string}  с параметрами:")
+    public void generateAndSaveProject(String projectStashId, Map<String, String> parameters) {
+        ParametersValidator.validateProjectParameters(parameters);
+        Project project = new Project();
+        if (parameters.containsKey("Публичный")) { project.setIsPublic(Boolean.parseBoolean(parameters.get("Публичный")));
+        project.generate();
+        Context.put(projectStashId, project);
+        }
     }
 
 }
