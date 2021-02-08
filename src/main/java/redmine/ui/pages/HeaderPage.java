@@ -20,10 +20,6 @@ public class HeaderPage extends AbstractPage {
     @FindBy(xpath = "//div[@id='loggedas']")
     public WebElement loggedAs;
 
-    @CucumberName("Активный пользователь")
-    @FindBy(xpath = "//a[@class='user active']")
-    public WebElement activeUser;
-
     @FindBy(xpath = "//a[@class='home']")
     public WebElement adminHomePage;
 
