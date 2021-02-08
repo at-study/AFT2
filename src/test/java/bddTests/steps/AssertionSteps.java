@@ -1,4 +1,4 @@
-package hometests.steps;
+package bddTests.steps;
 
 import cucumber.api.java.ru.Тогда;
 import org.testng.Assert;

@@ -1,4 +1,4 @@
-package hometests.api;
+package redmine.api;
 
 import io.qameta.allure.Step;
 import org.testng.Assert;

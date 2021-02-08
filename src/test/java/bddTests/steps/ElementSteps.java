@@ -1,4 +1,4 @@
-package hometests.steps;
+package bddTests.steps;
 
 import cucumber.api.java.ru.И;
 import org.openqa.selenium.WebElement;

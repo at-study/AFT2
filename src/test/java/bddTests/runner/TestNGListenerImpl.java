@@ -1,4 +1,4 @@
-package hometests.runner;
+package bddTests.runner;
 
 import org.testng.ITestNGListener;
 

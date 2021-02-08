@@ -1,4 +1,4 @@
-package hometests.steps;
+package bddTests.steps;
 
 import cucumber.api.java.ru.Если;
 import cucumber.api.java.ru.И;

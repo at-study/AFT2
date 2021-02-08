@@ -1,4 +1,4 @@
-package hometests.api;
+package redmine.api;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

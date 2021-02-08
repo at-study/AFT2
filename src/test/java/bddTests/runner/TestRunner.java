@@ -1,4 +1,4 @@
-package hometests.runner;
+package bddTests.runner;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
@@ -12,7 +12,8 @@ import java.lang.reflect.Method;
 
 @CucumberOptions(
         plugin = {"pretty", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm", "json:target/cucumber.json"},
-        glue = {"hometests", "hometests/hooks"}, features = "src/test/resources",
+        glue = {"bddTests", "bddTests/hooks"},
+        features = "src/test/resources",
         tags={"@generation_sample"}
 )
 @Listeners({TestNGListenerImpl.class})

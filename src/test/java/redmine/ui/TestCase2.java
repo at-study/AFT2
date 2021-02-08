@@ -1,4 +1,4 @@
-package hometests.ui;
+package redmine.ui;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
