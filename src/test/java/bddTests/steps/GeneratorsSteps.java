@@ -38,6 +38,12 @@ public class GeneratorsSteps {
         Context.put(roleStashId, role);
     }
 
+    @Пусть("В системе существует роль {string} с параметрами по умолчанию")
+    public void generateDefaultRole(String roleStashId) {
+        Role role = new Role().generate();
+        Context.put(roleStashId, role);
+    }
+
     @Пусть("В системе существует роль {string} с параметрами:")
     public void generateRoleWithParameters(String roleStashId, Map<String, String> parameters) {
         ParametersValidator.validateRoleParameters(parameters);
