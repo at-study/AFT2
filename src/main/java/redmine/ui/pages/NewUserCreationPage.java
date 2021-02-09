@@ -12,27 +12,35 @@ import static redmine.ui.pages.helpers.Pages.getPage;
 @CucumberName("Страница создания нового пользователя")
 public class NewUserCreationPage extends AbstractPage {
 
+    @CucumberName("Новый пользователь")
     @FindBy(xpath = "//h2[text()=' » Новый пользователь']")
     public WebElement newUserCreationPage;
 
+    @CucumberName("Пользователь")
     @FindBy(xpath = "//input[@id='user_login']")
     public WebElement usernameField;
 
+    @CucumberName("Имя")
     @FindBy(xpath = "//input[@id='user_firstname']")
     public WebElement userFirstNameField;
 
+    @CucumberName("Фамилия")
     @FindBy(xpath = "//input[@id='user_lastname']")
     public WebElement userLastNameField;
 
+    @CucumberName("Электронная почта")
     @FindBy(xpath = "//input[@id='user_mail']")
     public WebElement userMailField;
 
+    @CucumberName("Создание пароля")
     @FindBy(xpath = "//input[@id='user_generate_password']")
     public WebElement passwordCreationCheckBox;
 
+    @CucumberName("Создать")
     @FindBy(xpath = "//input[@name='commit']")
     public WebElement commit;
 
+    @CucumberName("Уведомление о создании нового пользователя")
     @FindBy(xpath = "//div[@id='flash_notice']")
     public WebElement flashNoticeAboutNewUSerCreation;
 

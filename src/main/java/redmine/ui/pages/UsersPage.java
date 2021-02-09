@@ -12,6 +12,7 @@ public class UsersPage extends AbstractPage {
     @FindBy(xpath = "//table[@class='list users']")
     public WebElement table;
 
+    @CucumberName("Новый пользователь")
     @FindBy(xpath = "//a[@class='icon icon-add']")
     public WebElement addNewUser;
 

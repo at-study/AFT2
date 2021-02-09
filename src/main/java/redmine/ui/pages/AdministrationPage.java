@@ -5,12 +5,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import redmine.ui.pages.helpers.CucumberName;
 
-@CucumberName("Администрирование")
+@CucumberName("Страница Администрирование")
 public class AdministrationPage extends AbstractPage {
 
+    @CucumberName("Администрирование")
     @FindBy(xpath = "//h2[text()='Администрирование']")
     public WebElement adminPageName;
 
+    @CucumberName("Пользователи")
     @FindBy(xpath = "//a[@class='icon icon-user users']")
     public WebElement users;
 
