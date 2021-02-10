@@ -57,7 +57,7 @@ public class ElementAssertionSteps {
 
     @И("{string} не отсортирована по {string}")
     public void assertUnSorting(String tableStashId,String sortByElement){}
-    @И("{string}отсортирована по {string} по убыванию")
+    @И("{string} отсортирована по {string} по убыванию")
     public void assertSortingByDesc(String tableStashId,String sortByElement){}
     @И("{string} отсортирована по {string} по возрастанию")
     public void assertSortingByAsc(String tableStashId,String sortByElement){}

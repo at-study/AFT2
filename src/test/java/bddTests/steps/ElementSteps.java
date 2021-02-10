@@ -47,4 +47,7 @@ public class ElementSteps {
         elementMail.click();
     }
 
+    @Если("В шапке {string} нажать на {string}")
+    public void pushTableHeader(String tableStashId,String selectedElement){}
+
 }
