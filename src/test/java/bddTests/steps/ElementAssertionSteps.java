@@ -9,9 +9,15 @@ import redmine.managers.Context;
 import redmine.model.project.Project;
 import redmine.model.user.User;
 import redmine.ui.pages.ProjectsPage;
+import redmine.ui.pages.UsersPage;
 import redmine.ui.pages.helpers.CucumberPageObjectHelper;
 import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static redmine.ui.pages.helpers.Pages.getPage;
 
 public class ElementAssertionSteps {
     @То("На главной странице отображается поле {string}")
@@ -60,6 +66,20 @@ public class ElementAssertionSteps {
     @И("{string} отсортирована по {string} по убыванию")
     public void assertSortingByDesc(String tableStashId,String sortByElement){}
     @И("{string} отсортирована по {string} по возрастанию")
-    public void assertSortingByAsc(String tableStashId,String sortByElement){}
+    public void assertSortingByAsc(String tableStashId,String sortByElement){
+
+
+        List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByUsername
+                .stream()
+                .map(WebElement::getText)
+                .collect(Collectors.toList());
+
+        List<String> expectedOrderedByAscList = actualOrderedByAscList
+                .stream()
+                .sorted(String::compareToIgnoreCase)
+                .collect(Collectors.toList());
+
+        Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
+    }
 
 }
