@@ -61,6 +61,14 @@ public class ElementAssertionSteps {
         Asserts.assertEquals(actualName, projectExpectedName);
         Asserts.assertEquals(actualDescription, projectExpectedDescription);
     }
+    @И("Не Отображается проект {string}")
+    public void assertProjectNameAndDescriptionNotDisplayed(String projectStashId) {
+        Project project = Context.get(projectStashId, Project.class);
+        String projectExpectedName = project.getName();
+        String projectExpectedDescription = project.getDescription();
+        Assert.assertFalse(getPage(ProjectsPage.class).isProjectNameIsSituatingInListOfProjects(projectExpectedName));
+        Assert.assertFalse(getPage(ProjectsPage.class).isProjectDescriptionIsSituatingInListOfProjects(projectExpectedDescription));
+    }
 
     @И("{string} не отсортирована по {string}")
     public void assertUnSorting(String tableStashId, String fieldElement) {

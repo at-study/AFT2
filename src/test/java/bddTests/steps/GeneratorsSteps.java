@@ -2,14 +2,17 @@ package bddTests.steps;
 
 import cucumber.api.java.ru.Пусть;
 import redmine.cucumber.ParametersValidator;
+import redmine.db.requests.ProjectRequests;
 import redmine.managers.Context;
 import redmine.model.project.Project;
 import redmine.model.role.*;
 import redmine.model.user.User;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 import static java.lang.Boolean.parseBoolean;
 import static java.lang.Integer.parseInt;
 
@@ -69,7 +72,7 @@ public class GeneratorsSteps {
         Context.put(roleStashId, role);
     }
 
-    @Пусть("В системе существует проект {string}  с параметрами:")
+    @Пусть("В системе существует проект {string} с параметрами:")
     public void generateAndSaveProject(String projectStashId, Map<String, String> parameters) {
         ParametersValidator.validateProjectParameters(parameters);
         Project project = new Project();
@@ -78,4 +81,12 @@ public class GeneratorsSteps {
         Context.put(projectStashId, project);
         }
     }
+    @Пусть("В {string} есть доступ у пользователя {string} с ролью {string}")
+    public void generateAccessToProject(String projectStashId,String stashId, String roleStashId) {
+        Project project=Context.get(projectStashId,Project.class) ;
+        User user=Context.get(stashId,User.class);
+        Role role=Context.get(roleStashId,Role.class);
+        ProjectRequests.addUserAndRoleToProject(project, user, role);
+        }
 }
+
