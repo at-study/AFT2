@@ -9,6 +9,7 @@ import java.util.List;
 @CucumberName("Страница пользователи")
 public class UsersPage extends AbstractPage {
 
+    @CucumberName("Таблица пользователей")
     @FindBy(xpath = "//table[@class='list users']")
     public WebElement table;
 

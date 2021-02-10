@@ -2,11 +2,15 @@ package bddTests.steps;
 
 import cucumber.api.java.ru.И;
 import cucumber.api.java.ru.То;
+import lombok.SneakyThrows;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import redmine.managers.Context;
+import redmine.model.project.Project;
 import redmine.model.user.User;
+import redmine.ui.pages.ProjectsPage;
 import redmine.ui.pages.helpers.CucumberPageObjectHelper;
+import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
 
 public class ElementAssertionSteps {
@@ -31,7 +35,7 @@ public class ElementAssertionSteps {
         WebElement element = CucumberPageObjectHelper.getElementBy(pageName, fieldName);
         Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(element));
     }
-
+    @SneakyThrows
     @То("Отображается сообщение {string}{string}{string}")
     public void assertCreationMessage(String user,String userDataStashId,String created) {
         User userContext= Context.get(userDataStashId, User.class);
@@ -39,5 +43,23 @@ public class ElementAssertionSteps {
         WebElement element = CucumberPageObjectHelper.getElementBy("Страница создания нового пользователя", "Уведомление о создании нового пользователя");
         Assert.assertEquals(element.getText(),result);
     }
+
+    @И("Отображается проект {string}")
+    public void assertProjectNameAndDescriptionDisplayed(String projectStashId) {
+        Project project = Context.get(projectStashId, Project.class);
+        String projectExpectedName=project.getName();
+        String projectExpectedDescription=project.getDescription();
+        String actualName= ProjectsPage.projectName(projectExpectedName);
+        String actualDescription=ProjectsPage.projectNameDescription(projectExpectedName);
+        Asserts.assertEquals(actualName, projectExpectedName);
+        Asserts.assertEquals(actualDescription, projectExpectedDescription);
+    }
+
+    @И("Таблица не отсортирована по {string}")
+    public void assertUnSorting(){}
+    @И("Таблица с пользователями отсортирована по {string} по убыванию")
+    public void assertSortingByDesc(){}
+    @И("Таблица с пользователями отсортирована по {string} по возрастанию")
+    public void assertSortingByAsc(){}
 
 }

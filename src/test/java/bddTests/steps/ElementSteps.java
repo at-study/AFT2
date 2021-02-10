@@ -42,7 +42,7 @@ public class ElementSteps {
     }
 
     @И("Установить чекбокс {string}")
-    public void SetCreatePassword(String fieldName) {
+    public void setCreatePassword(String fieldName) {
         WebElement elementMail = CucumberPageObjectHelper.getElementBy("Страница создания нового пользователя", fieldName);
         elementMail.click();
     }
