@@ -7,6 +7,8 @@ import redmine.managers.Context;
 import redmine.model.user.User;
 import redmine.ui.pages.helpers.CucumberPageObjectHelper;
 
+import java.util.List;
+
 import static redmine.utils.StringGenerators.randomEmail;
 
 public class ElementSteps {
@@ -47,7 +49,16 @@ public class ElementSteps {
         elementMail.click();
     }
 
-    @Если("В шапке {string} нажать на {string}")
-    public void pushTableHeader(String tableStashId,String selectedElement){}
-
+    @Если("В шапке {string}{string}")
+    public void pushTableHeader(String tableStashId,String fieldElement){
+        List<String> actualList = null;
+        if (fieldElement == "нажать на Фамилия") {
+            WebElement pushFamily = CucumberPageObjectHelper.getElementBy("Страница создания нового пользователя", "нажать на Фамилия");
+            pushFamily.click();
+        }
+        if (fieldElement == "нажать на Имя") {
+            WebElement pushName = CucumberPageObjectHelper.getElementBy("Страница создания нового пользователя", "нажать на Имя");
+            pushName.click();
+        }
+    }
 }

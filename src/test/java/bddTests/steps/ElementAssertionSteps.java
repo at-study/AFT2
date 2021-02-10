@@ -62,24 +62,89 @@ public class ElementAssertionSteps {
     }
 
     @И("{string} не отсортирована по {string}")
-    public void assertUnSorting(String tableStashId,String sortByElement){}
-    @И("{string} отсортирована по {string} по убыванию")
-    public void assertSortingByDesc(String tableStashId,String sortByElement){}
-    @И("{string} отсортирована по {string} по возрастанию")
-    public void assertSortingByAsc(String tableStashId,String sortByElement){
+    public void assertUnSorting(String tableStashId,String fieldElement){
+        List<String> actualList = null;
+        if (fieldElement == "Фамилия") {
+            actualList = getPage(UsersPage.class).listOfUsersInTableByLastNames
+                    .stream()
+                    .map(WebElement::getText)
+                    .collect(Collectors.toList());
+        }
+        if (fieldElement == "Имя") {
+            actualList = getPage(UsersPage.class).listOfUsersInTableByNames
+                    .stream()
+                    .map(WebElement::getText)
+                    .collect(Collectors.toList());
+        }
+        if (fieldElement == "Логин") {
+            actualList = getPage(UsersPage.class).listOfUsersInTableByUsername
+                    .stream()
+                    .map(WebElement::getText)
+                    .collect(Collectors.toList());
+        }
 
-
-        List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByUsername
+        List<String> notExpectedOrderedByAscList = actualList
                 .stream()
-                .map(WebElement::getText)
+                .sorted()
                 .collect(Collectors.toList());
 
-        List<String> expectedOrderedByAscList = actualOrderedByAscList
+        Assert.assertNotEquals(actualList, notExpectedOrderedByAscList);
+    }
+
+    @И("{string} отсортирована по {string} по убыванию")
+    public void assertSortingByDesc(String tableStashId,String fieldElement){
+        List<String> actualList = null;
+        if (fieldElement == "Фамилия") {
+            actualList = getPage(UsersPage.class).listOfUsersInTableByLastNames
+                    .stream()
+                    .map(WebElement::getText)
+                    .collect(Collectors.toList());
+        }
+        if (fieldElement == "Имя") {
+            actualList = getPage(UsersPage.class).listOfUsersInTableByNames
+                    .stream()
+                    .map(WebElement::getText)
+                    .collect(Collectors.toList());
+        }
+        if (fieldElement == "Логин") {
+            actualList = getPage(UsersPage.class).listOfUsersInTableByUsername
+                    .stream()
+                    .map(WebElement::getText)
+                    .collect(Collectors.toList());
+        }
+        List<String> expectedOrderedByAscList = actualList
+                .stream()
+                .sorted(String.CASE_INSENSITIVE_ORDER.reversed())
+                .collect(Collectors.toList());
+        Assert.assertEquals(actualList, expectedOrderedByAscList);
+    }
+
+    @И("{string} отсортирована по {string} по возрастанию")
+    public void assertSortingByAsc(String tableStashId,String fieldElement) {
+        List<String> actualList = null;
+        if (fieldElement == "Фамилия") {
+            actualList = getPage(UsersPage.class).listOfUsersInTableByLastNames
+                    .stream()
+                    .map(WebElement::getText)
+                    .collect(Collectors.toList());
+        }
+        if (fieldElement == "Имя") {
+            actualList = getPage(UsersPage.class).listOfUsersInTableByNames
+                    .stream()
+                    .map(WebElement::getText)
+                    .collect(Collectors.toList());
+        }
+        if (fieldElement == "Логин") {
+            actualList = getPage(UsersPage.class).listOfUsersInTableByUsername
+                    .stream()
+                    .map(WebElement::getText)
+                    .collect(Collectors.toList());
+        }
+        List<String> expectedOrderedByAscList = actualList
                 .stream()
                 .sorted(String::compareToIgnoreCase)
                 .collect(Collectors.toList());
 
-        Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
+        Assert.assertEquals(actualList, expectedOrderedByAscList);
     }
-
 }

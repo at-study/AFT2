@@ -29,9 +29,11 @@ public class UsersPage extends AbstractPage {
     @FindBy(xpath = "//tr[@class='user active']//td[@class='firstname']")
     public List<WebElement> listOfUsersInTableByNames;
 
+    @CucumberName("нажать на Фамилия")
     @FindBy(xpath = "//table[@class='list users']//a[text()='Фамилия']")
     public WebElement usersByLastNameHeaderInTable;
 
+    @CucumberName("нажать на Имя")
     @FindBy(xpath = "//table[@class='list users']//a[text()='Имя']")
     public WebElement usersByNameHeaderInTable;
 
