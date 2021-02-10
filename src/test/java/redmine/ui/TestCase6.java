@@ -38,7 +38,7 @@ public class TestCase6 {
     public void usersSortingByAdminByUser() {
         getPage(LoginPage.class).login(userAdmin.getLogin(), userAdmin.getPassword());
         displayOfHomePage();
-        displayOfAdministartionPage();
+        displayOfAdministrationPage();
         displayOfUsersTable();
         sortUsersByUsernameAsc();
         switchOrderByUsername();
@@ -51,7 +51,7 @@ public class TestCase6 {
     }
 
     @Step("2. Отображается страница \"Администрирование\"")
-    private void displayOfAdministartionPage() {
+    private void displayOfAdministrationPage() {
         getPage(HeaderPage.class).administration.click();
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(getPage(HeaderPage.class).administration));
     }

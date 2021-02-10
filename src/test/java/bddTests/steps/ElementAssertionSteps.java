@@ -13,10 +13,8 @@ import redmine.ui.pages.UsersPage;
 import redmine.ui.pages.helpers.CucumberPageObjectHelper;
 import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static redmine.ui.pages.helpers.Pages.getPage;
 
 public class ElementAssertionSteps {
@@ -146,5 +144,12 @@ public class ElementAssertionSteps {
                 .collect(Collectors.toList());
 
         Assert.assertEquals(actualList, expectedOrderedByAscList);
+    }
+
+
+    @И("На странице {string} отображается таблица {string}")
+    public void assertTableIsDisplayed(String pageName, String fieldName,String tableStashId) {
+        WebElement element = CucumberPageObjectHelper.getElementBy(pageName, fieldName);
+        Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(element));
     }
 }
