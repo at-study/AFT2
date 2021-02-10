@@ -1,6 +1,7 @@
 package bddTests.steps;
 
 import cucumber.api.java.ru.Тогда;
+import lombok.SneakyThrows;
 import org.testng.Assert;
 import redmine.cucumber.ParametersValidator;
 import redmine.managers.Context;
@@ -12,7 +13,7 @@ import static java.lang.Integer.valueOf;
 import static org.testng.Assert.assertEquals;
 
 public class AssertionSteps {
-
+    @SneakyThrows
     @Тогда("Роль {string} имеет параметры:")
     public void assertRoleParameters(String roleStashId, Map<String, String> parameters) {
         Role role = Context.get(roleStashId, Role.class);
