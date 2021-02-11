@@ -4,6 +4,7 @@ import lombok.SneakyThrows;
 import org.openqa.selenium.WebElement;
 import org.reflections.Reflections;
 import redmine.ui.pages.AbstractPage;
+
 import java.lang.reflect.Field;
 import java.util.Set;
 import java.util.stream.Stream;

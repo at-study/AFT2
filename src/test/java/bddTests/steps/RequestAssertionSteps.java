@@ -18,8 +18,8 @@ public class RequestAssertionSteps {
     }
 
     @И("В базе данных появилась запись с данными {string}")
-    public void assertUserCreationInDb(String userDataStashId){
-        User userContext= Context.get(userDataStashId, User.class);
+    public void assertUserCreationInDb(String userDataStashId) {
+        User userContext = Context.get(userDataStashId, User.class);
         String query = String.format("select * from users where login='%s'", userContext.getLogin());
         List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
         Assert.assertEquals(result.size(), 1, "Проверка размера результата");

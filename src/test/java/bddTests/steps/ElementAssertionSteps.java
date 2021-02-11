@@ -61,6 +61,7 @@ public class ElementAssertionSteps {
         Asserts.assertEquals(actualName, projectExpectedName);
         Asserts.assertEquals(actualDescription, projectExpectedDescription);
     }
+
     @И("Не Отображается проект {string}")
     public void assertProjectNameAndDescriptionNotDisplayed(String projectStashId) {
         Project project = Context.get(projectStashId, Project.class);
@@ -101,7 +102,7 @@ public class ElementAssertionSteps {
     @И("{string} отсортирована по {string} по убыванию")
     public void assertSortingByDesc(String tableStashId, String fieldElement) {
         if (fieldElement == "Фамилия") {
-            List<String>  actualList = getPage(UsersPage.class).listOfUsersInTableByLastNames
+            List<String> actualList = getPage(UsersPage.class).listOfUsersInTableByLastNames
                     .stream()
                     .map(WebElement::getText)
                     .collect(Collectors.toList());
@@ -112,7 +113,7 @@ public class ElementAssertionSteps {
             Assert.assertEquals(actualList, expectedOrderedByAscList);
         }
         if (fieldElement == "Имя") {
-            List<String>  actualList = getPage(UsersPage.class).listOfUsersInTableByNames
+            List<String> actualList = getPage(UsersPage.class).listOfUsersInTableByNames
                     .stream()
                     .map(WebElement::getText)
                     .collect(Collectors.toList());
@@ -138,7 +139,7 @@ public class ElementAssertionSteps {
     @И("{string} отсортирована по {string} по возрастанию")
     public void assertSortingByAsc(String tableStashId, String fieldElement) {
         if (fieldElement == "Фамилия") {
-            List<String>   actualList = getPage(UsersPage.class).listOfUsersInTableByLastNames
+            List<String> actualList = getPage(UsersPage.class).listOfUsersInTableByLastNames
                     .stream()
                     .map(WebElement::getText)
                     .collect(Collectors.toList());
@@ -150,7 +151,7 @@ public class ElementAssertionSteps {
             Assert.assertEquals(actualList, expectedOrderedByAscList);
         }
         if (fieldElement == "Имя") {
-            List<String>    actualList = getPage(UsersPage.class).listOfUsersInTableByNames
+            List<String> actualList = getPage(UsersPage.class).listOfUsersInTableByNames
                     .stream()
                     .map(WebElement::getText)
                     .collect(Collectors.toList());
@@ -162,7 +163,7 @@ public class ElementAssertionSteps {
             Assert.assertEquals(actualList, expectedOrderedByAscList);
         }
         if (fieldElement == "Логин") {
-            List<String>    actualList = getPage(UsersPage.class).listOfUsersInTableByUsername
+            List<String> actualList = getPage(UsersPage.class).listOfUsersInTableByUsername
                     .stream()
                     .map(WebElement::getText)
                     .collect(Collectors.toList());

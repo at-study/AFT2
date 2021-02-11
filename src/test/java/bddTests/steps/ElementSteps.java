@@ -23,7 +23,7 @@ public class ElementSteps {
     }
 
     @Если("Заполнить данные пользователя корректными значениями и сохраняем в переменную {string}")
-    public void generateAndFillNewUserForm(String userDataStashId){
+    public void generateAndFillNewUserForm(String userDataStashId) {
         User createdUser = new User();
         String mail = randomEmail();
         WebElement elementLogin = CucumberPageObjectHelper.getElementBy("Страница создания нового пользователя", "Пользователь");
@@ -48,7 +48,7 @@ public class ElementSteps {
     }
 
     @Если("В шапке {string}{string}")
-    public void pushTableHeader(String tableStashId,String fieldElement){
+    public void pushTableHeader(String tableStashId, String fieldElement) {
         if (fieldElement == "нажать на Фамилия") {
             WebElement pushFamily = CucumberPageObjectHelper.getElementBy("Страница создания нового пользователя", "нажать на Фамилия");
             pushFamily.click();

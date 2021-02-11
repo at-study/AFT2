@@ -19,5 +19,7 @@ public class Stash {
         return entities.get(stashId);
     }
 
-    Map<String,Object> getEntities(){return entities;}
+    Map<String, Object> getEntities() {
+        return entities;
+    }
 }

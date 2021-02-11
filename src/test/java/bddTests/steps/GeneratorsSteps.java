@@ -22,10 +22,13 @@ public class GeneratorsSteps {
     public void generateAndSaveUser(String stashId, Map<String, String> parameters) {
         ParametersValidator.validateUserParameters(parameters);
         User user = new User();
-        if (parameters.containsKey("Администратор")) { user.setAdmin(Boolean.parseBoolean(parameters.get("Администратор")));
-        if (parameters.containsKey("Статус")) { user.setStatus(Integer.parseInt(parameters.get("Статус"))); }
-        user.generate();
-        Context.put(stashId, user);
+        if (parameters.containsKey("Администратор")) {
+            user.setAdmin(Boolean.parseBoolean(parameters.get("Администратор")));
+            if (parameters.containsKey("Статус")) {
+                user.setStatus(Integer.parseInt(parameters.get("Статус")));
+            }
+            user.generate();
+            Context.put(stashId, user);
         }
     }
 
@@ -76,17 +79,19 @@ public class GeneratorsSteps {
     public void generateAndSaveProject(String projectStashId, Map<String, String> parameters) {
         ParametersValidator.validateProjectParameters(parameters);
         Project project = new Project();
-        if (parameters.containsKey("Публичный")) { project.setIsPublic(Boolean.parseBoolean(parameters.get("Публичный")));
-        project.generate();
-        Context.put(projectStashId, project);
+        if (parameters.containsKey("Публичный")) {
+            project.setIsPublic(Boolean.parseBoolean(parameters.get("Публичный")));
+            project.generate();
+            Context.put(projectStashId, project);
         }
     }
+
     @Пусть("В {string} есть доступ у пользователя {string} с ролью {string}")
-    public void generateAccessToProject(String projectStashId,String stashId, String roleStashId) {
-        Project project=Context.get(projectStashId,Project.class) ;
-        User user=Context.get(stashId,User.class);
-        Role role=Context.get(roleStashId,Role.class);
+    public void generateAccessToProject(String projectStashId, String stashId, String roleStashId) {
+        Project project = Context.get(projectStashId, Project.class);
+        User user = Context.get(stashId, User.class);
+        Role role = Context.get(roleStashId, Role.class);
         ProjectRequests.addUserAndRoleToProject(project, user, role);
-        }
+    }
 }
 

@@ -32,7 +32,7 @@ public class ProjectsPage extends AbstractPage {
     }
 
     @Step("Присутствует соответствующий элемент описания проекта")
-    public static   String projectNameDescription(String projectName) {
+    public static String projectNameDescription(String projectName) {
         String fullProjectDescriptionXpath = String.format("//a[text()='%s']/following-sibling::div", projectName);
         return driver().findElement(By.xpath(fullProjectDescriptionXpath)).getText();
     }

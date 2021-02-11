@@ -9,6 +9,7 @@ import redmine.managers.Manager;
 import redmine.model.user.User;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.helpers.CucumberPageObjectHelper;
+
 import static redmine.ui.pages.helpers.Pages.getPage;
 
 public class LoginSteps {
@@ -24,18 +25,18 @@ public class LoginSteps {
     }
 
     @И("Для {string} отображается ошибка {string} с текстом {string}")
-    public void flashNoticeAboutAccount(String stashId,String fieldName,String text) {
-        User user= Context.get(stashId,User.class);
-        WebElement element=CucumberPageObjectHelper.getElementBy("Вход в систему", fieldName);
-        String actualElementName=element.getText();
+    public void flashNoticeAboutAccount(String stashId, String fieldName, String text) {
+        User user = Context.get(stashId, User.class);
+        WebElement element = CucumberPageObjectHelper.getElementBy("Вход в систему", fieldName);
+        String actualElementName = element.getText();
         Assert.assertEquals(actualElementName, text);
     }
 
     @И("На странице {string} присутствует элемент {string}{string}")
     public void assertLoggedAsElement(String pageName, String fieldName, String stashId) {
-        User user= Context.get(stashId,User.class);
-        WebElement element=CucumberPageObjectHelper.getElementBy(pageName, fieldName);
-        String actualElementName=element.getText();
+        User user = Context.get(stashId, User.class);
+        WebElement element = CucumberPageObjectHelper.getElementBy(pageName, fieldName);
+        String actualElementName = element.getText();
         Assert.assertEquals(actualElementName, "Вошли как " + user.getLogin());
     }
 }
