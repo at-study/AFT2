@@ -143,27 +143,15 @@ public class ApiTestCase1 {
         Integer status = 2;
         Integer putStatus = 1;
         String password = StringGenerators.randomEnglishString(10);
-        String body = String.format("{\n" +
-                "                 \"user\":{\n" +
-                "                 \"login\":\"%s\",\n" +
-                "                 \"firstname\":\"%s\",\n" +
-                "                 \"lastname\":\"%s\",\n" +
-                "                 \"mail\":\"%s\",\n" +
-                "                 \"status\":\"%s\",\n" +
-                "                 \"password\":\"%s\"\n" +
-                "                 }\n" +
-                "                }", login, firstName, lastName, mail, status, password);
 
-        String statusBody = String.format("{\n" +
-                "                 \"user\":{\n" +
-                "                 \"login\":\"%s\",\n" +
-                "                 \"firstname\":\"%s\",\n" +
-                "                 \"lastname\":\"%s\",\n" +
-                "                 \"mail\":\"%s\",\n" +
-                "                 \"status\":\"%s\",\n" +
-                "                 \"password\":\"%s\"\n" +
-                "                 }\n" +
-                "                }", login, firstName, lastName, mail, putStatus, password);
+        UserDto userDto=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+                .setLastname(lastName).setMail(mail).setStatus(status).setPassword(password));
+        String body=getGson().toJson(userDto);
+
+        UserDto userDto2=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+                .setLastname(lastName).setMail(mail).setStatus(putStatus).setPassword(password));
+        String statusBody=getGson().toJson(userDto2);
+
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
         String responseBody = response.getBody().toString();
