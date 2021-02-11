@@ -1,6 +1,7 @@
 package redmine.db.requests;
 
 import io.qameta.allure.Step;
+import org.testng.Assert;
 import redmine.managers.Manager;
 import redmine.model.user.User;
 
@@ -71,6 +72,45 @@ public class UserRequests {
                 user.getStatus().toString(), user.getLanguage().toString());
         user.setId((Integer) result.get(0).get("id"));
         return user;
+    }
+
+
+    @Step("Информация о пользователе по ид получена")
+    public static List<User>  getUserById (Integer id) {
+        String query = String.format("select * from users u inner join tokens t on u.id=t.user_id inner join email_addresses e on u.id=e.user_id where id='%s'",id);
+        List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
+        Assert.assertEquals(result.size(), 1, "Проверка размера результата");
+        return result.stream()
+                .map(map -> {
+                    User user = new User();
+                    user.setId((Integer) map.get("id"));
+                    user.setLogin((String) map.get("login"));
+                    user.setHashedPassword((String) map.get("hashed_password"));
+                    user.setFirstName((String) map.get("firstname"));
+                    user.setLastName((String) map.get("lastname"));
+                    user.setAdmin((Boolean) map.get("admin"));
+                    user.setStatus(((Integer) map.get("status")));
+                    return user;
+                }).collect(Collectors.toList());
+    }
+
+    @Step("Информация о пользователе по ид получена")
+    public static List<User>  getUserByLogin (String login) {
+        String query = String.format("select * from users u inner join tokens t on u.id=t.user_id inner join email_addresses e on u.id=e.user_id where login='%s'",login);
+        List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
+        Assert.assertEquals(result.size(), 1, "Проверка размера результата");
+        return result.stream()
+                .map(map -> {
+                    User user = new User();
+                    user.setId((Integer) map.get("id"));
+                    user.setLogin((String) map.get("login"));
+                    user.setHashedPassword((String) map.get("hashed_password"));
+                    user.setFirstName((String) map.get("firstname"));
+                    user.setLastName((String) map.get("lastname"));
+                    user.setAdmin((Boolean) map.get("admin"));
+                    user.setStatus(((Integer) map.get("status")));
+                    return user;
+                }).collect(Collectors.toList());
     }
 
     @Step("Информация о пользователе получена")

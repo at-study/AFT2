@@ -13,13 +13,13 @@ import redmine.api.interfaces.Response;
 import redmine.db.requests.UserRequests;
 import redmine.model.dto.UserCreationError;
 import redmine.model.dto.UserDto;
+import redmine.model.dto.UserInfo;
 import redmine.model.user.User;
 import redmine.utils.StringGenerators;
-import redmine.utils.gson.GsonHelper;
-
 import static redmine.utils.Asserts.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
+import static redmine.utils.gson.GsonHelper.getGson;
 
 public class ApiTestCase1 {
     private User user;
@@ -91,22 +91,15 @@ public class ApiTestCase1 {
         String mail = randomEmail();
         String password = randomEnglishLowerString(8);
         Integer status = 2;
-        String body = String.format("{\n" +
-                "                 \"user\":{\n" +
-                "                 \"login\":\"%s\",\n" +
-                "                 \"firstname\":\"%s\",\n" +
-                "                 \"lastname\":\"%s\",\n" +
-                "                 \"mail\":\"%s\",\n" +
-                "                 \"status\":\"%s\",\n" +
-                "                 \"password\":\"%s\"\n" +
-                "                 }\n" +
-                "                }", login, firstName, lastName, mail, status, password);
+        UserDto user=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+                .setLastname(lastName).setMail(mail).setStatus(status).setPassword(password));
+        String body=getGson().toJson(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         apiClient.executeRequest(request);
         Response sameUserCreationRequest = apiClient.executeRequest(request);
         assertEquals(sameUserCreationRequest.getStatusCode(), 422);
 
-        UserCreationError errors = GsonHelper.getGson().fromJson(sameUserCreationRequest.getBody().toString(), UserCreationError.class);
+        UserCreationError errors = getGson().fromJson(sameUserCreationRequest.getBody().toString(), UserCreationError.class);
         assertEquals(errors.getErrors().size(), 2);
         assertEquals(errors.getErrors().get(0), "Email уже существует");
         assertEquals(errors.getErrors().get(1), "Пользователь уже существует");
@@ -120,31 +113,21 @@ public class ApiTestCase1 {
         String incorrectMail = "santa.claus.petersburg";
         String password = StringGenerators.randomEnglishString(10);
         String incorrectPassword = randomEnglishLowerString(4);
-        String body = String.format(" {\n" +
-                "                 \"user\":{\n" +
-                "                 \"login\":\"%s\",\n" +
-                "                 \"firstname\":\"%s\",\n" +
-                "                 \"lastname\":\"%s\",\n" +
-                "                 \"mail\":\"%s\",\n" +
-                "                 \"password\":\"%s\"\n" +
-                "                 }\n" +
-                "                }", login, firstName, lastName, randomEmail(), password);
-        String incorrectBody = String.format("{\n" +
-                "                 \"user\":{\n" +
-                "                 \"login\":\"%s\",\n" +
-                "                 \"firstname\":\"%s\",\n" +
-                "                 \"lastname\":\"%s\",\n" +
-                "                 \"mail\":\"%s\",\n" +
-                "                 \"password\":\"%s\"\n" +
-                "                 }\n" +
-                "                }", login, firstName, lastName, incorrectMail, incorrectPassword);
+
+        UserDto user=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+                .setLastname(lastName).setMail(randomEmail()).setPassword(password));
+        String body=getGson().toJson(user);
+
+        UserDto incorrectUser=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+                .setLastname(lastName).setMail(incorrectMail).setPassword(incorrectPassword));
+        String incorrectBody=getGson().toJson(incorrectUser);
 
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         apiClient.executeRequest(request);
         Request incorrectRequest = new RestRequest("users.json", HttpMethods.POST, null, null, incorrectBody);
         Response sameUserCreationRequest = apiClient.executeRequest(incorrectRequest);
         assertEquals(sameUserCreationRequest.getStatusCode(), 422);
-        UserCreationError errors = GsonHelper.getGson().fromJson(sameUserCreationRequest.getBody().toString(), UserCreationError.class);
+        UserCreationError errors = getGson().fromJson(sameUserCreationRequest.getBody().toString(), UserCreationError.class);
         assertEquals(errors.getErrors().size(), 3);
         assertEquals(errors.getErrors().get(0), "Email имеет неверное значение");
         assertEquals(errors.getErrors().get(1), "Пользователь уже существует");
@@ -184,7 +167,7 @@ public class ApiTestCase1 {
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
         String responseBody = response.getBody().toString();
-        UserDto createdUser = GsonHelper.getGson().fromJson(responseBody, UserDto.class);
+        UserDto createdUser = getGson().fromJson(responseBody, UserDto.class);
         Integer userId = createdUser.getUser().getId();
         assertEquals(createdUser.getUser().getStatus(), 2);
         System.out.println("Created userID: " + userId);
@@ -208,16 +191,10 @@ public class ApiTestCase1 {
         String lastName = "AndGet" + randomEnglishLowerString(6);
         String mail = randomEmail();
         Integer status = 1;
-        String body = String.format("{\n" +
-                "                 \"user\":{\n" +
-                "                 \"login\":\"%s\",\n" +
-                "                 \"firstname\":\"%s\",\n" +
-                "                 \"lastname\":\"%s\",\n" +
-                "                 \"mail\":\"%s\",\n" +
-                "                 \"status\":\"%s\",\n" +
-                "                 \"password\":\"1qaz@WSX\"\n" +
-                "                 }\n" +
-                "                }", login, firstName, lastName, mail, status);
+
+        UserDto user=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+                .setLastname(lastName).setMail(mail).setStatus(status).setPassword("1qaz@WSX"));
+        String body=getGson().toJson(user);
 
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
@@ -257,16 +234,10 @@ public class ApiTestCase1 {
         String lastName = "AndDelete" + randomEnglishLowerString(6);
         String mail = randomEmail();
         Integer status = 1;
-        String body = String.format("{\n" +
-                "                 \"user\":{\n" +
-                "                 \"login\":\"%s\",\n" +
-                "                 \"firstname\":\"%s\",\n" +
-                "                 \"lastname\":\"%s\",\n" +
-                "                 \"mail\":\"%s\",\n" +
-                "                 \"status\":\"%s\",\n" +
-                "                 \"password\":\"1qaz@WSX\"\n" +
-                "                 }\n" +
-                "                }", login, firstName, lastName, mail, status);
+
+        UserDto user=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+        .setLastname(lastName).setMail(mail).setStatus(status).setPassword("1qaz@WSX"));
+        String body=getGson().toJson(user);
 
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
@@ -299,16 +270,10 @@ public class ApiTestCase1 {
         String lastName = "AndDelete" + randomEnglishLowerString(6);
         String mail = randomEmail();
         Integer status = 1;
-        String body = String.format("{\n" +
-                "                 \"user\":{\n" +
-                "                 \"login\":\"%s\",\n" +
-                "                 \"firstname\":\"%s\",\n" +
-                "                 \"lastname\":\"%s\",\n" +
-                "                 \"mail\":\"%s\",\n" +
-                "                 \"status\":\"%s\",\n" +
-                "                 \"password\":\"1qaz@WSX\"\n" +
-                "                 }\n" +
-                "                }", login, firstName, lastName, mail, status);
+
+        UserDto user=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+                .setLastname(lastName).setMail(mail).setStatus(status).setPassword("1qaz@WSX"));
+        String body=getGson().toJson(user);
 
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);

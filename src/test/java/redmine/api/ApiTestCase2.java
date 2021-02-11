@@ -8,11 +8,13 @@ import redmine.api.interfaces.ApiClient;
 import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
 import redmine.api.interfaces.Response;
+import redmine.model.dto.UserDto;
+import redmine.model.dto.UserInfo;
 import redmine.model.user.User;
 import redmine.utils.Asserts;
-
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
+import static redmine.utils.gson.GsonHelper.getGson;
 
 public class ApiTestCase2 {
     private ApiClient apiClient;
@@ -30,15 +32,11 @@ public class ApiTestCase2 {
         String name = randomEnglishLowerString(8);
         String lastName = randomEnglishLowerString(8);
         String password = randomEnglishLowerString(8);
-        String body = String.format("{\n" +
-                "                 \"user\":{\n" +
-                "                 \"login\":\"%s\",\n" +
-                "                 \"mail\":\"%s\",\n" +
-                "                 \"firstname\":\"%s\",\n" +
-                "                 \"lastname\":\"%s\",\n" +
-                "                 \"password\":\"%s\"\n" +
-                "                 }\n" +
-                "                }", login, mail, name, lastName, password);
+
+        UserDto user=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(name)
+                .setLastname(lastName).setMail(mail).setPassword(password));
+        String body=getGson().toJson(user);
+
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         apiClient.executeRequest(request);
         Response userCreationByNonAdmin = apiClient.executeRequest(request);
