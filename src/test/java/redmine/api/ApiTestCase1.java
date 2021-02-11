@@ -49,17 +49,11 @@ public class ApiTestCase1 {
         String lastName = randomEnglishLowerString(12);
         String mail = randomEmail();
         Integer status = 2;
-        String body = String.format("{\n" +
-                        "         \"user\":{\n" +
-                        "         \"login\":\"%s\",\n" +
-                        "         \"firstname\":\"%s\",\n" +
-                        "         \"lastname\":\"%s\",\n" +
-                        "         \"mail\":\"%s\",\n" +
-                        "         \"status\":\"%s\",\n" +
-                        "         \"password\":\"1qaz@WSX\"\n" +
-                        "         }\n" +
-                        "        }"
-                , login, firstName, lastName, mail, status);
+
+        UserDto userDto=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+                .setLastname(lastName).setMail(mail).setStatus(status).setPassword("1qaz@WSX"));
+        String body=getGson().toJson(userDto);
+
         int usersCountBeforeUserCreation = UserRequests.getAllUsers().size();
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
