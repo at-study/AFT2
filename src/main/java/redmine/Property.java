@@ -2,6 +2,7 @@ package redmine;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.Properties;
 
 public class Property {
@@ -10,7 +11,8 @@ public class Property {
 
     static {
         try {
-            properties.load(new FileInputStream("src/test/resources/local.properties"));
+            properties.load(new FileInputStream("src/test/resources/"
+                    + Optional.ofNullable(System.getProperty("config")).orElse("local.properties")));
         } catch (IOException e) {
             e.printStackTrace();
         }
