@@ -20,10 +20,10 @@ public class Property {
 
     public static String getStringProperty(String key) {
 
-        if (System.getProperty("key") == null) {
+        if (System.getProperty(key) == null) {
             return properties.getProperty(key);
         }
-        return System.getProperty("key");
+        return System.getProperty(key);
     }
 
     public static Integer getIntegerProperty(String key) {
