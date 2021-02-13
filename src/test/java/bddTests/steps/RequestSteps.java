@@ -9,43 +9,41 @@ import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
 import redmine.api.interfaces.Response;
 import redmine.managers.Context;
+import redmine.model.dto.UserDto;
+import redmine.model.dto.UserInfo;
 import redmine.model.user.User;
+import redmine.utils.Asserts;
 
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
+import static redmine.utils.gson.GsonHelper.getGson;
 
 public class RequestSteps {
-    @И("У пользователя {string} есть доступ к API и ключ API")
-    public static void apiAccess(String stashId) {
-        ApiClient apiClient;
-        User user = Context.get(stashId, User.class);
-        apiClient = new RestApiClient(user);
-        String apiKeyForQuery = user.getApiKey();
+    @И("У пользователя {string} есть {string} и ключ API")
+    public static void apiAccess(String stashId,String apiClientStashId) {
+        User apiUser = Context.get(stashId, User.class);
+        ApiClient apiClient = new RestApiClient(apiUser);
+        Context.put(apiClientStashId, apiClient);
     }
 
     @Если("Отправить запрос на создание пользователя {string} пользователем {string} с параметрами:")
-    public static Response answerOnUserCreationRequest(String stashId1, String stashId2) {
-        User user = Context.get(stashId1, User.class);
-        User creator = Context.get(stashId2, User.class);
-        String apiKeyForQuery = creator.getApiKey();
+    public static Response answerOnUserCreationRequest(String stashId,String apiClientStashId) {
+        User user = Context.get(stashId, User.class);
+        ApiClient apiClient=Context.get(apiClientStashId,ApiClient.class);
         String login = randomEnglishLowerString(8);
         String mail = randomEmail();
         String name = randomEnglishLowerString(8);
         String lastName = randomEnglishLowerString(8);
         String password = randomEnglishLowerString(8);
-        String body = String.format("{\n" +
-                "                 \"user\":{\n" +
-                "                 \"login\":\"%s\",\n" +
-                "                 \"mail\":\"%s\",\n" +
-                "                 \"firstname\":\"%s\",\n" +
-                "                 \"lastname\":\"%s\",\n" +
-                "                 \"password\":\"%s\"\n" +
-                "                 }\n" +
-                "                }", login, mail, name, lastName, password);
+        Integer status = 1;
+        UserDto userDto=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(name)
+                .setLastname(lastName).setMail(mail).setStatus(status).setPassword(password));
+        String body=getGson().toJson(userDto);
+
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
-        // apiClient.executeRequest(request);
-        // Response userCreationByNonAdmin = apiClient.executeRequest(request);
-        // Asserts.assertEquals(userCreationByNonAdmin.getStatusCode(), 403);
+        apiClient.executeRequest(request);
+        Response userCreationByNonAdmin = apiClient.executeRequest(request);
+        Asserts.assertEquals(userCreationByNonAdmin.getStatusCode(), 403);
         return null;
     }
 }

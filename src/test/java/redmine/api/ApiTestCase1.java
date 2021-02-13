@@ -49,14 +49,13 @@ public class ApiTestCase1 {
         String lastName = randomEnglishLowerString(12);
         String mail = randomEmail();
         Integer status = 2;
-
         UserDto userDto=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
                 .setLastname(lastName).setMail(mail).setStatus(status).setPassword("1qaz@WSX"));
         String body=getGson().toJson(userDto);
-
         int usersCountBeforeUserCreation = UserRequests.getAllUsers().size();
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
+
         assertEquals(response.getStatusCode(), 201);
         UserDto createdUser = response.getBody(UserDto.class);
         Assert.assertNotNull(createdUser.getUser().getId());
@@ -85,6 +84,7 @@ public class ApiTestCase1 {
         String mail = randomEmail();
         String password = randomEnglishLowerString(8);
         Integer status = 2;
+
         UserDto user=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
                 .setLastname(lastName).setMail(mail).setStatus(status).setPassword(password));
         String body=getGson().toJson(user);
@@ -111,7 +111,6 @@ public class ApiTestCase1 {
         UserDto user=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
                 .setLastname(lastName).setMail(randomEmail()).setPassword(password));
         String body=getGson().toJson(user);
-
         UserDto incorrectUser=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
                 .setLastname(lastName).setMail(incorrectMail).setPassword(incorrectPassword));
         String incorrectBody=getGson().toJson(incorrectUser);
@@ -141,7 +140,6 @@ public class ApiTestCase1 {
         UserDto userDto=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
                 .setLastname(lastName).setMail(mail).setStatus(status).setPassword(password));
         String body=getGson().toJson(userDto);
-
         UserDto userDto2=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
                 .setLastname(lastName).setMail(mail).setStatus(putStatus).setPassword(password));
         String statusBody=getGson().toJson(userDto2);
@@ -177,7 +175,6 @@ public class ApiTestCase1 {
         UserDto user=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
                 .setLastname(lastName).setMail(mail).setStatus(status).setPassword("1qaz@WSX"));
         String body=getGson().toJson(user);
-
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
         assertEquals(response.getStatusCode(), 201);
@@ -216,7 +213,6 @@ public class ApiTestCase1 {
         String lastName = "AndDelete" + randomEnglishLowerString(6);
         String mail = randomEmail();
         Integer status = 1;
-
         UserDto user=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
         .setLastname(lastName).setMail(mail).setStatus(status).setPassword("1qaz@WSX"));
         String body=getGson().toJson(user);
@@ -256,7 +252,6 @@ public class ApiTestCase1 {
         UserDto user=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
                 .setLastname(lastName).setMail(mail).setStatus(status).setPassword("1qaz@WSX"));
         String body=getGson().toJson(user);
-
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
         assertEquals(response.getStatusCode(), 201);
@@ -277,7 +272,6 @@ public class ApiTestCase1 {
         Request deleteRequest = new RestRequest(uri, HttpMethods.DELETE, null, null, null);
         Response deleteResponse = apiClient.executeRequest(deleteRequest);
         assertEquals(deleteResponse.getStatusCode(), 204);
-
         Response deleteRepeatedResponse = apiClient.executeRequest(deleteRequest);
         assertEquals(deleteRepeatedResponse.getStatusCode(), 404);
     }
