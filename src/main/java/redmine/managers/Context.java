@@ -29,8 +29,8 @@ public class Context {
     }
 
     public static void clearStash() {
-        if (stash != null) {
-            stash = null;
+        if (stash.get(Thread.currentThread()) != null) {
+            stash.remove(Thread.currentThread());
         }
     }
 
