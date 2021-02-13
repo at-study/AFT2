@@ -13,7 +13,6 @@ import redmine.model.dto.UserDto;
 import redmine.model.dto.UserInfo;
 import redmine.model.user.User;
 import redmine.utils.Asserts;
-
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 import static redmine.utils.gson.GsonHelper.getGson;
