@@ -17,7 +17,7 @@ import static io.restassured.RestAssured.given;
 
 public class RestApiClient implements ApiClient {
 
-    String token;
+    private final String token;
 
     public RestApiClient(User user) {
         Objects.requireNonNull(user, "Пользователь должен быть инициализирован");

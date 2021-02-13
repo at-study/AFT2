@@ -5,7 +5,7 @@ import io.qameta.allure.Step;
 
 public class Context {
 
-    private static ThreadLocal<Stash> stash=new ThreadLocal<>();
+    private static ThreadLocal<Stash> stash = new ThreadLocal<>();
 
     public static void put(String stashId, Object entity) {
         getStash().put(stashId, entity);
@@ -20,7 +20,7 @@ public class Context {
     }
 
     private static Stash getStash() {
-        if (stash.get()== null) {
+        if (stash.get() == null) {
             stash.set(new Stash());
         }
         return stash.get();

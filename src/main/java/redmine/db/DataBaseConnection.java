@@ -42,15 +42,9 @@ public class DataBaseConnection {
         connection = DriverManager.getConnection(url);
     }
 
-    /**
-     * Выполняет SQL-запрос и возвращает результат
-     *
-     * @param query -SQL-запрос
-     * @return данные-результат запроса
-     */
     @SneakyThrows
     @Step("Выполнение SQL запроса")
-    public List<Map<String, Object>> executeQuery(String query) {
+    public synchronized List<Map<String, Object>> executeQuery(String query) {
         Allure.addAttachment("query", query);
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
@@ -73,16 +67,9 @@ public class DataBaseConnection {
         return result;
     }
 
-    /**
-     * Выполняет SQL-запрос с подготовлением данных и возвращает результат
-     *
-     * @param query      -SQL-запрос
-     * @param parameters параметры,подставляемые в запросы
-     * @return данные-результат запроса
-     */
     @SneakyThrows
     @Step("Выполнение SQL запроса")
-    public List<Map<String, Object>> executePreparedQuery(String query, Object... parameters) {
+    public synchronized List<Map<String, Object>> executePreparedQuery(String query, Object... parameters) {
         PreparedStatement statement = connection.prepareStatement(query);
         int index = 1;
         for (Object object : parameters) {
