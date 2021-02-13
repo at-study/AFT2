@@ -16,6 +16,7 @@ import redmine.model.dto.UserDto;
 import redmine.model.dto.UserInfo;
 import redmine.model.user.User;
 import redmine.utils.StringGenerators;
+
 import static redmine.utils.Asserts.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
@@ -49,9 +50,9 @@ public class ApiTestCase1 {
         String lastName = randomEnglishLowerString(12);
         String mail = randomEmail();
         Integer status = 2;
-        UserDto userDto=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+        UserDto userDto = new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
                 .setLastname(lastName).setMail(mail).setStatus(status).setPassword("1qaz@WSX"));
-        String body=getGson().toJson(userDto);
+        String body = getGson().toJson(userDto);
         int usersCountBeforeUserCreation = UserRequests.getAllUsers().size();
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
@@ -85,9 +86,9 @@ public class ApiTestCase1 {
         String password = randomEnglishLowerString(8);
         Integer status = 2;
 
-        UserDto user=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+        UserDto user = new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
                 .setLastname(lastName).setMail(mail).setStatus(status).setPassword(password));
-        String body=getGson().toJson(user);
+        String body = getGson().toJson(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         apiClient.executeRequest(request);
         Response sameUserCreationRequest = apiClient.executeRequest(request);
@@ -108,12 +109,12 @@ public class ApiTestCase1 {
         String password = StringGenerators.randomEnglishString(10);
         String incorrectPassword = randomEnglishLowerString(4);
 
-        UserDto user=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+        UserDto user = new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
                 .setLastname(lastName).setMail(randomEmail()).setPassword(password));
-        String body=getGson().toJson(user);
-        UserDto incorrectUser=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+        String body = getGson().toJson(user);
+        UserDto incorrectUser = new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
                 .setLastname(lastName).setMail(incorrectMail).setPassword(incorrectPassword));
-        String incorrectBody=getGson().toJson(incorrectUser);
+        String incorrectBody = getGson().toJson(incorrectUser);
 
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         apiClient.executeRequest(request);
@@ -137,12 +138,12 @@ public class ApiTestCase1 {
         Integer putStatus = 1;
         String password = StringGenerators.randomEnglishString(10);
 
-        UserDto userDto=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+        UserDto userDto = new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
                 .setLastname(lastName).setMail(mail).setStatus(status).setPassword(password));
-        String body=getGson().toJson(userDto);
-        UserDto userDto2=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+        String body = getGson().toJson(userDto);
+        UserDto userDto2 = new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
                 .setLastname(lastName).setMail(mail).setStatus(putStatus).setPassword(password));
-        String statusBody=getGson().toJson(userDto2);
+        String statusBody = getGson().toJson(userDto2);
 
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
@@ -172,9 +173,9 @@ public class ApiTestCase1 {
         String mail = randomEmail();
         Integer status = 1;
 
-        UserDto user=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+        UserDto user = new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
                 .setLastname(lastName).setMail(mail).setStatus(status).setPassword("1qaz@WSX"));
-        String body=getGson().toJson(user);
+        String body = getGson().toJson(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
         assertEquals(response.getStatusCode(), 201);
@@ -213,9 +214,9 @@ public class ApiTestCase1 {
         String lastName = "AndDelete" + randomEnglishLowerString(6);
         String mail = randomEmail();
         Integer status = 1;
-        UserDto user=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
-        .setLastname(lastName).setMail(mail).setStatus(status).setPassword("1qaz@WSX"));
-        String body=getGson().toJson(user);
+        UserDto user = new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+                .setLastname(lastName).setMail(mail).setStatus(status).setPassword("1qaz@WSX"));
+        String body = getGson().toJson(user);
 
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
@@ -249,9 +250,9 @@ public class ApiTestCase1 {
         String mail = randomEmail();
         Integer status = 1;
 
-        UserDto user=new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+        UserDto user = new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
                 .setLastname(lastName).setMail(mail).setStatus(status).setPassword("1qaz@WSX"));
-        String body=getGson().toJson(user);
+        String body = getGson().toJson(user);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
         assertEquals(response.getStatusCode(), 201);
