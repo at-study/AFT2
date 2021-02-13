@@ -3,11 +3,9 @@ package redmine.managers;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 
-import java.util.Map;
-
 public class Context {
 
-    private static Map<Thread,Stash> stash;
+    private static ThreadLocal<Stash> stash=new ThreadLocal<>();
 
     public static void put(String stashId, Object entity) {
         getStash().put(stashId, entity);
@@ -22,15 +20,15 @@ public class Context {
     }
 
     private static Stash getStash() {
-        if (stash.get(Thread.currentThread()) == null) {
-            stash.put(Thread.currentThread(),new Stash());
+        if (stash.get()== null) {
+            stash.set(new Stash());
         }
-        return stash.get(Thread.currentThread());
+        return stash.get();
     }
 
     public static void clearStash() {
-        if (stash.get(Thread.currentThread()) != null) {
-            stash.remove(Thread.currentThread());
+        if (stash.get() != null) {
+            stash.set(null);
         }
     }
 
