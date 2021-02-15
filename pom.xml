@@ -149,7 +149,7 @@
                     <useSystemClassLoader>false</useSystemClassLoader>
                     <reuseForks>false</reuseForks>
                     <systemPropertyVariables>
-                        <allure.results.directory>${basedir}\target\allure-results</allure.results.directory>
+                        <allure.results.directory>${basedir}/target/allure-results</allure.results.directory>
                         <dataproviderthreadcount>1</dataproviderthreadcount>
                         <parallel>methods</parallel>
                     </systemPropertyVariables>
