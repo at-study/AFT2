@@ -71,8 +71,10 @@ public class TestCase5 {
 
     @Step("4.Отображается публичный проект")
     private void assertPublicProjectIsDisplayed() {
-        Asserts.assertEquals(getPage(ProjectsPage.class).projectName(publicProject.getName()), publicProject.getName());
-        Asserts.assertEquals(getPage(ProjectsPage.class).projectNameDescription(publicProject.getName()), publicProject.getDescription());
+        getPage(ProjectsPage.class);
+        Asserts.assertEquals(ProjectsPage.projectName(publicProject.getName()), publicProject.getName());
+        getPage(ProjectsPage.class);
+        Asserts.assertEquals(ProjectsPage.projectNameDescription(publicProject.getName()), publicProject.getDescription());
     }
 
     @Step("5.НЕ Отображается приватный  проект ( непривязанный )")
@@ -85,8 +87,10 @@ public class TestCase5 {
     private void assertPrivateProjectWithRoleIsDisplayed() {
         String createdProjectName = createdConnectedProject.getName();
         String createdProjectDescription = createdConnectedProject.getDescription();
-        Asserts.assertEquals(getPage(ProjectsPage.class).projectName(createdProjectName), createdProjectName);
-        Asserts.assertEquals(getPage(ProjectsPage.class).projectNameDescription(createdProjectName), createdProjectDescription);
+        getPage(ProjectsPage.class);
+        Asserts.assertEquals(ProjectsPage.projectName(createdProjectName), createdProjectName);
+        getPage(ProjectsPage.class);
+        Asserts.assertEquals(ProjectsPage.projectNameDescription(createdProjectName), createdProjectDescription);
     }
 
     @AfterMethod
