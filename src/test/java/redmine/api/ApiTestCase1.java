@@ -16,7 +16,6 @@ import redmine.model.dto.UserDto;
 import redmine.model.dto.UserInfo;
 import redmine.model.user.User;
 import redmine.utils.StringGenerators;
-
 import static redmine.utils.Asserts.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
@@ -89,6 +88,7 @@ public class ApiTestCase1 {
         UserDto user = new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
                 .setLastname(lastName).setMail(mail).setStatus(status).setPassword(password));
         String body = getGson().toJson(user);
+
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         apiClient.executeRequest(request);
         Response sameUserCreationRequest = apiClient.executeRequest(request);
