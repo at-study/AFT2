@@ -42,7 +42,7 @@ public class TestCase3 {
 
     @Step(" 2. Отображается ошибка с текстом 'Ваша учётная запись создана и ожидает подтверждения администратора.'")
     private void flashNoticeAboutAccount() {
-        Asserts.assertEquals(getPage(LoginPage.class).errorMessage(), "ВYour account was created and is now pending administrator approval.");
+        Asserts.assertEquals(getPage(LoginPage.class).errorMessage(), "Your account was created and is now pending administrator approval.");
     }
 
     @Step("3. В заголовке страницы не отображаются элементы 'Моя страница'")
