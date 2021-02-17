@@ -7,14 +7,15 @@ import redmine.managers.Context;
 import redmine.managers.Manager;
 import redmine.model.user.User;
 import redmine.utils.Asserts;
-
 import java.util.List;
 import java.util.Map;
 
 public class RequestAssertionSteps {
+
     @И("Получен статус код ответа {int}")
-    public void assertAnswerCode(Response actualCode, int expectedCode) {
-        Asserts.assertEquals(actualCode.getStatusCode(), expectedCode);
+    public void assertAnswerCode(int expectedCode) {
+        Response response=Context.get("user_creation_response", Response.class);
+        Asserts.assertEquals(response.getStatusCode(), expectedCode);
     }
 
     @И("В базе данных появилась запись с данными {string}")
