@@ -15,11 +15,11 @@ import static redmine.utils.StringGenerators.randomEnglishLowerString;
 @Data
 public class User implements Generatable<User> {
     private Integer id;
-    private String login = "Evg" + randomEnglishLowerString(6);
+    private String login = "E" + randomEnglishLowerString(8);
     private String password = StringGenerators.randomEnglishString(10);
     private String salt = StringGenerators.randomString(32, "0123456789abcdef");
     private String hashedPassword = getGeneratedHashedPassword();
-    private String firstName = "Evg" + randomEnglishLowerString(9);
+    private String firstName = "E" + randomEnglishLowerString(11);
     private String lastName = "TTT" + randomEnglishLowerString(9);
     private Boolean admin = true;
     private Integer status = 1;

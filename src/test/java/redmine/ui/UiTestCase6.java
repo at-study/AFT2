@@ -79,17 +79,17 @@ public class UiTestCase6 {
 
     @Step("5.Сортировка пользователей по убыванию после клика для переключения порядка")
     private void sortUsersByUsernameDesc() {
-        List<String> actualOrderedByAscList = getPage(UsersPage.class).listOfUsersInTableByUsername
+        List<String> actualOrderedByDescList = getPage(UsersPage.class).listOfUsersInTableByUsername
                 .stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
 
-        List<String> expectedOrderedByAscList = actualOrderedByAscList
+        List<String> expectedOrderedByDescList = actualOrderedByDescList
                 .stream()
                 .sorted(String.CASE_INSENSITIVE_ORDER.reversed())
                 .collect(Collectors.toList());
 
-        Assert.assertEquals(actualOrderedByAscList, expectedOrderedByAscList);
+        Assert.assertEquals(actualOrderedByDescList, expectedOrderedByDescList);
     }
 
     private void switchOrderByUsername() {
