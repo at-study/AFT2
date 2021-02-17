@@ -13,10 +13,8 @@ import redmine.ui.pages.UsersPage;
 import redmine.ui.pages.helpers.CucumberPageObjectHelper;
 import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static redmine.ui.pages.helpers.Pages.getPage;
 
 public class ElementAssertionSteps {
@@ -41,7 +39,6 @@ public class ElementAssertionSteps {
         WebElement element = CucumberPageObjectHelper.getElementBy(pageName, fieldName);
         Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(element));
     }
-
     @SneakyThrows
     @То("Отображается сообщение {string}{string}{string}")
     public void assertCreationMessage(String user, String userDataStashId, String created) {
@@ -74,7 +71,7 @@ public class ElementAssertionSteps {
     @И("{string} не отсортирована по {string}")
     public void assertUnSorting(String tableStashId, String fieldElement) {
 
-        if (fieldElement == "Фамилия") {
+        if (fieldElement.equals("Фамилия")) {
             List<String> actualList = getPage(UsersPage.class).listOfUsersInTableByLastNames
                     .stream()
                     .map(WebElement::getText)
@@ -85,7 +82,7 @@ public class ElementAssertionSteps {
                     .collect(Collectors.toList());
             Assert.assertNotEquals(actualList, notExpectedOrderedByAscList);
         }
-        if (fieldElement == "Имя") {
+        if (fieldElement.equals("Имя")) {
             List<String> actualList = getPage(UsersPage.class).listOfUsersInTableByNames
                     .stream()
                     .map(WebElement::getText)
@@ -101,7 +98,7 @@ public class ElementAssertionSteps {
 
     @И("{string} отсортирована по {string} по убыванию")
     public void assertSortingByDesc(String tableStashId, String fieldElement) {
-        if (fieldElement == "Фамилия") {
+        if (fieldElement.equals("Фамилия")) {
             List<String> actualList = getPage(UsersPage.class).listOfUsersInTableByLastNames
                     .stream()
                     .map(WebElement::getText)
@@ -112,7 +109,7 @@ public class ElementAssertionSteps {
                     .collect(Collectors.toList());
             Assert.assertEquals(actualList, expectedOrderedByAscList);
         }
-        if (fieldElement == "Имя") {
+        if (fieldElement.equals("Имя")) {
             List<String> actualList = getPage(UsersPage.class).listOfUsersInTableByNames
                     .stream()
                     .map(WebElement::getText)
@@ -123,7 +120,7 @@ public class ElementAssertionSteps {
                     .collect(Collectors.toList());
             Assert.assertEquals(actualList, expectedOrderedByAscList);
         }
-        if (fieldElement == "Логин") {
+        if (fieldElement.equals("Логин")) {
             List<String> actualList = getPage(UsersPage.class).listOfUsersInTableByUsername
                     .stream()
                     .map(WebElement::getText)
@@ -138,7 +135,7 @@ public class ElementAssertionSteps {
 
     @И("{string} отсортирована по {string} по возрастанию")
     public void assertSortingByAsc(String tableStashId, String fieldElement) {
-        if (fieldElement == "Фамилия") {
+        if (fieldElement.equals("Фамилия")) {
             List<String> actualList = getPage(UsersPage.class).listOfUsersInTableByLastNames
                     .stream()
                     .map(WebElement::getText)
@@ -150,7 +147,7 @@ public class ElementAssertionSteps {
 
             Assert.assertEquals(actualList, expectedOrderedByAscList);
         }
-        if (fieldElement == "Имя") {
+        if (fieldElement.equals("Имя")) {
             List<String> actualList = getPage(UsersPage.class).listOfUsersInTableByNames
                     .stream()
                     .map(WebElement::getText)
@@ -162,7 +159,7 @@ public class ElementAssertionSteps {
 
             Assert.assertEquals(actualList, expectedOrderedByAscList);
         }
-        if (fieldElement == "Логин") {
+        if (fieldElement.equals("Логин")) {
             List<String> actualList = getPage(UsersPage.class).listOfUsersInTableByUsername
                     .stream()
                     .map(WebElement::getText)
@@ -175,7 +172,6 @@ public class ElementAssertionSteps {
             Assert.assertEquals(actualList, expectedOrderedByAscList);
         }
     }
-
 
     @И("На странице {string} отображается таблица {string}")
     public void assertTableIsDisplayed(String pageName, String fieldName) {

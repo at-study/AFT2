@@ -18,7 +18,7 @@ import static redmine.utils.gson.GsonHelper.getGson;
 
 public class RequestSteps {
 
-    @Если("Отправить запрос на создание пользователя через API пользователем {string} с параметрами:")
+    @Если("Отправить запрос на создание пользователя через API пользователем {string}")
     public void answerOnUserCreationRequest(String stashId) {
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = new RestApiClient(user);
@@ -32,8 +32,32 @@ public class RequestSteps {
                 .setLastname(lastName).setMail(mail).setStatus(status).setPassword(password).setAdmin(false));
         String body = getGson().toJson(userDto);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
-        Response userCreationByNonAdmin = apiClient.executeRequest(request);
-        Context.put("user_creation_response",userCreationByNonAdmin);
+        Response response = apiClient.executeRequest(request);
+        Context.put("user_operation_response", response);
     }
+
+    @Если("Отправить запрос на получение информации пользователем {string} о самом себе")
+    public void answerOnGetRequestAboutHimselfByNonAdmin(String stashId) {
+        User firstUser = Context.get(stashId, User.class);
+        ApiClient apiClient = new RestApiClient(firstUser);
+        String uri = String.format("users/%d.json", firstUser.getId());
+        Request request = new RestRequest(uri, HttpMethods.GET, null, null, null);
+        Response response = apiClient.executeRequest(request);
+        Context.put("user_operation_response", response);
+    }
+
+     @Если("Отправить запрос на удаление пользователем {string} самого себя")
+     public void deleteRequestByHimself(String stashId){
+         User firstUser = Context.get(stashId, User.class);
+         Integer userId = firstUser.getId();
+         String userApiKey = firstUser.getApiKey();
+         ApiClient apiClient = new RestApiClient(firstUser);
+         String uri = String.format("users/%d.json", firstUser.getId());
+         Request request = new RestRequest(uri, HttpMethods.DELETE, null, null, null);
+         Response response = apiClient.executeRequest(request);
+         Context.put("user_operation_response", response);
+     }
+
+
 
 }
