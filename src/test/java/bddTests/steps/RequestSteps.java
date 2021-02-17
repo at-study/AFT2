@@ -26,7 +26,7 @@ public class RequestSteps {
         Context.put(apiClientStashId, apiClient);
     }
 
-    @Если("Отправить запрос на создание пользователя {string} пользователем {string} с параметрами:")
+    @Если("Отправить запрос на создание пользователя пользователем {string}")
     public static Response answerOnUserCreationRequest(String stashId, String apiClientStashId) {
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = Context.get(apiClientStashId, ApiClient.class);
