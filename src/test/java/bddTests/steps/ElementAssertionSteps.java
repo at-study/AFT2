@@ -106,33 +106,33 @@ public class ElementAssertionSteps {
                     .stream()
                     .map(WebElement::getText)
                     .collect(Collectors.toList());
-            List<String> expectedOrderedByAscList = actualList
+            List<String> expectedOrderedByDescList = actualList
                     .stream()
                     .sorted(String.CASE_INSENSITIVE_ORDER.reversed())
                     .collect(Collectors.toList());
-            Assert.assertEquals(actualList, expectedOrderedByAscList);
+            Assert.assertEquals(actualList, expectedOrderedByDescList);
         }
         if (fieldElement.equals("Имя")) {
             List<String> actualList = getPage(UsersPage.class).listOfUsersInTableByNames
                     .stream()
                     .map(WebElement::getText)
                     .collect(Collectors.toList());
-            List<String> expectedOrderedByAscList = actualList
+            List<String> expectedOrderedByDescList = actualList
                     .stream()
                     .sorted(String.CASE_INSENSITIVE_ORDER.reversed())
                     .collect(Collectors.toList());
-            Assert.assertEquals(actualList, expectedOrderedByAscList);
+            Assert.assertEquals(actualList, expectedOrderedByDescList);
         }
         if (fieldElement.equals("Логин")) {
             List<String> actualList = getPage(UsersPage.class).listOfUsersInTableByUsername
                     .stream()
                     .map(WebElement::getText)
                     .collect(Collectors.toList());
-            List<String> expectedOrderedByAscList = actualList
+            List<String> expectedOrderedByDescList = actualList
                     .stream()
                     .sorted(String.CASE_INSENSITIVE_ORDER.reversed())
                     .collect(Collectors.toList());
-            Assert.assertEquals(actualList, expectedOrderedByAscList);
+            Assert.assertEquals(actualList, expectedOrderedByDescList);
         }
     }
 
