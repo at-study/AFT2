@@ -23,7 +23,7 @@ import static redmine.model.project.Project.addUserAndRoleToProject;
 import static redmine.model.role.RolePermission.VIEW_ISSUES;
 import static redmine.ui.pages.helpers.Pages.getPage;
 
-public class TestCase5 {
+public class UiTestCase5 {
     private User user;
     private Project publicProject;
     private Project privateNotConnectedProject;

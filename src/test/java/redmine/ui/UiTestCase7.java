@@ -24,7 +24,7 @@ import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.helpers.Pages.getPage;
 
 
-public class TestCase7 {
+public class UiTestCase7 {
     private User userAdmin;
 
     @BeforeMethod

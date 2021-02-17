@@ -21,7 +21,7 @@ import static redmine.ui.pages.helpers.Pages.getPage;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 
-public class TestCase8 {
+public class UiTestCase8 {
     private User userAdmin;
 
     @BeforeMethod

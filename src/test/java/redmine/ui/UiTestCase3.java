@@ -16,7 +16,7 @@ import static redmine.managers.Manager.driverQuit;
 import static redmine.managers.Manager.openPage;
 import static redmine.ui.pages.helpers.Pages.getPage;
 
-public class TestCase3 {
+public class UiTestCase3 {
     private User user;
 
     @BeforeMethod
