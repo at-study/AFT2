@@ -12,8 +12,9 @@ import java.util.Map;
 
 public class RequestAssertionSteps {
     @И("Получен статус код ответа {int}")
-    public void assertAnswerCode(Response actualCode, int expectedCode) {
-        Asserts.assertEquals(actualCode.getStatusCode(), expectedCode);
+    public void assertAnswerCode(int expectedCode) {
+        Response response=Context.get("response",Response.class);
+        Asserts.assertEquals(response.getStatusCode(), expectedCode);
     }
 
     @И("В базе данных появилась запись с данными {string}")
