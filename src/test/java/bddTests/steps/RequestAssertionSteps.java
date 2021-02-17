@@ -7,7 +7,6 @@ import redmine.managers.Context;
 import redmine.managers.Manager;
 import redmine.model.user.User;
 import redmine.utils.Asserts;
-
 import java.util.List;
 import java.util.Map;
 
