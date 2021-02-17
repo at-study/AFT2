@@ -13,7 +13,6 @@ import redmine.model.dto.UserDto;
 import redmine.model.dto.UserInfo;
 import redmine.model.user.User;
 import redmine.utils.Asserts;
-
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 import static redmine.utils.gson.GsonHelper.getGson;
@@ -41,7 +40,6 @@ public class RequestSteps {
         String body = getGson().toJson(userDto);
 
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
-        apiClient.executeRequest(request);
         Response userCreationByNonAdmin = apiClient.executeRequest(request);
         Asserts.assertEquals(userCreationByNonAdmin.getStatusCode(), 403);
         return null;
