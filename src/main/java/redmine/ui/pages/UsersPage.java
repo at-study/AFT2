@@ -6,7 +6,7 @@ import redmine.ui.pages.helpers.CucumberName;
 
 import java.util.List;
 
-@CucumberName("Страница пользователи")
+@CucumberName("Страница Пользователи")
 public class UsersPage extends AbstractPage {
 
     @CucumberName("Таблица пользователей")
