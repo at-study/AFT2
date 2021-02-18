@@ -182,4 +182,5 @@ public class ElementAssertionSteps {
         WebElement element = CucumberPageObjectHelper.getElementBy(pageName, fieldName);
         Assert.assertTrue(BrowserUtils.isElementCurrentlyPresent(element));
     }
+
 }
