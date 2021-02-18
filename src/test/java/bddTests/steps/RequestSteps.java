@@ -9,10 +9,14 @@ import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
 import redmine.api.interfaces.Response;
 import redmine.managers.Context;
+import redmine.managers.Manager;
 import redmine.model.dto.UserDto;
 import redmine.model.dto.UserInfo;
 import redmine.model.user.User;
 import redmine.utils.StringGenerators;
+
+import java.util.List;
+import java.util.Map;
 
 import static redmine.utils.Asserts.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
@@ -79,6 +83,7 @@ public class RequestSteps {
         Response response = apiClient.executeRequest(incorrectRequest);
         Context.put("response",response);
             }
+
     @Если ("Отправить запрос на изменение пользователя {string} пользователем {string}")
     public void changeRequestDto(String userStashDto,String stashId){
         User user = Context.get(stashId, User.class);
@@ -113,7 +118,22 @@ public class RequestSteps {
         Context.put("response",response);
     }
 
+    @Если ("Отправить запрос на получении инфо о пользователе {string} пользователем {string}")
+    public void answerOnUserGetRequest(String userStashDto, String stashId) {
+        UserDto userContext = Context.get(userStashDto, UserDto.class);
+        User user = Context.get(stashId, User.class);
+        ApiClient apiClient = new RestApiClient(user);
 
+        String query = String.format("select * from users where login='%s'", userContext.getUser().getLogin());
+        List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
+        Map<String, Object> dbUser = result.get(0);
 
-
+        Integer userId = (Integer) dbUser.get("id");
+        String uri = String.format("users/%d.json", userId);
+        Request request = new RestRequest(uri, HttpMethods.GET, null, null, null);
+        Response response = apiClient.executeRequest(request);
+        UserDto userDto= response.getBody(UserDto.class);
+        Context.put(userStashDto,userDto);
+        Context.put("response",response);
+    }
 }
