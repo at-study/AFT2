@@ -9,10 +9,8 @@ import redmine.managers.Manager;
 import redmine.model.dto.UserCreationError;
 import redmine.model.dto.UserDto;
 import redmine.model.user.User;
-
 import java.util.List;
 import java.util.Map;
-
 import static redmine.utils.Asserts.assertEquals;
 import static redmine.utils.gson.GsonHelper.getGson;
 
@@ -85,16 +83,14 @@ public class RequestAssertionSteps {
         }
     }
     @То("В базе данных изменилась запись с данными пользователя {string}")
-    public void dbCheckAfterPutRequest(String userDataStashId){
-        UserDto userContext = Context.get(userDataStashId, UserDto.class);
+    public void dbCheckAfterPutRequest(String userStashDto){
+        UserDto userContext = Context.get(userStashDto, UserDto.class);
+        Response response = Context.get("response", Response.class);
+        UserDto createdUser = response.getBody(UserDto.class);
         String query = String.format("select * from users where login='%s'", userContext.getUser().getLogin());
         List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
-        Assert.assertEquals(result.size(), 1, "Проверка размера результата");
         Map<String, Object> dbUser = result.get(0);
-        assertEquals(dbUser.get("login"), userContext.getUser().getLogin());
-        assertEquals(dbUser.get("firstname"), userContext.getUser().getFirstname());
-        assertEquals(dbUser.get("lastname"), userContext.getUser().getLastname());
-        assertEquals(dbUser.get("status"),userContext.getUser().getStatus() );
+        assertEquals(dbUser.get("status"),1 );
 
     }
 }

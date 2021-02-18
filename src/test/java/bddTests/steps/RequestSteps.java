@@ -109,6 +109,7 @@ public class RequestSteps {
         String uri = String.format("users/%d.json", userId);
         Request putRequest = new RestRequest(uri, HttpMethods.PUT, null, null, statusBody);
         Response response = apiClient.executeRequest(putRequest);
+        Context.put(userStashDto,userDto);
         Context.put("response",response);
     }
 
