@@ -48,9 +48,15 @@ public class RequestSteps {
             Context.put("response",response);}
     }
 
-    @Если("Отправить повторный запрос с тем же телом запроса")
-    public void repeatedRequestDto(){
-
+    @Если("Отправить повторный запрос на создание пользователя {string} пользователем {string} с тем же телом запроса")
+    public void repeatedRequestDto(String userStashDto,String stashId){
+        UserDto userContext = Context.get(userStashDto, UserDto.class);
+        User user = Context.get(stashId, User.class);
+        ApiClient apiClient = new RestApiClient(user);
+        String body = getGson().toJson(userContext);
+        Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
+        Response response = apiClient.executeRequest(request);
+        Context.put("response",response);
     }
 
 }
