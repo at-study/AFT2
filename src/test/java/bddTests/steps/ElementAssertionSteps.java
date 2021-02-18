@@ -39,7 +39,6 @@ public class ElementAssertionSteps {
         WebElement element = CucumberPageObjectHelper.getElementBy(pageName, fieldName);
         Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(element));
     }
-
     @SneakyThrows
     @То("Отображается сообщение {string}{string}{string}")
     public void assertCreationMessage(String user, String userDataStashId, String created) {
@@ -173,7 +172,6 @@ public class ElementAssertionSteps {
             Assert.assertEquals(actualList, expectedOrderedByAscList);
         }
     }
-
 
     @И("На странице {string} отображается таблица {string}")
     public void assertTableIsDisplayed(String pageName, String fieldName) {
