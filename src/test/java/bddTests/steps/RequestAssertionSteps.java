@@ -3,14 +3,21 @@ package bddTests.steps;
 import cucumber.api.java.ru.И;
 import cucumber.api.java.ru.То;
 import org.testng.Assert;
+import redmine.api.implementations.RestApiClient;
+import redmine.api.implementations.RestRequest;
+import redmine.api.interfaces.ApiClient;
+import redmine.api.interfaces.HttpMethods;
+import redmine.api.interfaces.Request;
 import redmine.api.interfaces.Response;
 import redmine.managers.Context;
 import redmine.managers.Manager;
 import redmine.model.dto.UserCreationError;
 import redmine.model.dto.UserDto;
 import redmine.model.user.User;
+
 import java.util.List;
 import java.util.Map;
+
 import static redmine.utils.Asserts.assertEquals;
 import static redmine.utils.gson.GsonHelper.getGson;
 
@@ -91,6 +98,11 @@ public class RequestAssertionSteps {
         List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
         Map<String, Object> dbUser = result.get(0);
         assertEquals(dbUser.get("status"),1 );
+    }
 
+    @То("В базе данных отсутствует запись с данными пользователя {string} созданного пользователем {string}")
+    public void dbCheckAfterDeleteRequest(String userStashDto,String stashId){
+        assertEquals(userAmountAfterDeleteOtherUser, userCountBeforeDeleteOtherUser - 1);
+        Context.put("response",response);
     }
 }
