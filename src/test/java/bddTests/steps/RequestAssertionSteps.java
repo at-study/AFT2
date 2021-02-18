@@ -84,4 +84,17 @@ public class RequestAssertionSteps {
             assertEquals(errors.getErrors().get(2), "Пароль недостаточной длины (не может быть меньше 8 символа)");
         }
     }
+    @То("В базе данных изменилась запись с данными пользователя {string}")
+    public void dbCheckAfterPutRequest(String userDataStashId){
+        UserDto userContext = Context.get(userDataStashId, UserDto.class);
+        String query = String.format("select * from users where login='%s'", userContext.getUser().getLogin());
+        List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
+        Assert.assertEquals(result.size(), 1, "Проверка размера результата");
+        Map<String, Object> dbUser = result.get(0);
+        assertEquals(dbUser.get("login"), userContext.getUser().getLogin());
+        assertEquals(dbUser.get("firstname"), userContext.getUser().getFirstname());
+        assertEquals(dbUser.get("lastname"), userContext.getUser().getLastname());
+        assertEquals(dbUser.get("status"),userContext.getUser().getStatus() );
+
+    }
 }
