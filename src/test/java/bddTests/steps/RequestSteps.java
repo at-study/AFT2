@@ -77,5 +77,22 @@ public class RequestSteps {
         Response response = apiClient.executeRequest(incorrectRequest);
         Context.put("response",response);
             }
+    @Если ("Отправить запрос на изменение пользователя {string} пользователем {string}")
+    public void changeRequestDto(String userStashDto,String stashId){
+        UserDto userContext = Context.get(userStashDto, UserDto.class);
+        User user = Context.get(stashId, User.class);
+        ApiClient apiClient = new RestApiClient(user);
+        String uri = String.format("users/%d.json", userContext.getUser().getId());
+
+        UserDto putUser = new UserDto().setUser(new UserInfo().setLogin(userContext.getUser()
+                .getLogin())
+                .setStatus(1));
+        String putBody = getGson().toJson(putUser);
+        Request putRequest = new RestRequest(uri, HttpMethods.PUT, null, null, putBody);
+        Response response = apiClient.executeRequest(putRequest);
+        Context.put("response",response);
+    }
+
+
 
 }
