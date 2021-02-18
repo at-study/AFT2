@@ -19,7 +19,7 @@ import static redmine.utils.gson.GsonHelper.getGson;
 public class RequestSteps {
 
     @Если("Отправить запрос на создание пользователя {string} {string} со статусом:{int}")
-    public void answerOnUserCreationRequest(String stashId,String userType,int status) {
+    public void answerOnUserCreationRequest(String userType,String stashId,int status) {
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = new RestApiClient(user);
         if (userType.equals("пользователем")){
