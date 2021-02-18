@@ -48,4 +48,9 @@ public class RequestSteps {
             Context.put("response",response);}
     }
 
+    @Если("Отправить повторный запрос с тем же телом запроса")
+    public void repeatedRequestDto(){
+
+    }
+
 }
