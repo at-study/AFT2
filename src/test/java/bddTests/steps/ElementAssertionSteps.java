@@ -13,10 +13,8 @@ import redmine.ui.pages.UsersPage;
 import redmine.ui.pages.helpers.CucumberPageObjectHelper;
 import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static redmine.ui.pages.helpers.Pages.getPage;
 
 public class ElementAssertionSteps {

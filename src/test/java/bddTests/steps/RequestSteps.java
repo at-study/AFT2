@@ -18,8 +18,8 @@ import static redmine.utils.gson.GsonHelper.getGson;
 
 public class RequestSteps {
 
-    @Если("Отправить запрос на создание пользователя {string} {string} со статусом:{int}")
-    public void answerOnUserCreationRequest(String userType,String stashId,int status) {
+    @Если("Отправить запрос на создание пользователя {string} {string} {string} со статусом:{int}")
+    public void answerOnUserCreationRequest(String userStashDto, String userType,String stashId,int status) {
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = new RestApiClient(user);
         if (userType.equals("пользователем")){
@@ -32,6 +32,7 @@ public class RequestSteps {
         String body = getGson().toJson(userDto);
         Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
         Response response = apiClient.executeRequest(request);
+        Context.put(userStashDto,userDto);
         Context.put("response",response);}
         else{
             String login = randomEnglishLowerString(8);
@@ -43,9 +44,8 @@ public class RequestSteps {
             String body = getGson().toJson(userDto);
             Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
             Response response = apiClient.executeRequest(request);
+            Context.put(userStashDto,userDto);
             Context.put("response",response);}
-
-
     }
 
 }
