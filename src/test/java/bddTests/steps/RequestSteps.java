@@ -1,6 +1,7 @@
 package bddTests.steps;
 
 import cucumber.api.java.ru.Если;
+import cucumber.api.java.ru.То;
 import redmine.api.implementations.RestApiClient;
 import redmine.api.implementations.RestRequest;
 import redmine.api.interfaces.ApiClient;
@@ -58,5 +59,23 @@ public class RequestSteps {
         Response response = apiClient.executeRequest(request);
         Context.put("response",response);
     }
+
+    @То("Отправить НЕ корректный запрос на создание пользователя {string} пользователем {string}")
+    public void incorrectRequestDto(String userStashDto,String stashId){
+        String incorrectMail = "santa.claus.petersburg";
+        String incorrectPassword = randomEnglishLowerString(4);
+        UserDto userContext = Context.get(userStashDto, UserDto.class);
+        User user = Context.get(stashId, User.class);
+        ApiClient apiClient = new RestApiClient(user);
+        UserDto incorrectUser = new UserDto().setUser(new UserInfo().setLogin(userContext.getUser().getLogin())
+                .setFirstname(userContext.getUser().getFirstname())
+                .setLastname(userContext.getUser().getLastname())
+                .setMail(incorrectMail)
+                .setPassword(incorrectPassword));
+        String incorrectBody = getGson().toJson(incorrectUser);
+        Request incorrectRequest = new RestRequest("users.json", HttpMethods.POST, null, null, incorrectBody);
+        Response response = apiClient.executeRequest(incorrectRequest);
+        Context.put("response",response);
+            }
 
 }
