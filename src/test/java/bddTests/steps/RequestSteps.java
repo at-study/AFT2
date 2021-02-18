@@ -82,12 +82,11 @@ public class RequestSteps {
         UserDto userContext = Context.get(userStashDto, UserDto.class);
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = new RestApiClient(user);
-        String uri = String.format("users/%d.json", userContext.getUser().getId());
-
-        UserDto putUser = new UserDto().setUser(new UserInfo().setLogin(userContext.getUser()
-                .getLogin())
-                .setStatus(1));
-        String putBody = getGson().toJson(putUser);
+        Integer userId=userContext.getUser().getId();
+        String uri = String.format("users/%d.json",userId);
+        UserDto userDto2 = new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
+                .setLastname(lastName).setMail(mail).setStatus(putStatus).setPassword(password));
+        String statusBody = getGson().toJson(userDto2);
         Request putRequest = new RestRequest(uri, HttpMethods.PUT, null, null, putBody);
         Response response = apiClient.executeRequest(putRequest);
         Context.put("response",response);
