@@ -176,4 +176,16 @@ public class RequestSteps {
         Context.put(stashId,user);
         Context.put("response",response);}
     }
+
+    @Если ("Отправить запрос на {string} пользователя {string} пользователем {string}")
+    public void answerOnUserOperationRequestByOtherUser(String operation, String stashId) {
+        if(operation.equals("получение")) {
+            User user = Context.get(stashId, User.class);
+            ApiClient apiClient = new RestApiClient(user);
+            String uri = String.format("users/%d.json", user.getId());
+            Request request = new RestRequest(uri, HttpMethods.GET, null, null, null);
+            Response response = apiClient.executeRequest(request);
+            Context.put(stashId,user);
+            Context.put("response",response);}
+    }
 }

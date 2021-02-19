@@ -124,10 +124,7 @@ public class RequestAssertionSteps {
         assertEquals(createdUser.getUser().getFirstname(), user.getFirstName());
         assertEquals(createdUser.getUser().getLastname(), user.getLastName());
         Assert.assertNull(createdUser.getUser().getPassword());
-        Assert.assertEquals(createdUser.getUser().getAdmin(),user.getAdmin());
+        Assert.assertFalse(createdUser.getUser().getAdmin().booleanValue());
         Assert.assertEquals(createdUser.getUser().getApi_key(),user.getApiKey());
     }
-
-
-
 }
