@@ -100,9 +100,22 @@ public class RequestAssertionSteps {
         assertEquals(dbUser.get("status"),1 );
     }
 
-    @То("В базе данных отсутствует запись с данными пользователя {string} созданного пользователем {string}")
+    @То("В базе данных отсутствует информация о  пользователе {string} созданном {string}")
     public void dbCheckAfterDeleteRequest(String userStashDto,String stashId){
-        assertEquals(userAmountAfterDeleteOtherUser, userCountBeforeDeleteOtherUser - 1);
+        UserDto userContext = Context.get(userStashDto, UserDto.class);
+        User user = Context.get(stashId, User.class);
+        ApiClient apiClient = new RestApiClient(user);
+        Integer userId = user.getId()+2;
+        String uri = String.format("users/%d.json", userId);
+        Request request = new RestRequest(uri, HttpMethods.DELETE, null, null, null);
+        Response response = apiClient.executeRequest(request);
+        UserDto userDto= response.getBody(UserDto.class);
         Context.put("response",response);
+        assertEquals(response.getStatusCode(), 404);
     }
+
+
+
+
+
 }

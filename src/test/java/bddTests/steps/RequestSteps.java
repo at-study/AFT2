@@ -8,7 +8,6 @@ import redmine.api.interfaces.ApiClient;
 import redmine.api.interfaces.HttpMethods;
 import redmine.api.interfaces.Request;
 import redmine.api.interfaces.Response;
-import redmine.db.requests.UserRequests;
 import redmine.managers.Context;
 import redmine.managers.Manager;
 import redmine.model.dto.UserDto;
@@ -142,19 +141,28 @@ public class RequestSteps {
         UserDto userContext = Context.get(userStashDto, UserDto.class);
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = new RestApiClient(user);
-
-        String query = String.format("select * from users where login='%s'", userContext.getUser().getLogin());
-        List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
-        Map<String, Object> dbUser = result.get(0);
-        Integer userId = (Integer) dbUser.get("id");
-        int userCountBeforeDeleteOtherUser = UserRequests.getAllUsers().size();
+        Integer userId = userContext.getUser().getId();
         String uri = String.format("users/%d.json", userId);
         Request request = new RestRequest(uri, HttpMethods.DELETE, null, null, null);
         Response response = apiClient.executeRequest(request);
-        int userAmountAfterDeleteOtherUser = UserRequests.getAllUsers().size();
         UserDto userDto= response.getBody(UserDto.class);
         Context.put(userStashDto,userDto);
         Context.put("response",response);
-        assertEquals(userAmountAfterDeleteOtherUser, userCountBeforeDeleteOtherUser - 1);
+    }
+
+    @Если ("Отправить запрос на удаление инфо о несуществующем пользователе {string} пользователем {string}")
+    public void answerOnNonExistUserDeleteRequest(String userStashDto, String stashId) {
+        UserDto userContext = Context.get(userStashDto, UserDto.class);
+        User user = Context.get(stashId, User.class);
+        ApiClient apiClient = new RestApiClient(user);
+        Integer userId = user.getId()+2;
+        String uri = String.format("users/%d.json", userId);
+        Request request = new RestRequest(uri, HttpMethods.DELETE, null, null, null);
+        Response response = apiClient.executeRequest(request);
+        UserDto userDto= response.getBody(UserDto.class);
+        Context.put(userStashDto,userDto);
+        Context.put("response",response);
+
+
     }
 }
