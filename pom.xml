@@ -89,13 +89,6 @@
             <version>${allure-java-commons.version}</version>
         </dependency>
 
-               <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-testng</artifactId>
-            <version>${cucumber-testng.version}</version>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -110,14 +103,6 @@
             <version>${slf4j-simple.version}</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>${allure-testng.version}</version>
-        </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber4-jvm -->
         <dependency>
