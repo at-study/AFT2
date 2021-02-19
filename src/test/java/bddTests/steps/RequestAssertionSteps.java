@@ -128,6 +128,17 @@ public class RequestAssertionSteps {
         Assert.assertEquals(createdUser.getUser().getApi_key(),user.getApiKey());
     }
 
-
+    @И("В теле содержиться информация о пользователе {string}")
+    public void assertUserInformationInDb(String stashId) {
+        User userContext = Context.get(stashId, User.class);
+        String query = String.format("select * from users where login='%s'", userContext.getLogin());
+        List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
+        Assert.assertEquals(result.size(), 1, "Проверка размера результата");
+        Map<String, Object> dbUser = result.get(0);
+        assertEquals(dbUser.get("login"), userContext.getLogin());
+        assertEquals(dbUser.get("firstname"), userContext.getFirstName());
+        assertEquals(dbUser.get("lastname"), userContext.getLastName());
+        assertEquals(dbUser.get("status"), userContext.getStatus());
+    }
 
 }
