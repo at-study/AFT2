@@ -113,8 +113,20 @@ public class RequestAssertionSteps {
         Context.put("response",response);
         assertEquals(response.getStatusCode(), 404);
     }
+    @То("В теле содержиться информация пользователя {string} о самом себе, присутсутвуют поля admin и apikey")
+    public void assertUserInformationFieldExist(String stashId) {
+        User user = Context.get(stashId, User.class);
+        Response response = Context.get("response", Response.class);
+        UserDto createdUser = response.getBody(UserDto.class);
 
-
+        Assert.assertNotNull(createdUser.getUser().getId());
+        assertEquals(createdUser.getUser().getLogin(), user.getLogin());
+        assertEquals(createdUser.getUser().getFirstname(), user.getFirstName());
+        assertEquals(createdUser.getUser().getLastname(), user.getLastName());
+        Assert.assertNull(createdUser.getUser().getPassword());
+        Assert.assertEquals(createdUser.getUser().getAdmin(),user.getAdmin());
+        Assert.assertEquals(createdUser.getUser().getApi_key(),user.getApiKey());
+    }
 
 
 

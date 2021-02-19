@@ -124,7 +124,7 @@ public class RequestSteps {
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = new RestApiClient(user);
 
-        String query = String.format("select * from users where login='%s'", userContext.getUser().getLogin());
+        String query = String.format("select * from users where login='%s'", user.getLogin());
         List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
         Map<String, Object> dbUser = result.get(0);
         Integer userId = (Integer) dbUser.get("id");
@@ -162,7 +162,18 @@ public class RequestSteps {
         UserDto userDto= response.getBody(UserDto.class);
         Context.put(userStashDto,userDto);
         Context.put("response",response);
+    }
 
 
+    @Если ("Отправить запрос на {string} пользователя {string}")
+    public void answerOnUserOperationRequest(String operation, String stashId) {
+        if(operation.equals("получение")) {
+        User user = Context.get(stashId, User.class);
+        ApiClient apiClient = new RestApiClient(user);
+        String uri = String.format("users/%d.json", user.getId());
+        Request request = new RestRequest(uri, HttpMethods.GET, null, null, null);
+        Response response = apiClient.executeRequest(request);
+        Context.put(stashId,user);
+        Context.put("response",response);}
     }
 }
