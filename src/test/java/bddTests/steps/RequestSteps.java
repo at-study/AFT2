@@ -127,7 +127,7 @@ public class RequestSteps {
         Context.put("response",response);
     }
 
-    @Если ("Отправить запрос на удаление инфо о пользователе {string} пользователем {string}")
+    @Если ("Отправить запрос на удаление пользователя {string} пользователем {string}")
     public void answerOnUserDeleteRequest(String userStashDto, String stashId) {
         UserDto userContext = Context.get(userStashDto, UserDto.class);
         User user = Context.get(stashId, User.class);
@@ -141,12 +141,12 @@ public class RequestSteps {
         Context.put("response",response);
     }
 
-    @Если ("Отправить запрос на удаление инфо о несуществующем пользователе {string} пользователем {string}")
+    @Если ("Отправить запрос на удаление несуществующего пользователя {string} пользователем {string}")
     public void answerOnNonExistUserDeleteRequest(String userStashDto, String stashId) {
         UserDto userContext = Context.get(userStashDto, UserDto.class);
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = new RestApiClient(user);
-        Integer userId = user.getId()+2;
+        Integer userId = user.getId()+1;
         String uri = String.format("users/%d.json", userId);
         Request request = new RestRequest(uri, HttpMethods.DELETE, null, null, null);
         Response response = apiClient.executeRequest(request);
