@@ -107,7 +107,7 @@ public class RequestAssertionSteps {
         ApiClient apiClient = new RestApiClient(user);
         Integer userId = user.getId()+2;
         String uri = String.format("users/%d.json", userId);
-        Request request = new RestRequest(uri, HttpMethods.DELETE, null, null, null);
+        Request request = new RestRequest(uri, HttpMethods.GET, null, null, null);
         Response response = apiClient.executeRequest(request);
         UserDto userDto= response.getBody(UserDto.class);
         Context.put("response",response);
