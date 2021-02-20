@@ -127,4 +127,17 @@ public class RequestAssertionSteps {
         assertEquals(dbUser.get("status"), userContext.getStatus());
     }
 
+    @То("В теле содержится информация пользователя {string} , отсутствуют поля admin и apikey")
+    public void assertUserInformationFieldExistWithoutApiAndAdmin(String stashId) {
+        User user = Context.get(stashId, User.class);
+        Response response = Context.get("response", Response.class);
+        UserDto createdUser = response.getBody(UserDto.class);
+        Assert.assertNotNull(createdUser.getUser().getId());
+        assertEquals(createdUser.getUser().getLogin(), user.getLogin());
+        assertEquals(createdUser.getUser().getFirstname(), user.getFirstName());
+        assertEquals(createdUser.getUser().getLastname(), user.getLastName());
+        Assert.assertNull(createdUser.getUser().getPassword());
+        Assert.assertNull(createdUser.getUser().getAdmin());
+        Assert.assertNull(createdUser.getUser().getApi_key());
+    }
 }
