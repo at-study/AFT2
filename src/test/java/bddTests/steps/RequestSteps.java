@@ -155,10 +155,11 @@ public class RequestSteps {
     }
 
 
-    @Если("Отправить запрос на {string} пользователя {string}")
-    public void answerOnUserOperationRequest(String operation, String stashId) {
-        User user = Context.get(stashId, User.class);
-        ApiClient apiClient = new RestApiClient(user);
+    @Если("Отправить запрос на {string} пользователя {string} пользователем {string}")
+    public void answerOnUserOperationRequest(String operation, String stashId,String stashId2) {
+        User user2 = Context.get(stashId2, User.class);
+        ApiClient apiClient = new RestApiClient(user2);
+        User user=Context.get(stashId, User.class);
         String uri = String.format("users/%d.json", user.getId());
 
         if (operation.equals("получение")) {
