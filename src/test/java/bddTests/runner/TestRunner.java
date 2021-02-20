@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 
 @CucumberOptions(
         plugin = {"pretty", "io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm", "json:target/cucumber.json"},
-        glue = {"steps","hooks"},
+        glue = {"bddTests"},
         features = "src/test/resources",
         tags = {"@UI","API"}
 )
