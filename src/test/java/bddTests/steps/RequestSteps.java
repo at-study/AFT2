@@ -13,12 +13,10 @@ import redmine.managers.Manager;
 import redmine.model.dto.UserDto;
 import redmine.model.dto.UserInfo;
 import redmine.model.user.User;
-import redmine.utils.StringGenerators;
 
 import java.util.List;
 import java.util.Map;
 
-import static redmine.utils.Asserts.assertEquals;
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 import static redmine.utils.gson.GsonHelper.getGson;
@@ -88,29 +86,15 @@ public class RequestSteps {
     public void changeRequestDto(String userStashDto,String stashId){
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = new RestApiClient(user);
-        String login = randomEnglishLowerString(8);
-        String firstName = "Evg" + randomEnglishLowerString(6);
-        String lastName = "TT" + randomEnglishLowerString(10);
-        String mail = randomEmail();
-        Integer status = 2;
-        Integer putStatus = 1;
-        String password = StringGenerators.randomEnglishString(10);
-
-        UserDto userDto = new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
-                .setLastname(lastName).setMail(mail).setStatus(status).setPassword(password));
-        String body = getGson().toJson(userDto);
-        UserDto userDto2 = new UserDto().setUser(new UserInfo().setLogin(login).setFirstname(firstName)
-                .setLastname(lastName).setMail(mail).setStatus(putStatus).setPassword(password));
-        String statusBody = getGson().toJson(userDto2);
-
-        Request request = new RestRequest("users.json", HttpMethods.POST, null, null, body);
-        Response responseOnRequest = apiClient.executeRequest(request);
-        String responseBody = responseOnRequest.getBody().toString();
-        UserDto createdUser = getGson().fromJson(responseBody, UserDto.class);
-        Integer userId = createdUser.getUser().getId();
-        assertEquals(createdUser.getUser().getStatus(), 2);
-        System.out.println("Created userID: " + userId);
-
+        UserDto userContext = Context.get(userStashDto, UserDto.class);
+        UserDto userDto = new UserDto().setUser(new UserInfo().setLogin(userContext.getUser().getLogin())
+                .setFirstname(userContext.getUser().getFirstname())
+                .setLastname(userContext.getUser().getLastname())
+                .setMail(userContext.getUser().getMail())
+                .setStatus(1)
+                .setPassword(userContext.getUser().getPassword()));
+        String statusBody = getGson().toJson(userDto);
+        Integer userId=userContext.getUser().getId();
         String uri = String.format("users/%d.json", userId);
         Request putRequest = new RestRequest(uri, HttpMethods.PUT, null, null, statusBody);
         Response response = apiClient.executeRequest(putRequest);
