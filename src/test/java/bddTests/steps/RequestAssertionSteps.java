@@ -140,5 +140,4 @@ public class RequestAssertionSteps {
         assertEquals(dbUser.get("lastname"), userContext.getLastName());
         assertEquals(dbUser.get("status"), userContext.getStatus());
     }
-
 }
