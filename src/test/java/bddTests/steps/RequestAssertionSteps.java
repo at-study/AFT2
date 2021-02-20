@@ -103,7 +103,7 @@ public class RequestAssertionSteps {
         Assert.assertEquals(result.size(), 0, "Проверка отсутствия");
     }
 
-    @То("В теле содержиться информация пользователя {string} о самом себе, присутсутвуют поля admin и apikey")
+    @То("В теле содержится информация пользователя {string} о самом себе, присутсутвуют поля admin и apikey")
     public void assertUserInformationFieldExist(String stashId) {
         User user = Context.get(stashId, User.class);
         Response response = Context.get("response", Response.class);
@@ -117,7 +117,7 @@ public class RequestAssertionSteps {
         Assert.assertEquals(createdUser.getUser().getApi_key(), user.getApiKey());
     }
 
-    @И("В теле содержиться информация о пользователе {string}")
+    @И("В теле содержится информация о пользователе {string}")
     public void assertUserInformationInDb(String stashId) {
         User userContext = Context.get(stashId, User.class);
         String query = String.format("select * from users where login='%s'", userContext.getLogin());
