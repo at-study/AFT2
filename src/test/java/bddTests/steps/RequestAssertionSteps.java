@@ -94,7 +94,6 @@ public class RequestAssertionSteps {
     public void dbCheckAfterPutRequest(String userStashDto) {
         UserDto userContext = Context.get(userStashDto, UserDto.class);
         Response response = Context.get("response", Response.class);
-        UserDto createdUser = response.getBody(UserDto.class);
         String query = String.format("select * from users where login='%s'", userContext.getUser().getLogin());
         List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
         Map<String, Object> dbUser = result.get(0);
@@ -106,7 +105,7 @@ public class RequestAssertionSteps {
         UserDto userContext = Context.get(userStashDto, UserDto.class);
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = new RestApiClient(user);
-        Integer userId = user.getId() + 2;
+        Integer userId = user.getId() + 1;
         String uri = String.format("users/%d.json", userId);
         Request request = new RestRequest(uri, HttpMethods.GET, null, null, null);
         Response response = apiClient.executeRequest(request);
@@ -120,7 +119,6 @@ public class RequestAssertionSteps {
         User user = Context.get(stashId, User.class);
         Response response = Context.get("response", Response.class);
         UserDto createdUser = response.getBody(UserDto.class);
-
         Assert.assertNotNull(createdUser.getUser().getId());
         assertEquals(createdUser.getUser().getLogin(), user.getLogin());
         assertEquals(createdUser.getUser().getFirstname(), user.getFirstName());
