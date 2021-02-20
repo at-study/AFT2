@@ -23,7 +23,7 @@ import static redmine.utils.gson.GsonHelper.getGson;
 public class RequestSteps {
 
     @Если("Отправить запрос на создание пользователя {string} {string} {string} со статусом:{int}")
-    public void answerOnUserCreationRequest(String userStashDto, String userType, String stashId, int status) {
+    public void sendRequestOnUserCreation(String userStashDto, String userType, String stashId, int status) {
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = new RestApiClient(user);
         if (userType.equals("пользователем")) {
@@ -54,7 +54,7 @@ public class RequestSteps {
     }
 
     @Если("Отправить повторный запрос на создание пользователя {string} пользователем {string} с тем же телом запроса")
-    public void repeatedRequestDto(String userStashDto, String stashId) {
+    public void sendRepeatedRequest(String userStashDto, String stashId) {
         UserDto userContext = Context.get(userStashDto, UserDto.class);
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = new RestApiClient(user);
@@ -65,7 +65,7 @@ public class RequestSteps {
     }
 
     @То("Отправить НЕ корректный запрос на создание пользователя {string} пользователем {string}")
-    public void incorrectRequestDto(String userStashDto, String stashId) {
+    public void sendIncorrectRequest(String userStashDto, String stashId) {
         String incorrectMail = "santa.claus.petersburg";
         String incorrectPassword = randomEnglishLowerString(4);
         UserDto userContext = Context.get(userStashDto, UserDto.class);
@@ -83,7 +83,7 @@ public class RequestSteps {
     }
 
     @Если("Отправить запрос на изменение пользователя {string} пользователем {string}")
-    public void changeRequestDto(String userStashDto, String stashId) {
+    public void sendRequestOnUserChange(String userStashDto, String stashId) {
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = new RestApiClient(user);
         UserDto userContext = Context.get(userStashDto, UserDto.class);
@@ -111,7 +111,7 @@ public class RequestSteps {
     }
 
     @Если("Отправить запрос на получении инфо о пользователе {string} пользователем {string}")
-    public void answerOnUserGetRequest(String userStashDto, String stashId) {
+    public void sendRequestOnUserGet(String userStashDto, String stashId) {
         UserDto userContext = Context.get(userStashDto, UserDto.class);
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = new RestApiClient(user);
@@ -129,7 +129,7 @@ public class RequestSteps {
     }
 
     @Если("Отправить запрос на удаление пользователя {string} пользователем {string}")
-    public void answerOnUserDeleteRequest(String userStashDto, String stashId) {
+    public void sendRequestOnUserDelete(String userStashDto, String stashId) {
         UserDto userContext = Context.get(userStashDto, UserDto.class);
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = new RestApiClient(user);
@@ -142,7 +142,7 @@ public class RequestSteps {
     }
 
     @Если("Отправить запрос на удаление несуществующего пользователя {string} пользователем {string}")
-    public void answerOnNonExistUserDeleteRequest(String userStashDto, String stashId) {
+    public void sendRequestOnNonExistUserDelete(String userStashDto, String stashId) {
         UserDto userContext = Context.get(userStashDto, UserDto.class);
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = new RestApiClient(user);
@@ -156,7 +156,7 @@ public class RequestSteps {
 
 
     @Если("Отправить запрос на {string} пользователя {string} пользователем {string}")
-    public void answerOnUserOperationRequest(String operation, String stashId,String stashId2) {
+    public void sendRequestOnOperationRequest(String operation, String stashId,String stashId2) {
         User user2 = Context.get(stashId2, User.class);
         ApiClient apiClient = new RestApiClient(user2);
         User user=Context.get(stashId, User.class);

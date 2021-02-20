@@ -23,7 +23,7 @@ public class RequestAssertionSteps {
     }
 
     @И("В базе данных появилась запись с данными {string}")
-    public void assertUserCreationInDb(String userDataStashId) {
+    public void assertUserInformationAfterCreationInDb(String userDataStashId) {
         User userContext = Context.get(userDataStashId, User.class);
         String query = String.format("select * from users where login='%s'", userContext.getLogin());
         List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
@@ -35,7 +35,7 @@ public class RequestAssertionSteps {
     }
 
     @То("Тело содержит данные созданного пользователя {string}")
-    public void assertUserInformationExist(String userStashDto) {
+    public void assertUserInformationExistInBody(String userStashDto) {
         UserDto userContext = Context.get(userStashDto, UserDto.class);
         Response response = Context.get("response", Response.class);
         UserDto createdUser = response.getBody(UserDto.class);
@@ -51,7 +51,7 @@ public class RequestAssertionSteps {
     }
 
     @И("В базе данных появилась запись с данными пользователя {string}")
-    public void assertUserCreationInDbDto(String userDataStashId) {
+    public void assertUserInformationExistAfterCreationInDb(String userDataStashId) {
         UserDto userContext = Context.get(userDataStashId, UserDto.class);
         String query = String.format("select * from users where login='%s'", userContext.getUser().getLogin());
         List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
@@ -83,7 +83,7 @@ public class RequestAssertionSteps {
     }
 
     @То("В базе данных изменилась запись с данными пользователя {string}")
-    public void dbCheckAfterPutRequest(String userStashDto) {
+    public void assertUserInformationChangedAfterPutRequest(String userStashDto) {
         UserDto userContext = Context.get(userStashDto, UserDto.class);
         Response response = Context.get("response", Response.class);
         String query = String.format("select * from users where login='%s'", userContext.getUser().getLogin());
@@ -93,7 +93,7 @@ public class RequestAssertionSteps {
     }
 
     @То("В базе данных отсутствует информация о  пользователе {string} созданном {string}")
-    public void dbCheckAfterDeleteRequest(String userStashDto, String stashId) {
+    public void assertUserInformationAbsentInDbAfterDeleteRequest(String userStashDto, String stashId) {
         UserDto userContext = Context.get(userStashDto, UserDto.class);
         String query = String.format("select * from users where login='%s'", userContext.getUser().getLogin());
         List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
@@ -101,7 +101,7 @@ public class RequestAssertionSteps {
     }
 
     @То("В теле содержится информация пользователя {string} о самом себе, присутсутвуют поля admin и apikey")
-    public void assertUserInformationFieldExist(String stashId) {
+    public void assertUserInformationExistWithApiAndAdmin(String stashId) {
         User user = Context.get(stashId, User.class);
         Response response = Context.get("response", Response.class);
         UserDto createdUser = response.getBody(UserDto.class);
@@ -115,7 +115,7 @@ public class RequestAssertionSteps {
     }
 
     @И("В теле содержится информация о пользователе {string}")
-    public void assertUserInformationInDb(String stashId) {
+    public void assertUserInformationExistInDb(String stashId) {
         User userContext = Context.get(stashId, User.class);
         String query = String.format("select * from users where login='%s'", userContext.getLogin());
         List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
@@ -128,7 +128,7 @@ public class RequestAssertionSteps {
     }
 
     @То("В теле содержится информация пользователя {string} , отсутствуют поля admin и apikey")
-    public void assertUserInformationFieldExistWithoutApiAndAdmin(String stashId) {
+    public void assertUserInformationExistWithoutApiAndAdmin(String stashId) {
         User user = Context.get(stashId, User.class);
         Response response = Context.get("response", Response.class);
         UserDto createdUser = response.getBody(UserDto.class);
