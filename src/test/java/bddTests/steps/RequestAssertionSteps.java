@@ -3,11 +3,6 @@ package bddTests.steps;
 import cucumber.api.java.ru.И;
 import cucumber.api.java.ru.То;
 import org.testng.Assert;
-import redmine.api.implementations.RestApiClient;
-import redmine.api.implementations.RestRequest;
-import redmine.api.interfaces.ApiClient;
-import redmine.api.interfaces.HttpMethods;
-import redmine.api.interfaces.Request;
 import redmine.api.interfaces.Response;
 import redmine.managers.Context;
 import redmine.managers.Manager;
@@ -103,15 +98,9 @@ public class RequestAssertionSteps {
     @То("В базе данных отсутствует информация о  пользователе {string} созданном {string}")
     public void dbCheckAfterDeleteRequest(String userStashDto, String stashId) {
         UserDto userContext = Context.get(userStashDto, UserDto.class);
-        User user = Context.get(stashId, User.class);
-        ApiClient apiClient = new RestApiClient(user);
-        Integer userId = user.getId() + 1;
-        String uri = String.format("users/%d.json", userId);
-        Request request = new RestRequest(uri, HttpMethods.GET, null, null, null);
-        Response response = apiClient.executeRequest(request);
-        UserDto userDto = response.getBody(UserDto.class);
-        Context.put("response", response);
-        assertEquals(response.getStatusCode(), 404);
+        String query = String.format("select * from users where login='%s'", userContext.getUser().getLogin());
+        List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
+        Assert.assertEquals(result.size(), 0, "Проверка отсутствия");
     }
 
     @То("В теле содержиться информация пользователя {string} о самом себе, присутсутвуют поля admin и apikey")
