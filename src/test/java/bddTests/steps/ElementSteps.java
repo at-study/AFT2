@@ -6,9 +6,7 @@ import org.openqa.selenium.WebElement;
 import redmine.managers.Context;
 import redmine.model.user.User;
 import redmine.ui.pages.helpers.CucumberPageObjectHelper;
-
 import java.util.Objects;
-
 import static redmine.utils.StringGenerators.randomEmail;
 
 public class ElementSteps {

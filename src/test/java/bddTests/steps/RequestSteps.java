@@ -14,10 +14,8 @@ import redmine.managers.Manager;
 import redmine.model.dto.UserDto;
 import redmine.model.dto.UserInfo;
 import redmine.model.user.User;
-
 import java.util.List;
 import java.util.Map;
-
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 import static redmine.utils.gson.GsonHelper.getGson;

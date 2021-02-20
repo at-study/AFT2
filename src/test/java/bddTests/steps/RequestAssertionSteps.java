@@ -9,10 +9,8 @@ import redmine.managers.Manager;
 import redmine.model.dto.UserCreationError;
 import redmine.model.dto.UserDto;
 import redmine.model.user.User;
-
 import java.util.List;
 import java.util.Map;
-
 import static redmine.utils.Asserts.assertEquals;
 import static redmine.utils.gson.GsonHelper.getGson;
 
@@ -41,7 +39,6 @@ public class RequestAssertionSteps {
         UserDto userContext = Context.get(userStashDto, UserDto.class);
         Response response = Context.get("response", Response.class);
         UserDto createdUser = response.getBody(UserDto.class);
-
         Assert.assertNotNull(createdUser.getUser().getId());
         assertEquals(createdUser.getUser().getLogin(), userContext.getUser().getLogin());
         assertEquals(createdUser.getUser().getFirstname(), userContext.getUser().getFirstname());
