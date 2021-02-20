@@ -140,7 +140,6 @@ public class RequestSteps {
         Request request = new RestRequest(uri, HttpMethods.DELETE, null, null, null);
         Response response = apiClient.executeRequest(request);
         UserDto userDto = response.getBody(UserDto.class);
-        Context.put(userStashDto, userDto);
         Context.put("response", response);
     }
 
@@ -154,7 +153,6 @@ public class RequestSteps {
         Request request = new RestRequest(uri, HttpMethods.DELETE, null, null, null);
         Response response = apiClient.executeRequest(request);
         UserDto userDto = response.getBody(UserDto.class);
-        Context.put(userStashDto, userDto);
         Context.put("response", response);
     }
 
