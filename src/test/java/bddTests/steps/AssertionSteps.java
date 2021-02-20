@@ -6,7 +6,9 @@ import org.testng.Assert;
 import redmine.cucumber.ParametersValidator;
 import redmine.managers.Context;
 import redmine.model.role.*;
+
 import java.util.Map;
+
 import static java.lang.Boolean.parseBoolean;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.valueOf;

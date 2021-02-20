@@ -13,8 +13,10 @@ import redmine.ui.pages.UsersPage;
 import redmine.ui.pages.helpers.CucumberPageObjectHelper;
 import redmine.utils.Asserts;
 import redmine.utils.BrowserUtils;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 import static redmine.ui.pages.helpers.Pages.getPage;
 
 public class ElementAssertionSteps {
@@ -39,6 +41,7 @@ public class ElementAssertionSteps {
         WebElement element = CucumberPageObjectHelper.getElementBy(pageName, fieldName);
         Assert.assertFalse(BrowserUtils.isElementCurrentlyPresent(element));
     }
+
     @SneakyThrows
     @То("Отображается сообщение {string}{string}{string}")
     public void assertCreationMessage(String user, String userDataStashId, String created) {

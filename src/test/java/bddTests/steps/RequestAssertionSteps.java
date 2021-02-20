@@ -89,30 +89,32 @@ public class RequestAssertionSteps {
             assertEquals(errors.getErrors().get(2), "Пароль недостаточной длины (не может быть меньше 8 символа)");
         }
     }
+
     @То("В базе данных изменилась запись с данными пользователя {string}")
-    public void dbCheckAfterPutRequest(String userStashDto){
+    public void dbCheckAfterPutRequest(String userStashDto) {
         UserDto userContext = Context.get(userStashDto, UserDto.class);
         Response response = Context.get("response", Response.class);
         UserDto createdUser = response.getBody(UserDto.class);
         String query = String.format("select * from users where login='%s'", userContext.getUser().getLogin());
         List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
         Map<String, Object> dbUser = result.get(0);
-        assertEquals(dbUser.get("status"),1 );
+        assertEquals(dbUser.get("status"), 1);
     }
 
     @То("В базе данных отсутствует информация о  пользователе {string} созданном {string}")
-    public void dbCheckAfterDeleteRequest(String userStashDto,String stashId){
+    public void dbCheckAfterDeleteRequest(String userStashDto, String stashId) {
         UserDto userContext = Context.get(userStashDto, UserDto.class);
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = new RestApiClient(user);
-        Integer userId = user.getId()+2;
+        Integer userId = user.getId() + 2;
         String uri = String.format("users/%d.json", userId);
         Request request = new RestRequest(uri, HttpMethods.GET, null, null, null);
         Response response = apiClient.executeRequest(request);
-        UserDto userDto= response.getBody(UserDto.class);
-        Context.put("response",response);
+        UserDto userDto = response.getBody(UserDto.class);
+        Context.put("response", response);
         assertEquals(response.getStatusCode(), 404);
     }
+
     @То("В теле содержиться информация пользователя {string} о самом себе, присутсутвуют поля admin и apikey")
     public void assertUserInformationFieldExist(String stashId) {
         User user = Context.get(stashId, User.class);
@@ -124,8 +126,8 @@ public class RequestAssertionSteps {
         assertEquals(createdUser.getUser().getFirstname(), user.getFirstName());
         assertEquals(createdUser.getUser().getLastname(), user.getLastName());
         Assert.assertNull(createdUser.getUser().getPassword());
-        Assert.assertEquals(createdUser.getUser().getAdmin(),user.getAdmin());
-        Assert.assertEquals(createdUser.getUser().getApi_key(),user.getApiKey());
+        Assert.assertEquals(createdUser.getUser().getAdmin(), user.getAdmin());
+        Assert.assertEquals(createdUser.getUser().getApi_key(), user.getApiKey());
     }
 
     @И("В теле содержиться информация о пользователе {string}")
