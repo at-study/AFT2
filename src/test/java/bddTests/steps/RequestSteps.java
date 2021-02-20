@@ -2,6 +2,7 @@ package bddTests.steps;
 
 import cucumber.api.java.ru.Если;
 import cucumber.api.java.ru.То;
+import org.testng.Assert;
 import redmine.api.implementations.RestApiClient;
 import redmine.api.implementations.RestRequest;
 import redmine.api.interfaces.ApiClient;
@@ -13,10 +14,8 @@ import redmine.managers.Manager;
 import redmine.model.dto.UserDto;
 import redmine.model.dto.UserInfo;
 import redmine.model.user.User;
-
 import java.util.List;
 import java.util.Map;
-
 import static redmine.utils.StringGenerators.randomEmail;
 import static redmine.utils.StringGenerators.randomEnglishLowerString;
 import static redmine.utils.gson.GsonHelper.getGson;
@@ -87,15 +86,22 @@ public class RequestSteps {
         User user = Context.get(stashId, User.class);
         ApiClient apiClient = new RestApiClient(user);
         UserDto userContext = Context.get(userStashDto, UserDto.class);
+
+        String query = String.format("select * from users where login='%s'", userContext.getUser().getLogin());
+        List<Map<String, Object>> result = Manager.dbConnection.executeQuery(query);
+        Assert.assertEquals(result.size(), 1, "Проверка размера результата");
+        Map<String, Object> dbUser = result.get(0);
+        Integer userId= (Integer) dbUser.get("id");
+        Integer newStatus=1;
         UserDto userDto=new UserDto().setUser(new UserInfo()
                 .setLogin(userContext.getUser().getLogin())
+                .setAdmin(false)
                 .setFirstname(userContext.getUser().getFirstname())
                 .setLastname(userContext.getUser().getLastname())
                 .setMail(userContext.getUser().getMail())
                 .setPassword(userContext.getUser().getPassword())
-                .setStatus(1));
+                .setStatus(newStatus));
         String statusBody = getGson().toJson(userDto);
-        Integer userId=userContext.getUser().getId();
         String uri = String.format("users/%d.json", userId);
         Request putRequest = new RestRequest(uri, HttpMethods.PUT, null, null, statusBody);
         Response response = apiClient.executeRequest(putRequest);
